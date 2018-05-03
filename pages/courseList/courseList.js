@@ -4,7 +4,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dou_dates: ["preDate", "preDate", "preDate", "preDate", "preDate", "preDate","preDate"]
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    dou_dates: ["preDate", "preDate", "preDate", "preDate", "preDate", "preDate","preDate"],
+    
     
   },
 
@@ -22,7 +24,9 @@ Page({
         dd = "0" + dd;
     }
     var toDay = toDate.getFullYear() + "-" + mm + "-" + dd;
-    this.getDates(toDay);
+    this.getDates("2018-03-26");
+    // 设置图片高宽
+    this.getEquipmentWidth();
   },
 
   /**
@@ -101,11 +105,14 @@ Page({
     param.index = "今天"
   }
   dates.push(param);
+  
 }
   // 将获取到的本周的数据存起来
   objx.setData({
       currentWeek:dates
   })
+
+  objx.getDatas(currentTime);
 
 },
 
@@ -130,15 +137,93 @@ getChooseDayData: function (date) {
       objx_dates[chooseIndex] = "preDate chooseDate";
     }
     
+    
+    
+
     // 设值
     objx.setData({
        dou_dates:objx_dates
     })
 
+    objx.getCurrentDateCourseList(chooseDate);
 
 
 
+},
+/**
+ * 查询指定日期的课程数据
+ */
+getCurrentDateCourseList(currentDate) {
+  var objx = this;
+  var courseDataList = objx.data.courseDataList;
+  // 取值
+  var courseList = [];
+  for ( var x = 0; x < courseDataList.length; x++ ) {
+      if (courseDataList[x].planDate == currentDate) {
+         courseList.push(courseDataList[x]);
+      }
+  }
+
+  objx.setData({
+     courseList:courseList
+  })
+},
+/**
+ * 处理图片高宽
+ */
+getEquipmentWidth: function () {
+   var objx = this;
+   // 获取设备高宽
+   var sysInfo = wx.getSystemInfoSync();
+   var winWidth = sysInfo.windowWidth;
+   var pictureWidth = winWidth * 0.30;
+   var pictureHeight = winWidth * 0.30 * 0.60;
+   pictureWidth = pictureWidth.toFixed(0) + "px";
+   pictureHeight = pictureHeight.toFixed(0) + "px";
+   objx.setData({
+     pictureWidth: pictureWidth,
+     pictureHeight: pictureHeight
+   })
+},
+
+/**
+ * 获取一周内的团体课数据
+ */
+getDatas: function (currentDate) {
+    var objx = this;
+    var dou_dates = objx.data.currentWeek;
+    var dates = [];
+    for(var x = 0; x < dou_dates.length; x++) {
+       dates.push(dou_dates[x].date);
+    }
+    var parma = {};
+    parma.date = dates.toString();
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!findCourse.asp',
+      dataType:JSON,
+      data:{
+         json: encodeURI(JSON.stringify(parma))
+      },
+      success: function (res) {
+         res = JSON.parse(res.data);
+         console.log(res);
+         if (res.success) {
+             console.log(res);
+             objx.setData({
+                courseDataList:res.course
+             })
+             objx.getCurrentDateCourseList(currentDate);
+           } else {
+             console.log(res.message);
+           }
+      },
+      error: function (e) {
+          wx.showModal({
+            title: '提示',
+            content: '网络异常',
+          })
+      }
+    })
 }
-
 
 })

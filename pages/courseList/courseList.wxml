@@ -12,4 +12,29 @@
         </view>
    </view>
 
+<!-- 填充高度 -->
+<view class="fill"></view>
+
+<!-- 团体课程 -->
+<view class="courseList">
+      <view wx:for="{{courseList}}" wx:for-item="course" wx:for-index="index" class="course" >
+          <view class="preCourse">
+                  <view class="coursePicDiv" style="width:{{pictureWidth}};height:{{pictureHeight}}" >
+                          <image src="{{base_picture_url}}/{{course.image}}" class="coursePic" mode="aspectFill"></image>
+                  </view>
+
+                  <!-- 右边的内容 -->
+                  <view class="right" style="height:{{pictureHeight}}">
+                              <view class="courseName">{{course.courseName}}</view>
+                              <view class="coachName">教练:{{course.coachName}}</view>
+                              <view class="time coachName">时间: {{course.startTime}}-{{course.endTime}} </view>
+                              <view class="peoples">{{filter.toFixed(course.joinNum,0)}}人/{{filter.toFixed(course.total,0)}}人</view>
+                              <view class="full" wx:if="{{course.join >= course.total}}" >满员</view>
+                              <view class="toBeFull" wx:else>预约</view>
+                  </view>
+               
+          </view>
+      </view>
+</view>
+
 </view>
