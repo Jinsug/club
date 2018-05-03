@@ -19,7 +19,7 @@
         "selectedIconPath": "icon/home-select.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/courseList/courseList",
         "text": "课程表",
         "iconPath": "icon/shop.png",
         "selectedIconPath": "icon/shop-select.png"

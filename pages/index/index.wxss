@@ -115,6 +115,57 @@ page{
   height: 30px;
 }
 
+.ticketTitle{
+  padding: 10px;
+  color: #444;
+  border-bottom: 1px solid #F0F0F2;
+}
 
+.ticketBody{
+  padding: 10px 0;
+  overflow: hidden;
+}
 
+.ticket{
+  float: left;
+  margin: 0 1.5%;
+  padding: 10px;
+  background-color: #FF9800;
+}
 
+.ticket-left{
+  float: left;
+  margin-right: 5px; 
+}
+
+.ticket-right{
+  float: right;
+  font-size: 10px;
+}
+
+.oneCard-title{
+  padding: 10px;
+  color: #444;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.oneCard-body{
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.oneCard-list :last-child{
+  border-bottom: 0;
+}
+
+.onCard-image{
+  float: left;
+  width: 114px;
+  height: 68px;
+}
+
+.oneCard-contant{
+  float: right;
+  width: 60%;
+}

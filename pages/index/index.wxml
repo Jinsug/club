@@ -47,10 +47,36 @@
       先领券后购卡
     </view>
     <view class='ticketBody'>
-      
+      <view class='ticket' wx:for='{{tickets}}' wx:key=''>
+        <view class='ticket-left'>
+          <view style='text-align:center;'>{{item.price}}元</view>
+          <view style='font-size:10px;'>{{item.contant}}</view>
+        </view>
+        <view class='ticket-right'>
+          <view>点击</view>
+          <view>领取</view>
+        </view>
+      </view>
     </view>
   </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='oneCard'>
-  
+    <view class='oneCard-title'>健身卡</view>
+    <view class='oneCard-list'>
+      <view class='oneCard-body'>
+        <image src='{{base_picture_url}}/wangyan1.jpg' class='onCard-image' 
+          mode='aspectFill'></image>
+        <view class='oneCard-contant'>
+          <view style='color:#444;'>游泳健身年卡</view>
+          <view style='margin-top:3px;color:#BBB;font-size:11px;'>
+            有效期365天，本卡可以家庭二名成员使用，
+            按购买时的设定日期生效
+          </view>
+          <view style='margin-top:3px;color:#E82409;font-size:12px;'>
+            本月优惠价：¥3200
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
