@@ -1,1 +1,120 @@
 /**index.wxss**/
+page{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wraper{
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #FFF;
+}
+
+.clubInfo-wraper{
+  background: url('https://www.ecartoon.com.cn/picture/wangyan1.jpg') no-repeat;
+  background-size: 100% auto;
+}
+
+.clubInfo{
+  padding: 10px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.clubInfo-left{
+  float: left;
+  width: 40%;
+}
+
+.clubPhoto{
+  width: 90px;
+  height: 90px;
+}
+
+.clubInfo-right{
+  position: relative;
+  float: left;
+  width: 60%;
+  height: 90px;
+}
+
+.functionButton{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.contactService, .addToClub{
+  float: right; 
+  margin-left: 20px;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #FFF;
+  border-radius: 5px;
+}
+
+.clubInfo-bottom{
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-top: 1px solid #FFF;
+}
+
+.clubAddress{
+  float: left;
+  padding: 5px;
+  width: 80%;
+  overflow: hidden;
+}
+
+.address-icon{
+  float: left;
+  width: 30px;
+  height: 30px;
+}
+
+.address{
+  float: left;
+  margin-left: 10px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.clubPhone{
+  float: right;
+  height: 30px;
+  padding: 5px;
+  border-left: 1px solid #FFF;
+}
+
+.clubPhone > image{
+  width: 30px;
+  height: 30px;
+}
+
+.clubFunction{
+  overflow: hidden;
+  background-color: #FFF;
+  color: #444;
+}
+
+.clubFunction > view{
+  float: left;
+  padding: 10px 0;
+  width: 25%;
+  text-align: center;
+}
+
+.clubFunction > view > image{
+  width: 30px;
+  height: 30px;
+}
+
+
+
+

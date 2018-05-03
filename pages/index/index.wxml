@@ -1,1 +1,56 @@
 <!--index.wxml-->
+<view class='wraper'>
+  <view class='clubInfo-wraper' style='background-position-y: -50px;'>
+    <view class='clubInfo'>
+      <view class='clubInfo-left'>
+        <image src='{{base_picture_url}}/wangyan1.jpg' class='clubPhoto'></image>
+      </view>
+      <view class='clubInfo-right'>
+        <view class='clubName'>美力健身天安店</view>
+        <view class='functionButton'>
+          <view class='contactService'>联系客服</view>
+          <view class='addToClub'>申请加入</view>
+        </view>
+      </view>
+    </view>
+    <view class='clubInfo-bottom'>
+      <view class='clubAddress'>
+        <image src='{{base_picture_url}}/address.png' class='address-icon'></image>
+        <view class='address'>北京市朝阳区朝阳公园十七路</view>
+      </view>
+      <view class='clubPhone'>
+        <image src='{{base_picture_url}}/phone.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='clubFunction'>
+    <view class='signIn'>
+      <image src='{{base_picture_url}}/201805030024.png'></image>
+      <view>健身打卡</view>
+    </view>
+    <view class='clubRemark'>
+      <image src='{{base_picture_url}}/201805030026.png'></image>
+      <view>俱乐部介绍</view>
+    </view>
+    <view class='memberRanking'>
+      <image src='{{base_picture_url}}/201805030025.png'></image>
+      <view>会员排名</view>
+    </view>
+    <view class='live'>
+      <image src='{{base_picture_url}}/201805030027.png'></image>
+      <view>健身直播</view>
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='clubTicket'>
+    <view class='ticketTitle'>
+      先领券后购卡
+    </view>
+    <view class='ticketBody'>
+      
+    </view>
+  </view>
+  <view class='oneCard'>
+  
+  </view>
+</view>
