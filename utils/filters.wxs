@@ -1,36 +1,52 @@
 // 过滤器
 var filters = {
-    week_date: function (value) {
-        if ( "0" == value ) {
-          value = "周一";
-        } 
-        if ( "1" == value ) {
-          value = "周二";
-        }
-        if ( "2" == value ) {
-          value = "周三";
-        }
-        if ( "3" == value ) {
-          value = "周四";
-        }
-        if ( "4" == value ) {
-          value = "周五";
-        }
-        if ( "5" == value ) {
-          value = "周六";
-        }
-        if ( "6" == value ) {
-          value = "周日";
-        }
-        
-        return value;
+  toFixed: function (num, length) {
+    if (!isNaN(num)) {
+      return parseFloat(num).toFixed(length);
+    } else {
+      return num;
+    }
+  },
+  overflow_hidden: function (text, length) {
+    if(text){
+      if (text.length > length) {
+        text = text.substring(0, length) + '...';
       }
-
+    }
+    return text;
+  },
+  week_date: function (value) {
+      if ( "0" == value ) {
+        value = "周一";
+      } 
+      if ( "1" == value ) {
+        value = "周二";
+      }
+      if ( "2" == value ) {
+        value = "周三";
+      }
+      if ( "3" == value ) {
+        value = "周四";
+      }
+      if ( "4" == value ) {
+        value = "周五";
+      }
+      if ( "5" == value ) {
+        value = "周六";
+      }
+      if ( "6" == value ) {
+        value = "周日";
+      }
+      
+      return value;
+    }
 }
 
 
 
 
 module.exports = {
+  toFixed: filters.toFixed,
+  overflow_hidden: filters.overflow_hidden,
   week_date: filters.week_date
 }
