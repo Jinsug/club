@@ -1,0 +1,36 @@
+// 过滤器
+var filters = {
+    week_date: function (value) {
+        if ( "0" == value ) {
+          value = "周一";
+        } 
+        if ( "1" == value ) {
+          value = "周二";
+        }
+        if ( "2" == value ) {
+          value = "周三";
+        }
+        if ( "3" == value ) {
+          value = "周四";
+        }
+        if ( "4" == value ) {
+          value = "周五";
+        }
+        if ( "5" == value ) {
+          value = "周六";
+        }
+        if ( "6" == value ) {
+          value = "周日";
+        }
+        
+        return value;
+      }
+
+}
+
+
+
+
+module.exports = {
+  week_date: filters.week_date
+}

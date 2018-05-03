@@ -1,0 +1,15 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 页面开始 -->
+<view class="wapper">
+   <!-- weekDates -->
+   <view class="weekDiv">
+        <view class="weekDate" wx:for="{{currentWeek}}" wx:for-item="data" wx:for-index="index">
+        <!-- 今天 -->
+             <view class="preDate toDay" wx:if="{{'今天' == data.index}}"  data-chooseDate="{{data.date}}"  data-chooseIndex="{{data.index}}" bindtap="getChooseDayData" >{{filter.week_date(data.index)}}</view>
+        <!-- 其他天 -->
+         <view class="{{dou_dates[index]}}" wx:if="{{'今天' != data.index}}" data-chooseDate="{{data.date}}" data-chooseIndex="{{data.index}}" bindtap="getChooseDayData" >{{filter.week_date(data.index)}}</view>
+        </view>
+   </view>
+
+</view>
