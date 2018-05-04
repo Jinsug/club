@@ -1,14 +1,12 @@
 Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
-    tickets: [
-      { id: 19, price: 90, contant: '满1000元使用', state: 0, background: '#FF9800' },
-      { id: 20,price: 200, contant: '满2000元使用', state: 0, background: '#FF9800' },
-      { id: 21,price: 300, contant: '满3000元使用', state: 0, background: '#FF9800' }
-    ],
-    defaultClubId: 290,
-    club: {},
-    background_position: 0
+    club: {
+      image: 'opacity.png'
+    },
+    ticketList: [],
+    scroll_box_weight: 0,
+    cardList: []
   },
   // 页面加载函数
   onLoad: function () {
@@ -16,11 +14,16 @@ Page({
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
       data: {
-        id: obj.data.defaultClubId
+        id: wx.getStorageSync('clubId')
       },
       success: function(res){
+        // console.log(res);
+        var default_weight = 50;
         obj.setData({
-          club: res.data.club
+          club: res.data.club,
+          ticketList: res.data.ticketList,
+          scroll_box_weight: res.data.ticketList.length * default_weight,
+          cardList: res.data.cardList
         });
       }
     });
@@ -32,7 +35,7 @@ Page({
       url: 'https://www.ecartoon.com.cn/clubmp!request.asp',
       data: {
         memberId: wx.getStorageSync('memberId'),
-        clubId: obj.data.defaultClubId
+        clubId: wx.getStorageSync('clubId')
       },
       success: function(res){
         if(res.data.success){
@@ -90,8 +93,8 @@ Page({
     var obj = this;
     // 获取用户选择的优惠券
     var index = e.currentTarget.dataset.index;
-    var tickets = obj.data.tickets;
-    var ticket = tickets[index];
+    var ticketList = obj.data.ticketList;
+    var ticket = ticketList[index];
     // 如何当前优惠券状态为1:已获取,则中止后续操作
     if(ticket.state == 1){
       return;
@@ -112,9 +115,8 @@ Page({
           complete: function () {
             // 更改优惠券状态
             ticket.state = 1;
-            ticket.background = '#F0F0F2';
             obj.setData({
-              tickets: tickets
+              ticketList: ticketList
             });
           }
         });

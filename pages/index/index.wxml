@@ -19,7 +19,7 @@
     <view class='clubInfo-bottom'>
       <view class='clubAddress' bindtap='clubLocation'>
         <image src='{{base_picture_url}}/address.png' class='address-icon'></image>
-        <view class='address'>{{filter.overflow_hidden(club.address, 16)}}</view>
+        <view class='address'>地址：{{filter.overflow_hidden(club.address, 18)}}</view>
       </view>
       <view class='clubPhone' bindtap='call'>
         <image src='{{base_picture_url}}/phone.png'></image>
@@ -28,37 +28,32 @@
   </view>
   <view class='clubFunction'>
     <view class='signIn' bindtap='signIn'>
-      <image src='{{base_picture_url}}/201805030024.png'></image>
+      <image src='{{base_picture_url}}/201805042233.png'></image>
       <view>健身打卡</view>
     </view>
     <view class='clubRemark' bindtap='clubRemark'>
-      <image src='{{base_picture_url}}/201805030026.png'></image>
+      <image src='{{base_picture_url}}/201805042234.png'></image>
       <view>俱乐部介绍</view>
     </view>
     <view class='memberRanking' bindtap='memberRanking'>
-      <image src='{{base_picture_url}}/201805030025.png'></image>
+      <image src='{{base_picture_url}}/201805042235.png'></image>
       <view>会员排名</view>
     </view>
     <view class='live' bindtap='live'>
-      <image src='{{base_picture_url}}/201805030027.png'></image>
+      <image src='{{base_picture_url}}/201805042236.png'></image>
       <view>健身直播</view>
     </view>
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='clubTicket'>
     <view class='ticketTitle'>
-      先领券后购卡
+      领券购卡
     </view>
     <view class='ticketBody'>
-      <view class='ticket' wx:for='{{tickets}}' wx:key='' bindtap='getTicket' 
-          data-index='{{index}}' style='background-color: {{item.background}};'>
-        <view class='ticket-left'>
-          <view style='text-align:center;'>{{item.price}}元</view>
-          <view style='font-size:10px;'>{{item.contant}}</view>
-        </view>
-        <view class='ticket-right'>
-          <view>点击</view>
-          <view>领取</view>
+      <view class='ticket-scroll-wraper' style='width:{{scroll_box_weight}}%'>
+        <view class='ticket' wx:for='{{ticketList}}' wx:key='' bindtap='getTicket' 
+            data-index='{{index}}'>
+          <image src='{{base_picture_url}}/{{item.image}}' mode='aspectFill'></image>
         </view>
       </view>
     </view>
@@ -67,17 +62,19 @@
   <view class='oneCard'>
     <view class='oneCard-title'>健身卡</view>
     <view class='oneCard-list'>
-      <view class='oneCard-body' bindtap='getOneCardDetail'>
-        <image src='{{base_picture_url}}/wangyan1.jpg' class='onCard-image' 
-          mode='aspectFill'></image>
+      <view class='oneCard-body' wx:for="{{cardList}}" wx:key='' 
+          bindtap='getOneCardDetail' data-index='{{index}}'>
+        <image src='{{base_picture_url}}/{{item.image1}}' class='onCard-image' 
+            mode='aspectFill' wx:if='{{item.image1 != null && item.image1 != ""}}'></image>
+        <image src='{{base_picture_url}}/20180203151096.jpg' class='onCard-image' 
+            mode='aspectFill' wx:if='{{item.image1 == null || item.image1 == ""}}'></image>
         <view class='oneCard-contant'>
-          <view style='color:#444;'>游泳健身年卡</view>
+          <view style='color:#444;'>{{item.name}}</view>
           <view style='margin-top:3px;color:#BBB;font-size:11px;'>
-            有效期365天，本卡可以家庭二名成员使用，
-            按购买时的设定日期生效
+            {{item.remark}}
           </view>
           <view style='margin-top:3px;color:#E82409;font-size:12px;'>
-            本月优惠价：¥3200
+            本月优惠价：¥{{filter.toFixed(item.cost, 2)}}
           </view>
         </view>
       </view>

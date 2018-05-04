@@ -82,18 +82,20 @@ page{
   float: left;
   padding: 5px;
   width: 80%;
+  font-size: 12px;
   overflow: hidden;
 }
 
 .address-icon{
   float: left;
-  width: 30px;
-  height: 30px;
+  margin-top: 5px;
+  width: 20px;
+  height: 20px;
 }
 
 .address{
   float: left;
-  margin-left: 10px;
+  margin-left: 5px;
   height: 30px;
   line-height: 30px;
 }
@@ -101,19 +103,20 @@ page{
 .clubPhone{
   float: right;
   height: 30px;
-  padding: 5px;
+  padding: 5px 10px;
   border-left: 1px solid #FFF;
 }
 
 .clubPhone > image{
-  width: 30px;
-  height: 30px;
+  margin-top: 5px;
+  width: 20px;
+  height: 20px;
 }
 
 .clubFunction{
   overflow: hidden;
   background-color: #FFF;
-  color: #444;
+  color: #999;
 }
 
 .clubFunction > view{
@@ -130,34 +133,32 @@ page{
 
 .ticketTitle{
   padding: 10px;
-  color: #444;
+  color: #1E1E1E;
   border-bottom: 1px solid #F0F0F2;
 }
 
 .ticketBody{
   padding: 10px 0;
+  overflow: scroll;
+}
+
+.ticket-scroll-wraper{
   overflow: hidden;
 }
 
 .ticket{
   float: left;
-  margin: 0 1.5%;
-  padding: 10px;
+  margin: 0 5px;
 }
 
-.ticket-left{
-  float: left;
-  margin-right: 5px; 
-}
-
-.ticket-right{
-  float: right;
-  font-size: 10px;
+.ticket > image{
+  width: 152.1px;
+  height: 45px;
 }
 
 .oneCard-title{
   padding: 10px;
-  color: #444;
+  color: #1E1E1E;
   border-bottom: 1px solid #F0F0F2;
 }
 
