@@ -163,9 +163,16 @@ getCurrentDateCourseList(currentDate) {
          courseList.push(courseDataList[x]);
       }
   }
-
+  
+  // 无数据
+  var hasData = 0;
+  if (courseList.length > 0) {
+    // 有数据
+    hasData = 1;
+  }
   objx.setData({
-     courseList:courseList
+     courseList:courseList,
+     hasData:hasData
   })
 },
 /**
@@ -206,9 +213,7 @@ getDatas: function (currentDate) {
       },
       success: function (res) {
          res = JSON.parse(res.data);
-         console.log(res);
          if (res.success) {
-             console.log(res);
              objx.setData({
                 courseDataList:res.course
              })

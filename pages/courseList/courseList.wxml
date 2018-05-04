@@ -4,7 +4,7 @@
 <view class="wapper">
    <!-- weekDates -->
    <view class="weekDiv">
-        <view class="weekDate" wx:for="{{currentWeek}}" wx:for-item="data" wx:for-index="index">
+        <view class="weekDate" wx:for="{{currentWeek}}" wx:for-item="data" wx:for-index="index" >
         <!-- 今天 -->
              <view class="preDate toDay" wx:if="{{'今天' == data.index}}"  data-chooseDate="{{data.date}}"  data-chooseIndex="{{data.index}}" bindtap="getChooseDayData" >{{filter.week_date(data.index)}}</view>
         <!-- 其他天 -->
@@ -17,7 +17,8 @@
 
 <!-- 团体课程 -->
 <view class="courseList">
-      <view wx:for="{{courseList}}" wx:for-item="course" wx:for-index="index" class="course" >
+      <!-- 有数据 -->
+      <view wx:for="{{courseList}}" wx:for-item="course" wx:for-index="index" class="course" wx:if="{{hasData == 1 }}" >
           <view class="preCourse">
                   <view class="coursePicDiv" style="width:{{pictureWidth}};height:{{pictureHeight}}" >
                           <image src="{{base_picture_url}}/{{course.image}}" class="coursePic" mode="aspectFill"></image>
@@ -34,6 +35,20 @@
                   </view>
                
           </view>
+      </view>
+
+       <!-- 没有数据 -->
+      <view class="hasNoData" wx:if="{{hasData == 0}}" >
+             <view class="noData">
+                 <!-- 图像 -->
+                 <view class="noDataPicDiv">
+                     <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png" class="noDataPic"></image>
+                 </view>
+                 <view class="noDataFont">
+                     <view>暂无数据</view>
+                     <view>去看看别的</view>
+                 </view>
+             </view>
       </view>
 </view>
 

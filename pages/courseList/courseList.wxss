@@ -113,3 +113,26 @@ page{
     border-radius: 10rpx;
     margin-top:-120rpx;
 }
+
+.hasNoData{
+    width: 100%;
+    height: 100%;
+}
+
+.noDataPicDiv{
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 auto;
+    margin-top: 60%;
+}
+
+.noDataPic{
+    width: 100%;
+    height: 100%;
+}
+
+.noDataFont{
+    font-size: 24rpx;
+    text-align: center;
+    color: #999999;
+}
