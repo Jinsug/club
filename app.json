@@ -2,7 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/courseList/courseList"
+    "pages/courseList/courseList",
+    "pages/courseDeal/courseDeal",
+    "pages/mine/mine"
   ],
   "window":{
     "backgroundTextStyle":"light",

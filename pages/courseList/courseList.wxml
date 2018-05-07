@@ -31,7 +31,7 @@
                               <view class="time coachName">时间: {{course.startTime}}-{{course.endTime}} </view>
                               <view class="peoples">{{filter.toFixed(course.joinNum,0)}}人/{{filter.toFixed(course.total,0)}}人</view>
                               <view class="full" wx:if="{{course.join >= course.total}}" >满员</view>
-                              <view class="toBeFull" wx:else>预约</view>
+                              <view class="toBeFull" wx:else bindtap="appointment" data-courseid="{{course.id}}">预约</view>
                   </view>
                
           </view>

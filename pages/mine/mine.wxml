@@ -1,0 +1,63 @@
+<!-- 页面开始 -->
+<view class="content">
+   <!-- 个人信息 -->
+   <view class="personInfo">
+       <!-- 背景图 -->
+       <image class="BGP" src="https://www.ecartoon.com.cn/picture/5856706396549120.jpg" mode="aspectFill"></image>
+       <view class="person">
+           <!-- 头像 -->
+           <view class="personImageDiv">
+                <image class="personImage" src="https://www.ecartoon.com.cn/picture/1.jpg"></image>
+           </view>
+
+           <!-- 其他信息 -->
+           <view class="others">
+                  <view class="nickName">飞向蓝天</view>
+                  <view class="description">已健身<text class="count">48</text>次</view>
+           </view>
+       </view>
+   </view>
+
+   
+   <!-- 页面跳转链接 -->
+   <view class="linksPage">
+      <!-- 我的订单 -->
+      <view class="pre">
+            <view class="title">我的订单</view>
+            <view class="link">></view>
+      </view>
+
+      <!-- 我的钱包 -->
+      <view class="pre">
+            <view class="title">我的钱包</view>
+            <view class="link">></view>
+      </view>
+
+      <!-- 我的优惠券 -->
+      <view class="pre">
+            <view class="title">我的优惠券</view>
+            <view class="link">></view>
+      </view>
+
+      <!-- 我的预约 -->
+      <view class="pre">
+            <view class="title">我的预约</view>
+            <view class="link">></view>
+      </view>
+
+      <!-- 我的挑战 -->
+      <view class="pre">
+            <view class="title">我的挑战</view>
+            <view class="link">></view>
+      </view>
+
+      <!-- 我的足迹 -->
+      <view class="pre">
+            <view class="title">我的足迹</view>
+            <view class="link">></view>
+      </view>
+
+
+   </view>
+
+</view>

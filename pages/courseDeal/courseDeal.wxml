@@ -1,0 +1,47 @@
+<!-- 页面开始 -->
+<view class="page">
+
+
+       <!-- 内容展示区 -->
+       <view class="content">
+             <!-- 教练头像、名称 -->
+             <view class="pre">
+                 <view class="coachImageDiv">
+                     <image class="coachImage" src="https://www.ecartoon.com.cn/picture/{{course.image}}"></image>
+                 </view>
+                 <view class="coachName">{{course.coachName}}</view>
+             </view>
+
+            <!-- 课程 -->
+             <view class="pre">
+                 <view  class="title">课程</view>
+                 <view class="value">{{course.courseName}}</view>
+             </view>
+
+             <!-- 开始时间 -->
+             <view class="pre">
+                 <view  class="title">开始时间</view>
+                 <view class="value">{{course.startTime}}</view>
+             </view>
+
+             <!-- 结束时间 -->
+             <view class="pre">
+                 <view  class="title">结束时间</view>
+                 <view class="value">
+                      {{course.endTime}}
+                 </view>
+             </view>
+
+             <!-- 课程地点 -->
+             <view class="pre">
+                 <view  class="title">课程地点</view>
+                 <view class="value">{{course.clubName}}</view>
+             </view>
+       </view>
+
+       <!-- 确定按钮 -->
+       <view class="sure" bindtap="appointment">
+          确定
+       </view>
+
+</view>

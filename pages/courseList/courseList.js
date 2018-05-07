@@ -174,6 +174,7 @@ getCurrentDateCourseList(currentDate) {
      courseList:courseList,
      hasData:hasData
   })
+
 },
 /**
  * 处理图片高宽
@@ -229,6 +230,28 @@ getDatas: function (currentDate) {
           })
       }
     })
-}
+},
+
+/**
+ * 预约团体课
+ */
+  appointment: function (e) {
+      var objx = this;
+      var courseId = e.currentTarget.dataset.courseid;
+      var courseList = objx.data.courseList;
+      var course = {};
+      for (var x = 0; x < courseList.length; x++) {
+          if (courseId == courseList[x].id) {
+             course = courseList[x];
+          }
+      }
+      // 将当前课程存储起来
+      wx.setStorageSync("course", course);
+      
+      // 跳转到预约页面
+      wx.navigateTo({
+        url: "../../pages/courseDeal/courseDeal"
+      })
+  }
 
 })
