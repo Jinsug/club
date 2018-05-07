@@ -1,0 +1,2 @@
+<map class='map' longitude='{{club.longitude}}' latitude='{{club.latitude}}' markers='{{markers}}'>
+</map>

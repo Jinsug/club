@@ -1,3 +1,4 @@
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
@@ -19,11 +20,16 @@ Page({
       success: function(res){
         // console.log(res);
         var default_weight = 50;
+        var length = res.data.ticketList ? res.data.ticketList.length : 0;
         obj.setData({
           club: res.data.club,
           ticketList: res.data.ticketList,
-          scroll_box_weight: res.data.ticketList.length * default_weight,
+          scroll_box_weight: default_weight * length, 
           cardList: res.data.cardList
+        });
+        // 设置当前页面标题
+        wx.setNavigationBarTitle({
+          title: res.data.club.name
         });
       }
     });
@@ -59,7 +65,9 @@ Page({
   },
   // 俱乐部位置
   clubLocation: function(){
-
+    wx.navigateTo({
+      url: '../map/map?club=' + encodeURI(JSON.stringify(this.data.club))
+    });
   },
   // 拨打电话
   call: function(){
@@ -78,15 +86,22 @@ Page({
   },
   // 俱乐部介绍
   clubRemark: function(){
-
+    wx.navigateTo({
+      url: '../introduce/introduce?club=' + encodeURI(JSON.stringify(this.data.club))
+    });
   },
   // 会员排名
   memberRanking: function(){
-
+    wx.navigateTo({
+      url: '../memberRanking/memberRanking?memberRanking=' + 
+        encodeURI(JSON.stringify(this.data.club.memberRanking))
+    });
   },
   // 健身直播
   live: function(){
-
+    wx.navigateTo({
+      url: '../live/live'
+    });
   },
   // 领券
   getTicket: function(e){

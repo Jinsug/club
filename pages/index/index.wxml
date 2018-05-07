@@ -1,5 +1,7 @@
 <!-- 引入过滤器 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 引入富文本解析模板 -->
+<import src="../../wxParse/wxParse.wxml"/>
 <view class='wraper'>
   <view class='clubInfo-wraper'>
     <image src='{{base_picture_url}}/{{club.image}}' mode='aspectFill'></image>
@@ -69,12 +71,20 @@
         <image src='{{base_picture_url}}/20180203151096.jpg' class='onCard-image' 
             mode='aspectFill' wx:if='{{item.image1 == null || item.image1 == ""}}'></image>
         <view class='oneCard-contant'>
-          <view style='color:#444;'>{{item.name}}</view>
-          <view style='margin-top:3px;color:#BBB;font-size:11px;'>
-            {{item.remark}}
+          <view class='onCard-info'>
+            <view class='onCard-name'>
+              {{filter.overflow_hidden(item.name, 8)}}
+            </view>
+            <view class='sell-out'>
+              已售{{item.sell_out}}
+            </view>
           </view>
-          <view style='margin-top:3px;color:#E82409;font-size:12px;'>
-            本月优惠价：¥{{filter.toFixed(item.cost, 2)}}
+          <view class='onCard-price'>
+            <text style='font-size:10px;'>¥</text>
+            {{filter.toFixed(item.cost, 2)}}
+          </view>
+          <view class='onCard-remark'>
+            <rich-text nodes='{{item.remark}}'></rich-text>
           </view>
         </view>
       </view>
