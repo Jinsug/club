@@ -1,18 +1,22 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/map/map",
+    "pages/introduce/introduce",
+    "pages/live/live",
+    "pages/memberRanking/memberRanking"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "俱乐部小程序",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
-  "tabBar":{
+  "tabBar": {
     "list": [
       {
         "pagePath": "pages/index/index",

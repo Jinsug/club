@@ -1,0 +1,29 @@
+<view class='wraper'>
+  <view class='memberRanking'>
+    <view class='memberRanking-title'>
+      <view>
+        <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;排名</text>
+      </view>
+      <view>会员</view>
+      <view>
+        <text decode='{{true}}'>健身次数&nbsp;&nbsp;&nbsp;&nbsp;</text>
+      </view>
+    </view>
+    <view class='memberRanking-body'>
+      <view class='memberRanking-item' wx:for='{{memberRanking}}' wx:key=''>
+        <view class='ranking'>
+          <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;No.{{index + 1}}</text>
+        </view>
+        <view class='memberInfo'>
+          <image class='memberInfo-image' src='{{base_picture_url}}/{{item.image}}'   
+              mode='aspectFill'>
+          </image>
+          <view class='memberInfo-name'>{{item.name}}</view>
+        </view>
+        <view class='count'>
+          <text decode='{{true}}'>{{item.count}}次&nbsp;&nbsp;&nbsp;&nbsp;</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
