@@ -97,7 +97,6 @@ Page({
    */
   getOrderData: function () {
      var objx = this;
-     var orderList1 = [];
      var param = {};
      var memberId = wx.getStorageSync("memberId");
      param.memberId = memberId;
