@@ -1,0 +1,155 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 页面开始 -->
+<view class="page-waper">
+    <view class="swiper-tab">
+          <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">有效订单</view>
+          <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">未付款订单</view>
+          <view class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">已完成订单</view>
+    </view>
+
+    <!-- 填充块 -->
+    <view class="fill"></view>
+
+<swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
+          <!-- 有效订单 -->
+          <swiper-item>
+                   <!-- 外部容器 -->
+                   <view class="dou">
+                            <view class="pre" wx:for="{{orderList1}}" wx:for-item="order" >
+                            <!-- 订单编号 -->
+                            <view class="orderNo" >订单编号 : {{order.orderNo}}</view>
+
+                            <!-- 下面一行 -->
+                            <view class="orderDetail">
+                                <!-- 头像 -->
+                                <view class="picDiv left">
+                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}" mode="aspectFill" ></image>
+                                </view>
+
+                                <!-- 右侧数据 -->
+                                <view class="right">
+                                    <!-- 商品名称 -->
+                                    <view class="prodName">{{order.prodName}}</view>
+
+                                    <!-- 订单时间 -->
+                                    <view class="orderDate">订单时间：{{order.orderDate}}</view>
+                                    <!-- 订单金额 -->
+                                    <view class="orderMoney">{{filter.toFixed(order.orderMoney,2)}}</view>
+                                </view>
+                            </view>
+                      </view>
+
+
+                      <!-- 暂无数据 -->
+                      <view class="noData" wx:if="{{orderList1.length == 0}}">
+                             <view class="noDataPicDiv">
+                                   <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+                             </view>
+
+                             <view class="noDataFont">
+                                     <view>暂无数据</view>
+                                     <view>去看看别的</view>
+                             </view>
+                      </view>
+
+
+                   </view>
+                      
+          </swiper-item>
+
+          <!-- 未付款订单 -->
+          <swiper-item>
+                   <!-- 外部容器 -->
+                   <view class="dou">
+                             <view class="pre" wx:for="{{orderList0}}" wx:for-item="order" >
+                            <!-- 订单编号 -->
+                            <view class="orderNo" >订单编号 : {{order.orderNo}}</view>
+
+                            <!-- 下面一行 -->
+                            <view class="orderDetail">
+                                <!-- 头像 -->
+                                <view class="picDiv left">
+                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}"  mode="aspectFill" ></image>
+                                </view>
+
+                                <!-- 右侧数据 -->
+                                <view class="right">
+                                    <!-- 商品名称 -->
+                                    <view class="prodName">{{order.prodName}}</view>
+
+                                    <!-- 订单时间 -->
+                                    <view class="orderDate">订单时间：{{order.orderDate}}</view>
+                                    <!-- 订单金额 -->
+                                    <view class="orderMoney">{{filter.toFixed(order.orderMoney,2)}}</view>
+                                </view>
+                            </view>
+                      </view>
+
+
+                      <!-- 暂无数据 -->
+                      <view class="noData" wx:if="{{orderList0.length == 0}}">
+                             <view class="noDataPicDiv">
+                                   <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+                             </view>
+
+                             <view class="noDataFont">
+                                     <view>暂无数据</view>
+                                     <view>去看看别的</view>
+                             </view>
+                      </view>
+
+
+
+                   </view>
+          </swiper-item>
+
+          <!-- 已完成订单 -->
+          <swiper-item>
+                   <!-- 外部容器 -->
+                   <view class="dou">
+                             <view class="pre" wx:for="{{orderList3}}" wx:for-item="order" >
+                            <!-- 订单编号 -->
+                            <view class="orderNo" >订单编号 : {{order.orderNo}}</view>
+
+                            <!-- 下面一行 -->
+                            <view class="orderDetail">
+                                <!-- 头像 -->
+                                <view class="picDiv left">
+                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}"  mode="aspectFill" ></image>
+                                </view>
+
+                                <!-- 右侧数据 -->
+                                <view class="right">
+                                    <!-- 商品名称 -->
+                                    <view class="prodName">{{order.prodName}}</view>
+
+                                    <!-- 订单时间 -->
+                                    <view class="orderDate">订单时间：{{order.orderDate}}</view>
+                                    <!-- 订单金额 -->
+                                    <view class="orderMoney">{{filter.toFixed(order.orderMoney,2)}}</view>
+                                </view>
+                            </view>
+                      </view>
+
+
+                      <!-- 暂无数据 -->
+                      <view class="noData" wx:if="{{orderList3.length == 0}}">
+                             <view class="noDataPicDiv">
+                                   <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+                             </view>
+
+                             <view class="noDataFont">
+                                     <view>暂无数据</view>
+                                     <view>去看看别的</view>
+                             </view>
+                      </view>
+
+
+                   </view>
+          </swiper-item>
+</swiper>
+
+
+
+</view>

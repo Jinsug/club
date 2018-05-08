@@ -7,13 +7,13 @@
        <view class="person">
            <!-- 头像 -->
            <view class="personImageDiv">
-                <image class="personImage" src="https://www.ecartoon.com.cn/picture/1.jpg"></image>
+                <image class="personImage" src="https://www.ecartoon.com.cn/picture/{{memberData.image}}"></image>
            </view>
 
            <!-- 其他信息 -->
            <view class="others">
-                  <view class="nickName">飞向蓝天</view>
-                  <view class="description">已健身<text class="count">48</text>次</view>
+                  <view class="nickName">{{memberData.nickName}}</view>
+                  <view class="description">已健身<text class="count">{{memberData.count}}</text>次</view>
            </view>
        </view>
    </view>
@@ -22,7 +22,7 @@
    <!-- 页面跳转链接 -->
    <view class="linksPage">
       <!-- 我的订单 -->
-      <view class="pre">
+      <view class="pre" bindtap="gotoMyOrder">
             <view class="title">我的订单</view>
             <view class="link">></view>
       </view>
