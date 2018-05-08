@@ -4,14 +4,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+     memberData:{
+        image:"1.jpg"
+     }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+      var objx = this;
+      objx.findMe();
   },
 
   /**
@@ -61,5 +64,56 @@ Page({
    */
   onShareAppMessage: function () {
     
+  },
+
+  /**
+   * 查询当前用户的数据
+   */
+  findMe:function () {
+      var objx = this;
+      var memberId = wx.getStorageSync("memberId");
+      var param = {};
+      param.memberId = memberId;
+
+      // 发起网络请求
+      wx.request({
+        url: "https://www.ecartoon.com.cn/clubmp!findMe.asp",
+        dataType:JSON,
+        data:{
+           json:encodeURI(JSON.stringify(param))
+        },
+        success: function (res) {
+          // 请求成功
+          res = JSON.parse(res.data);
+          if (res.success) {
+             // 获取数据成功
+             objx.setData({
+                memberData:res.memberData
+             })
+          } else {
+            // 程序异常
+            wx.showModal({
+              title: "提示",
+              content: res.message,
+            })
+          }
+        },
+        error: function (e) {
+          // 请求失败
+          wx.showModal({
+            title: "提示",
+            content: "网络异常",
+          })
+        }
+      }) 
+  },
+
+  /**
+   * 查看我的订单
+   */
+  gotoMyOrder: function () {
+      wx.navigateTo({
+        url: "../../pages/myOrder/myOrder",
+      })
   }
 })

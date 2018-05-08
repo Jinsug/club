@@ -2,13 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/logs/logs",
-    "pages/courseList/courseList",
-    "pages/courseDeal/courseDeal",
-    "pages/mine/mine",
     "pages/map/map",
     "pages/introduce/introduce",
     "pages/live/live",
-    "pages/memberRanking/memberRanking"
+    "pages/memberRanking/memberRanking",
+    "pages/courseList/courseList",
+    "pages/courseDeal/courseDeal",
+    "pages/mine/mine",
+    "pages/myOrder/myOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -37,7 +38,7 @@
         "selectedIconPath": "icon/wxb-select.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "icon/setting.png",
         "selectedIconPath": "icon/setting-select.png"
