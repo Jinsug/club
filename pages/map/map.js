@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var club = JSON.parse(decodeURI(options.club));
+    let club = JSON.parse(decodeURI(options.club));
     //console.log(club);
     // 设置当前页面标题
     wx.setNavigationBarTitle({

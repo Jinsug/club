@@ -8,7 +8,9 @@
     "pages/map/map",
     "pages/introduce/introduce",
     "pages/live/live",
-    "pages/memberRanking/memberRanking"
+    "pages/memberRanking/memberRanking",
+    "pages/product/product",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

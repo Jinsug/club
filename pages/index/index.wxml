@@ -13,8 +13,13 @@
       <view class='clubInfo-right'>
         <view class='clubName'>{{club.name}}</view>
         <view class='functionButton'>
-          <view class='contactService' bindtap='contactService'>联系客服</view>
-          <view class='addToClub' bindtap='apply'>申请加入</view>
+          <view class='contactService' bindtap='contactService'>
+            联系客服
+            <button open-type='contact' class='openButton'></button>
+          </view>
+          <view class='addToClub' bindtap='apply'>
+            申请加入
+          </view>
         </view>
       </view>
     </view>
@@ -52,6 +57,16 @@
       领券购卡
     </view>
     <view class='ticketBody'>
+      <view class='no-data-ticket' wx:if='{{ticketList.length <= 0}}'>
+        <view class='no-data-ticket-image'>
+          <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png'>
+          </image>
+        </view>
+        <view class="noDataFont">
+          <view>暂无数据</view>
+          <view>去看看别的</view>
+        </view>
+      </view>
       <view class='ticket-scroll-wraper' style='width:{{scroll_box_weight}}%'>
         <view class='ticket' wx:for='{{ticketList}}' wx:key='' bindtap='getTicket' 
             data-index='{{index}}'>
@@ -64,6 +79,16 @@
   <view class='oneCard'>
     <view class='oneCard-title'>健身卡</view>
     <view class='oneCard-list'>
+      <view class='no-data-card' wx:if='{{cardList.length <= 0}}'>
+        <view class='no-data-image'>
+          <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png'>
+          </image>
+        </view>
+        <view class="noDataFont">
+          <view>暂无数据</view>
+          <view>去看看别的</view>
+        </view>
+      </view>
       <view class='oneCard-body' wx:for="{{cardList}}" wx:key='' 
           bindtap='getOneCardDetail' data-index='{{index}}'>
         <image src='{{base_picture_url}}/{{item.image1}}' class='onCard-image' 

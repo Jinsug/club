@@ -1,0 +1,36 @@
+<view class='wraper'>
+  <view class='productInfo'>
+    <view class='productImage'>
+      <image src='{{base_picture_url}}/{{product.image1}}' mode='aspectFill'></image>
+    </view>
+    <view class='productName'>
+      {{product.name}}
+    </view>
+    <view class='productWellNum'>
+      <view class='productWellNum-left'>有效期</view>
+      <view class='productWellNum-right'>{{product.wellNum}}天</view>
+    </view>
+    <view class='productPrice'>
+      <view class='productPrice-left'>价格</view>
+      <view class='productPrice-right'>
+        ¥{{product.cost}}元
+      </view>
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='productRemark'>
+    <rich-text nodes='{{product.remark}}'></rich-text>
+  </view>
+  <view class='productStrartTime'>
+    <picker class='selectStartTime' mode="date" value="{{product.currentDate}}" 
+      bindchange='changeDate'>
+      <view class="selectStartTime-left">
+        选择开卡日期  
+      </view>
+      <view class='selectStartTime-right'>
+        {{product.currentDate}}
+      </view>
+    </picker>
+    <view class='goBuy' bindtap='goBuy'>购买</view>
+  </view>
+</view>

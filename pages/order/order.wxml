@@ -1,0 +1,63 @@
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='top-box'></view>
+  <view class='box_userInfo'>
+    <view class='userInfo'>
+      <view class='userInfo_photo'>
+        <open-data type='userAvatarUrl' class='userPhoto'></open-data>
+      </view>
+      <view class='userInfo_nick'>
+        <open-data type='userNickName'></open-data>
+      </view>
+    </view>
+    <view class='userInfo_phoneNumber'>
+      <button class='getPhoneNumber' open-type='getPhoneNumber' 
+              bindgetphonenumber='getPhoneNumber'>
+        {{showPhoneNubmer}}
+      </button>
+    </view>
+  </view>
+  <view class='box_commodity'>
+    <view class='commodity_photo'>
+      <image src='{{base_picture_url}}/{{product.image}}' mode='aspectFill'></image>
+    </view>
+    <view class='commodity_describe'>
+      <view class="commodity_name">{{product.productName}}</view>
+      <view class="commodity_startTime">开始时间: {{product.time}}</view>
+      <view class="commodity_price">
+        ￥{{filter.toFixed(product.productPrice, 2)}}
+      </view>
+    </view>
+  </view>
+  <view class='box_ticket'>
+    <view class='ticket_title'> 
+      优惠券
+    </view>
+    <view class='ticket_name' bindtap='selectTicket'>
+      {{ticket.price}}<text wx:if="{{ticket.name != '请选择优惠券'}}" >元</text>{{ticket.name}}
+      <image src="https://www.ecartoon.com.cn/picture/More@2x.png"></image>
+    </view>
+  </view>
+  <view class='box_payType'>
+    <view class='wxPay_icon'>
+      <image src='https://www.ecartoon.com.cn/miniProgram/coach/img/wechatPay.png'></image>
+    </view>
+    <view class='wxPay_title'>
+      <view class='wxPay_name'>微信支付</view>
+			<view class='wxPay_content'>推荐安装微信5.0及以上版本的用户使用</view>
+    </view>
+    <view class='wxPay_check'>
+      <image src='https://www.ecartoon.com.cn/miniProgram/coach/img/dot1.png'></image>
+    </view>
+  </view>
+  <view class='footer'>
+    <view class='orderMoney'>
+      <view class='orderMonty_text'> 
+         实付款<text class="RMB">￥</text>{{filter.toFixed(price, 2)}}元
+      </view>
+    </view>
+    <view class='payMent' bindtap='payMent'>
+      确认支付
+    </view>
+  </view>
+</view>

@@ -1,4 +1,4 @@
-var WxParse = require('../../wxParse/wxParse.js');
+import regeneratorRuntime from '../../utils/runtime.js';
 Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
@@ -11,7 +11,7 @@ Page({
   },
   // 页面加载函数
   onLoad: function () {
-    var obj = this;
+    let obj = this;
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
       data: {
@@ -19,8 +19,8 @@ Page({
       },
       success: function(res){
         // console.log(res);
-        var default_weight = 50;
-        var length = res.data.ticketList ? res.data.ticketList.length : 0;
+        let default_weight = 50;
+        let length = res.data.ticketList ? res.data.ticketList.length : 0;
         obj.setData({
           club: res.data.club,
           ticketList: res.data.ticketList,
@@ -36,7 +36,7 @@ Page({
   },
   // 申请加入 
   apply: function(){
-    var obj = this;
+    let obj = this;
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!request.asp',
       data: {
@@ -61,40 +61,161 @@ Page({
   },
   // 联系客服
   contactService: function(){
-
+    // 暂时不需要js操作
   },
   // 俱乐部位置
   clubLocation: function(){
+    let club_data = encodeURI(JSON.stringify(this.data.club));
     wx.navigateTo({
-      url: '../map/map?club=' + encodeURI(JSON.stringify(this.data.club))
+      url: `../map/map?club=${club_data}`
     });
   },
   // 拨打电话
   call: function(){
     wx.makePhoneCall({
-      phoneNumber: '13657277062'
+      phoneNumber: this.data.club.mobilephone
     });
   },
   // 健身打卡
   signIn: function(){
-    // 调用微信扫码接口
-    wx.scanCode({
-      success: function(res){
-        console.log(res);
+    const wxApi = {
+      scanCode: () => {
+        return new Promise(function (resolve, reject){
+          wx.scanCode({
+            success: (code_result) => {
+              resolve(code_result);
+            }
+          });
+        });
+      },
+      getLocation: () => {
+        return new Promise(function (resolve, reject){
+          wx.getLocation({
+            success: (location_result) => {
+              resolve(location_result);
+            },
+            fail: (e) => {
+              resolve({ refuse: true });
+            }
+          });
+        });
+      },
+      showModal: (content) => {
+        return new Promise(function (resolve, reject){
+          wx.showModal({
+            title: '提示',
+            content: content,
+            success: (operation) => {
+              resolve(operation);
+            }
+          });
+        });
+      },
+      openSetting: () => {
+        return new Promise(function(resolve, reject){
+          wx.openSetting({
+            success: (setting) => {
+              if (setting.authSetting["scope.userLocation"]) {
+                //这里是授权成功之后 填写你重新获取数据的js
+                resolve({ success : true });
+              } else {
+                // 拒绝授权
+                resolve({ success : false });
+              }
+            }
+          });
+        });
+      },
+      request: (param) => {
+        return new Promise(function (resolve, reject){
+          wx.request({
+            url: 'https://www.ecartoon.com.cn/clubmp!sign.asp',
+            data: {
+              json: encodeURI(JSON.stringify(param))
+            },
+            success: (res) => {
+              resolve(res);
+            }
+          });
+        });
       }
-    });
+    }
+    // 签到逻辑
+    const sign = async () => {
+      // 调用扫码api
+      let code_result = await wxApi.scanCode();
+      // 调用获取地理位置api
+      let location_result = await wxApi.getLocation();
+      // 第一次拒绝后重新请求授权
+      if (location_result.refuse){
+        let content = '您拒绝授权地理位置信息, 需要在设置中打开授权才能继续使用扫码签到功能!';
+        let operation = await wxApi.showModal(content);
+        if (operation.confirm) {
+          let setting = await wxApi.openSetting();
+          if (setting.success) {
+            location_result = await wxApi.getLocation();
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '您重复拒绝授权地理位置信息,扫码签到功能暂时不可用!',
+              showCancel: false
+            });
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '您重复拒绝授权地理位置信息,扫码签到功能暂时不可用!',
+            showCancel: false
+          });
+        }
+      }
+      // 第二次拒绝授权,中止后续操作
+      if (location_result.refuse) {
+        return;
+      }
+      // 请求参数
+      let param = {
+        code: code_result.result,
+        memberId: wx.getStorageSync('memberId'),
+        clubId: wx.getStorageSync('clubId'),
+        longitude: location_result.longitude,
+        latitude: location_result.latitude
+      }
+      // 调用服务端签到接口
+      let res = await wxApi.request(param);
+      if (res.data.success) {
+        wx.showToast({
+          title: '签到成功',
+          complete: (e) => {
+            // 跳转至我的足迹页面
+            // wx.navigateTo({
+            //   url: ''
+            // });
+          }
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: res.data.message,
+          showCancel: false
+        });
+      }
+    }
+    // 调用签到方法
+    sign();
   },
   // 俱乐部介绍
   clubRemark: function(){
+    let club_data = encodeURI(JSON.stringify(this.data.club));
     wx.navigateTo({
-      url: '../introduce/introduce?club=' + encodeURI(JSON.stringify(this.data.club))
+      url: `../introduce/introduce?club=${club_data}`
     });
   },
   // 会员排名
   memberRanking: function(){
+    let memberRanking_data = encodeURI(JSON.stringify(this.data.club.memberRanking));
     wx.navigateTo({
-      url: '../memberRanking/memberRanking?memberRanking=' + 
-        encodeURI(JSON.stringify(this.data.club.memberRanking))
+      url: `../memberRanking/memberRanking?memberRanking=${memberRanking_data}` 
     });
   },
   // 健身直播
@@ -105,11 +226,11 @@ Page({
   },
   // 领券
   getTicket: function(e){
-    var obj = this;
+    let obj = this;
     // 获取用户选择的优惠券
-    var index = e.currentTarget.dataset.index;
-    var ticketList = obj.data.ticketList;
-    var ticket = ticketList[index];
+    let index = e.currentTarget.dataset.index;
+    let ticketList = obj.data.ticketList;
+    let ticket = ticketList[index];
     // 如何当前优惠券状态为1:已获取,则中止后续操作
     if(ticket.state == 1){
       return;
@@ -139,7 +260,17 @@ Page({
     });
   },
   // 进入健身卡详情
-  getOneCardDetail: function(){
-
+  getOneCardDetail: function(e){
+    // 取出用户点击的索引
+    let index = e.currentTarget.dataset.index;
+    // 取出相应商品
+    let product = this.data.cardList[index];
+    // 添加商品类型
+    product.productType = 'product';
+    // 编码
+    product = encodeURI(JSON.stringify(product));
+    wx.navigateTo({
+      url: `../product/product?product=${product}`
+    });
   }
 })

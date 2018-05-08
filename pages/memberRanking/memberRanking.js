@@ -12,7 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var memberRanking = JSON.parse(decodeURI(options.memberRanking));
+    let memberRanking = JSON.parse(decodeURI(options.memberRanking));
     this.setData({
       memberRanking: memberRanking
     });
