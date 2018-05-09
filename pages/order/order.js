@@ -14,7 +14,8 @@ Page({
     price: 0,
     phoneNumber: 0,
     showPhoneNubmer: '请点击获取手机号',
-    ticket: { name: '请选择优惠券'}
+    ticket: { name: '请选择优惠券'},
+    need: false
   },
 
   /**
@@ -98,7 +99,7 @@ Page({
     let obj = this;
     e.session_key = wx.getStorageSync("session_key");
     wx.request({
-      url: 'https://www.ecartoon.com.cn/expertex!decodePhoneNumber.asp',
+      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
       data: {
         json: JSON.stringify(e)
       },
@@ -121,8 +122,9 @@ Page({
    * 用户点击选择优惠券
    */
   selectTicket: function() {
+    let product = this.data.product;
     wx.navigateTo({
-      url: '../ticket/ticket'
+      url: `../ticket/ticket?productId=${product.productId}&productType=${product.productType}`
     });
   },
   /**
@@ -150,11 +152,12 @@ Page({
       param.ticket = this.data.ticket.ticketId;
     }
     wx.request({
-      url: 'https://www.ecartoon.com.cn/coachmp!createCoachMPOrder.asp',
+      url: 'https://www.ecartoon.com.cn/clubmp!createClubMPOrder.asp',
       data: {
         json: encodeURI(JSON.stringify(param))
       },
       success: function(sign){
+        // console.log(sign);
         // 调用微信支付接口
         wx.requestPayment({
           timeStamp: sign.data.timeStamp,
@@ -169,7 +172,7 @@ Page({
             });
             // 支付成功, 跳转页面
             wx.navigateTo({
-              url: '../paySuccess/paySuccess?productName=' + obj.data.product.productName
+              url: `../paySuccess/paySuccess?productPrice=${obj.data.price}`
             });
           },
           fail: function (e) {

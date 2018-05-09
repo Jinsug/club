@@ -1,0 +1,22 @@
+<view class='wraper'>
+  <view class="no-data" wx:if="{{tickets.length == 0}}">
+    <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+    </image>
+    <view>暂无数据</view>
+    <view>先去看看别的</view>
+  </view>
+  <view class='ticket-list'>
+    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket" bindtap='selectTicket' 
+        data-ticket='{{item}}'>
+      <view class='ticket-content'>
+        <image src='https://www.ecartoon.com.cn/picture/{{item.image}}' mode='aspectFill'>
+        </image>
+      </view>
+    </view>
+  </view>
+
+ <!-- 激活优惠券按钮 -->
+ <view class="activeTicket-div" bindtap="activeTicket" wx:if='{{need}}'>
+     <view class="activeTicket" >激活</view>
+ </view>
+</view>

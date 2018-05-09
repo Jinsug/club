@@ -43,7 +43,7 @@ page{
   height: 50px;
   line-height: 50px;
   font-size: 15px;
-  color: #545556;
+  color: #c2c2c2;
 }
 
 .userInfo_phoneNumber{
@@ -96,12 +96,12 @@ page{
 .commodity_startTime{
   margin-bottom: 4px;
   font-size: 13px;
-  color: #545556;
+  color: #c2c2c2;
 }
 
 .commodity_price{
   font-size: 13px;
-  color: #28b2d9;
+  color: #FB8C00;
 }
 
 .box_ticket{
@@ -126,7 +126,7 @@ page{
 .ticket_name{
   float: right;
   font-size: 14px;
-  color: #545556;
+  color: #FB8C00;
 }
 
 .ticket_name > image{
@@ -201,7 +201,7 @@ page{
 
 .orderMonty_text{
   margin-right: 10px;
-  color: #28b2d9;
+  color: #FB8C00;
 }
 
 .payMent{
@@ -211,7 +211,7 @@ page{
   line-height: 44px;
   text-align: center;
   color: #FFF;
-  background-color: #28b2d9;
+  background-color: #FB8C00;
 }
 
 .RMB{

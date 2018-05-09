@@ -23,7 +23,7 @@
     </view>
     <view class='commodity_describe'>
       <view class="commodity_name">{{product.productName}}</view>
-      <view class="commodity_startTime">开始时间: {{product.time}}</view>
+      <view class="commodity_startTime">开卡日期 : {{product.time}}</view>
       <view class="commodity_price">
         ￥{{filter.toFixed(product.productPrice, 2)}}
       </view>
@@ -38,7 +38,7 @@
       <image src="https://www.ecartoon.com.cn/picture/More@2x.png"></image>
     </view>
   </view>
-  <view class='box_payType'>
+  <!--<view class='box_payType'>
     <view class='wxPay_icon'>
       <image src='https://www.ecartoon.com.cn/miniProgram/coach/img/wechatPay.png'></image>
     </view>
@@ -49,7 +49,7 @@
     <view class='wxPay_check'>
       <image src='https://www.ecartoon.com.cn/miniProgram/coach/img/dot1.png'></image>
     </view>
-  </view>
+  </view> -->
   <view class='footer'>
     <view class='orderMoney'>
       <view class='orderMonty_text'> 

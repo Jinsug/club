@@ -1,0 +1,72 @@
+page{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #F0F0F2;
+}
+
+.paySuccess-price{
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #FFF;
+}
+
+.paySuccess-price-image{
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+}
+
+.paySuccess-price-image > image{
+  width: 100%;
+  height: 100%;
+}
+
+.paySuccess-price-text{
+  text-align: center;
+  font-size: 12px;
+  color: #FE9E3A;
+}
+
+.paySuccess-text{
+  margin-top: 10px;
+  padding: 20px;
+  background-color: #FFF;
+}
+
+.paySuccess-text-image{
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 80px;
+  height: 80px;
+}
+
+.paySuccess-text-image > image{
+  width: 100%;
+  height: 100%;
+}
+
+.paySuccess-text-top, .paySuccess-text-bottom{
+  text-align: center;
+  font-size: 12px;
+  color: #B8B8B8;
+}
+
+.paySuccess-text-bottom{
+  margin-top: 5px;
+}
+
+.button{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #FFF;
+  background-color: #FF9800;
+}
