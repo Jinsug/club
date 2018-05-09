@@ -13,7 +13,9 @@
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",
-    "pages/myOrder/myOrder"
+    "pages/myOrder/myOrder",
+    "pages/myWallet/myWallet",
+    "pages/cash/cash"
   ],
   "window": {
     "backgroundTextStyle": "light",
