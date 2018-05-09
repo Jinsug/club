@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/paySuccess/paySuccess",
     "pages/index/index",
     "pages/logs/logs",
     "pages/map/map",
@@ -10,6 +9,7 @@
     "pages/product/product",
     "pages/order/order",
     "pages/ticket/ticket",
+    "pages/paySuccess/paySuccess",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",
