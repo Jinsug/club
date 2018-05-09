@@ -39,6 +39,16 @@ var filters = {
       }
       
       return value;
+    },
+    /**
+     * 字符串null过滤
+     */
+    stringNull: function (str) {
+       if (str == "null" || str == null) {
+         return "暂无";
+       } else {
+         return str;
+       }
     }
 }
 
@@ -48,5 +58,6 @@ var filters = {
 module.exports = {
   toFixed: filters.toFixed,
   overflow_hidden: filters.overflow_hidden,
-  week_date: filters.week_date
+  week_date: filters.week_date,
+  stringNull:filters.stringNull
 }
