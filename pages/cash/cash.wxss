@@ -16,7 +16,6 @@ page{
    left: 0;
    bottom: 0;
 }
-
 .right{
    float: left;
    right: 0;
@@ -44,4 +43,151 @@ page{
   font-size: 28rpx;
   color: #727272;
   margin-top: 10rpx;
+}
+
+.hasNoAccount{
+   background-color: white;
+   padding: 0 20rpx;
+   padding-top: 10rpx;
+   margin-top: 2rpx;
+}
+
+.remind{
+    font-size: 24rpx;
+    color: #858585;
+}
+
+.line{
+   width: 100%;
+   overflow: hidden;
+   padding: 20rpx 0;
+}
+
+.line:last-child{
+  border-top: 4rpx solid #F2F2F2;
+}
+
+.left{
+  float: left;
+  left: 0;
+  bottom: 0;
+}
+
+.right{
+  float:right;
+  right: 0;
+  bottom: 0; 
+}
+
+.aliPayPicDiv{
+   width: 8%;
+   height: 38rpx;
+   line-height: 38rpx;
+   text-align: center;
+   margin-top: 2rpx;
+}
+
+.aliPayPic{
+  width: 60%;
+  height:100%;
+}
+
+.bankName{
+    font-size: 32rpx;
+    font-weight: 500;
+}
+
+.goto{
+    font-size: 40rpx;
+    color: #8A8A8A;
+}
+
+.unionPayPicDiv{
+   width: 8%;
+   height: 22rpx;
+   text-align: center;
+   margin-top: -4rpx;
+}
+
+.unionPayPic{
+   width: 65%;
+   height: 100%;
+}
+
+.cashMoney{
+  margin-top: 20rpx;
+  background-color: white;
+}
+
+.dou{
+  width: 92%;
+  margin: 0 auto;
+}
+
+.cashRemind{
+   padding: 14rpx 0;
+   border-bottom: 4rpx solid #F2F2F2;
+}
+
+.cashInput{
+  overflow: hidden;
+  padding: 50rpx 0;
+}
+
+.cashLogoDiv{
+  width: 8%;
+  height: 40rpx;
+  margin-top: 6rpx;
+}
+
+.cashLogo{
+  width: 74%;
+  height: 100%;
+}
+
+.input{
+   font-size: 28rpx;
+   margin-left: 10rpx;
+}
+
+.cashAll{
+  font-size: 28rpx;
+  color: #FD4300;
+  border: 2rpx solid #FD4300;
+  border-radius: 10rpx;
+  padding: 6rpx 16rpx;
+}
+
+.balanceMoney{
+  padding: 16rpx 0;
+}
+
+.validateMobile{
+  background-color: white;
+  padding:0 20rpx;
+  margin-top: 20rpx;
+}
+
+.mobilephone{
+  padding:20rpx 0;
+}
+
+.hasMobilephone{
+  overflow: hidden;
+}
+
+.mobilephoneNum{
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.remindButton{
+  font-size: 20rpx;
+  color: white;
+  background-color: #ff4401;
+  padding: 2rpx 10rpx;
+  border-radius: 5rpx;
+  margin-left: 20rpx;
+  margin-top: 2rpx;
+
 }

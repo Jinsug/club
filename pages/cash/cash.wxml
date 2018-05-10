@@ -4,14 +4,14 @@
       <view class="account">
            
            <!-- 有提现账号 -->
-           <view class="hasAccount">
+           <view class="hasAccount" wx:if="{{hasAccount == 1}}" >
                  <!-- 银行图标 -->
                  <view class="bankImgDiv left">
                       <image class="bankImg" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png" ></image>
                  </view>
 
                  <!-- 右边 -->
-                 <view class="right">
+                 <view class="right" >
                        <view class="bankName">中国建设银行</view>
                        <view class="bankAccount">华文(123456789123456)</view>
                  </view>
@@ -19,15 +19,71 @@
            </view>
 
            <!-- 没有提现账号 -->
-           <view class="hasNoAccount">
-           
-           </view>
+           <view class="hasNoAccount" wx:if="{{hasAccount == 0}}">
+                 <!-- 绑定提现账号title -->
+                 <view class="remind">绑定提现账号</view>
 
+                 <!-- 绑定功能区 -->
+                 <view class="funcArea">
+                       <!-- 支付宝 -->
+                       <view class="line">
+                             <view class="aliPayPicDiv left">
+                                   <image class="aliPayPic" src="https://www.ecartoon.com.cn/picture/aliPayLogo.png"></image>
+                             </view>
+                             <view class="bankName left">支付宝</view>
+                             <view class="goto right">></view>
+                       </view>
+
+                       <!-- 银行卡 -->
+                       <view class="line">
+                             <view class="unionPayPicDiv left">
+                                   <image class="unionPayPic" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png"></image>
+                             </view>
+                             <view class="bankName left">银行卡</view>
+                             <view class="goto right">></view>
+                       </view>
+                 </view>
+           </view>
       </view>
 
+      <!-- 提现金额 -->
+      <view class="cashMoney">
+            <!-- 外部容器 -->
+            <view class="dou">
+                   <view class="remind cashRemind">提现金额</view>
+            
+                    <!-- 功能区 -->
+                    <view class="cashInput">
+                          <!-- logo -->
+                          <view class="cashLogoDiv left">
+                                <image class="cashLogo" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/cashLogo.png"></image>
+                          </view>
 
+                          <!-- input框 -->
+                          <view class="left input">
+                                <input placeholder-class="inputplaceholder" placeholder="请输入您的提现金额" ></input>
+                          </view>
 
+                          <!-- button -->
+                          <view class="right cashAll">全部提现</view>
+                    </view>
 
+                    <!-- 可提现金额 -->
+                    <view class="remind balanceMoney">可提现金额：￥20.00元</view>
+            </view>
+           
+      </view>
+
+      <!-- 验证手机号 -->
+      <view class="validateMobile">
+            <view class="mobilephone">
+                  <!-- 有手机号 -->
+                  <view class="hasMobilephone" wx:if="{{hasMobilephone == 1}}">
+                        <view class="left mobilephoneNum">155****0302</view>
+                        <view class="left remindButton">已认证</view>
+                  </view>
+            </view>
+      </view>
 
 
 

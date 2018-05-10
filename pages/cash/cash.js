@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    hasAccount:"0",
+    hasMobilephone:"1"
   },
 
   /**
