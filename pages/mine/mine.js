@@ -115,5 +115,14 @@ Page({
       wx.navigateTo({
         url: "../../pages/myOrder/myOrder",
       })
+  },
+
+  /**
+   * 查看我的钱包
+   */
+  gotoMyWallet: function () {
+    wx.navigateTo({
+      url: "../../pages/myWallet/myWallet",
+    })
   }
 })

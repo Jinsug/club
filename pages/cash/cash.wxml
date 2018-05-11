@@ -11,9 +11,9 @@
                  </view>
 
                  <!-- 右边 -->
-                 <view class="right" >
-                       <view class="bankName">中国建设银行</view>
-                       <view class="bankAccount">华文(123456789123456)</view>
+                 <view class="left" >
+                       <view class="bankName">{{account.bankName}}</view>
+                       <view class="bankAccount">{{account.name}}({{account.account}})</view>
                  </view>
 
            </view>
@@ -61,30 +61,69 @@
 
                           <!-- input框 -->
                           <view class="left input">
-                                <input placeholder-class="inputplaceholder" placeholder="请输入您的提现金额" ></input>
+                                <input bindinput="cashMoneyInput" placeholder-class="inputplaceholder" value="{{inputMoney}}" placeholder="请输入您的提现金额" ></input>
                           </view>
 
                           <!-- button -->
-                          <view class="right cashAll">全部提现</view>
+                          <view class="right cashAll" bindtap="cashAll" >全部提现</view>
                     </view>
 
                     <!-- 可提现金额 -->
-                    <view class="remind balanceMoney">可提现金额：￥20.00元</view>
+                    <view class="remind balanceMoney">可提现金额：￥{{cashMoney}}元</view>
             </view>
            
       </view>
 
       <!-- 验证手机号 -->
       <view class="validateMobile">
+            <!-- 手机号 -->
             <view class="mobilephone">
                   <!-- 有手机号 -->
                   <view class="hasMobilephone" wx:if="{{hasMobilephone == 1}}">
-                        <view class="left mobilephoneNum">155****0302</view>
+                        <view class="left mobilephoneNum">{{mobilephone}}</view>
                         <view class="left remindButton">已认证</view>
+                  </view>
+
+                  <!-- 没有手机号 -->
+                  <view class="hasNoMobilephone" wx:if="{{hasMobilephone == 0}}" >
+                        <view class="left display">暂无手机号</view>
+                        <!-- 获取手机号按钮 -->
+                        <view class="right getMobile">
+                              点击获取手机号
+                              <button class="getButton"></button>
+                        </view>
+                  </view>
+            </view>
+
+            <!-- 短信验证码 -->
+            <view class="mobilecode">
+                  <!-- 验证码输入框 -->
+                  <view class="left codeInput">
+                        <input bindinput="mobilecodeInput"  placeholder="请输入短信验证码" placeholder-class="codePlaceholder"></input>
+                  </view>
+                  
+                  <!-- 获取验证码按钮 -->
+                  <view class="right {{getMobilecodeButton}}" bindtap='getMobilecode'>
+                        <view class="getMobilecode" wx:if="{{countdown == 0}}" >获取验证码</view>
+                        <view wx:else>重新获取({{countdown}})</view>
                   </view>
             </view>
       </view>
 
+      <!-- 提现提示 -->
+      <view class="remindCashing">
+            <view class="remindLine">
+                  <!-- 提示图片 -->
+                  <view class="left remindPicDiv">
+                        <image class="remindPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-happy@2x.png"></image>
+                  </view>
 
+                  <!-- 提示文字 -->
+                  <view class="left remindFont"><view class="ddd">为了您的资金安全，提现将进行人工审核。运营方可能会与您联系核实身份。</view></view>
+            </view>
+      </view>
+
+      <!-- 申请按钮 -->
+      <view class="cashButton" bindtap='cashMoney' >申请提现</view>
 
 </view>

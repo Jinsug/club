@@ -161,6 +161,6 @@
               <!-- 提现功能 -->
               <view class="footer" wx:if="{{currentTab == 2}}">
                     <view class="balance">余额：{{filter.toFixed(balance,2)}}元</view>
-                    <view class="cash">提现</view>
+                    <view class="cash" bindtap="gotoCash">提现</view>
               </view>
 </view>

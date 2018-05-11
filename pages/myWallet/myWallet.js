@@ -115,7 +115,7 @@ Page({
      // 发起网络请求，获取收入、支出、提现记录、账户余额
      var param = {};
      var memberId = wx.getStorageSync("memberId");
-     memberId = "9388";
+    //  memberId = "9388";
      param.memberId = memberId;
      wx.request({
        url: "https://www.ecartoon.com.cn/clubmp!myWallet.asp",
@@ -153,5 +153,17 @@ Page({
 
      
     
+  },
+
+  /**
+   * 提现页面
+   */
+  gotoCash: function () {
+    var objx = this;
+    var cashMoney = objx.data.balance;
+    wx.navigateTo({
+      url: "../../pages/cash/cash?cashMoney=" + cashMoney
+    })
   }
+
 })
