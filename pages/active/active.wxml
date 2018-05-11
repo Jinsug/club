@@ -14,4 +14,7 @@
       </view>
     </view>
   </view>
+  <button class='login-button' open-type='getUserInfo' bindgetuserinfo='wechatLogin' 
+    wx:if='{{login_button}}'>
+  </button>
 </view>

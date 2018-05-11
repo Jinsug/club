@@ -12,14 +12,19 @@ Page({
   },
   // 页面加载函数
   onLoad: function () {
-    if(wx.getStorageSync('memberId')){
+    // 获取俱乐部信息
+    this.getClubData(this);
+  },
+
+  // 页面展示 
+  onShow: function () {
+    if (wx.getStorageSync('memberId')) {
       this.setData({
         login_button: false
       });
     }
-    // 获取俱乐部信息
-    this.getClubData(this);
   },
+
   // 加载俱乐部数据
   getClubData: function(obj){
     wx.request({
