@@ -1,28 +1,23 @@
-<!-- 引入过滤器 -->
-<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
-  <view class="paySuccess-price">
-    <view class='paySuccess-price-image'>
-      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg'>
-      </image>
-    </view>
-    <view class='paySuccess-price-text'>
-      支付成功 ¥ {{filter.toFixed(productPrice, 2)}}
-    </view>
+  <view class="paySuccess-icon">
+    <image src='https://www.ecartoon.com.cn/expert/img/tk/Pay-for-success.png'></image>
   </view>
-  <view class='paySuccess-text'>
-    <view class='paySuccess-text-image'>
-      <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg'>
-      </image>
+  <view class='paySuccess-title'>
+    支付完成 !
+  </view>
+  <view class='paySuccess-content'>
+    <view class='paySuccess-content-top'>
+      您已经成功购买 “ {{productName}} ” 
     </view>
-    <view class='paySuccess-text-top'>
-      你已经成功购买健身卡
-    </view>
-    <view class='paySuccess-text-bottom'>
+    <view>
       欢迎到本俱乐部扫码健身
     </view>
+    <view class='button-tip'>
+      请下载卡库健身APP接受教练服务
+    </view>
   </view>
-  <view class='button' bindtap='goHome'>
-    前往
+  <view class='paySuccess-message'>
+    <view class='paySuccess-hr'></view>
+    -分享好友即获得优惠券
   </view>
 </view>

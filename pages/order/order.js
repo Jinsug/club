@@ -172,7 +172,7 @@ Page({
             });
             // 支付成功, 跳转页面
             wx.navigateTo({
-              url: `../paySuccess/paySuccess?productPrice=${obj.data.price}`
+              url: `../paySuccess/paySuccess?productName=${obj.data.product.productName}`
             });
           },
           fail: function (e) {

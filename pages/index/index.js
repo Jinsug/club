@@ -129,7 +129,10 @@ Page({
     }
 
     // 调用登录方法
-    login();
+    // login();
+
+    // 测试用户
+    wx.setStorageSync('memberId', 12769);
   },
   // 加载俱乐部数据
   getClubData: function(obj){

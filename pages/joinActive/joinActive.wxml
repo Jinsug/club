@@ -1,0 +1,43 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='activeInfo'>
+    <image src='{{base_picture_url}}/{{active.image}}' class='activeImage' mode='aspectFill'>
+    </image>
+    <view class='activeInfo-content'>
+      <view class='activeName'>
+        {{active.name}}
+      </view>
+      <view class='activeTarget'>
+        目标：{{filter.active_target(active.days, active.target, active.value)}}
+      </view>
+      <view class='activeCreator'>
+        发布人 : {{active.creator}}
+      </view>
+    </view>
+  </view>
+  <view class='activeStartTime'>
+    <view class='activeStartTime-left'>
+      挑战开始时间
+    </view>
+    <view class='activeStartTime-right'>
+      <view class='currentDate'>
+        2018-05-11 
+      </view>
+      <image class='more-icon' >
+      </image>
+    </view>
+  </view>
+  <view class='currentWeight'>
+  
+  </view>
+  <view class='amerceMoney'>
+  
+  </view>
+  <view class='tip'>
+  
+  </view>
+  <view class='goBuy' bindtap='goBuy'>
+  
+  </view>
+</view>

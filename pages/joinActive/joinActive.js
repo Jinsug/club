@@ -4,15 +4,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    productName: ''
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    active: {
+      image: 'opacity.png'
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let active = JSON.parse(decodeURI(options.active));
     this.setData({
-      productName: options.productName
+      active: active
     });
   },
 
@@ -41,9 +45,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.navigateBack({
-      delta: 4
-    });
+    
   },
 
   /**
@@ -57,13 +59,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
     
   }
 })

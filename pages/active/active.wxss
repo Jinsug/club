@@ -1,0 +1,40 @@
+.active-item{
+  position: relative;
+  margin: 10px;
+  height: 140px;
+}
+
+.active-item > image{
+  width: 100%;
+  height: 100%;
+}
+
+.active-body{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #FFF;
+}
+
+.top, .middle, .bottom{
+  margin: 10px 10px;
+}
+
+.top{
+  font-size: 14px;
+}
+
+.middle{
+  height: 63px;
+  line-height: 63px;
+  font-size: 13px;
+  text-align: center;
+}
+
+.bottom{
+  font-size: 13px;
+  text-align: right;
+}

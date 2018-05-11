@@ -1,0 +1,71 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='activeInfo-top'>
+    <image src='{{base_picture_url}}/{{active.image}}' mode='aspectFill'></image>
+    <view class='activeInfo-top-content'>
+      <image src='{{base_picture_url}}/{{active.image}}' class='activeInfo-top-content-left' 
+          mode='aspectFill'></image>
+      <view class='activeInfo-top-content-right'>
+        <view class='activeName'>
+          {{active.name}}
+        </view>
+        <view class='activeCreator'>
+          发布人 : {{active.creator}}
+        </view>
+        <view class='activeCount'>  
+          参加人数 : {{active.count}}人
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='activeInfo-bottom'>
+    <view class='active-row'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill'>
+        </image>
+        <view class='active-row-left-title'>
+          挑战目标
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{filter.active_target(active.days, active.target, active.value)}}
+      </view>
+    </view>
+    <view class='active-row'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100424.png' mode='aspectFill'>
+        </image>
+        <view class='active-row-left-title'>
+          成功奖励
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.award}}
+      </view>
+    </view>
+    <view class='active-row'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100425.png' mode='aspectFill'>
+        </image>
+        <view class='active-row-left-title'>
+          失败惩罚
+        </view>
+      </view>
+      <view class='active-row-right'>
+        向{{active.institution}}捐赠{{active.amerce_money}}元
+      </view>
+    </view>
+    <view style='height:10px;background-color:#F0F0F2;'></view>
+    <view class='activeMemo'>
+        注意事项
+        <view class='activeMemo-content'>
+          {{active.memo}}
+        </view>
+    </view>
+  </view>
+  <view class='participateIn' bindtap='participateIn'>
+    参加挑战
+  </view>
+</view>

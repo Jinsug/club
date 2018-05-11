@@ -10,6 +10,9 @@
     "pages/order/order",
     "pages/ticket/ticket",
     "pages/paySuccess/paySuccess",
+    "pages/active/active",
+    "pages/activeDetail/activeDetail",
+    "pages/joinActive/joinActive",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",
@@ -24,30 +27,31 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
+    "selectedColor": "#FF4401",
     "list": [
       {
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "icon/home.png",
-        "selectedIconPath": "icon/home-select.png"
+        "selectedIconPath": "icon/home_selected.png"
       },
       {
         "pagePath": "pages/courseList/courseList",
         "text": "课程表",
-        "iconPath": "icon/shop.png",
-        "selectedIconPath": "icon/shop-select.png"
+        "iconPath": "icon/courseList.png",
+        "selectedIconPath": "icon/courseList_selected.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/active/active",
         "text": "活动",
-        "iconPath": "icon/wxb.png",
-        "selectedIconPath": "icon/wxb-select.png"
+        "iconPath": "icon/challenge.png",
+        "selectedIconPath": "icon/challenge_selected.png"
       },
       {
         "pagePath": "pages/mine/mine",
         "text": "我的",
-        "iconPath": "icon/setting.png",
-        "selectedIconPath": "icon/setting-select.png"
+        "iconPath": "icon/mine.png",
+        "selectedIconPath": "icon/mine_selected.png"
       }
     ]
   }
