@@ -43,8 +43,8 @@ Page({
       productName: this.data.product.name,
       productPrice: this.data.product.cost,
       image: this.data.product.image1,
-      time: this.data.product.currentDate,
-      productType: this.data.product.productType
+      productType: this.data.product.productType,
+      time: this.data.product.currentDate
     }
     let product_data = encodeURI(JSON.stringify(param));
     wx.navigateTo({

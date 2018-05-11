@@ -7,134 +7,18 @@ Page({
     },
     ticketList: [],
     scroll_box_weight: 0,
-    cardList: []
+    cardList: [],
+    login_button: true
   },
   // 页面加载函数
   onLoad: function () {
-    let obj = this;
-    // 微信接口调用对象
-    const wxApi = {
-      login: () => {
-        return new Promise((resolve, reject) => {
-          wx.login({
-            success: (login_token) => {
-              resolve(login_token);
-            }
-          });
-        });
-      },
-      getUserInfo: () => {
-        return new Promise((resolve, reject) => {
-          wx.getUserInfo({
-            success: (userInfo) => {
-              resolve(userInfo);
-            },
-            fail: (e) => {
-              resolve({refuse : true});
-            }
-          });
-        });
-      },
-      showModal : (content, showCanel) => {
-        return new Promise((resolve, reject) => {
-          wx.showModal({
-            title: '提示',
-            content: content,
-            showCancel: showCanel ? true : showCanel,
-            success: (operation) => {
-              resolve(operation);
-            }
-          });
-        });
-      },
-      openSetting: () => {
-        return new Promise((resolve, reject) => {
-          wx.openSetting({
-            success: (setting) => {
-              if (setting.authSetting["scope.userInfo"]) {
-                //这里是授权成功之后 填写你重新获取数据的js
-                resolve({ success: true });
-              } else {
-                // 拒绝授权
-                resolve({ success: false });
-              }
-            }
-          });
-        });
-      },
-      wechatLogin: (param) => {
-        return new Promise((resolve, reject) => {
-          wx.request({
-            url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
-            data: {
-              json: param
-            },
-            success: function (res) {
-              // console.log(res);
-              resolve(res);
-            }
-          });
-        });
-      }
+    if(wx.getStorageSync('memberId')){
+      this.setData({
+        login_button: false
+      });
     }
-
-    // 创建登录方法
-    const login = async () => {
-      // 获取登录的code
-      let login_token = await wxApi.login();
-      // 获取用户信息
-      let userInfo = await wxApi.getUserInfo();
-      // 第一次拒绝授权用户信息, 请求用户打开授权信息设置
-      if (userInfo.refuse){
-        let content = '您拒绝了授权,如果想使用后续功能,需要将信息授权功能开启';
-        let operation = await wxApi.showModal(content);
-        // 点击确定调用openSetting
-        if (operation.confirm){
-          let setting = await wxApi.openSetting();
-          if(setting.success){
-            // 已授权, 重新获取用户信息
-            userInfo = await wxApi.getUserInfo();
-          } else {
-            // 未授权, 提示用户
-            content = '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
-              '重新登录授权才可以体验后续功能';
-            await wxApi.showModal(content, false);
-          }
-        } else{
-          // 点击取消, 提示用户
-          content = '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
-                '重新登录授权才可以体验后续功能';
-          await wxApi.showModal(content, false);
-        }
-      }
-      // 如果成功获取到用户信息, 调用服务端登录
-      if (!userInfo.refuse){
-        // 调用服务端登录接口
-        userInfo.code = login_token.code;
-        let param = JSON.stringify(userInfo);
-        let res = await wxApi.wechatLogin(param);
-        // 登录成功, 把用户id存入缓存
-        if (res.data.success) {
-          wx.setStorageSync('memberId', res.data.key);
-          wx.setStorageSync('session_key', res.data.session_key);
-          wx.setStorageSync('openId', res.data.openid);
-        } else {
-          // 服务端异常, 提示用户
-          let content = '登录或注册异常,后续功能无法使用,请联系开发人员!';
-          await wxApi.showModal(content, false);
-        }
-      }
-      // 获取俱乐部信息
-      this.getClubData(obj);
-    }
-
-    // 调用登录方法
-    // login();
-
-    // 测试用户
-    wx.setStorageSync('memberId', 12769);
     // 获取俱乐部信息
-    this.getClubData(obj);
+    this.getClubData(this);
   },
   // 加载俱乐部数据
   getClubData: function(obj){
@@ -159,8 +43,47 @@ Page({
       }
     });
   },
+
+  // 微信登录
+  wechatLogin: function (e) {
+    if(e.detail.errMsg == 'getUserInfo:ok'){
+     wx.login({
+       success: (login_token) => {
+         // 获取登录code
+         e.detail.code = login_token.code;
+         wx.request({
+           url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
+           data: {
+             json: JSON.stringify(e.detail)
+           },
+           success: function (res) {
+             console.log(res);
+             // 登录成功, 把用户id存入缓存
+             if (res.data.success) {
+               wx.setStorageSync('memberId', res.data.key);
+               wx.setStorageSync('session_key', res.data.session_key);
+               wx.setStorageSync('openId', res.data.openid);
+             } else {
+               // 服务端异常, 提示用户
+               wx.showModal({
+                 title: '提示',
+                 content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
+                 showCancel: false
+               });
+             }
+           }
+         });
+       }
+     });
+    }
+    // 移除登录按钮
+    this.setData({
+      login_button: false
+    });
+  },
+
   // 检查登录状态 
-  checkLoginState: function(){
+  checkLoginState: function() {
     if(!wx.getStorageSync('memberId')){
       wx.showModal({
         title: '提示',

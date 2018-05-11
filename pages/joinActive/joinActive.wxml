@@ -20,24 +20,40 @@
     <view class='activeStartTime-left'>
       挑战开始时间
     </view>
-    <view class='activeStartTime-right'>
+    <picker class='activeStartTime-right' mode="date" value="{{product.currentDate}}" 
+      bindchange='changeDate'>
       <view class='currentDate'>
-        2018-05-11 
+        {{currentDate}}
       </view>
-      <image class='more-icon' >
+      <image class='more-icon' src='{{base_picture_url}}/more.png'>
       </image>
+    </picker>
+  </view>
+  <view class='currentWeight' wx:if='{{active.target == "A" || active.atarget == "B"}}'>
+    <view class='currentWeight-left'>
+      当前体重
+    </view>
+    <view class='currentWeight-right'>
+      <view class='currentWeight-right-input'>
+        <input type='number' bindinput='getInputValue'></input>
+      </view>
+      <view class='currentWeight-right-text'>
+        KG
+      </view>
     </view>
   </view>
-  <view class='currentWeight'>
-  
-  </view>
   <view class='amerceMoney'>
-  
+    <view class='amerceMoney-left'>
+      挑战保证金
+    </view>
+    <view class='amerceMoney-right'>
+      {{active.amerce_money}}元
+    </view>
   </view>
   <view class='tip'>
-  
+    我自愿参加本次挑战活动 ，无条件遵守活动规则 ，同意运营方根据挑战成绩处置保证金。
   </view>
   <view class='goBuy' bindtap='goBuy'>
-  
+    支付保证金
   </view>
 </view>

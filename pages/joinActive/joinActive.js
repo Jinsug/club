@@ -1,3 +1,4 @@
+let util = require('../../utils/util.js');
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
     active: {
       image: 'opacity.png'
-    }
+    },
+    currentDate: ''
   },
 
   /**
@@ -15,8 +17,63 @@ Page({
    */
   onLoad: function (options) {
     let active = JSON.parse(decodeURI(options.active));
+    let currentDate = util.formatTime(new Date());
     this.setData({
-      active: active
+      active: active,
+      currentDate: currentDate
+    });
+  },
+
+  // 用户选择改变日期
+  changeDate: function (e) {
+    this.setData({
+      currentDate: e.detail.value
+    });
+  },
+
+  // 获取用户输入的值
+  getInputValue: function (e) {
+    this.setData({
+      weight: e.detail.value
+    });
+  },
+
+  // 检查用户是否输入体重数据
+  checkInputValue: function () {
+    if(this.data.weight){
+      return true;
+    } else {
+      wx.showToast({
+        title: '请先输入体重！',
+        icon: 'none',
+        complete: () => {
+          return false;
+        }
+      });
+    }
+  },
+
+  // 去支付
+  goBuy: function () {
+    // 检查是否输入体重
+    if(!this.checkInputValue()){
+      return;
+    }
+    // 组合参数传至订单页面
+    let active = this.data.active;
+    let param = {
+      productId: active.id,
+      productName: active.name,
+      productPrice: active.amerce_money,
+      image: active.image,
+      productType: 'active',
+      time: this.data.currentDate,
+      weight: this.data.weight
+    }
+    // url编码
+    param = encodeURI(JSON.stringify(param));
+    wx.navigateTo({
+      url: `../order/order?product=${param}`
     });
   },
 

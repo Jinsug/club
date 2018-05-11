@@ -148,6 +148,9 @@ Page({
     param.strengthDate = this.data.product.time;
     param.memberId = wx.getStorageSync("memberId");
     param.openId = wx.getStorageSync("openId");
+    if(this.data.product.weight){
+      param.weight = this.data.product.weight;
+    }
     if(this.data.ticket){
       param.ticket = this.data.ticket.ticketId;
     }
