@@ -133,6 +133,8 @@ Page({
 
     // 测试用户
     wx.setStorageSync('memberId', 12769);
+    // 获取俱乐部信息
+    this.getClubData(obj);
   },
   // 加载俱乐部数据
   getClubData: function(obj){
