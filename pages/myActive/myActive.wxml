@@ -1,0 +1,25 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='active-list'>
+    <view class='active-item' wx:for='{{activeList}}' wx:key='' bindtap='tapActiveItem'
+         data-index='{{index}}'>
+      <image src='{{base_picture_url}}/{{item.image}}' class='active-image'  mode='aspectFill'>
+      </image>
+      <view class='active-content'>
+        <view class='active-name'>
+          {{item.name}}
+        </view>
+        <view class='active-count'>
+          {{item.count}}人参加
+        </view>
+        <view class='active-target'>
+          目标：{{filter.active_target(item.days, item.target, item.value)}}
+        </view>
+      </view>
+      <image src='{{base_picture_url}}/{{item.resultImage}}' class='success-icon'
+         mode='aspectFill'>
+      </image>
+    </view>
+  </view>
+</view>

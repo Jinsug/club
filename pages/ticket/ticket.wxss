@@ -45,7 +45,10 @@ page{
 }
 
 .activeTicket{
-   background: #28B2D9;
+   position: fixed;
+   left: 4%;
+   bottom: 0;
+   background: #FF9800;
    color: white;
    font-size: 32rpx;
    width: 92%;

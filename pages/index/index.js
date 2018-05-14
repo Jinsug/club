@@ -12,12 +12,16 @@ Page({
   },
   // 页面加载函数
   onLoad: function () {
+    // 初始化
+    wx.setStorageSync('memberId', null);
+
     // 获取俱乐部信息
     this.getClubData(this);
   },
 
   // 页面展示 
   onShow: function () {
+    // 每次打开首页检查缓存是否已有memberId, 如果有就无需重复登录
     if (wx.getStorageSync('memberId')) {
       this.setData({
         login_button: false

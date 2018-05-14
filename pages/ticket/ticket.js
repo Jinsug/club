@@ -13,10 +13,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      productId: options.productId,
-      productType: options.productType
-    });
+    if(options.productId && options.productType){
+      this.setData({
+        productId: options.productId,
+        productType: options.productType
+      });
+    }
   },
 
   /**
@@ -30,14 +32,37 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    if(this.data.productId && this.data.productType){
+      // 根据商品和商品类型查询优惠券
+      this.findTicketByType();
+    } else {
+      // 查询当前用户所有优惠券
+      this.findMyTicket();
+    }
+  },
 
-    this.findTicketByType();
+  // 查询当前用所有优惠券
+  findMyTicket: function () {
+    let obj = this;
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!findMyTicket.asp',
+      data: {
+        memberId: wx.getStorageSync('memberId')
+      },
+      success: (res) => {
+        // 设置数据源
+        obj.setData({
+          tickets: res.data.ticketList,
+          activeTicket: true
+        });
+      }
+    });
   },
 
   // 查询适用优惠券
   findTicketByType: function(){
-    var obj = this;
-    var memberId = wx.getStorageSync("memberId");
+    let obj = this;
+    let memberId = wx.getStorageSync("memberId");
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!findTicketByType.asp',
       data: {
@@ -92,7 +117,10 @@ Page({
    * 用户点击优惠券
    */
   selectTicket: function(e) {
-    var ticket = e.currentTarget.dataset.ticket;
+    if(!this.data.productId || !this.data.productType){
+      return;
+    }
+    let ticket = e.currentTarget.dataset.ticket;
     wx.setStorageSync("ticket", ticket)
     wx.navigateBack({
       delta: 1

@@ -23,7 +23,7 @@
   <view class='activeInfo-bottom'>
     <view class='active-row'>
       <view class='active-row-left'>
-        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
         <view class='active-row-left-title'>
           挑战目标
@@ -35,7 +35,7 @@
     </view>
     <view class='active-row'>
       <view class='active-row-left'>
-        <image src='{{base_picture_url}}/201805100424.png' mode='aspectFill'>
+        <image src='{{base_picture_url}}/201805100424.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
         <view class='active-row-left-title'>
           成功奖励
@@ -47,7 +47,7 @@
     </view>
     <view class='active-row'>
       <view class='active-row-left'>
-        <image src='{{base_picture_url}}/201805100425.png' mode='aspectFill'>
+        <image src='{{base_picture_url}}/201805100425.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
         <view class='active-row-left-title'>
           失败惩罚
@@ -58,14 +58,52 @@
       </view>
     </view>
     <view style='height:10px;background-color:#F0F0F2;'></view>
-    <view class='activeMemo'>
+    <view class='activeMemo' wx:if="{{!active.result}}">
         注意事项
         <view class='activeMemo-content'>
           {{active.memo}}
         </view>
     </view>
+    <view class='actived' wx:if='{{active.result}}'>
+      <view class='active-row'>
+        <view class='active-row-left'>
+          当前状态
+        </view>
+        <view class='active-row-right'>
+          {{active.resultText}}
+        </view>
+      </view>
+      <view class='active-row' wx:if='{{active.target == "A" || active.target == "B"}}'>
+        <view class='active-row-left'>
+          结束体重
+        </view>
+        <view class='active-row-right' wx:if='{{active.result != 3}}'>
+          请在结束后输入体重
+        </view>
+        <view class='active-row-right' wx:if='{{active.result == 3}}'>
+          <input type='number' bindinput='getInputValue' placeholder='请在挑战结束后输入体重'>
+          </input>
+        </view>
+      </view>
+      <view class='active-row' wx:if='{{active.target == "C" || active.target == "D"}}'>
+        <view class='active-row-left'>
+          健身次数
+        </view>
+        <view class='active-row-right'>
+          {{active.signCount}}
+        </view>
+      </view>
+    </view>
+    <view class='resultImage' wx:if='{{active.result != 3}}'>
+      <image src='{{base_picture_url}}/{{active.resultImage}}'>
+      </image>
+      <view class='resultTip'>{{active.resultTip}}</view>
+    </view>
   </view>
-  <view class='participateIn' bindtap='participateIn'>
+  <view class='participateIn' bindtap='participateIn' wx:if='{{!active.result}}'>
     参加挑战
+  </view>
+  <view class='participateIn' bindtap='submitWeight' wx:if='{{active.result == 3}}'>
+    提交成绩
   </view>
 </view>

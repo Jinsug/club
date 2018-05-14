@@ -124,5 +124,19 @@ Page({
     wx.navigateTo({
       url: "../../pages/myWallet/myWallet",
     })
+  },
+
+  // 查看我的优惠券
+  gettoMyTicke: function () {
+    wx.navigateTo({
+      url: "../../pages/ticket/ticket",
+    })
+  },
+
+  // 查看我的挑战
+  gettoMyActive: function () {
+    wx.navigateTo({
+      url: "../../pages/myActive/myActive",
+    })
   }
 })

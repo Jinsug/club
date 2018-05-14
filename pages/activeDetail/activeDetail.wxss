@@ -3,6 +3,7 @@ page{
   height: 100%;
   margin: 0;
   padding: 0;
+  background-color: #F0F0F2;
 }
 
 .activeInfo-top{
@@ -54,6 +55,7 @@ page{
 .active-row{
   padding: 10px;
   overflow: hidden;
+  background-color: #FFF;
   border-bottom: 1px solid #F0F0F2;
 }
 
@@ -63,8 +65,8 @@ page{
 
 .active-row-left{
   float: left;
-  height: 20px;
-  line-height: 20px;
+  height: 1.4rem;
+  line-height: 1.4rem;
   font-size: 14px;
   color: #444;
   overflow: hidden;
@@ -72,27 +74,33 @@ page{
 
 .active-row-left > image{
   float: left;
+  margin-top: 3.5px;
+  margin-right: 10px;
   width: 20px;
   height: 20px;
 }
 
 .active-row-left-title{
   float: left;
-  margin-left: 10px;
 }
 
 .active-row-right{
   float: right;
-  height: 20px;
-  line-height: 20px;
+  height: 1.4rem;
+  line-height: 1.4rem;
   font-size: 12px;
   color: #BBB;
+}
+
+.active-row-right > input{
+  text-align: right;
 }
 
 .activeMemo{
   padding: 10px;
   font-size: 14px;
   color: #444;
+  background-color: #FFF;
 }
 
 .activeMemo-content{
@@ -111,3 +119,20 @@ page{
   font-size: 14px;
   color: #FFF;
 }
+
+.resultImage{
+  margin-top: 10px; 
+  text-align: center;
+}
+
+.resultImage > image{
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+}
+
+.resultTip{
+  font-size: 12px;
+  color: #BBB;
+}
+

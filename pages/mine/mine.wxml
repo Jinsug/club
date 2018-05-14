@@ -34,7 +34,7 @@
       </view>
 
       <!-- 我的优惠券 -->
-      <view class="pre">
+      <view class="pre" bindtap='gettoMyTicke'>
             <view class="title">我的优惠券</view>
             <view class="link">></view>
       </view>
@@ -46,7 +46,7 @@
       </view>
 
       <!-- 我的挑战 -->
-      <view class="pre">
+      <view class="pre" bindtap='gettoMyActive'>
             <view class="title">我的挑战</view>
             <view class="link">></view>
       </view>
