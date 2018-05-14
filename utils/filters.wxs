@@ -79,11 +79,11 @@ var filters = {
      
       if (str.length == 11) {
         // 手机号，默认3，4
-        str = this.getStarNumberStr(str,3,4);
+        str = filters.getStarNumberStr(str,3,4);
       }
       if (str.length > 11) {
         // 银行卡，默认5，4
-        str = this.getStarNumberStr(str,5,4);
+        str = filters.getStarNumberStr(str,5,4);
       }
 
       return str;
