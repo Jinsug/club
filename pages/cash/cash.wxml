@@ -1,3 +1,5 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class="content">
       <!-- 提现账号 -->
@@ -5,16 +7,37 @@
            
            <!-- 有提现账号 -->
            <view class="hasAccount" wx:if="{{hasAccount == 1}}" >
-                 <!-- 银行图标 -->
-                 <view class="bankImgDiv left">
-                      <image class="bankImg" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png" ></image>
-                 </view>
+                <!-- 支付宝账号 -->
+                <view wx:if="{{account.bankName == '支付宝'}}">
+                      <view class='aliPayImgDiv left'>
+                            <image class='aliPayImg' src='https://www.ecartoon.com.cn/picture/aliPayLogo.png' ></image>
+                      </view>
 
-                 <!-- 右边 -->
-                 <view class="left" >
-                       <view class="bankName">{{account.bankName}}</view>
-                       <view class="bankAccount">{{account.name}}({{account.account}})</view>
+                      <!-- 右边 -->
+                      <view class='left'>
+                            <view class='bankName'>{{account.bankName}}</view>
+                            <view class='bankAccount'>{{filter.getStarNumberStr(account.account,3,4)}}</view>
+                      </view>
+                </view>
+                
+
+
+
+
+
+                 <!-- 银联账号 -->
+                 <view wx:if = "{{account.bankName != '支付宝'}}" >
+                       <view class="bankImgDiv left">
+                             <image class="bankImg" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png" ></image>
+                       </view>
+
+                       <!-- 右边 -->
+                       <view class="left" >
+                             <view class="bankName">{{account.bankName}}</view>
+                             <view class="bankAccount">{{account.name}}({{filter.getStarNumberStr(account.account,5,4)}})</view>
+                       </view>
                  </view>
+                
 
            </view>
 
@@ -26,7 +49,7 @@
                  <!-- 绑定功能区 -->
                  <view class="funcArea">
                        <!-- 支付宝 -->
-                       <view class="line">
+                       <view class="line" bindtap='gotoAliAccount' >
                              <view class="aliPayPicDiv left">
                                    <image class="aliPayPic" src="https://www.ecartoon.com.cn/picture/aliPayLogo.png"></image>
                              </view>
@@ -35,7 +58,7 @@
                        </view>
 
                        <!-- 银行卡 -->
-                       <view class="line">
+                       <view class="line" bindtap='gotoUnoinAccount'>
                              <view class="unionPayPicDiv left">
                                    <image class="unionPayPic" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png"></image>
                              </view>
@@ -69,7 +92,7 @@
                     </view>
 
                     <!-- 可提现金额 -->
-                    <view class="remind balanceMoney">可提现金额：￥{{cashMoney}}元</view>
+                    <view class="remind balanceMoney">可提现金额：￥{{balance}}元</view>
             </view>
            
       </view>
@@ -80,7 +103,7 @@
             <view class="mobilephone">
                   <!-- 有手机号 -->
                   <view class="hasMobilephone" wx:if="{{hasMobilephone == 1}}">
-                        <view class="left mobilephoneNum">{{mobilephone}}</view>
+                        <view class="left mobilephoneNum">{{filter.getStarNumberStr(mobilephone,3,4)}}</view>
                         <view class="left remindButton">已认证</view>
                   </view>
 
@@ -90,7 +113,7 @@
                         <!-- 获取手机号按钮 -->
                         <view class="right getMobile">
                               点击获取手机号
-                              <button class="getButton"></button>
+                              <button class="getButton" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
                         </view>
                   </view>
             </view>

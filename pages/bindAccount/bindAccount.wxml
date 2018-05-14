@@ -1,0 +1,93 @@
+<!-- 页面开始 -->
+<view class="content">
+      <!-- 内容区 -->
+      <view class="account">
+                  <!-- 支付宝账号 -->
+                  <view class="aliPay" wx:if="{{accountType == 0}}">
+                        <!-- 每一行 -->
+                        <view class="line">
+                              <view class="left title">提现支付宝账号：</view>
+                              <view class="left inputDiv">
+                                    <input class="input" bindinput='aliAccountInput'></input>
+                              </view>
+                        </view>
+                  </view>
+                  
+                  <!-- 银联账号 -->
+                  <view class="unoinPay" wx:if="{{accountType == 1}}">
+                        <!-- 户名 -->
+                        <view class="line">
+                              <view class="left title">户名：</view>
+                              <view class="left inputDiv">
+                                    <input class="input" bindinput='nameInput'></input>
+                              </view>
+                        </view>
+
+                        <!-- 卡号 -->
+                        <view class="line">
+                              <view class="left title">卡号：</view>
+                              <view class="left cardNumber">
+                                    <input class="input" bindinput='unionAccountInput'></input>
+                              </view>
+                        </view>
+
+                        <!-- 开户行 -->
+                        <view class="line">
+                              <view class="left title">开户行：</view>
+                              <view class="left inputDiv">
+                                    <input class="input" bindinput='bankNameInput' ></input>
+                              </view>
+                        </view>
+                  </view>
+
+
+
+
+
+
+                  <!-- 验证手机号 -->
+                  <view class="validateMobile">
+                        <!-- 手机号 -->
+                        <view class="mobilephone">
+                              <!-- 有手机号 -->
+                              <view class="hasMobilephone" wx:if="{{hasMobilephone == 1}}">
+                                    <view class="left mobilephoneNum">{{mobilephone}}</view>
+                                    <view class="left remindButton">已认证</view>
+                              </view>
+
+                              <!-- 没有手机号 -->
+                              <view class="hasNoMobilephone" wx:if="{{hasMobilephone == 0}}" >
+                                    <view class="left display">暂无手机号</view>
+                                    <!-- 获取手机号按钮 -->
+                                    <view class="right getMobile">
+                                          点击获取手机号
+                                          <button class="getButton" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber"></button>
+                                    </view>
+                              </view>
+                        </view>
+
+                        <!-- 短信验证码 -->
+                        <view class="mobilecode">
+                              <!-- 验证码输入框 -->
+                              <view class="left codeInput">
+                                    <input bindinput="mobilecodeInput"  placeholder="请输入短信验证码" placeholder-class="codePlaceholder"></input>
+                              </view>
+                              
+                              <!-- 获取验证码按钮 -->
+                              <view class="right {{getMobilecodeButton}}" bindtap='getMobilecode'>
+                                    <view class="getMobilecode" wx:if="{{countdown == 0}}" bindtap='getCode'>获取验证码</view>
+                                    <view wx:else>重新获取({{countdown}})</view>
+                              </view>
+                        </view>
+                  </view>
+
+
+      </view>
+
+      
+      <!-- 底部按钮 -->
+      <view class='submitButton' bindtap='saveCashAccount'>绑定</view>
+
+
+
+</view>

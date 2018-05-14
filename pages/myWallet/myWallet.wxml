@@ -133,7 +133,7 @@
                                         <view class="left title">收款账户</view>
 
                                         <!-- 右边 -->
-                                        <view class="right value">{{cash.bankName}} : {{cash.account}}</view>
+                                        <view class="right value">{{cash.bankName}} : {{filter.getStarNumberStrMix(cash.account)}}</view>
                                   </view>
                             </view>
 

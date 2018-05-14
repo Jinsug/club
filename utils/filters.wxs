@@ -54,7 +54,41 @@ var filters = {
        } else {
          return str;
        }
+    },
+
+    /**
+     * 手机号、银行卡号处理
+     */
+    getStarNumberStr: function (str,headLength,footLength) {
+       var headIndex = headLength;
+       var footIndex = str.length - footLength;
+       var starLength = str.length - headLength - footLength;
+       var head = str.substring(0,headIndex);
+       var footer = str.substring(footIndex, str.length);
+       var star = "";
+       for(var x = 0; x < starLength; x++) {
+         star += "*";
+       }
+       return head + star + footer;
+    },
+
+    /**
+     * 手机号、银行卡混合模式
+     */
+    getStarNumberStrMix: function (str) {
+     
+      if (str.length == 11) {
+        // 手机号，默认3，4
+        str = this.getStarNumberStr(str,3,4);
+      }
+      if (str.length > 11) {
+        // 银行卡，默认5，4
+        str = this.getStarNumberStr(str,5,4);
+      }
+
+      return str;
     }
+
 }
 
 // 暴露接口
@@ -63,5 +97,7 @@ module.exports = {
   overflow_hidden: filters.overflow_hidden,
   active_target: filters.active_target,
   week_date: filters.week_date,
-  stringNull: filters.stringNull
+  stringNull: filters.stringNull,
+  getStarNumberStr:filters.getStarNumberStr,
+  getStarNumberStrMix:filters.getStarNumberStrMix
 }

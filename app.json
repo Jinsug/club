@@ -18,7 +18,10 @@
     "pages/mine/mine",
     "pages/myOrder/myOrder",
     "pages/myWallet/myWallet",
-    "pages/cash/cash"
+    "pages/cash/cash",
+    "pages/bindAccount/bindAccount",
+    "pages/myAppointment/myAppointment"
+
   ],
   "window": {
     "backgroundTextStyle": "light",

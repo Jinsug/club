@@ -162,7 +162,7 @@ Page({
     var objx = this;
     var cashMoney = objx.data.balance;
     wx.navigateTo({
-      url: "../../pages/cash/cash?cashMoney=" + cashMoney
+      url: "../../pages/cash/cash"
     })
   }
 

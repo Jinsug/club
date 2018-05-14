@@ -1,0 +1,161 @@
+page{
+  width: 100%;
+  height: 100%;
+  background-color: #F2F2F2;
+}
+
+.account{
+  margin-top: 4rpx;
+  background-color: white;
+}
+
+.aliPay{
+  padding: 0 20rpx;
+}
+
+.unoinPay{
+  padding: 0 20rpx;
+}
+
+.line{
+  overflow: hidden;
+  padding: 20rpx 0;
+  border-bottom: 4rpx solid #F2F2F2; 
+}
+
+.left{
+  float: left;
+  left: 0;
+  bottom: 0;
+}
+
+.right{
+  float: right;
+  right: 0;
+  bottom: 0; 
+}
+
+.title{
+  font-size: 28rpx;
+  color: #717171;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+
+.validateMobile{
+  background-color: white;
+  padding:0 20rpx;
+}
+
+.mobilephone{
+  padding:20rpx 0;
+}
+
+.hasMobilephone{
+  overflow: hidden;
+}
+
+.mobilephoneNum{
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.remindButton{
+  font-size: 20rpx;
+  color: white;
+  background-color: #ff4401;
+  padding: 2rpx 10rpx;
+  border-radius: 5rpx;
+  margin-left: 20rpx;
+  margin-top: 2rpx;
+
+}
+
+.hasNoMobilephone{
+  overflow: hidden;
+}
+
+.display{
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 10rpx 0;
+}
+
+.getMobile{
+   position: relative;
+   font-size: 28rpx;
+   width: 36%;
+   text-align: center;
+   padding: 10rpx 0;
+   border: 2rpx solid #ff4401;
+   color: #ff4401;
+   border-radius: 10rpx;
+   
+
+}
+
+.getButton{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0); 
+  width: 100%;
+  height: 100%;
+}
+
+.getButton::after{
+  border: 0;
+}
+
+.mobilecode{
+  background-color: white;
+  overflow: hidden;
+  border-top: 4rpx solid #F2F2F2;
+  padding: 16rpx 0;
+}
+
+.codeInput{
+  width: 40%;
+}
+
+.codePlaceholder{
+   font-size: 30rpx;
+}
+
+.getMobilecodeButton{
+  font-size: 28rpx;
+  color: #ff4401;
+  border: 2rpx solid #ff4401;
+  border-radius: 10rpx;
+  padding: 8rpx 10rpx;
+}
+
+.submitButton{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  font-size: 34rpx;
+  color: white;
+  background-color: #ff4401;
+  padding: 20rpx 0;
+  border-radius: 5rpx;
+  text-align: center;
+}
+
+.cardNumber{
+  width: 86%;
+}
+
+
+.countdown{
+  font-size: 28rpx;
+  color: #858585;
+  border: 2rpx solid #858585;
+  border-radius: 10rpx;
+  padding: 8rpx 10rpx;
+}
+
+

@@ -13,10 +13,6 @@ Page({
    */
   onLoad: function (options) {
      var objx = this;
-     var cashMoney = options.cashMoney;
-     objx.setData({
-       cashMoney:cashMoney
-     })
      objx.getCashAccount();
   },
 
@@ -92,16 +88,16 @@ Page({
            var mobilephone = res.mobilephone;
            var hasAccount = "0";
            var hasMobilephone = "0";
-           if (account.id != "undefined") {
+           if (account.id != undefined) {
                hasAccount = "1";
            }
-
            if (mobilephone && mobilephone != "") {
                hasMobilephone = "1";
            }
            objx.setData({
              account:res.account,
              mobilephone:res.mobilephone,
+             balance:res.balance,
              hasAccount: hasAccount,
              hasMobilephone: hasMobilephone
            })
@@ -128,9 +124,9 @@ Page({
    */
   cashAll: function () {
     var objx = this;
-    var cashMoney = objx.data.cashMoney;
+    var balance = objx.data.balance;
     objx.setData({
-      inputMoney: cashMoney
+      inputMoney: balance
     })
   },
 
@@ -164,7 +160,7 @@ Page({
        return;
     }
     var mobilephone = objx.data.mobilephone;
-    if (mobilephone == "" || mobilephone == "null" || mobilephone == "undefined") {
+    if (mobilephone == "" || mobilephone == "null" || mobilephone == undefined) {
       wx.showModal({
         title: '提示',
         content: '请先获取手机号！',
@@ -254,8 +250,8 @@ Page({
     var inputMoney = objx.data.inputMoney;
 
     // 可提现金额
-    var cashMoney = objx.data.cashMoney;
-    if (inputMoney == "" || inputMoney == "null" || inputMoney == undefined || parseFloat(inputMoney) == 0.00 || parseFloat(inputMoney) > parseFloat(cashMoney) ) {
+    var balance = objx.data.balance;
+    if (inputMoney == "" || inputMoney == "null" || inputMoney == undefined || parseFloat(inputMoney) == 0.00 || parseFloat(inputMoney) > parseFloat(balance) ) {
       wx.showModal({
         title: '提示',
         content: '提现金额应大于0，小于等于可提现金额！',
@@ -319,7 +315,87 @@ Page({
         })
       }
     })
+  },
+
+  /**
+   * 获取用户手机号
+   */
+  getPhoneNumber: function (e) {
+    var objx = this;
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+       var session_key = wx.getStorageSync("session_key");
+       e.session_key = session_key;
+      // 获取手机号成功，去后台解密手机号
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+        dataType:JSON,
+        data:{
+          json:e
+        },
+        success: function (res) {
+          res = JSON.parse(res.data);
+
+          if (res.phoneNumber != undefined) {
+            // 解密手机号成功,将手机号设置一下
+            objx.setData({
+              mobilephone:res.phoneNumber,
+              hasMobilephone:1
+            })
+
+          } else {
+            // 解密手机号程序异常
+            wx.showModal({
+              title: '提示',
+              content: '解密手机号失败，请联系开发人员',
+              showCancel:false
+            })
+          }
+        
+        },
+        error: function (e) {
+          // 网络请求失败
+          wx.showModal({
+            title: '提示',
+            content: '网络异常',
+            showCancel:false
+          })
+        }
+      })
+
+    } else {
+      // 用户拒绝获取手机号
+      wx.showModal({
+        title: '提示',
+        content: '您拒绝了授权，如需进行下一步操作，需您同意授权',
+        showCancel:false
+      })
+    }
+
+  },
+
+  /**
+   * 绑定支付宝账号
+   */
+  gotoAliAccount:function () {
+    var objx = this;
+    var mobilephone = objx.data.mobilephone;
+    wx.navigateTo({
+      url: '../../pages/bindAccount/bindAccount?mobilephone='+mobilephone + '&accountType=0',
+    })
+  },
+
+
+  /**
+   * 绑定银联账号
+   */
+  gotoUnoinAccount: function () {
+    var objx = this;
+    var mobilephone = objx.data.mobilephone;
+    wx.navigateTo({
+      url: '../../pages/bindAccount/bindAccount?mobilephone=' + mobilephone + '&accountType=1',
+    })
   }
+
   
 
   
