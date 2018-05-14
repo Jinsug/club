@@ -1,0 +1,43 @@
+.active-item{
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #F2F2F0;
+}
+
+.active-image{
+  float: left;
+  width: 135px;
+  height: 77px;
+}
+
+.active-content{
+  float: left;
+  margin-left: 10px;
+}
+
+.active-name{
+  margin-top: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+.active-count{
+  margin-top: 10px;
+  font-size: 12px;
+  color: #BBB;
+}
+
+.active-target{
+  margin-top: 5px;
+  font-size: 12px;
+  color: #BBB;
+}
+
+.success-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+}

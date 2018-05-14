@@ -1,0 +1,28 @@
+<!-- start -->
+      <view class="body">
+                <!-- 填充区 -->
+                <view class="dou-full"></view>
+                <!-- 激活码区域 -->
+                <view class="active-area">
+                        <view class="active-div">
+                            <!-- 图标 -->
+                            <view class="icon-div">
+                                    <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/activetion-code.png" class="icon-img"></image>
+                            </view>
+
+                            <!-- 文字 -->
+                            <view class="active-font">激活码</view>
+                            
+
+                            <!-- 激活码输入框 -->
+                            <view class="active-code-div">
+                                    <input class="active-code" name="code" type="number" bindinput="activeCode"  placeholder="请输入您的激活码" placeholder-class="active-code-placeholder"></input>
+                            </view>
+                        </view>
+                </view>
+
+                <!-- 激活按钮 -->
+                <view class="active-button-div" bindtap='active'>
+                        <view class="active-button">激活</view>
+                </view>
+      </view>
