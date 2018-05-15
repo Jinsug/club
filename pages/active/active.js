@@ -27,7 +27,7 @@ Page({
         json: JSON.stringify(e.detail)
       },
       success: function (res) {
-        console.log(res);
+        // console.log(res);
         // 登录成功, 把用户id存入缓存
         if (res.data.success) {
           wx.setStorageSync('memberId', res.data.key);

@@ -1,3 +1,17 @@
+.no-data{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  text-align: center;
+  font-size: 12px;
+  color: #8f8e8e;
+}
+
+.no-data > image{
+  width: 30px;
+  height: 30px;
+}
+
 .active-item{
   position: relative;
   margin: 10px;
@@ -49,6 +63,6 @@
   background-color: rgba(0, 0, 0, 0);
 }
 
-.login-button ::after{
-  border: 0;
+.login-button::after{
+ border: none;
 }

@@ -73,7 +73,7 @@ Page({
           json: JSON.stringify(e.detail)
         },
         success: function (res) {
-          console.log(res);
+          // console.log(res);
           // 登录成功, 把用户id存入缓存
           if (res.data.success) {
             wx.setStorageSync('memberId', res.data.key);
@@ -104,7 +104,7 @@ Page({
         content: '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
                 '重新登录授权才可以体验后续功能',
         showCancel: false,
-        success: () => {
+        complete: () => {
           return false;
         }
       });

@@ -1,6 +1,12 @@
 <!-- 引入过滤器 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
+  <view class="no-data" wx:if="{{activeList.length == 0}}">
+    <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+    </image>
+    <view>暂无数据</view>
+    <view>先去看看别的</view>
+  </view>
   <view class='active-list'>
     <view class='active-item' wx:for='{{activeList}}' wx:key='' bindtap='activeDetail'
        data-index='{{index}}' > 
