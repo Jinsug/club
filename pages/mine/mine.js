@@ -142,6 +142,11 @@ Page({
    * 查看我的优惠券
    */
   gotoMyTicke: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
     wx.navigateTo({
       url: "../../pages/ticket/ticket",
     })
@@ -152,6 +157,11 @@ Page({
    * 查看我的挑战
    */
   gotoMyActive: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
     wx.navigateTo({
       url: "../../pages/myActive/myActive",
     })
@@ -282,6 +292,11 @@ Page({
    * 查看我的足迹
    */
   gotoMyFooter: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
     wx.navigateTo({
       url: "../../pages/myFooter/myFooter",
     })
