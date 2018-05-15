@@ -252,6 +252,88 @@ getDatas: function (currentDate) {
       wx.navigateTo({
         url: "../../pages/courseDeal/courseDeal"
       })
+  },
+
+  /**
+   * check登录状态
+   */
+  checkLoginStatus: function () {
+    var objx = this;
+    var memberId = wx.getStorageSync("memberId");
+    var login_button = true;
+    if (!memberId || memberId == "") {
+      // 调用微信登录
+      wx.login({
+        success:function (login_res) {
+          objx.setData({
+              code:login_res.code,
+              login_button:login_button
+          })
+        }
+      })
+
+    } else {
+      // 已经登录，禁用登录按钮
+      login_button = false;
+      objx.setData({
+        login_button:login_button
+      })
+
+    }
+  },
+
+  /**
+   * wechatLogin
+   */
+  wechatLogin:function (e) {
+    var objx = this;
+    if (e.detail.errMsg == "getUserInfo:ok") {
+      // 获取code
+      e.detail.code = objx.data.code;
+
+      // 请求登录后台
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
+        dataType:JSON,
+        data:{
+          json: JSON.stringify(e.detail)
+        },
+        success: function (res) {
+          // 网络请求成功
+          res = JSON.parse(res.data);
+          if (res.success) {
+            // 登录成功，将数据存储起来
+            wx.setStorageSync("memberId", res.key);
+            wx.setStorageSync("session_key", res.session_key);
+            wx.setStorageSync("openId", res.openId);
+          } else {
+            // 程序异常，console打印异常信息
+            console.log(res.message);
+            wx.showModal({
+              title: '提示',
+              content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
+            })
+          }
+
+          // 移除登录按钮
+          objx.setData({
+            login_button:false
+          })
+        },
+        error: function (e) {
+          // 网络请求失败
+          wx.showModal({
+            title: '提示',
+            content: '网络异常',
+            showCancel:false
+          })
+          return;
+
+        }
+
+      })
+    }
+
   }
 
 })

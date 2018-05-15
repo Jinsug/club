@@ -136,3 +136,16 @@ page{
     text-align: center;
     color: #999999;
 }
+
+
+.login_button{
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  z-index: 1;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background-color: #41B44B;
+}
+
