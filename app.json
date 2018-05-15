@@ -15,6 +15,7 @@
     "pages/activeDetail/activeDetail",
     "pages/joinActive/joinActive",
     "pages/myActive/myActive",
+    "pages/myFooter/myFooter",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",

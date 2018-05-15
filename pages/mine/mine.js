@@ -137,25 +137,21 @@ Page({
     })
   },
 
-  // 查看我的优惠券
-  gettoMyTicke: function () {
-    var objx = this;
-    // 登录检查
-    if (!objx.checkOnFun()) {
-      return;
-    }
+
+  /**
+   * 查看我的优惠券
+   */
+  gotoMyTicke: function () {
     wx.navigateTo({
       url: "../../pages/ticket/ticket",
     })
   },
 
-  // 查看我的挑战
-  gettoMyActive: function () {
-    var objx = this;
-    // 登录检查
-    if (!objx.checkOnFun()) {
-      return;
-    }
+
+  /**
+   * 查看我的挑战
+   */
+  gotoMyActive: function () {
     wx.navigateTo({
       url: "../../pages/myActive/myActive",
     })
@@ -280,6 +276,15 @@ Page({
 
       })
     }
+  },
+
+  /**
+   * 查看我的足迹
+   */
+  gotoMyFooter: function () {
+    wx.navigateTo({
+      url: "../../pages/myFooter/myFooter",
+    })
 
   }
 

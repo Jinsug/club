@@ -1,0 +1,32 @@
+<view class='wraper'>
+  <view class='sign-list'>
+    <view class='sign-item' wx:for='{{signList}}' wx:key=''>
+      <view class='sign-title-time' wx:if='{{item.month != signList[index-1].month}}'>
+        {{item.year}} <text style='font-size:12px;'>{{item.monthText}}月</text>
+      </view>
+      <view class='sign-content'>
+        <view class='sign-content-left'>
+          {{item.date}}日
+        </view>
+        <view class='sign-content-right' bindtap='bindTapSignItem' data-index='{{index}}'>
+          <image src='{{base_picture_url}}/{{item.image}}' mode='aspectFill' class='clubImage'>
+          </image>
+          <view class='clubInfo'>
+            <view class='clubName'>{{item.name}}</view>
+            <view class='clubScore' wx:if='{{!item.totalityScore}}'>
+              我要点评
+            </view>
+            <view class='clubScore' wx:if='{{item.totalityScore}}'>
+              <view class='totalScore'>
+                {{item.totalityScore}}分 
+              </view>
+              <view class='otherScore'>
+                设备{{item.deviceScore}}; 环境{{item.evenScore}}; 服务{{item.servieScore}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -16,7 +16,11 @@ Page({
    */
   onLoad: function (options) {
     let active = JSON.parse(decodeURI(options.active));
-    this.addResultTips(active);
+    if(active.result){
+      this.addResultTips(active);
+    } else {
+      active.resultImage = 'opacity.png';
+    }
     this.setData({
       active: active
     });

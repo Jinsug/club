@@ -21,6 +21,30 @@
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='activeInfo-bottom'>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderStartTime}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          结束时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderEndTime}}
+      </view>
+    </view>
     <view class='active-row'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
@@ -33,7 +57,19 @@
         {{filter.active_target(active.days, active.target, active.value)}}
       </view>
     </view>
-    <view class='active-row'>
+    <view class='active-row' wx:if='{{active.result && (active.target == "A" || active.result == "B")}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始体重
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.weight}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{!active.result}}'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100424.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
@@ -45,7 +81,7 @@
         {{active.award}}
       </view>
     </view>
-    <view class='active-row'>
+    <view class='active-row' wx:if='{{!active.result}}'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100425.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
@@ -77,12 +113,15 @@
         <view class='active-row-left'>
           结束体重
         </view>
-        <view class='active-row-right' wx:if='{{active.result != 3}}'>
+        <view class='active-row-right' wx:if='{{active.result == 0}}'>
           请在结束后输入体重
         </view>
         <view class='active-row-right' wx:if='{{active.result == 3}}'>
           <input type='number' bindinput='getInputValue' placeholder='请在挑战结束后输入体重'>
           </input>
+        </view>
+        <view class='active-row-right' wx:if='{{active.result == 1 || active.result == 2}}'>
+          {{active.lastWeight}}
         </view>
       </view>
       <view class='active-row' wx:if='{{active.target == "C" || active.target == "D"}}'>
@@ -94,7 +133,7 @@
         </view>
       </view>
     </view>
-    <view class='resultImage' wx:if='{{active.result != 3}}'>
+    <view class='resultImage' wx:if='{{active.result && active.result != 3}}'>
       <image src='{{base_picture_url}}/{{active.resultImage}}'>
       </image>
       <view class='resultTip'>{{active.resultTip}}</view>

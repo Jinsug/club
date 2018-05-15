@@ -44,7 +44,7 @@
       </view>
 
       <!-- 我的优惠券 -->
-      <view class="pre" bindtap='gettoMyTicke'>
+      <view class="pre" bindtap='gotoMyTicke'>
             <view class="title">我的优惠券</view>
             <view class="link">></view>
       </view>
@@ -56,13 +56,13 @@
       </view>
 
       <!-- 我的挑战 -->
-      <view class="pre" bindtap='gettoMyActive'>
+      <view class="pre" bindtap='gotoMyActive'>
             <view class="title">我的挑战</view>
             <view class="link">></view>
       </view>
 
       <!-- 我的足迹 -->
-      <view class="pre">
+      <view class="pre" bindtap='gotoMyFooter'>
             <view class="title">我的足迹</view>
             <view class="link">></view>
       </view>
