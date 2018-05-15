@@ -21,6 +21,30 @@
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='activeInfo-bottom'>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderStartTime}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{active.result}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          结束时间
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.orderEndTime}}
+      </view>
+    </view>
     <view class='active-row'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
@@ -33,7 +57,19 @@
         {{filter.active_target(active.days, active.target, active.value)}}
       </view>
     </view>
-    <view class='active-row'>
+    <view class='active-row' wx:if='{{active.reslut && (active.target=="A" || active.result=="B")}}'>
+      <view class='active-row-left'>
+        <image src='{{base_picture_url}}/201805100423.png' mode='aspectFill' wx:if='{{!active.result}}'>
+        </image>
+        <view class='active-row-left-title'>
+          开始体重
+        </view>
+      </view>
+      <view class='active-row-right'>
+        {{active.weight}}
+      </view>
+    </view>
+    <view class='active-row' wx:if='{{!active.result}}'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100424.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
@@ -45,7 +81,7 @@
         {{active.award}}
       </view>
     </view>
-    <view class='active-row'>
+    <view class='active-row' wx:if='{{!active.result}}'>
       <view class='active-row-left'>
         <image src='{{base_picture_url}}/201805100425.png' mode='aspectFill' wx:if='{{!active.result}}'>
         </image>
