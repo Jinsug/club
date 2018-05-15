@@ -23,6 +23,7 @@
     "pages/cash/cash",
     "pages/bindAccount/bindAccount",
     "pages/myAppointment/myAppointment"
+    
 
   ],
   "window": {

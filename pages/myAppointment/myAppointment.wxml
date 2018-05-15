@@ -1,4 +1,27 @@
 <!-- 页面开始 -->
 <view class='content'>
+      <!-- 有预约数据时 -->
+      <view class='appointment' wx:if="{{hasData == 1}}" >
+              <view class='pre' wx:for="{{appointmentList}}" wx:for-item="appointment">
+                    <!-- 头像 -->
+                    <view class='left imgDiv'>
+                          <image class='img' src='{{base_pic_url}}/{{appointment.image}}'  mode='aspectfill'></image>
+                    </view>
+
+                    <!-- center -->
+                    <view class='left centerInfo'>
+                          <!-- 课程名称 -->
+                          <view class='title'>{{appointment.courseName}}</view>
+                          <!-- 授课教练 -->
+                          <view class='coachName value'>授课教练：{{appointment.coachName}}</view>
+                          <!-- 预约时间 -->
+                          <view class='dealTime value'>预约时间：{{appointment.applyDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
+
+                    </view>
+
+                    <!-- 取消 -->
+                    <view class='cancel' bindtap='cancel' data-courseid="{{appointment.courseId}}" >取消</view>
+              </view>
+      </view>
       
 </view>

@@ -6,8 +6,7 @@ Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
     dou_dates: ["preDate", "preDate", "preDate", "preDate", "preDate", "preDate","preDate"],
-    
-    
+    login_button:true
   },
 
   /**
@@ -40,6 +39,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var objx = this;
+    objx.checkLoginStatus();
     
   },
 
@@ -237,6 +238,10 @@ getDatas: function (currentDate) {
  */
   appointment: function (e) {
       var objx = this;
+      // 登录检查
+      if (!objx.checkLogin()) {
+        return;
+      }
       var courseId = e.currentTarget.dataset.courseid;
       var courseList = objx.data.courseList;
       var course = {};
@@ -303,9 +308,10 @@ getDatas: function (currentDate) {
           res = JSON.parse(res.data);
           if (res.success) {
             // 登录成功，将数据存储起来
+            console.log(res);
             wx.setStorageSync("memberId", res.key);
             wx.setStorageSync("session_key", res.session_key);
-            wx.setStorageSync("openId", res.openId);
+            wx.setStorageSync("openId", res.openid);
           } else {
             // 程序异常，console打印异常信息
             console.log(res.message);
@@ -332,8 +338,34 @@ getDatas: function (currentDate) {
         }
 
       })
+    } else {
+      // 移除登录按钮
+      objx.setData({
+        login_button:false
+      })
     }
 
+  },
+
+  /**
+   * 使用功能前，登录检查
+   */
+  checkLogin: function () {
+    var objx = this;
+    var memberId = wx.getStorageSync("memberId");
+    if (!memberId || memberId == "") {
+      wx.showModal({
+        title: '提示',
+        content: '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
+                '重新登录授权才可以体验后续功能',
+        showCancel:false,
+        complete: function () {
+          return false;
+        }
+      })
+    } else {
+      return true;
+    }
   }
 
 })

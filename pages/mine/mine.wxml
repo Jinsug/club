@@ -4,7 +4,9 @@
    <view class="personInfo">
        <!-- 背景图 -->
        <image class="BGP" src="https://www.ecartoon.com.cn/picture/5856706396549120.jpg" mode="aspectFill"></image>
-       <view class="person">
+       
+       <!-- 用户登录的情况 -->
+       <view class="person" wx:if="{{!login_button}}">
            <!-- 头像 -->
            <view class="personImageDiv">
                 <image class="personImage" src="https://www.ecartoon.com.cn/picture/{{memberData.image}}"></image>
@@ -15,6 +17,14 @@
                   <view class="nickName">{{memberData.nickName}}</view>
                   <view class="description">已健身<text class="count">{{memberData.count}}</text>次</view>
            </view>
+       </view>
+
+       <!-- 用户未登录，展示登录按钮 -->
+       <view class="login" wx:if="{{login_button}}">
+            <view class='login_div'>
+                   <button class='login_button' open-type='getUserInfo' bindgetuserinfo='wechatLogin' >登录</button> 
+                  <!-- <button class='login_button'>登录</button> -->
+            </view>
        </view>
    </view>
 
@@ -40,7 +50,7 @@
       </view>
 
       <!-- 我的预约 -->
-      <view class="pre">
+      <view class="pre" bindtap='gotoMyAppointment'>
             <view class="title">我的预约</view>
             <view class="link">></view>
       </view>

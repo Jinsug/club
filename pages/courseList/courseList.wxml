@@ -53,6 +53,6 @@
 </view>
 
 <!-- 登录按钮 -->
-<button class='login_button' wx:if="{{login_button}}" open-type='getUserInfo' bindgetuserinfo='wechatLogin'>获取课程信息</button>
+<button class='login_button' wx:if="{{login_button}}" open-type='getUserInfo' bindgetuserinfo='wechatLogin'></button>
 
 </view>
