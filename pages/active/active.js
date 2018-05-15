@@ -19,32 +19,27 @@ Page({
   // 微信登录
   wechatLogin: function (e) {
     if (e.detail.errMsg == 'getUserInfo:ok') {
-      wx.login({
-        success: (login_token) => {
-          // 获取登录code
-          e.detail.code = login_token.code;
-          wx.request({
-            url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
-            data: {
-              json: JSON.stringify(e.detail)
-            },
-            success: function (res) {
-              console.log(res);
-              // 登录成功, 把用户id存入缓存
-              if (res.data.success) {
-                wx.setStorageSync('memberId', res.data.key);
-                wx.setStorageSync('session_key', res.data.session_key);
-                wx.setStorageSync('openId', res.data.openid);
-              } else {
-                // 服务端异常, 提示用户
-                wx.showModal({
-                  title: '提示',
-                  content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
-                  showCancel: false
-                });
-              }
-            }
-          });
+      // 获取登录code
+      e.detail.code = this.data.code;
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
+        data: {
+          json: JSON.stringify(e.detail)
+        },
+        success: function (res) {
+          // 登录成功, 把用户id存入缓存
+          if (res.data.success) {
+            wx.setStorageSync('memberId', res.data.key);
+            wx.setStorageSync('session_key', res.data.session_key);
+            wx.setStorageSync('openId', res.data.openid);
+          } else {
+            // 服务端异常, 提示用户
+            wx.showModal({
+              title: '提示',
+              content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
+              showCancel: false
+            });
+          }
         }
       });
     }
@@ -69,6 +64,15 @@ Page({
     if (wx.getStorageSync('memberId')) {
       this.setData({
         login_button: false
+      });
+    } else {
+      // 调用wx.login
+      wx.login({
+        success: (login_token) => {
+          obj.setData({
+            code: login_token.code
+          });
+        }
       });
     }
     // 请求服务器挑战数据
