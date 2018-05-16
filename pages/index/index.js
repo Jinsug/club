@@ -7,35 +7,17 @@ Page({
     },
     ticketList: [],
     scroll_box_weight: 0,
-    cardList: [],
-    login_button: true
+    cardList: []
   },
   // 页面加载函数
   onLoad: function () {
-    // 初始化
-    wx.setStorageSync('memberId', null);
-
     // 获取俱乐部信息
     this.getClubData(this);
   },
 
   // 页面展示 
   onShow: function () {
-    // 每次打开首页检查缓存是否已有memberId, 如果有就无需重复登录
-    if (wx.getStorageSync('memberId')) {
-      this.setData({
-        login_button: false
-      });
-    } else {
-      let obj = this;
-      wx.login({
-        success: (login_token) => {
-          obj.setData({
-            code: login_token.code
-          });
-        }
-      });
-    }
+
   },
 
   // 加载俱乐部数据
@@ -61,61 +43,13 @@ Page({
       }
     });
   },
-
-  // 微信登录
-  wechatLogin: function (e) {
-    if(e.detail.errMsg == 'getUserInfo:ok'){
-      // 获取登录code
-      e.detail.code = this.data.code;
-      wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
-        data: {
-          json: JSON.stringify(e.detail)
-        },
-        success: function (res) {
-          // console.log(res);
-          // 登录成功, 把用户id存入缓存
-          if (res.data.success) {
-            wx.setStorageSync('memberId', res.data.key);
-            wx.setStorageSync('session_key', res.data.session_key);
-            wx.setStorageSync('openId', res.data.openid);
-          } else {
-            // 服务端异常, 提示用户
-            wx.showModal({
-              title: '提示',
-              content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
-              showCancel: false
-            });
-          }
-        }
-      });
-    }
-    // 移除登录按钮
-    this.setData({
-      login_button: false
-    });
-  },
-
-  // 检查登录状态 
-  checkLoginState: function() {
-    if(!wx.getStorageSync('memberId')){
-      wx.showModal({
-        title: '提示',
-        content: '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
-                '重新登录授权才可以体验后续功能',
-        showCancel: false,
-        complete: () => {
-          return false;
-        }
-      });
-    } else {
-      return true;
-    }
-  },
   // 申请加入 
   apply: function(){
     // 检查登录
-    if (!this.checkLoginState()){
+    if (!wx.getStorageSync('memberId')){
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      });
       return;
     }
     // 请求服务器
@@ -164,7 +98,10 @@ Page({
   // 健身打卡
   signIn: function(){
     // 检查登录
-    if (!this.checkLoginState()) {
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      });
       return;
     }
     // 创建微信接口对象
@@ -319,7 +256,10 @@ Page({
   // 领券
   getTicket: function(e){
     // 检查登录
-    if (!this.checkLoginState()) {
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      });
       return;
     }
     // 请求服务器
@@ -359,7 +299,10 @@ Page({
   // 进入健身卡详情
   getOneCardDetail: function(e){
     // 检查登录
-    if (!this.checkLoginState()) {
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      });
       return;
     }
     // 取出用户点击的索引
