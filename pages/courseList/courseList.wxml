@@ -26,9 +26,9 @@
 
                   <!-- 右边的内容 -->
                   <view class="right" style="height:{{pictureHeight}}">
-                              <view class="courseName">{{course.courseName}}</view>
-                              <view class="coachName">教练:{{course.coachName}}</view>
-                              <view class="time coachName">时间: {{course.startTime}}-{{course.endTime}} </view>
+                              <view class="value">{{course.courseName}}</view>
+                              <view class="time value">时间: {{course.startTime}}-{{course.endTime}} </view>
+                              <view class="fee value">会员：{{filter.getPriceStr(course.vip_price)}}<text decode='{{true}}'>&nbsp;&nbsp;&nbsp;</text>非会员：{{filter.getPriceStr(course.normol_price)}}</view>
                               <view class="peoples">{{filter.toFixed(course.joinNum,0)}}人/{{filter.toFixed(course.total,0)}}人</view>
                               <view class="full" wx:if="{{course.join >= course.total}}" >满员</view>
                               <view class="toBeFull" wx:else bindtap="appointment" data-courseid="{{course.id}}">预约</view>

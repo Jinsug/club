@@ -262,7 +262,6 @@ Page({
           res = JSON.parse(res.data);
           if (res.success) {
             // 登录成功，将数据存储起来
-            console.log(res);
             wx.setStorageSync("memberId", res.key);
             wx.setStorageSync("session_key", res.session_key);
             wx.setStorageSync("openId", res.openid);

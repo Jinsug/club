@@ -1,7 +1,7 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class="page">
-
-
        <!-- 内容展示区 -->
        <view class="content">
              <!-- 教练头像、名称 -->
@@ -21,14 +21,16 @@
              <!-- 开始时间 -->
              <view class="pre">
                  <view  class="title">开始时间</view>
-                 <view class="value">{{course.startTime}}</view>
+                 <view class="value">
+                      {{course.planDate}}<text decode='true'>&nbsp;&nbsp;</text>{{course.startTime}}
+                 </view>
              </view>
 
              <!-- 结束时间 -->
              <view class="pre">
                  <view  class="title">结束时间</view>
                  <view class="value">
-                      {{course.endTime}}
+                      {{course.planDate}}<text decode='true'>&nbsp;&nbsp;</text>{{course.endTime}}
                  </view>
              </view>
 
@@ -37,11 +39,25 @@
                  <view  class="title">课程地点</view>
                  <view class="value">{{course.clubName}}</view>
              </view>
+
+             <!-- 价格 -->
+             <view class='pre'>
+                  <view class='title'>价格</view>
+                  <!-- vip价格 -->
+                  <view class='value' wx:if="{{course.isVip == true}}">{{filter.getPriceStr(course.vip_price)}}</view>
+                  <!-- 非会员价 -->
+                  <view class='value' wx:if="{{course.isVip == false}}">{{filter.getPriceStr(course.normol_price)}}</view>
+             </view>
        </view>
 
        <!-- 确定按钮 -->
-       <view class="sure" bindtap="appointment">
-          确定
+       <view class="sure" wx:if="{{isFree}}" bindtap="appointment">
+          预约
+       </view>
+
+       <!-- 支付按钮 -->
+       <view class='sure' wx:if="{{!isFree}}" bindtap='gotoBuy'>
+          支付
        </view>
 
 </view>

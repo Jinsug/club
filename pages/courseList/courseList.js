@@ -202,13 +202,13 @@ getDatas: function (currentDate) {
     for(var x = 0; x < dou_dates.length; x++) {
        dates.push(dou_dates[x].date);
     }
-    var parma = {};
-    parma.date = dates.toString();
+    var param = {};
+    param.date = dates.toString();
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!findCourse.asp',
       dataType:JSON,
       data:{
-         json: encodeURI(JSON.stringify(parma))
+        json: encodeURI(JSON.stringify(param))
       },
       success: function (res) {
          res = JSON.parse(res.data);
@@ -244,19 +244,10 @@ getDatas: function (currentDate) {
       }
     
       var courseId = e.currentTarget.dataset.courseid;
-      var courseList = objx.data.courseList;
-      var course = {};
-      for (var x = 0; x < courseList.length; x++) {
-          if (courseId == courseList[x].id) {
-             course = courseList[x];
-          }
-      }
-      // 将当前课程存储起来
-      wx.setStorageSync("course", course);
-      
+
       // 跳转到预约页面
       wx.navigateTo({
-        url: "../../pages/courseDeal/courseDeal"
+        url: "../../pages/courseDeal/courseDeal?courseid=" + courseId
       })
   }
 

@@ -146,6 +146,7 @@ Page({
     param.productType = this.data.product.productType;
     param.phoneNumber = this.data.phoneNumber;
     param.strengthDate = this.data.product.time;
+    param.price = this.data.price;
     param.memberId = wx.getStorageSync("memberId");
     param.openId = wx.getStorageSync("openId");
     if(this.data.product.weight){

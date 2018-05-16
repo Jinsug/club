@@ -17,10 +17,8 @@ Page({
      var objx = this;
 
      // 取出上一页面存储的course
-     var course = wx.getStorageSync("course");
-     objx.setData({
-         course:course
-     })    
+     var courseId = options.courseid;
+     objx.getDatas(courseId);
   },
 
   /**
@@ -111,6 +109,107 @@ Page({
       })
 
 
+  },
+
+  /**
+   * 根据id查询当前的课程信息
+   */
+  getDatas:function (courseId) {
+    var objx = this;
+    var memberId = wx.getStorageSync("memberId");
+    // 测试数据
+    // memberId = "12764";
+    var param = {};
+    param.memberId = memberId;
+    param.courseId = courseId;
+
+    // 发起网络请求
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!findCourseById.asp',
+      dataType:JSON,
+      data:{
+        json: encodeURI(JSON.stringify(param))
+      },
+      success: function (res) {
+        // 网络请求成功
+        res = JSON.parse(res.data);
+        if (res.success) {
+          // 测试数据
+          // var cc = {
+          //   image:"1.jpg",
+          //   courseName:"舞蹈",
+          //   startTime:"09:00",
+          //   endTime:"10:00",
+          //   planDate:"2018-05-16",
+          //   coachName:"dou",
+          //   clubName:"中南财经政法大学",
+          //   vip_price:"0.00",
+          //   normol_price:"12",
+          //   isVip:true,
+          //   courseId:"385827"
+          // };
+          // res.course = cc;
+          // 数据请求成功
+          var isFree = false;
+          var role = res.course.isVip;
+          if (role) {
+            if (parseFloat(res.course.vip_price) == 0.00) {
+              isFree = true;
+            }
+          } else {
+            if (parseFloat(res.course.normol_price) == 0.00) {
+              isFree = true;
+            }
+          }
+          objx.setData({
+            course:res.course,
+            isFree:isFree
+          })
+        } else {
+          // 程序异常
+          wx.showModal({
+            title: '提示',
+            content: res.message,
+            showCancel:false
+          })
+        }
+      },
+      error: function (e) {
+        // 网络请求失败
+        wx.showModal({
+          title: '提示',
+          content: '网络异常',
+          showCancel:false
+        })
+      }
+    })
+  },
+
+  /**
+   * 去支付
+   */
+  gotoBuy:function () {
+    // 处理参数
+    var objx = this;
+    var course = objx.data.course;
+    var price = "0";
+    if (course.isVip) {
+      price = course.vip_price;
+    } else {
+      price = course.normol_price;
+    }
+    var param = {};
+    param.productId = course.id;
+    param.productName = course.courseName;
+    param.productPrice = price;
+    param.image = course.image;
+    param.productType = "course";
+    param.time = course.planDate;
+
+    // 跳转到提交订单页面
+    wx.navigateTo({
+      url: '../../pages/order/order?product=' + encodeURI(JSON.stringify(param)),
+    })
   }
 
 
