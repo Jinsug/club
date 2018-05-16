@@ -1,0 +1,52 @@
+.club-wraper{
+  position: relative;
+  height: 147px;
+}
+
+.club-background-image{
+  width: 100%;
+  height: 100%;
+}
+
+.clubInfo{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.club-content{
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #FFF;
+}
+
+.club-content-left{
+  float: left;
+  width: 90px;
+  height: 90px;
+}
+
+.club-content-right{
+  float: left;
+  margin-left: 10px;
+}
+
+.club-address{
+  padding: 10px;
+  font-size: 12px;
+  color: #FFF;
+}
+
+.clubName{
+  margin-top: 5px;
+  font-size: 16px;
+  color: #FFF;
+}
+
+.productName{
+  margin-top: 10px;
+  font-size: 12px;
+  color: #FFF;
+}

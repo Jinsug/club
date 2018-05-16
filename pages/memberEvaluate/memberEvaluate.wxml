@@ -1,0 +1,24 @@
+<view class='club-wraper'>
+  <image src='{{base_picture_url}}/wangyan1.jpg' class='club-background-image' mode='aspectFill'>
+  </image>
+  <view class='clubInfo'>
+    <view class='club-content'>
+      <image src='{{base_picture_url}}/wangyan1.jpg' class='club-content-left' mode='aspectFill'>
+      </image>
+      <view class='club-content-right'>
+        <view class='clubName'>美偲女性健身</view>
+        <view class='productName'>游泳</view>
+      </view>
+    </view>
+    <view class='club-address'>
+      地址：鲁巷
+    </view>
+  </view>
+</view>
+<view class='evaluate'>
+  
+</view>
+<view class='memberEvaluate'>
+
+</view>
+
