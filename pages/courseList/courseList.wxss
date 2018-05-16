@@ -78,7 +78,7 @@ page{
     font-size: 28rpx;
 }
 
-.coachName {
+.value {
     font-size: 24rpx;
     color: #999999;
     margin-top: 10rpx;
@@ -148,3 +148,8 @@ page{
   background-color: rgba(0, 0, 0, 0);
 }
 
+
+.fee{
+  
+
+}

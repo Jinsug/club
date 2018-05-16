@@ -16,6 +16,15 @@ Page({
     var objx = this;
     // 加载当前页面时，取出参数
     var accountType = options.accountType;
+    var barTitle = "";
+    if (parseInt(accountType) == 0) {
+        barTitle = "绑定支付宝";
+    } else {
+        barTitle = "绑定银行卡";
+    }
+    wx.setNavigationBarTitle({
+      title: barTitle,
+    })
     var mobilephone = options.mobilephone;
     var hasMobilephone = 0;
     if (mobilephone != "" && mobilephone != undefined && mobilephone != "undefined") {
