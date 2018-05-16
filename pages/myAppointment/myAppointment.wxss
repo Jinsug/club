@@ -62,3 +62,22 @@ page{
   font-size: 24rpx;
   border-radius: 5rpx;
 }
+
+
+.noDataPicDiv{
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 auto;
+    margin-top: 60%;
+}
+
+.noDataPic{
+    width: 100%;
+    height: 100%;
+}
+
+.noDataFont{
+    font-size: 24rpx;
+    text-align: center;
+    color: #999999;
+}

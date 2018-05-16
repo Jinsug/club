@@ -14,6 +14,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var objx = this;
+    // 获取加载页面参数
+    var source = options.source;
+    if (source) {
+        objx.setData({
+          source:source
+        })
+    }
+
 
   },
 
@@ -257,8 +266,19 @@ Page({
             wx.setStorageSync("memberId", res.key);
             wx.setStorageSync("session_key", res.session_key);
             wx.setStorageSync("openId", res.openid);
-            // 登录成功，获取基本信息
-            objx.findMe();
+            // 登录成功，判断是relaunch过来的，还是用户主动点击tabBar过来的
+            var source = objx.data.source;
+            if (!source || source == "" || source == "undefined" || source == undefined) {
+              // 用户主动点击过来的
+                objx.findMe();
+            } else {
+              // 跳转到来时的页面
+                wx.switchTab({
+                  url: '../../pages/' + source + '/' + source,
+                })
+              }
+
+            
           } else {
             // 程序异常，console打印异常信息
             console.log(res.message);
