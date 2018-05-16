@@ -1,24 +1,168 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='club-wraper'>
-  <image src='{{base_picture_url}}/wangyan1.jpg' class='club-background-image' mode='aspectFill'>
+  <image src='{{base_picture_url}}/{{memberEvaluate.image}}' class='club-background-image' 
+    mode='aspectFill'>
   </image>
   <view class='clubInfo'>
     <view class='club-content'>
-      <image src='{{base_picture_url}}/wangyan1.jpg' class='club-content-left' mode='aspectFill'>
+      <image src='{{base_picture_url}}/{{memberEvaluate.image}}' class='club-content-left' 
+          mode='aspectFill'>
       </image>
       <view class='club-content-right'>
-        <view class='clubName'>美偲女性健身</view>
-        <view class='productName'>游泳</view>
+        <view class='clubName'>{{memberEvaluate.name}}</view>
+        <view class='productName' wx:if='{{!memberEvaluate.evalTime}}'>
+          {{memberEvaluate.productName}}
+        </view>
+        <view class='evaluateTotalityStarts' wx:if='{{memberEvaluate.evalTime}}'>
+          <image src='{{base_picture_url}}/{{item}}' mode='aspectFill'
+             wx:for='{{memberEvaluate.totalityStars}}' wx:key='' >
+          </image>
+        </view>
+        <view class='evaluateOtherScoreText' wx:if='{{memberEvaluate.evalTime}}'>
+          设备{{memberEvaluate.deviceScoreAsFive}}; 环境{{memberEvaluate.evenScoreAsFive}}; 
+          服务{{memberEvaluate.serviceScoreAsFive}}
+        </view>
       </view>
     </view>
     <view class='club-address'>
-      地址：鲁巷
+      地址：{{filter.overflow_hidden(memberEvaluate.address, 24)}}
     </view>
   </view>
 </view>
-<view class='evaluate'>
-  
+<view class='evaluate' wx:if='{{!memberEvaluate.evalTime}}'>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='signDate'>
+    <view class='signDate-left'>
+      签到时间
+    </view>
+    <view class='signDate-right'>
+      {{memberEvaluate.signDate}}
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='evaluateForm'>
+    <view class='evaluateScore'>
+      <view class='evaluateScore-left'>
+        <view class='evaluateScore-left-title'>
+          总体
+        </view>
+        <view class='evaluateScore-left-content'>
+          <image src='{{base_picture_url}}/{{item}}' mode='aspectFill'
+             wx:for='{{memberEvaluate.totalityStars}}' wx:key='' bindtap='saveTotalityScore'
+             data-index='{{index}}'>
+          </image>
+        </view>
+      </view>
+      <view class='evaluateScore-right'>
+        <view wx:if='{{memberEvaluate.totalityScoreAsFive && memberEvaluate.totalityScoreAsFive > 0}}'>
+          {{memberEvaluate.totalityScoreAsFive}}星
+        </view>
+      </view>
+    </view>
+    <view class='evaluateOtherScore' wx:if='{{memberEvaluate.totalityScore}}'>
+      <view class='evaluateOtherScore-content'>
+        <view class='evaluateOtherScore-content-left'>
+          <view class='evaluateOtherScore-content-left-title'>
+            设备
+          </view>
+          <view class='evaluateOtherScore-content-left-content'>
+            <image src='{{base_picture_url}}/{{item}}' mode='aspectFill'
+              wx:for='{{memberEvaluate.deviceScoreStars}}' wx:key='' bindtap='saveDeviceScore'
+             data-index='{{index}}'>
+            </image>  
+          </view>
+        </view>
+        <view class='evaluateOtherScore-content-right'>
+          {{memberEvaluate.deviceScoreText}}
+        </view>
+      </view>
+      <view class='evaluateOtherScore-content'>
+        <view class='evaluateOtherScore-content-left'>
+          <view class='evaluateOtherScore-content-left-title'>
+            环境
+          </view>
+          <view class='evaluateOtherScore-content-left-content'>
+            <image src='{{base_picture_url}}/{{item}}' mode='aspectFill'
+              wx:for='{{memberEvaluate.evenScoreStars}}' wx:key='' bindtap='saveEvenScore'
+             data-index='{{index}}'>
+            </image>  
+          </view>
+        </view>
+        <view class='evaluateOtherScore-content-right'>
+          {{memberEvaluate.evenScoreText}}
+        </view>
+      </view>
+      <view class='evaluateOtherScore-content'>
+        <view class='evaluateOtherScore-content-left'>
+          <view class='evaluateOtherScore-content-left-title'>
+            服务
+          </view>
+          <view class='evaluateOtherScore-content-left-content'>
+            <image src='{{base_picture_url}}/{{item}}' mode='aspectFill'
+              wx:for='{{memberEvaluate.serviceScoreStars}}' wx:key='' bindtap='saveServiceScore'
+             data-index='{{index}}'>
+            </image>  
+          </view>
+        </view>
+        <view class='evaluateOtherScore-content-right'>
+          {{memberEvaluate.serviceScoreText}}
+        </view>
+      </view>
+    </view>
+    <view class='evaluateInput'>
+      <textarea placeholder='亲，健身房的体验如何，环境怎么样，服务满意吗？' bindinput='saveEvaluateText'
+        value='{{evalContent}}'></textarea>
+    </view>
+    <view class='evalulteUploadFile'>
+      <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+        wx:if='{{memberEvaluate.evaluateImage1}}'>
+      </image>
+      <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage2}}' mode='aspectFill'
+        wx:if='{{memberEvaluate.evaluateImage2}}'>
+      </image>
+      <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage3}}' mode='aspectFill'
+        wx:if='{{memberEvaluate.evaluateImage3}}'>
+      </image>
+      <image src='{{base_picture_url}}/201805161100.png' mode='aspectFill' bindtap='chooseImage'
+        wx:if='{{!memberEvaluate.evaluateImage3}}'>
+      </image>
+    </view>
+  </view>
 </view>
-<view class='memberEvaluate'>
-
+<view class='memberEvaluate' wx:if='{{memberEvaluate.evalTime}}'>
+  <view style='height:20px;background-color:#F0F0F2;'></view>
+  <view class='memberInfo'>
+    <image src='{{base_picture_url}}/{{memberEvaluate.memberImage}}' class='memberInfo-image' 
+      mode='aspectFill'>
+    </image>
+    <view class='memberInfo-content'>
+      <view class='memberName'>
+        {{memberEvaluate.memberName}}
+      </view>
+      <view class='memberSignCount'>
+        健身{{memberEvaluate.signCount}}次
+      </view>
+    </view>
+    <view class='evaluateTime'>
+      {{memberEvaluate.evalTime}}
+    </view>
+  </view>
+  <view class='evaluateContent'>
+    {{memberEvaluate.evalContent}}
+  </view>
+  <view class='evaluateImages'> 
+    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+      wx:if='{{memberEvaluate.evaluateImage1}}'>
+    </image>
+    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+      wx:if='{{memberEvaluate.evaluateImage2}}'>
+    </image>
+    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+      wx:if='{{memberEvaluate.evaluateImage3}}'>
+    </image>
+  </view>
 </view>
-
+<view class='submitEvaluate' bindtap='saveEvaluate' wx:if='{{!memberEvaluate.evalTime}}'>
+  发布
+</view>

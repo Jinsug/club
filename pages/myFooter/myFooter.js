@@ -67,7 +67,7 @@ Page({
      */
     signFilter: (sign) => {
       // 处理签到日期
-      let signDates = sign.signDate.split(" ")[0].split("-");
+      let signDates = sign.signDate.split("-");
       let year = signDates[0];
       let month = signDates[1];
       let date = signDates[2];
