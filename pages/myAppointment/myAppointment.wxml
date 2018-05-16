@@ -24,4 +24,15 @@
               </view>
       </view>
       
+      <!-- 暂无数据 -->
+      <view class="noData" wx:if="{{hasData == 0}}">
+            <view class="noDataPicDiv">
+                  <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+            </view>
+
+            <view class="noDataFont">
+                    <view>暂无数据</view>
+                    <view>去看看别的</view>
+            </view>
+      </view>
 </view>
