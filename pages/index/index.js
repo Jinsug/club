@@ -215,9 +215,9 @@ Page({
           title: '签到成功',
           complete: (e) => {
             // 跳转至我的足迹页面
-            // wx.navigateTo({
-            //   url: ''
-            // });
+            wx.navigateTo({
+              url: '../myFooter/myFooter'
+            });
           }
         });
       } else {
