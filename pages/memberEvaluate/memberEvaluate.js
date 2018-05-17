@@ -20,6 +20,9 @@ Page({
         signId: options.signId
       });
     }
+
+    // 当前页面加载刷新评论数据
+    this.methods.getMemberEvaluate(this);
   },
 
   /**
@@ -33,8 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // 每次页面显示刷新评论数据
-    this.methods.getMemberEvaluate(this);
+    
   },
 
   /**
@@ -135,7 +137,8 @@ Page({
               filePath: tempFilePaths[index],
               name: 'memberHead',
               success: (res) => {
-                memberEvaluate[filds[index]] = res.data.image;
+                res = JSON.parse(res.data);
+                memberEvaluate[filds[index]] = res.image;
                 if (index < tempFilePaths.length - 1) {
                   index++;
                   upload();
