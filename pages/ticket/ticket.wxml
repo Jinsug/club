@@ -6,17 +6,34 @@
     <view>先去看看别的</view>
   </view>
   <view class='ticket-list'>
-    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket" bindtap='selectTicket' 
+    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket"    bindtap='selectTicket' 
         data-ticket='{{item}}'>
       <view class='ticket-content'>
-        <image src='https://www.ecartoon.com.cn/picture/{{item.image}}' mode='aspectFill'>
-        </image>
+        <view class='ticket-content-wraper'>
+          <view class='ticket-name'>
+            {{item.name}}
+          </view>
+          <view class='ticket-type'>
+            有效期至：{{item.useDate}} 
+            <text class='limitPrice'>满{{item.limitPrice}}可用</text>
+          </view>
+          <view class='ticket-validity'>
+            适用俱乐部：{{item.clubName}}
+          </view>
+        </view>
+      </view>
+      <view class='ticket-price'>
+        <image src='{{base_picture_url}}/{{item.backgroundImage}}'></image>
+        <view class='price-text'><text class="RMB" >¥</text>{{item.price}}</view>
+        <view class='goNow'>
+          立即使用
+        </view>
       </view>
     </view>
   </view>
 
  <!-- 激活优惠券按钮 -->
- <view class="activeTicket-div" bindtap="activeTicket" wx:if='{{activeTicket}}'>
+ <view class="activeTicket-div" bindtap="activeTicket" >
      <view class="activeTicket" >激活</view>
  </view>
 </view>

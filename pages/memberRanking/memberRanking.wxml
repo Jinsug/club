@@ -12,11 +12,22 @@
     <view class='memberRanking-body'>
       <view class='memberRanking-item' wx:for='{{memberRanking}}' wx:key=''>
         <view class='ranking'>
-          <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;No.{{index + 1}}</text>
+          <image src='{{base_picture_url}}/201805210945.png' class='' mode='aspectFill'
+            wx:if='{{index == 0}}'>
+          </image>
+          <image src='{{base_picture_url}}/201805210946.png' class='' mode='aspectFill'
+            wx:if='{{index == 1}}'>
+          </image>
+          <image src='{{base_picture_url}}/201805210947.png' class='' mode='aspectFill'
+            wx:if="{{index == 2}}">
+          </image>
+          <text decode='{{true}}' wx:if='{{index > 2}}'>&nbsp;&nbsp;&nbsp;&nbsp;No.{{index + 1}}</text>
         </view>
         <view class='memberInfo'>
           <image class='memberInfo-image' src='{{base_picture_url}}/{{item.image}}'   
-              mode='aspectFill'>
+              mode='aspectFill' wx:if='{{item.image && item.image != ""}}'>
+          <image class='memberInfo-image' src='{{base_picture_url}}/20180203151096.jpg'  
+            mode='aspectFill' wx:if='{{!item.image || item.image == ""}}'></image>
           </image>
           <view class='memberInfo-name'>{{item.name}}</view>
         </view>

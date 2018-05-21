@@ -1,4 +1,4 @@
-
+let util = require('../../utils/util.js');
 Page({
 
   /**

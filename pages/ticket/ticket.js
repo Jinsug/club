@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
     tickets: {},
     productId: '',
     productType: ''
@@ -41,6 +42,16 @@ Page({
     }
   },
 
+  /**
+   * 随机图片
+   */
+  randomImage: function (ticket) {
+    let imageList = ['201805211708.png', '201805211709.png', '201805211710.png', '201805211711.png'];
+    let index = Math.floor((Math.random() * imageList.length));
+    ticket.backgroundImage = imageList[index];
+    return ticket;
+  },
+
   // 查询当前用所有优惠券
   findMyTicket: function () {
     let obj = this;
@@ -52,7 +63,7 @@ Page({
       success: (res) => {
         // 设置数据源
         obj.setData({
-          tickets: res.data.ticketList,
+          tickets: res.data.ticketList.map(obj.randomImage),
           activeTicket: true
         });
       }
@@ -73,7 +84,7 @@ Page({
       success: function (res) {
         // 设置数据源
         obj.setData({
-          tickets: res.data.tickets
+          tickets: res.data.tickets.map(obj.randomImage)
         });
       }
     })

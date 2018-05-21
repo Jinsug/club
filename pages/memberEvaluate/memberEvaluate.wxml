@@ -11,7 +11,7 @@
       </image>
       <view class='club-content-right'>
         <view class='clubName'>{{memberEvaluate.name}}</view>
-        <view class='productName' wx:if='{{!memberEvaluate.evalTime}}'>
+        <view class='productName' wx:if='{{!memberEvaluate.evalTime && memberEvaluate.productName}}'>
           {{memberEvaluate.productName}}
         </view>
         <view class='evaluateTotalityStarts' wx:if='{{memberEvaluate.evalTime}}'>

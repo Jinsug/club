@@ -124,11 +124,11 @@ page{
 .selectStartTime{
   float: left;
   width: 60%;
-  height: 30px;
+  height: 44px;
   overflow: hidden;
   background-color: #F0F0F2;
   text-align: center;
-  line-height: 30px;
+  line-height: 44px;
 }
 
 .selectStartTime-left{
@@ -147,8 +147,8 @@ page{
 .goBuy{
   float: right;
   width: 40%;
-  height: 30px;
+  height: 44px;
   background-color: #FB8C00;
   text-align: center;
-  line-height: 30px;
+  line-height: 44px;
 }

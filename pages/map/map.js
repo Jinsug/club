@@ -12,8 +12,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let club = JSON.parse(decodeURI(options.club));
-    //console.log(club);
+    let club = wx.getStorageSync('club');
+    wx.removeStorageSync('club');
     // 设置当前页面标题
     wx.setNavigationBarTitle({
       title: club.name

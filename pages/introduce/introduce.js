@@ -1,5 +1,4 @@
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,8 +11,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let club = JSON.parse(decodeURI(options.club));
-    // console.log(club); 
+    let club = wx.getStorageSync('club');
+    wx.removeStorageSync('club');
     // 处理俱乐部营业日期将1,2,3格式转换为"星期一", "星期二", "星期三"格式
     let week = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
     let workDateList = club.workDate.split(",");
@@ -22,6 +21,7 @@ Page({
       let index = parseInt(item.trim()) - 1;
       club.workDate += week[index] + "&nbsp;";
     });
+
     // 页面渲染数据
     this.setData({
       club: club

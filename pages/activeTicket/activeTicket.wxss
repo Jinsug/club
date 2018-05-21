@@ -80,13 +80,13 @@ page{
 }
 
 .active-button{
-   width: 90%;
-   height: auto;
    margin: 0 auto;
+   width: 90%;
+   height: 44px;
+   line-height: 44px;
    text-align: center;
    font-size: 42rpx;
-   padding: 30rpx 0;
-   background: #FF9800;
    color: white;
+   background: #FF9800;
    border-radius: 10rpx;
 }

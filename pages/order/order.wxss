@@ -43,7 +43,7 @@ page{
   height: 50px;
   line-height: 50px;
   font-size: 15px;
-  color: #c2c2c2;
+  color: #444;
 }
 
 .userInfo_phoneNumber{

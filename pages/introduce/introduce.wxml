@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml"/>
 <view class='wraper'>
   <view class='workDate'>
     <view class='workDate-title'>

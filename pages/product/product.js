@@ -15,15 +15,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let product = JSON.parse(decodeURI(options.product));
-    // console.log(product);
+    let product = wx.getStorageSync('product');
+    wx.removeStorageSync('product');
     if(!product.image1 || product.image1 == ""){
       product.image1 = "20180203151096.jpg";
     }
+    // 设置日历的日期选择区间
+    let start = util.formatTime(new Date());
+    let end = util.formatTime(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)));
     // 获取当前系统时间
     product.currentDate = util.formatTime(new Date());
     this.setData({
-      product: product
+      product: product,
+      start: start,
+      end: end
     });
   },
 

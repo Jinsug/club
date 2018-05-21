@@ -11,7 +11,7 @@
         </image>
         <view class='productInfo-content-right'>
           <view class='sell-out'>已售{{product.sell_out}}</view>
-          <view class='productName'>{{product.name}}</view>
+          <view class='productName'>{{filter.overflow_hidden(product.name, 10)}}</view>
           <view class='days'>有效期{{product.wellNum}}天</view>
         </view>
       </view>
@@ -43,7 +43,7 @@
   </view>
   <view class='productStrartTime'>
     <picker class='selectStartTime' mode="date" value="{{product.currentDate}}" 
-      bindchange='changeDate'>
+      bindchange='changeDate' start='{{start}}' end='{{end}}'>
       <view class="selectStartTime-left">
         选择开卡日期  
       </view>

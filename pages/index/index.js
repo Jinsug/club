@@ -62,9 +62,10 @@ Page({
       },
       success: function(res){
         if(res.data.success){
-          wx.showToast({
-            title: '申请成功',
-            icon: 'none'
+          wx.showModal({
+            title: '提示',
+            content: '您的加入申请已经发送给俱乐部，请等候俱乐部审批',
+            showCancel: false
           });
         } else {
           wx.showModal({
@@ -83,9 +84,9 @@ Page({
   // 俱乐部位置
   clubLocation: function(){
     // 跳转页面
-    let club_data = encodeURI(JSON.stringify(this.data.club));
+    wx.setStorageSync('club', this.data.club);
     wx.navigateTo({
-      url: `../map/map?club=${club_data}`
+      url: '../map/map'
     });
   },
   // 拨打电话
@@ -234,9 +235,9 @@ Page({
   // 俱乐部介绍
   clubRemark: function(){
     // 挑战页面
-    let club_data = encodeURI(JSON.stringify(this.data.club));
+    wx.setStorageSync('club', this.data.club);
     wx.navigateTo({
-      url: `../introduce/introduce?club=${club_data}`
+      url: '../introduce/introduce'
     });
   },
   // 会员排名
@@ -311,10 +312,10 @@ Page({
     let product = this.data.cardList[index];
     // 添加商品类型
     product.productType = 'product';
-    // 编码
-    product = encodeURI(JSON.stringify(product));
+    // 传递下一个页面
+    wx.setStorageSync('product', product);
     wx.navigateTo({
-      url: `../product/product?product=${product}`
+      url: '../product/product'
     });
   }
 })
