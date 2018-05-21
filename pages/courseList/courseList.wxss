@@ -7,8 +7,8 @@ page{
     width: 100%;
     height: auto;
     padding: 20rpx 30rpx;
-    border-top: 2rpx solid #BABABA;
-    border-bottom: 2rpx solid #BABABA;
+    border-top: 2rpx solid #f0f2f2;
+    border-bottom: 2rpx solid #f0f2f2;
     overflow: hidden;
 }
 
@@ -16,7 +16,7 @@ page{
     float: left;
     width: 12%;
     margin: 0 auto;
-    font-size: 26rpx;
+    font-size: 24rpx;
     text-align: center;
 }
 
@@ -30,7 +30,12 @@ page{
 }
 
 .chooseDate{
-  color: green;
+    float: left;
+    width: 12%;
+    margin: 0 auto;
+    font-size: 24rpx;
+    text-align: center;
+    color: green;
 }
 
 .fill{
@@ -48,12 +53,12 @@ page{
    width: 100%;
    height: auto;
    padding: 20rpx;
-   border-top: 2rpx solid #BABABA;
+   border-top: 2rpx solid #f0f2f2;
    overflow: hidden;
 }
 
 .course:last-child {
-    border-bottom: 2rpx solid #BABABA;
+    border-bottom: 2rpx solid #f0f2f2;
 }
 
 .coursePicDiv{
@@ -148,8 +153,3 @@ page{
   background-color: rgba(0, 0, 0, 0);
 }
 
-
-.fee{
-  
-
-}

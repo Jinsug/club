@@ -3,7 +3,7 @@
    <!-- 个人信息 -->
    <view class="personInfo">
        <!-- 背景图 -->
-       <image class="BGP" src="https://www.ecartoon.com.cn/picture/5856706396549120.jpg" mode="aspectFill"></image>
+       <image class="BGP" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/wxbackground.jpg" mode="aspectFill"></image>
        
        <!-- 用户登录的情况 -->
        <view class="person" wx:if="{{!login_button}}">
@@ -14,8 +14,10 @@
 
            <!-- 其他信息 -->
            <view class="others">
-                  <view class="nickName">{{memberData.nickName}}</view>
-                  <view class="description">已健身<text class="count">{{memberData.count}}</text>次</view>
+                  <view class="nickName">{{memberData.nickName}}<text decode='{{true}}'>&nbsp;|&nbsp;</text></view>
+                  
+                  <view class='countFont'>已健身<text class='count'>{{memberData.count}}</text>次</view>
+                  
            </view>
        </view>
 
@@ -23,49 +25,99 @@
        <view class="login" wx:if="{{login_button}}">
             <view class='login_div'>
                    <button class='login_button' open-type='getUserInfo' bindgetuserinfo='wechatLogin' >登录</button> 
-                  <!-- <button class='login_button'>登录</button> -->
             </view>
        </view>
    </view>
 
+   <!-- 三大块 -->
+   <view class='big3'>
+         <!-- 我的足迹 -->
+         <view class='pred' bindtap='gotoMyFooter' >
+               <!-- 图标 -->
+               <view class='picDiv'>
+                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
+               </view>
+
+               <!-- description -->
+               <view class='desc'>我的足迹</view>
+         </view>
+
+
+        <!-- 我的挑战 -->
+         <view class='pred' bindtap='gotoMyActive'>
+               <!-- 图标 -->
+               <view class='picDiv'>
+                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
+               </view>
+
+               <!-- description -->
+               <view class='desc'>我的挑战</view>
+         </view>
+
+
+         <!-- 我的计划 -->
+         <view class='pred'>
+               <!-- 图标 -->
+               <view class='picDiv'>
+                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+               </view>
+
+               <!-- description -->
+               <view class='desc'>我的计划</view>
+         
+         </view>
+
+
+
+
+   </view>
    
    <!-- 页面跳转链接 -->
    <view class="linksPage">
       <!-- 我的订单 -->
       <view class="pre" bindtap="gotoMyOrder">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+            </view>
+
             <view class="title">我的订单</view>
             <view class="link">></view>
       </view>
 
       <!-- 我的钱包 -->
       <view class="pre" bindtap="gotoMyWallet">
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
+            </view>
+
             <view class="title">我的钱包</view>
             <view class="link">></view>
       </view>
 
       <!-- 我的优惠券 -->
       <view class="pre" bindtap='gotoMyTicke'>
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+            </view>
+
             <view class="title">我的优惠券</view>
             <view class="link">></view>
       </view>
 
       <!-- 我的预约 -->
       <view class="pre" bindtap='gotoMyAppointment'>
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
+            </view>
+
             <view class="title">我的预约</view>
             <view class="link">></view>
       </view>
 
-      <!-- 我的挑战 -->
-      <view class="pre" bindtap='gotoMyActive'>
-            <view class="title">我的挑战</view>
-            <view class="link">></view>
-      </view>
-
-      <!-- 我的足迹 -->
-      <view class="pre" bindtap='gotoMyFooter'>
-            <view class="title">我的足迹</view>
-            <view class="link">></view>
-      </view>
 
 
    </view>

@@ -22,7 +22,7 @@ Page({
         dd = "0" + dd;
     }
     var toDay = toDate.getFullYear() + "-" + mm + "-" + dd;
-    this.getDates("2018-03-26");
+    this.getDates(toDay);
     // 设置图片高宽
     this.getEquipmentWidth();
   },
@@ -82,10 +82,34 @@ Page({
     var objx = this;
     var currentDate = new Date(currentTime);
     var timesStamp = currentDate.getTime();
-    var currenDay = currentDate.getDay();
+    // 今天加上后面六天的数据
     var dates = [];
-    for(var i = 0; i< 7; i++) {
-      var dou_date = new Date(timesStamp + 24 * 60 * 60 * 1000 * (i - (currenDay + 6) % 7));
+    var days = [];
+    var param = {};
+
+    // 当前月份
+    var toMM = currentDate.getMonth() + 1;
+    if (toMM < 10) {
+      toMM = "0" + toMM;
+    }
+
+    // 今日
+    var toDD = currentDate.getDate();
+    if (toDD < 10) {
+      toDD = "0" + toDD;
+    }
+
+
+    param.date = currentTime;
+    param.mmdd = "今天";
+
+    // 一起push到数组中
+    dates.push(param);
+
+    var dou_date = "";
+    for(var i = 0; i < 6; i++) {
+      var paramx = {};
+      dou_date = new Date(currentDate.setDate(currentDate.getDate() + 1));
       var MM = dou_date.getMonth() + 1;
       var dd = dou_date.getDate();
       if ( MM < 10 ) {
@@ -94,21 +118,20 @@ Page({
       if ( dd < 10 ) {
         dd = "0" + dd;
       }
-  var param = {};
-  var preDate = dou_date.getFullYear() + "-" + MM + "-" + dd;
-  param.date = preDate;
-  param.index = i;
-  // 判断是不是今天
-  if ( currentTime == param.date ) {
-    param.index = "今天"
-  }
-  dates.push(param);
   
+    var preDate = dou_date.getFullYear() + "-" + MM + "-" + dd;
+    paramx.date = preDate;
+    paramx.mmdd = MM + "-" + dd;
+
+    // push到数组中
+    dates.push(paramx);
 }
   // 将获取到的本周的数据存起来
   objx.setData({
-      currentWeek:dates
+      currentWeek:dates,
+      currentDays: days
   })
+
 
   objx.getDatas(currentTime);
 
@@ -122,7 +145,7 @@ getChooseDayData: function (date) {
     // 获取当前选中的日期
     var chooseDate = date.currentTarget.dataset.choosedate;
 
-    // 获取但当前选中日期的下标
+    // 获取当前选中日期的下标
     var chooseIndex = date.currentTarget.dataset.chooseindex;
     
     // 将数据复原
@@ -130,10 +153,9 @@ getChooseDayData: function (date) {
     for(var i = 0; i < 7; i++) {
        objx_dates[i] = "preDate";
     }
-
-    if (chooseIndex != "今天" && chooseIndex != "undefined") {
-      objx_dates[chooseIndex] = "preDate chooseDate";
-    }
+    
+    // 将选中的日期设置为选中样式
+    objx_dates[chooseIndex] = "pre chooseDate";
     
     
     
@@ -197,10 +219,10 @@ getEquipmentWidth: function () {
  */
 getDatas: function (currentDate) {
     var objx = this;
-    var dou_dates = objx.data.currentWeek;
+    var currentWeek = objx.data.currentWeek;
     var dates = [];
-    for(var x = 0; x < dou_dates.length; x++) {
-       dates.push(dou_dates[x].date);
+    for (var x = 0; x < currentWeek.length; x++) {
+      dates.push(currentWeek[x].date);
     }
     var param = {};
     param.date = dates.toString();

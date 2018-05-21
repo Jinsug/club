@@ -6,9 +6,9 @@
    <view class="weekDiv">
         <view class="weekDate" wx:for="{{currentWeek}}" wx:for-item="data" wx:for-index="index" >
         <!-- 今天 -->
-             <view class="preDate toDay" wx:if="{{'今天' == data.index}}"  data-chooseDate="{{data.date}}"  data-chooseIndex="{{data.index}}" bindtap="getChooseDayData" >{{filter.week_date(data.index)}}</view>
+             <view class="preDate toDay" wx:if="{{index == 0}}"  data-chooseDate="{{data.date}}" data-chooseindex="0"  bindtap="getChooseDayData" >{{data.mmdd}}</view>
         <!-- 其他天 -->
-         <view class="{{dou_dates[index]}}" wx:if="{{'今天' != data.index}}" data-chooseDate="{{data.date}}" data-chooseIndex="{{data.index}}" bindtap="getChooseDayData" >{{filter.week_date(data.index)}}</view>
+         <view class="{{dou_dates[index]}}" wx:else data-chooseDate="{{data.date}}" data-chooseindex="{{index}}" bindtap="getChooseDayData" >{{data.mmdd}}</view>
         </view>
    </view>
 

@@ -16,23 +16,20 @@ page{
 
 .person{
    position: absolute;
-   top: 0;
-   left: 0;
+   top: 23%;
+   left: 28%;
    width: 100%;
    height: 300rpx;
    overflow: hidden;
-   background-color: rgba(0, 0, 0, 0.5); 
 }
 
 
 .personImageDiv{
-    float: left;
-    margin-left: 25%;
-    margin-top: 10%;
     width: 110rpx;
     height: 110rpx;
-    
-}
+    margin-left: 15%;
+    margin-bottom: 20rpx;
+} 
 
 .personImage{
    width: 100%;
@@ -41,15 +38,17 @@ page{
 }
 
 .others{
-   float: left;
-   margin-left: 42%;
-   margin-top: -14%;
+  overflow: hidden;
 }
 
 .nickName{
+    float: left;
     font-size: 30rpx;
     color: white;
     font-weight: 700;
+    height: 52rpx;
+    line-height: 52rpx;
+    overflow: hidden;
 }
 
 .description{
@@ -58,11 +57,6 @@ page{
     margin-top: 5rpx;
 }
 
-.count{
-    font-size: 48rpx;
-    color: #FE970F;
-    margin: 0 30rpx;
-}
 
 
 .linksPage{
@@ -75,13 +69,13 @@ page{
     width: auto;
     height: auto;
     padding: 20rpx 30rpx;
-    border-top: 2rpx solid #BABABA;
+    border-top: 1px solid #f0f0f2;
     overflow: hidden;
     background-color: white;
 }
 
 .pre:last-child{
-    border-bottom: 2rpx solid #BABABA;
+    border-bottom: 1px solid #f0f0f2;
 }
 
 .title{
@@ -121,4 +115,70 @@ page{
   text-align: center;
   line-height: 160rpx;
   background-color: #41B44B;
+}
+
+
+.iconDiv{
+  float: left;
+  left: 0;
+  bottom: 0;
+  width: 28rpx;
+  height: 28rpx;
+  line-height: 36rpx;
+  margin-right: 20rpx;
+  text-align: center;
+}
+
+.icon{
+  width: 100%;
+  height: 100%;
+}
+
+
+.big3{
+  width: 100%;
+  height: auto;
+  background-color: white;
+  margin: 20rpx 0;
+  overflow: hidden;
+}
+
+.pred{
+  float: left;
+  left: 0;
+  bottom: 0;
+  width: 33%;
+  height: auto;
+  margin: 0 auto;
+  padding: 20rpx 0;
+  text-align: center;
+}
+
+
+
+.picDiv{
+  width: 80rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.pic{
+  width: 100%;
+  height: 100%;
+}
+
+.count{
+  font-size: 40rpx;
+  color: #ff4401;
+}
+
+
+.desc{
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.countFont{
+  font-size: 24rpx;
+  color: white;
 }
