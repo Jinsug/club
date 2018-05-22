@@ -91,10 +91,8 @@
       </view>
       <view class='oneCard-body' wx:for="{{cardList}}" wx:key='' 
           bindtap='getOneCardDetail' data-index='{{index}}'>
-        <image src='{{base_picture_url}}/{{item.image1}}' class='onCard-image' 
-            mode='aspectFill' wx:if='{{item.image1 != null && item.image1 != ""}}'></image>
-        <image src='{{base_picture_url}}/20180203151096.jpg' class='onCard-image' 
-            mode='aspectFill' wx:if='{{item.image1 == null || item.image1 == ""}}'></image>
+        <image src='{{filter.errorImage(item.image1)}}' class='onCard-image' 
+          mode='aspectFill' ></image> 
         <view class='oneCard-contant'>
           <view class='onCard-info'>
             <view class='onCard-name'>

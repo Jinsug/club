@@ -17,9 +17,6 @@ Page({
   onLoad: function (options) {
     let product = wx.getStorageSync('product');
     wx.removeStorageSync('product');
-    if(!product.image1 || product.image1 == ""){
-      product.image1 = "20180203151096.jpg";
-    }
     // 设置日历的日期选择区间
     let start = util.formatTime(new Date());
     let end = util.formatTime(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)));

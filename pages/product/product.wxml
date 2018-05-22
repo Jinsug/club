@@ -3,10 +3,10 @@
 <view class='wraper'>
   <view class='productInfo'>
     <view class='productInfo-backgroundImage'>
-      <image src='{{base_picture_url}}/{{product.image1}}' mode='aspectFill'>
+      <image src='{{filter.errorImage(product.image1)}}' mode='aspectFill'>
       </image>
       <view class='productInfo-content'>
-        <image src='{{base_picture_url}}/{{product.image1}}' mode='aspectFill' 
+        <image src='{{filter.errorImage(product.image1)}}' mode='aspectFill' 
             class='productInfo-content-left'>
         </image>
         <view class='productInfo-content-right'>

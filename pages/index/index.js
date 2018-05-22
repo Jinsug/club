@@ -2,6 +2,7 @@ import regeneratorRuntime from '../../utils/runtime.js';
 Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_img_url: 'https://www.ecartoon.com.cn/miniProgram/club/img',
     club: {
       image: 'opacity.png'
     },

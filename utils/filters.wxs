@@ -15,6 +15,12 @@ var filters = {
     }
     return text;
   },
+  errorImage: function (image) {
+    if(!image || image == ''){
+      return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
+    }
+    return 'https://www.ecartoon.com.cn/picture/' + image;
+  },
   active_target: function (days, target, value){
     var company = target == 'A' || target == 'B' ? '公斤' : '次';
     var targetText = { A: '体重减少', B: '体重增加', C: '健身时间', D: '健身次数'};
@@ -107,6 +113,7 @@ var filters = {
 module.exports = {
   toFixed: filters.toFixed,
   overflow_hidden: filters.overflow_hidden,
+  errorImage: filters.errorImage,
   active_target: filters.active_target,
   week_date: filters.week_date,
   stringNull: filters.stringNull,
