@@ -7,8 +7,8 @@ page{
 .swiper-tab{
     padding: 0 20rpx;
     overflow: hidden;
-    border-top: 2rpx solid #BABABA;
-    border-bottom: 2rpx solid #BABABA; 
+    border-top: 2rpx solid #f0f2f2;
+    border-bottom: 2rpx solid #f0f2f2; 
 }
 
 swiper-item{
@@ -40,12 +40,12 @@ swiper-item{
 
 .pre{
    padding: 20rpx 30rpx;
-   border-top: 2rpx solid #BABABA;
+   border-top: 2rpx solid #f0f2f2;
    background-color: white;
 }
 
 .pre:last-child{
-    border-bottom: 2rpx solid #BABABA;
+    border-bottom: 2rpx solid #f0f2f2;
     margin-bottom: 100rpx;
 }
 

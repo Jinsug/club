@@ -11,10 +11,11 @@
       </view>
     </view>
     <view class='userInfo_phoneNumber'>
-      <button class='getPhoneNumber' open-type='getPhoneNumber' 
-              bindgetphonenumber='getPhoneNumber'>
-        {{showPhoneNubmer}}
+    
+      <button class='getPhoneNumber' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'>
+        {{showPhoneNumber}}
       </button>
+
     </view>
   </view>
   <view class='box_commodity'>
