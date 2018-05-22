@@ -151,4 +151,5 @@ page{
   background-color: #FB8C00;
   text-align: center;
   line-height: 44px;
+  font-size: 18px;
 }

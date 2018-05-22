@@ -14,7 +14,7 @@ Page({
     let club = wx.getStorageSync('club');
     wx.removeStorageSync('club');
     // 处理俱乐部营业日期将1,2,3格式转换为"星期一", "星期二", "星期三"格式
-    let week = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"];
+    let week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
     let workDateList = club.workDate.split(",");
     club.workDate = "";
     workDateList.forEach(function(item){

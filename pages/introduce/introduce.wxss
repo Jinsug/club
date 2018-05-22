@@ -44,21 +44,21 @@ page{
 
 .project-image{
   float: left;
+}
+
+.project-image > image{
   width: 114px;
   height: 68px;
+}
+
+.project-name{
+  text-align: center;
+  color: #444;
 }
 
 .project-content{
   float: right;
   width: 60%;
-}
-
-.project-name{
-  color: #444;
-}
-
-.project-remark{
-  margin-top: 5px;
   color: #BBB;
   font-size: 12px;
 }

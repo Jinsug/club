@@ -18,14 +18,14 @@
     </view>
     <view class='project-body'>
       <view class='project-item' wx:for="{{club.projectList}}" wx:key=''>
-        <image src='{{base_picture_url}}/{{item.projectImage}}' class='project-image' 
+        <view class='project-image'>
+          <image src='{{base_picture_url}}/{{item.projectImage}}' 
             mode='aspectFill'>
-        </image>
-        <view class='project-content'>
+          </image>
           <view class='project-name'>{{item.projectName}}</view>
-          <view class='project-remark'>
-            <rich-text nodes='{{item.memo}}'></rich-text>
-          </view>
+        </view>
+        <view class='project-content'>
+          <rich-text nodes='{{item.memo}}'></rich-text>
         </view>
       </view>
     </view>

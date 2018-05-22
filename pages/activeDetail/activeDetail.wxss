@@ -93,6 +93,7 @@ page{
 }
 
 .active-row-right > input{
+  width: 135px;
   text-align: right;
 }
 
