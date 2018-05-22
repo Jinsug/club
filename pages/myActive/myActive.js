@@ -4,7 +4,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture'
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    activeList: []
   },
 
   /**

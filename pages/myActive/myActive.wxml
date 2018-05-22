@@ -2,9 +2,15 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
   <view class='active-list'>
+    <view class="no-data" wx:if="{{activeList.length == 0}}">
+      <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+      </image>
+      <view>暂无数据</view>
+      <view>先去看看别的</view>
+    </view>
     <view class='active-item' wx:for='{{activeList}}' wx:key='' bindtap='tapActiveItem'
          data-index='{{index}}'>
-      <image src='{{base_picture_url}}/{{item.image}}' class='active-image'  mode='aspectFill'>
+      <image src='{{filter.errorImage(item.image)}}' class='active-image'  mode='aspectFill'>
       </image>
       <view class='active-content'>
         <view class='active-name'>

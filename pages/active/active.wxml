@@ -10,7 +10,7 @@
   <view class='active-list'>
     <view class='active-item' wx:for='{{activeList}}' wx:key='' bindtap='activeDetail'
        data-index='{{index}}' > 
-      <image src='{{base_picture_url}}/{{item.image}}' mode='aspectFill'></image>
+      <image src='{{filter.errorImage(item.image)}}' mode='aspectFill'></image>
       <view class='active-body'>
         <view class='top'>{{item.name}}</view>
         <view class='middle'>{{item.count}}人参加</view>

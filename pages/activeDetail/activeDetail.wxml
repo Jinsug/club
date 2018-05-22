@@ -2,9 +2,9 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
   <view class='activeInfo-top'>
-    <image src='{{base_picture_url}}/{{active.image}}' mode='aspectFill'></image>
+    <image src='{{filter.errorImage(active.image)}}' mode='aspectFill'></image>
     <view class='activeInfo-top-content'>
-      <image src='{{base_picture_url}}/{{active.image}}' class='activeInfo-top-content-left' 
+      <image src='{{filter.errorImage(active.image)}}' class='activeInfo-top-content-left' 
           mode='aspectFill'></image>
       <view class='activeInfo-top-content-right'>
         <view class='activeName'>

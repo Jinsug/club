@@ -20,7 +20,7 @@
   </view>
   <view class='box_commodity'>
     <view class='commodity_photo'>
-      <image src='{{base_picture_url}}/{{product.image}}' mode='aspectFill'></image>
+      <image src='{{filter.errorImage(product.image)}}' mode='aspectFill'></image>
     </view>
     <view class='commodity_describe'>
       <view class="commodity_name">{{product.productName}}</view>

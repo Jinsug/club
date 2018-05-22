@@ -1,3 +1,4 @@
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
   /**
    * 页面的初始数据
@@ -21,6 +22,13 @@ Page({
       let index = parseInt(item.trim()) - 1;
       club.workDate += week[index] + "&nbsp;";
     });
+    let obj = this;
+    club.projectList.forEach((item, i) => {
+      WxParse.wxParse('memo' + i, 'html', item.memo, obj);
+      if (i === club.projectList.length - 1) {
+        WxParse.wxParseTemArray("memoList", 'memo', club.projectList.length, obj);
+      }
+    }); 
 
     // 页面渲染数据
     this.setData({

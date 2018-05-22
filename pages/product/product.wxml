@@ -1,5 +1,6 @@
 <!-- 引入过滤器 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
 <view class='wraper'>
   <view class='productInfo'>
     <view class='productInfo-backgroundImage'>
@@ -36,10 +37,7 @@
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='productRemark'>
-    服务说明
-    <view>
-      <rich-text nodes='{{product.remark}}'></rich-text>
-    </view>
+    <template is="wxParse" data="{{wxParseData:remark.nodes}}"/>
   </view>
   <view class='productStrartTime'>
     <picker class='selectStartTime' mode="date" value="{{product.currentDate}}" 

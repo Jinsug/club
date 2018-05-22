@@ -25,7 +25,7 @@
           <view class='project-name'>{{item.projectName}}</view>
         </view>
         <view class='project-content'>
-          <rich-text nodes='{{item.memo}}'></rich-text>
+          <template is="wxParse" data="{{wxParseData:memoList[index]}}"/>
         </view>
       </view>
     </view>

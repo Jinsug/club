@@ -107,7 +107,7 @@
             {{filter.toFixed(item.cost, 2)}}
           </view>
           <view class='onCard-remark'>
-            <rich-text nodes='{{item.remark}}'></rich-text>
+            {{item.freeProject}}
           </view>
         </view>
       </view>

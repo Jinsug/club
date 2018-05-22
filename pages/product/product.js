@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
@@ -27,6 +28,8 @@ Page({
       start: start,
       end: end
     });
+
+    WxParse.wxParse('remark', 'html', product.remark, this);
   },
 
   // 用户选择改变日期

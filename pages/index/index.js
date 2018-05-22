@@ -213,9 +213,11 @@ Page({
       // 调用服务端签到接口
       let res = await wxApi.request(param);
       if (res.data.success) {
-        wx.showToast({
-          title: '签到成功',
-          complete: (e) => {
+        wx.showModal({
+          title: '提示',
+          content: '签到成功',
+          showCancel: false,
+          complete: () => {
             // 跳转至我的足迹页面
             wx.navigateTo({
               url: '../myFooter/myFooter'
