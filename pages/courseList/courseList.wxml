@@ -19,7 +19,7 @@
 <view class="courseList">
       <!-- 有数据 -->
       <view wx:for="{{courseList}}" wx:for-item="course" wx:for-index="index" class="course" wx:if="{{hasData == 1 }}" >
-          <view class="preCourse">
+          <view class="preCourse" bindtap="appointment" data-courseid="{{course.id}}" >
                   <view class="coursePicDiv" style="width:{{pictureWidth}};height:{{pictureHeight}}" >
                           <image src="{{base_picture_url}}/{{course.image}}" class="coursePic" mode="aspectFill"></image>
                   </view>
@@ -31,7 +31,7 @@
                               <view class="fee value">会员：{{filter.getPriceStr(course.vip_price)}}<text decode='{{true}}'>&nbsp;&nbsp;&nbsp;</text>非会员：{{filter.getPriceStr(course.normol_price)}}</view>
                               <view class="peoples">{{filter.toFixed(course.joinNum,0)}}人/{{filter.toFixed(course.total,0)}}人</view>
                               <view class="full" wx:if="{{course.join >= course.total}}" >满员</view>
-                              <view class="toBeFull" wx:else bindtap="appointment" data-courseid="{{course.id}}">预约</view>
+                              <view class="toBeFull" wx:else >预约</view>
                   </view>
                
           </view>

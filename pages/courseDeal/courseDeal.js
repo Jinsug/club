@@ -122,6 +122,7 @@ Page({
     var param = {};
     param.memberId = memberId;
     param.courseId = courseId;
+    // console.log(courseId);
 
     // 发起网络请求
     wx.request({
