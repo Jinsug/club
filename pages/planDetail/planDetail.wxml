@@ -1,0 +1,65 @@
+<!-- pageStart -->
+<view class="body">
+   
+   <!-- head -->
+   <view class="title" >
+      <!-- image -->
+       <view class="title-img-div" >
+          <image src="https://www.ecartoon.com.cn/expert/img/my_play_banne@2x.png" class="title-img" ></image>
+       </view>
+
+       <!-- menu -->
+       <view class="title-menu">
+      
+           <view class="fat">
+              <view class="menu-title">燃脂</view>
+              <view class="menu-value">{{dou_carruli}}千卡</view>
+           </view>
+           <view class="time">
+              <view class="menu-title">时间</view>
+              <view class="menu-value">{{dou_time}}</view>
+           </view>
+
+           <view class="loop">
+              <view class="menu-title" >循环次数</view>
+              <view class="menu-value" >{{planDetailData.cycleCount}}次</view>
+           </view>
+
+        </view>
+
+  </view>
+
+  <!-- 填充空格的 -->
+  <view class="full"></view>
+
+  <!-- actionList -->
+  <view class="action-list" >
+      <view class="action-title" >
+          <view class="action-title-name">动作列表</view>
+          <view class="action-title-count">{{actionCount}}个动作</view>
+      </view>
+      <!-- 填充空格的 -->
+      <view class="action-full"></view>
+
+      <view class="action-items">
+          <!-- for循环遍历渲染页面 -->
+          <view class="action-item" wx:for="{{planDetailData.items}}" >
+              <view class="action-item-img-div">
+                   <image class="action-item-img" src="https://www.ecartoon.com.cn/picture/{{item.action.image}}"></image>
+              </view>
+
+              <view class="action-item-content">
+                   <view class="action-item-name">{{item.action.name}}</view>
+                   <view class="action-item-value">{{item.detail}}</view>
+              </view>
+          </view>
+      </view>
+      <!-- 撑起高度的 -->
+      <view class="dou-footer-full"></view>
+  </view>
+
+  <!-- 开始训练 -->
+  <view class="train" bindtap="reminder" >
+    请下载“卡库健身”APP查看本计划视频
+  </view>
+</view>

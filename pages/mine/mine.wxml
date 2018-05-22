@@ -63,8 +63,8 @@
          </view>
 
 
-         <!-- 我的计划 -->
-         <view class='pred'>
+         <!-- 私人订制 -->
+         <view class='pred' bindtap='gotoPrivate'>
                <!-- 图标 -->
                <view class='picDiv'>
                      <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/private.png'></image>
@@ -135,7 +135,7 @@
       </view>
 
        <!-- 我的计划 -->
-      <view class="pre" >
+      <view class="pre" bindtap='gotoMyPlan' >
             <!-- icon -->
             <view class='iconDiv'>
                   <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
