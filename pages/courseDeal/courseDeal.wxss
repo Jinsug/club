@@ -2,7 +2,7 @@ page{
    width: 100%;
    height: auto;
    background-color: #EFEFF1;
-   border-top: 2rpx solid #BABABA;
+   border-top: 2rpx solid #f0f2f2;
 }
 
 .content{
@@ -14,12 +14,12 @@ page{
 
 .pre{
     overflow: hidden;
-    border-top: 2rpx solid #BABABA;
+    border-top: 2rpx solid #f0f2f2;
     padding: 24rpx;
 }
 
 .pre:last-child{
-    border-bottom: 2rpx solid #BABABA;
+    border-bottom: 2rpx solid #f0f2f2;
 }
 
 .coachImageDiv{
@@ -66,10 +66,9 @@ page{
    left: 0;
    bottom: 0;
    width: 100%;
-   height: auto;
+   height: 44px;
+   line-height: 44px;
    text-align: center;
-   color: white;
-   background-color: #FE970F;
-   font-size: 32rpx;
-   padding:16rpx 0;
+   color: #FFF;
+   background-color: #FB8C00;
 }

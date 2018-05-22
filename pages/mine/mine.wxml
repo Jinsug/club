@@ -9,7 +9,7 @@
        <view class="person" wx:if="{{!login_button}}">
            <!-- 头像 -->
            <view class="personImageDiv">
-                <image class="personImage" src="https://www.ecartoon.com.cn/picture/{{memberData.image}}"></image>
+                <image class="personImage" mode="aspectfill" src="https://www.ecartoon.com.cn/picture/{{memberData.image}}"></image>
            </view>
 
            <!-- 其他信息 -->
@@ -35,7 +35,7 @@
          <view class='pred' bindtap='gotoMyFooter' >
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
+                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
                </view>
 
                <!-- description -->
@@ -47,7 +47,7 @@
          <view class='pred' bindtap='gotoMyActive'>
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
+                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
                </view>
 
                <!-- description -->
@@ -59,7 +59,7 @@
          <view class='pred'>
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
                </view>
 
                <!-- description -->
@@ -78,7 +78,7 @@
       <view class="pre" bindtap="gotoMyOrder">
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
             </view>
 
             <view class="title">我的订单</view>
@@ -89,7 +89,7 @@
       <view class="pre" bindtap="gotoMyWallet">
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
             </view>
 
             <view class="title">我的钱包</view>
@@ -100,7 +100,7 @@
       <view class="pre" bindtap='gotoMyTicke'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
             </view>
 
             <view class="title">我的优惠券</view>
@@ -111,7 +111,7 @@
       <view class="pre" bindtap='gotoMyAppointment'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
             </view>
 
             <view class="title">我的预约</view>

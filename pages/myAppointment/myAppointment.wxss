@@ -9,12 +9,12 @@ page{
   overflow: hidden;
   padding: 30rpx 20rpx;
   background-color: white;
-  border-top: 2rpx solid #BABABA;
+  border-top: 2rpx solid #f0f2f2;
   position: relative;
 }
 
 .pre:last-child{
-  border-bottom: 2rpx solid #BABABA;
+  border-bottom: 2rpx solid #f0f2f2;
 }
 
 .left {

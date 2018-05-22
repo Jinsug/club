@@ -13,7 +13,7 @@ Page({
     },
     price: 0,
     phoneNumber: 0,
-    showPhoneNubmer: '请点击获取手机号',
+    showPhoneNumber: '请点击获取手机号',
     ticket: { name: '请选择优惠券' },
     need: false
   },
@@ -28,6 +28,9 @@ Page({
       product: param,
       price: param.productPrice
     });
+
+    // 查询用户信息
+    obj.getMemberData();
   },
 
   /**
@@ -90,6 +93,62 @@ Page({
   },
 
   /**
+   * 从后台获取用户手机号等信息
+   */
+  getMemberData: function () {
+    var objx = this;
+    var memberId = wx.getStorageSync("memberId");
+    var param = {};
+    param.memberId = memberId;
+    
+    // 请求后台数据
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!findMe.asp',
+      dataType:JSON,
+      data:{
+        json:encodeURI(JSON.stringify(param))
+      },
+      success: function (res) {
+        // 网络请求成功
+        res = JSON.parse(res.data);
+        if (res.success) {
+          // 数据请求成功
+          var mobilephone = res.memberData.mobilephone;
+          var mobilevalid = res.memberData.mobileValid;
+          if (mobilephone && mobilephone != "" && mobilephone != "null" && mobilephone!= "undefined" && mobilevalid && mobilevalid != "" && mobilevalid != "null" && mobilevalid != "undefined") {
+            if (parseInt(mobilevalid) == 1) {
+              let showUserPhoneNumber = mobilephone.substring(0, 3) + "****"
+                + mobilephone.substring(mobilephone.length - 4, mobilephone.length);
+              // 手机验证通过，此时不需验证
+              objx.setData({
+                phoneNumber: mobilephone,
+                showPhoneNumber: showUserPhoneNumber
+              })
+
+            }
+          }
+        } else {
+          // 程序异常
+          wx.showModal({
+            title: '提示',
+            content: res.message,
+            showCancel:false
+          })
+        }
+      },
+      error: function (e) {
+        // 网络请求失败
+        wx.showModal({
+          title: '提示',
+          content: '网络异常',
+          showCancel:false
+        })
+      }
+    })
+  },
+
+
+  /**
    * 用户点击获取手机号
    */
   getPhoneNumber: function(e) {
@@ -111,7 +170,7 @@ Page({
         // 更新UI显示
         obj.setData({
           phoneNumber: userPhoneNumber,
-          showPhoneNubmer: showUserPhoneNumber
+          showPhoneNumber: showUserPhoneNumber
         });
         // 隐藏加载动画
         wx.hideLoading();
