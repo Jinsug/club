@@ -16,19 +16,25 @@ page{
 
 .person{
    position: absolute;
-   top: 23%;
-   left: 28%;
+   top: 0;
+   left: 0;
    width: 100%;
    height: 300rpx;
    overflow: hidden;
+   text-align: center;
+}
+
+.presonDD{
+  padding: 80rpx 0;
+  text-align: center;
+
 }
 
 
 .personImageDiv{
     width: 110rpx;
     height: 110rpx;
-    margin-left: 15%;
-    margin-bottom: 20rpx;
+    margin: 0 auto;
 } 
 
 .personImage{
@@ -42,7 +48,6 @@ page{
 }
 
 .nickName{
-    float: left;
     font-size: 30rpx;
     color: white;
     font-weight: 700;
@@ -90,8 +95,16 @@ page{
     float: right;
     right: 0;
     bottom: 0;
+    width: 30rpx;
+    height: 30rpx;
+    padding: 5rpx 0;
     color: #5B5A5B;
     font-size: 28rpx;
+}
+
+.linkIcon{
+  width: 100%;
+  height: 100%;
 }
 
 .login{

@@ -24,7 +24,7 @@
                             <view class="orderDetail">
                                 <!-- 头像 -->
                                 <view class="picDiv left">
-                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}" mode="aspectFill" ></image>
+                                      <image class="pic" src="{{filter.errorImage(order.image)}}" mode="aspectFill" ></image>
                                 </view>
 
                                 <!-- 右侧数据 -->
@@ -70,7 +70,7 @@
                             <view class="orderDetail">
                                 <!-- 头像 -->
                                 <view class="picDiv left">
-                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}" mode="aspectFill" ></image>
+                                      <image class="pic" src="{{filter.errorImage(order.image)}}" mode="aspectFill" ></image>
                                 </view>
 
                                 <!-- 右侧数据 -->
@@ -116,7 +116,7 @@
                             <view class="orderDetail">
                                 <!-- 头像 -->
                                 <view class="picDiv left">
-                                      <image class="pic" src="{{base_pic_url}}/{{order.image}}"  mode="aspectFill" ></image>
+                                      <image class="pic" src="{{filter.errorImage(order.image)}}"  mode="aspectFill" ></image>
                                 </view>
 
                                 <!-- 右侧数据 -->

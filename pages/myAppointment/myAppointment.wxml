@@ -1,3 +1,5 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class='content'>
       <!-- 有预约数据时 -->
@@ -5,7 +7,7 @@
               <view class='pre' wx:for="{{appointmentList}}" wx:for-item="appointment">
                     <!-- 头像 -->
                     <view class='left imgDiv'>
-                          <image class='img' src='{{base_pic_url}}/{{appointment.image}}'  mode='aspectfill'></image>
+                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
                     </view>
 
                     <!-- center -->

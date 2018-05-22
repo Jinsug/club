@@ -147,19 +147,8 @@ Page({
      objx.setData({
           eqHeight:eqHeight
      })
-  },
-
-  /**
-   * 图片加载错误的处理
-   */
-  imgError: function (e) {
-    var errorImg = e.target.dataset.data.errorimg;
-    var errorObj = {
-      errorImg : "1.jpg"
-    };
-    this.setData({
-        errorObj:errorObj
-    })
   }
+
+  
 
 })

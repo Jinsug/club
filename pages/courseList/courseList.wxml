@@ -21,7 +21,7 @@
       <view wx:for="{{courseList}}" wx:for-item="course" wx:for-index="index" class="course" wx:if="{{hasData == 1 }}" >
           <view class="preCourse" bindtap="appointment" data-courseid="{{course.id}}" >
                   <view class="coursePicDiv" style="width:{{pictureWidth}};height:{{pictureHeight}}" >
-                          <image src="{{base_picture_url}}/{{course.image}}" class="coursePic" mode="aspectFill"></image>
+                          <image src="{{filter.errorImage(course.image)}}" class="coursePic" mode="aspectFill"></image>
                   </view>
 
                   <!-- 右边的内容 -->

@@ -1,3 +1,5 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class="content">
    <!-- 个人信息 -->
@@ -7,18 +9,24 @@
        
        <!-- 用户登录的情况 -->
        <view class="person" wx:if="{{!login_button}}">
-           <!-- 头像 -->
-           <view class="personImageDiv">
-                <image class="personImage" mode="aspectfill" src="https://www.ecartoon.com.cn/picture/{{memberData.image}}"></image>
-           </view>
+             <view class='presonDD'>
 
-           <!-- 其他信息 -->
-           <view class="others">
-                  <view class="nickName">{{memberData.nickName}}<text decode='{{true}}'>&nbsp;|&nbsp;</text></view>
-                  
-                  <view class='countFont'>已健身<text class='count'>{{memberData.count}}</text>次</view>
-                  
-           </view>
+                     <!-- 头像 -->
+                      <view class="personImageDiv">
+                            <image class="personImage" mode="aspectfill" src="{{filter.errorImage(memberData.image)}}"></image>
+                      </view>
+
+                      <!-- 其他信息 -->
+                      <view class="others"> 
+                              <view class="nickName">
+                                    {{memberData.nickName}}
+                                    <text decode='{{true}}'>&nbsp;|&nbsp;</text>
+                                    <text class='countFont'>已健身 <text class='count'>{{memberData.count}}</text>次</text>
+                              </view>
+                              
+                              
+                      </view>
+             </view>
        </view>
 
        <!-- 用户未登录，展示登录按钮 -->
@@ -59,11 +67,11 @@
          <view class='pred'>
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/private.png'></image>
                </view>
 
                <!-- description -->
-               <view class='desc'>我的计划</view>
+               <view class='desc'>私人订制</view>
          
          </view>
 
@@ -82,7 +90,9 @@
             </view>
 
             <view class="title">我的订单</view>
-            <view class="link">></view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
       <!-- 我的钱包 -->
@@ -93,7 +103,9 @@
             </view>
 
             <view class="title">我的钱包</view>
-            <view class="link">></view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
       <!-- 我的优惠券 -->
@@ -104,7 +116,9 @@
             </view>
 
             <view class="title">我的优惠券</view>
-            <view class="link">></view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
       <!-- 我的预约 -->
@@ -115,7 +129,22 @@
             </view>
 
             <view class="title">我的预约</view>
-            <view class="link">></view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view>
+
+       <!-- 我的计划 -->
+      <view class="pre" >
+            <!-- icon -->
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+            </view>
+
+            <view class="title">我的计划</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
       </view>
 
 

@@ -7,7 +7,7 @@
              <!-- 教练头像、名称 -->
              <view class="pre">
                  <view class="coachImageDiv">
-                     <image class="coachImage" src="https://www.ecartoon.com.cn/picture/{{course.image}}"></image>
+                     <image class="coachImage" src="{{filter.errorImage(course.image)}}"></image>
                  </view>
                  <view class="coachName">{{course.coachName}}</view>
              </view>
