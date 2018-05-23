@@ -29,4 +29,5 @@
       </view>
     </view>
   </view>
+  <view style='height:10px;'></view>
 </view>
