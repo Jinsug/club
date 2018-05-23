@@ -346,6 +346,42 @@ Page({
       url: "../../pages/myFooter/myFooter",
     })
 
+  },
+
+  /**
+   * 连接wifi
+   */
+  connectWifi: function () {
+   
+    wx.startWifi({
+      success: function (res) {
+        console.log(res.errMsg);
+        // 连接wifi
+        wx.connectWifi({
+          SSID: 'jszg1',
+          BSSID: 'jszg1',
+          password: 'jszg@1234',
+          success: function (resdd) {
+            wx.showModal({
+              title: '提示',
+              content: '已连接wifi',
+              showCancel: false
+            })
+          },
+          fail: function (e) {
+            if (e.errCode == 12005) {
+              wx.showModal({
+                title: '提示',
+                content: '请在手机设置中打开wifi开关后，再次尝试连接',
+                showCancel:false
+              })
+            }
+          }
+        })
+
+      }
+    })
+    
   }
 
 
