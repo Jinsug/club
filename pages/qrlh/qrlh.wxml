@@ -1,0 +1,48 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='banner'>
+  <image src='{{filter.getPictuerUrl("wangyan1.jpg")}}' mode='aspectFill'>
+  </image>
+</view>
+<view class='hongbao'>
+  <view class='hongbao-left'>
+    <image src='{{filter.getPictureUrl("wangyan1.jpg")}}' mode='aspectFill'>
+    </image>
+  </view>
+  <view class='hongbao-right'>
+    <view>1111</view>
+    <view>1111</view>
+  </view>
+</view>
+<view class='oneCard-list'>
+  <!-- <view class='no-data-card' wx:if='{{cardList.length <= 0}}'>
+    <view class='no-data-image'>
+      <image src='https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png'>
+      </image>
+    </view>
+    <view class="noDataFont">
+      <view>暂无数据</view>
+      <view>去看看别的</view>
+    </view>
+  </view> -->
+  <view class='oneCard-body'>
+    <image src='{{filter.errorImage("wangyan1.jpg")}}' class='onCard-image' 
+      mode='aspectFill' ></image> 
+    <view class='oneCard-contant'>
+      <view class='onCard-info'>
+        <view class='onCard-name'>
+          111
+        </view>
+        <view class='sell-out'>
+          已售0
+        </view>
+      </view>
+      <view class='onCard-price'>
+        0
+      </view>
+      <view class='onCard-remark'>
+        0
+      </view>
+    </view>
+  </view>
+</view>

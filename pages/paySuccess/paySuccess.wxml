@@ -12,9 +12,9 @@
     <view>
       欢迎到本俱乐部扫码健身
     </view>
-    <view class='button-tip'>
+    <!-- <view class='button-tip'>
       请下载卡库健身APP接受教练服务
-    </view>
+    </view> -->
   </view>
   <view class='paySuccess-message'>
     <view class='paySuccess-hr'></view>

@@ -9,7 +9,9 @@ Page({
     },
     ticketList: [],
     scroll_box_weight: 0,
-    cardList: []
+    cardList: [],
+    getPhoneNumber: -1,
+    phoneNumber: ''
   },
   // 页面加载函数
   onLoad: function () {
@@ -20,6 +22,28 @@ Page({
   // 页面展示 
   onShow: function () {
 
+    var obj = this;
+    if(wx.getStorageSync('memberId')){
+      // 查询用户数据
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!findMe.asp',
+        data: {
+          json: encodeURI(JSON.stringify({ memberId: wx.getStorageSync('memberId') }))
+        },
+        success: (res) => {
+          if (res.data.memberData.mobilephone && res.data.memberData.mobilephone != '' &&
+            res.data.memberData.mobileValid && res.data.memberData.mobileValid == 1){
+            obj.setData({
+              phoneNumber: res.data.memberData.mobilephone
+            });
+          } else {
+            obj.setData({
+              getPhoneNumber: 1
+            });
+          }
+        }
+      });
+    }
   },
 
   // 加载俱乐部数据
@@ -38,6 +62,7 @@ Page({
           scroll_box_weight: default_weight * length,
           cardList: res.data.cardList
         });
+        wx.setStorageSync('cardList', res.data.cardList);
         // 设置当前页面标题
         wx.setNavigationBarTitle({
           title: res.data.club.name
@@ -283,20 +308,38 @@ Page({
     let obj = this;
     // 获取用户选择的优惠券
     let index = e.currentTarget.dataset.index;
+    
+    ///
+    this.setData({
+      index: index
+    });
+
+    if(this.data.phoneNumber != ''){
+      this.setTicket(index);
+    }
+  },
+
+  /// 
+  setTicket: function (index, phoneNumber) {
+    var obj = this;
     let ticketList = obj.data.ticketList;
     let ticket = ticketList[index];
     // 如何当前优惠券状态为1:已获取,则中止后续操作
-    if(ticket.state == 1){
+    if (ticket.state == 1) {
       return;
+    }
+    var param = {
+      memberId: wx.getStorageSync('memberId'),
+      ticketId: ticket.id
+    }
+    if(phoneNumber){
+      param.phoneNumber = phoneNumber;
     }
     // 调用服务端接口给用户生成一条优惠券数据
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!setTicketToMember.asp',
-      data: {
-        memberId: wx.getStorageSync('memberId'),
-        ticketId: ticket.id
-      },
-      success: function(res){
+      data: param,
+      success: function (res) {
         // 弹窗提示用户
         wx.showModal({
           title: '领取成功',
@@ -313,6 +356,27 @@ Page({
       }
     });
   },
+
+  // 
+  getMobilePhone: function(e) {
+    if (e.detail.errMsg != 'getPhoneNumber:ok'){
+      return;
+    }
+    var obj = this;
+    e.session_key = wx.getStorageSync("session_key");
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+      data: {
+        json: JSON.stringify(e)
+      },
+      success: function (res) {
+        // 获取和处理用户手机号
+        var userPhoneNumber = res.data.phoneNumber;
+        obj.setTicket(obj.data.index, userPhoneNumber);
+      }
+    })
+  },
+
   // 进入健身卡详情
   getOneCardDetail: function(e){
     // 检查登录

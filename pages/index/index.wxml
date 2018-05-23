@@ -71,6 +71,9 @@
         <view class='ticket' wx:for='{{ticketList}}' wx:key='' bindtap='getTicket' 
             data-index='{{index}}'>
           <image src='{{base_picture_url}}/{{item.image}}' mode='aspectFill'></image>
+          <button class='phoneNumber' open-type='getPhoneNumber' style='z-index:{{getPhoneNumber}}'
+            bindgetphonenumber='getMobilePhone'>
+          </button>
         </view>
       </view>
     </view>
