@@ -147,20 +147,59 @@
             </view>
       </view>
 
-      <!-- 连接wifi -->
-      <!-- <view class="pre" bindtap='connectWifi' > -->
+      <!-- 未登录 -->
+      <view wx:if="{{hasLogin == 0}}">
+              <!-- 连接wifi -->
+              <view class="pre" bindtap='checkTapLogin' >
+                    <!-- icon -->
+                    <view class='iconDiv'>
+                          <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
+                    </view>
+
+                    <view class="title">连接wifi</view>
+                    <view class="link">
+                          <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                    </view>
+              </view>
+      </view>
+
+      <!-- 已登录 -->
+      <view wx:if="{{hasLogin == 1}}" class="connectWifiDiv">
+              <!-- 连接wifi -->
+              <view class="pre" bindtap='connectWifi' >
+                    <!-- icon -->
+                    <view class='iconDiv'>
+                          <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
+                    </view>
+
+                    <view class="title">连接wifi</view>
+                    <view class="link">
+                          <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                    </view>
+              </view>
+
+              <!-- 获取手机号按钮 -->
+              <view class='getMobilephone' wx:if="{{hasMobilephone == 0}}" >
+                    <button class='getMobilephoneButton' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNumber'></button>
+              </view>
+
+      </view>
+
+      <!-- 送人健康 -->
+      <view class="pre" bindtap='gotoMyPlan' >
             <!-- icon -->
-      <!-- 
             <view class='iconDiv'>
                   <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
             </view>
 
-            <view class="title">连接wifi</view>
+            <view class="title">送人健康</view>
             <view class="link">
                   <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
-      </view> 
-      -->
+      </view>
+
+       
+      
 
 
 

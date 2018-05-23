@@ -7,7 +7,9 @@ Page({
      memberData:{
         image:"1.jpg"
      },
-     login_button:true
+     login_button:true,
+     hasMobilephone:0,
+     hasLogin:0
   },
 
   /**
@@ -79,7 +81,7 @@ Page({
   /**
    * 查询当前用户的数据
    */
-  findMe:function () {
+  getMemberData:function () {
       var objx = this;
       var memberId = wx.getStorageSync("memberId");
       var param = {};
@@ -96,15 +98,25 @@ Page({
           // 请求成功
           res = JSON.parse(res.data);
           if (res.success) {
+            // 用户数据请求成功
+            var mobilephone = res.memberData.mobilephone;
+            var mobileValid = res.memberData.mobileValid;
+            var hasMobilephone = 0;
+            if (mobilephone && "" != mobilephone && "null" != mobilephone && "undefined" != mobilephone && mobileValid && "" != mobileValid && "null" != mobileValid && "undefined" != mobileValid) {
+              // 手机号存在，且已验证
+              hasMobilephone = 1;
+            }
              // 获取数据成功
              objx.setData({
-                memberData:res.memberData
+                memberData:res.memberData,
+                hasMobilephone:hasMobilephone
              })
           } else {
             // 程序异常
             wx.showModal({
               title: "提示",
               content: res.message,
+              showCancel:false
             })
           }
         },
@@ -113,6 +125,7 @@ Page({
           wx.showModal({
             title: "提示",
             content: "网络异常",
+            showCancel: false
           })
         }
       }) 
@@ -237,9 +250,10 @@ Page({
       
     } else {
       // 用户已登录，移除登录按钮
-      objx.findMe();
+      objx.getMemberData();
       objx.setData({
-        login_button: false
+        login_button: false,
+        hasLogin:1
       })
     }
   },
@@ -291,11 +305,14 @@ Page({
             wx.setStorageSync("memberId", res.key);
             wx.setStorageSync("session_key", res.session_key);
             wx.setStorageSync("openId", res.openid);
+            objx.setData({
+              hasLogin:1
+            })
             // 登录成功，判断是relaunch过来的，还是用户主动点击tabBar过来的
             var source = objx.data.source;
             if (!source || source == "" || source == "undefined" || source == undefined) {
               // 用户主动点击过来的
-                objx.findMe();
+              objx.getMemberData();
             } else {
               // 跳转到来时的页面
                 wx.switchTab({
@@ -352,7 +369,11 @@ Page({
    * 连接wifi
    */
   connectWifi: function () {
-   
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
     wx.startWifi({
       success: function (res) {
         console.log(res.errMsg);
@@ -382,8 +403,114 @@ Page({
       }
     })
     
+  },
+
+  /**
+   * 获取手机号
+   */
+  getPhoneNumber: function (e) {
+    var objx = this;
+    // 去后台解密手机号
+    var session_key = wx.getStorageSync("session_key");
+    e.session_key = session_key;
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+      dataType:JSON,
+      data:{
+        json: JSON.stringify(e)
+      },
+      success: function (res) {
+        console.log(res);
+        // 网络请求成功
+        res = JSON.parse(res.data);
+        // 数据请求成功
+        var hasMobilephone = 1;
+        objx.setData({
+          hasMobilephone: hasMobilephone
+        })
+
+        console.log(res.phoneNumber);
+
+        // 更新用户的手机号
+        objx.updatePhoneNumber(res.phoneNumber);
+
+        
+      },
+      error: function (e) {
+        // 网络异常
+        wx.showModal({
+          title: '提示',
+          content: '网络异常',
+          showCancel:false
+        })
+      } 
+    })
+
+  },
+
+  /**
+   * 更新用户手机号
+   */
+  updatePhoneNumber: function (phoneNumber) {
+    // 去后台更新用户的手机号信息
+    var objx = this;
+    var memberId = wx.getStorageSync("memberId");
+    var param = {
+      memberId:memberId,
+      mobilephone:phoneNumber
+    };
+
+    // 请求后台数据
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!updateMobilephone.asp',
+      dataType:JSON,
+      data:{
+        json:encodeURI(JSON.stringify(param))
+      },
+      success: function (res) {
+        res = JSON.parse(res.data);
+        if (res.success) {
+          // 请求成功
+          console.log("更新手机号成功");
+        } else {
+          // 程序异常
+          console.log(res.message);
+        }
+      },
+      error: function (e) {
+        // 网络请求异常
+        console.log("网络异常");
+      } 
+    })
+  },
+
+  /**
+   * 检查登录
+   */
+  checkTapLogin: function () {
+    wx.showModal({
+      title: '提示',
+      content: '请先登录',
+      showCancel:false
+    })
+    return;
+  },
+
+  /**
+   * 跳转到送人健康页面
+   */
+  gotoGiveHealth: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
+    wx.navigateTo({
+      url: '../../pages/qrlh/qrlh',
+    })
   }
 
+  
 
 
   
