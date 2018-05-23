@@ -24,7 +24,7 @@
     </view>
     <view class='commodity_describe'>
       <view class="commodity_name">{{product.productName}}</view>
-      <view class="commodity_startTime">开卡日期 : {{product.time}}</view>
+      <view class="commodity_startTime">开始日期 : {{product.time}}</view>
       <view class="commodity_price">
         ￥{{filter.toFixed(product.productPrice, 2)}}
       </view>

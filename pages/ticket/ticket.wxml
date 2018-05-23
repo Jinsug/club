@@ -1,5 +1,10 @@
 <view class='wraper'>
-  <view class="no-data" wx:if="{{tickets.length == 0}}">
+  <view class="no-data no-data-left" wx:if="{{tickets.length == 0 && productId && productType}}">
+    <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+    </image>
+    <view>没有适用当前商品的优惠券</view>
+  </view>
+  <view class="no-data" wx:if="{{tickets.length == 0 && !productId && !productType}}" >
     <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
     </image>
     <view>暂无数据</view>

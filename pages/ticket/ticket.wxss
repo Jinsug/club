@@ -24,6 +24,10 @@ page{
   height: 30px;
 }
 
+.no-data-left{
+  left: 30%;
+}
+
 .ticket-list{
   padding: 10px;
 }
