@@ -1,0 +1,180 @@
+
+@import '../../pages/css/icon.wxss';
+@import "../../wxParse/wxParse.wxss";
+page {
+  background-color: #EFEFF4;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  font-size: 14px;
+}
+
+.box {
+  display: block;
+  margin: 10px;
+  border-radius: 1%;
+  border: 1rpx solid #D6D6D6;
+  background: white;
+  padding: 18rpx;
+  padding-bottom: 0;
+}
+
+.dou-ex{
+   display: block;
+   height:6rpx;
+   width: 100%;
+   background:-webkit-gradient(linear, 0 0, 0 bottom, from(#959595), to(#EADEDE)); 
+   border: none;
+   padding-left: 18rpx;
+   padding-right: 18rpx;
+   margin-top: 10rpx;
+   margin-left: -18rpx;
+}
+
+.box-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  flex-flow: nowrap;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 14.2%;
+}
+
+.item-content {
+  margin: 5px;
+  padding: 0 10px;
+  text-align: center;
+  height: 1rem;
+  line-height: 1rem;
+  color: black;
+}
+
+.bk-color-day {
+  background-color: #8A2BE2;
+}
+
+.item-content-current-day {
+  flex-grow: 2;
+}
+
+
+.today{
+   background-color: red;
+
+}
+
+
+.isChoosed{
+    background-color: green;
+    color: black;
+}
+
+.no-data{
+   margin: 0 auto;
+}
+
+.no-data-img-div{
+   text-align: center;
+}
+.no-data-img{
+   width: 60rpx;
+   height: 60rpx;
+}
+
+.no-data-font{
+   text-align: center;
+   font-size: 30rpx;
+   color: #959595;
+}
+
+.title{
+   width: 100%;
+   height: 80rpx;
+   background: white;
+   line-height: 80rpx;
+}
+
+.title-div{
+    margin: 20rpx;
+    overflow: hidden;
+}
+
+.title-name{
+  float: left;
+  font-size: 32rpx;
+  color: black; 
+}
+
+.title-courseName{
+ float: right;
+ margin-right: 10rpx;
+ font-size: 28rpx;
+ color: #959595;
+}
+
+.remark{
+   width: 100%;
+   height: auto;
+   background: white;
+   margin-bottom: 200rpx;
+}
+
+.remark-div{
+   margin: 20rpx;
+   overflow: hidden;
+   padding-top: 20rpx;
+   padding-bottom: 20rpx;
+   
+}
+
+.remark-title{
+   font-size: 32rpx;
+   color: black;
+}
+
+.remark-content{
+   margin-top: 20rpx;
+   font-size: 28rpx;
+   color: #959595;
+}
+
+.redDot{
+    display: none;
+}
+
+
+.displayRedDot{
+    color: #ff4401;
+    width: 4rpx;
+    height: 4rpx;
+    line-height: 4rpx;
+    margin: 0 auto;
+    background-color: #ff4401;
+}
+
+.planDetail-div{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+.planDetailButton{
+    text-align: center;
+    background: #ff9800;
+    color: white;
+    font-size: 32rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-radius: 0;
+}

@@ -188,8 +188,34 @@ Page({
     wx.navigateTo({
       url: '../../pages/myAppointment/myAppointment',
     })
+  },
 
-    
+  /**
+   * 我的计划
+   */
+  gotoMyPlan: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()) {
+      return;
+    }
+    wx.navigateTo({
+      url: '../../pages/plan/plan',
+    })
+  },
+
+  /**
+   * 私人订制
+   */
+  gotoPrivate: function () {
+    var objx = this;
+    // 登录检查
+    if (!objx.checkOnFun()){
+      return;
+    }
+    wx.navigateTo({
+      url: '../../pages/private/private',
+    })
   },
 
   /**

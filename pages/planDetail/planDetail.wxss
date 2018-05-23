@@ -1,0 +1,165 @@
+
+
+
+.body{
+  width: 100%;
+  height: 100%;
+
+}
+
+.title-img-div{
+    width: 100%;
+    height: 320rpx;
+}
+
+.title-img{
+   width: 100%;
+   height: 100%;
+
+}
+
+.title-menu{
+  width: 100%;
+  height: auto;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+
+
+}
+
+.fat{
+  float: left;
+  width: 30%;
+  text-align: left;
+  margin-left: 2%;
+}
+
+.time{
+  float: left;
+  width: 30%;
+  text-align: center;
+}
+
+.loop{
+   float: right;
+   width: 30%;
+   text-align: right;
+   margin-right: 2%;
+}
+
+.menu-title{
+   font-size: 26rpx;
+   color: #B7B2B2;
+}
+
+.menu-value{
+   font-size: 30rpx;
+   color: black;
+}
+
+.full{
+   width: 100%;
+   height: 30rpx;
+   background: #F0F0F0;
+}
+
+.action-title{
+   width: 100%;
+   height: auto;
+   overflow: hidden;
+   margin-top: 20rpx;
+   margin-bottom: 20rpx;
+}
+
+.action-title-name{
+   float: left;
+   width: 48%;
+   font-size: 26rpx;
+   color: black;
+   padding-left: 2%;
+   text-align: left;
+}
+
+.action-title-count{
+   float:right;
+   width: 48%;
+   font-size: 26rpx;
+   color: #B7B2B2;
+   padding-right: 2%;
+   text-align: right;
+}
+
+.action-full{
+   width: 96%;
+   height: 1rpx;
+   background: #F0F0F0;
+   margin: 0 auto;
+   margin-bottom: -20rpx;
+  
+}
+
+.action-items{
+   width: 100%;
+   height: auto;
+   margin-top: 20rpx;
+
+}
+
+.action-item{
+   width: 100%;
+   height: 100%;
+   overflow: hidden;
+   margin-top: 40rpx;
+   margin-bottom: 40rpx;
+}
+
+.action-item-img-div{
+    float: left;
+    width: 20%;
+    height: 80rpx;
+    margin-left: 2%;
+}
+
+.action-item-img{
+   width: 100%;
+   height: 100%;
+}
+
+.action-item-content{
+   float: left;
+   width: 76%;
+   height: 80rpx;
+   text-align: left;
+   margin-left: 2%;
+}
+
+
+.action-item-name{
+   font-size: 32rpx;
+   color: black;
+}
+
+.action-item-value{
+    font-size: 28rpx;
+    color: #B7B2B2;
+}
+
+.dou-footer-full{
+     width: 100%;
+     height: 100rpx;
+}
+
+.train{
+   position: fixed;
+   background: #ff9800;
+   left: 0;
+   bottom: 0;
+   color: white;
+   width: 100%;
+   height: 88rpx;
+   line-height: 88rpx;
+   text-align: center;
+   font-size: 32rpx;
+   border-radius: 0;
+}

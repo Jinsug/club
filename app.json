@@ -25,7 +25,11 @@
     "pages/myWallet/myWallet",
     "pages/cash/cash",
     "pages/bindAccount/bindAccount",
-    "pages/myAppointment/myAppointment"
+    "pages/myAppointment/myAppointment",
+    "pages/plan/plan",
+    "pages/planDetail/planDetail",
+    "pages/private/private",
+    "pages/setting/setting"
     
 
   ],

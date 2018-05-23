@@ -1,0 +1,133 @@
+<!-- 引入模板 -->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="page">
+  <view class="box">
+    <view class="box-flex">
+      <view class="flex-item">
+        <view class="item-content" bindtap="doDay" data-key='left'>
+          <view class="glyphicon glyphicon-triangle-left"></view>
+        </view>
+      </view>
+      <view class="flex-item item-content-current-day">
+        <view class="item-content">{{currentDate}}</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content" bindtap="doDay" data-key="right">
+          <view class="glyphicon glyphicon-triangle-right"></view>
+        </view>
+      </view>
+    </view>
+    <view class="box-flex">
+      <view class="flex-item">
+        <view class="item-content">一</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">二</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">三</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">四</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">五</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">六</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">日</view>
+      </view>
+    </view>
+    <view class="box-flex">
+      <view class="flex-item" wx:for="{{currentDayList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">
+          <!-- 同月 -->
+          <view wx:if="{{toMonth == 1}}" >
+                <!-- 今天 -->
+                <view class="item-content today" wx:if="{{ currentDay == vo }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+                
+                <!-- 同月不同天 -->
+                <view wx:if="{{ currentDay != vo }}" >
+                       <!-- 有计划的天 -->
+                       <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] == 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >
+                                <view>{{vo}}<text class="{{dou_display[key]}}">\n.</text></view>
+                                
+                       </view>
+
+                       <!-- 无计划的天 -->
+                      <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] != 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+                </view>
+
+
+
+          </view>
+
+           <!-- 不同月 -->
+           <view wx:if="{{ toMonth != 1 }}">
+                <!-- 有计划的天 -->
+                <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] == 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >
+                        <view>{{vo}}<text class="{{dou_display[key]}}">\n.</text></view>
+                        
+                </view>
+
+                
+                <!-- 无计划的天 -->
+                <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] != 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+               
+           </view>
+          
+
+           
+
+      </view>
+    </view>
+    
+   
+  <view class="dou-ex"></view>
+  </view>
+
+ <!-- 课程信息 -->
+ <view class="course">
+     <!-- 当天没有训练计划 -->
+     <view class="no-data" wx:if="{{hasNoData == 1}}">
+        <view class="no-data-img-div">
+            <image src="https://www.ecartoon.com.cn/picture/Look-surprised@2x.png" class="no-data-img">
+              </image>
+        </view>
+       
+        <view class="no-data-font no-data-font-1">今天没有训练计划</view>
+        <view class="no-data-font no-data-font-2">欢迎使用 [王严健身专家系统] 为自己定制健身计划</view>
+     </view>
+
+     <!-- 当天有计划 -->
+     <view class="course-info" wx:if="{{hasNoData == 0}}" >
+         
+                  <view class="title">
+                    <view class="title-div">
+                          <view class="title-name">课程名称</view>
+                          <view class="title-courseName">{{planData.course}}</view>
+                    </view>
+                  </view>
+
+                  <view class="remark">
+                    <view class="remark-div">
+                          <!-- 课程备注标题 -->
+                          <view class="remark-title">课程备注</view>
+
+                          <!-- 课程备注具体信息 -->
+                          <view class="remark-content">
+                                <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+                          </view> 
+                    </view>
+                  </view>
+         
+     </view>
+ </view>
+ <view class="planDetail-div" wx:if="{{hasNoData == 0}}"  bindtap = "courseAction" data-courseId="{{planData.id}}" >
+     <view class="planDetailButton" >
+      查看计划详情
+     </view>
+ </view>
+
+</view>
