@@ -1,3 +1,4 @@
+import regeneratorRuntime from '../../utils/runtime.js';
 Page({
 
   /**
@@ -366,22 +367,72 @@ Page({
   },
 
   /**
+   * 获取俱乐部wifi参数,同步过程中，被调用方法
+   */
+  getClubWifi: function () {
+    var objx = this;
+    return new Promise(function (resolve, reject){
+
+      // 请求后台，获取wifi参数
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!getClubWifi.asp',
+        dataType: JSON,
+        success: function (res) {
+          res = JSON.parse(res.data);
+          if (res.success) {
+            // 将数据存储起来
+            objx.setData({
+              clubWifi: res.clubWifi
+            })
+            resolve({success:true});
+          } else {
+            // 程序异常
+            console.log(res.message);
+            resolve({success:false})
+          }
+        },
+        error: function (e) {
+          // 网络请求失败
+          console.log("网络异常");
+          resolve({success:false})
+        }
+      })
+
+    })
+  },
+
+  
+
+  /**
    * 连接wifi
    */
-  connectWifi: function () {
+  connectWifi: async function () {
     var objx = this;
     // 登录检查
     if (!objx.checkOnFun()) {
       return;
     }
+
+    // wifi信息检查
+    var hasWifi = await objx.getClubWifi();
+    if (!hasWifi.success) {
+      wx.showModal({
+        title: '提示',
+        content: '暂无可用wifi',
+      })
+      return;
+    }
+
+    // 获取wifi信息
+    var clubWifi = objx.data.clubWifi;
+    
     wx.startWifi({
       success: function (res) {
-        console.log(res.errMsg);
         // 连接wifi
         wx.connectWifi({
-          SSID: 'jszg1',
-          BSSID: 'jszg1',
-          password: 'jszg@1234',
+          SSID: clubWifi.ssid,
+          BSSID: clubWifi.bssid,
+          password: clubWifi.password,
           success: function (resdd) {
             wx.showModal({
               title: '提示',
