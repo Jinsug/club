@@ -1,0 +1,79 @@
+.club-item{
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.club-list :last-child{
+  border: 0;
+}
+
+.club-image{
+  float: left;
+  margin-top: 2px;
+  width: 60px;
+  height: 60px;
+}
+
+.club-content{
+  float: left;
+  margin-left: 10px;
+}
+
+.clubName{
+  font-size: 14px;
+  color: #444;
+}
+
+.totalScore{
+  margin-top: 5px;
+  font-size: 14px;
+  overflow: hidden;
+}
+
+.totalScore > image{
+  float: left;
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+}
+
+.otherScore{
+  margin-top: 8px;
+  font-size: 12px;
+  color: #BBB;
+}
+
+.club-other{
+  float: right;
+  position: relative;
+  height: 64px;
+}
+
+.distance{
+  text-align: right;
+  font-size: 12px;
+  color: #BBB;
+}
+
+.evaluateCount{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 80px;
+  text-align: right;
+  font-size: 12px;
+  color: #BBB;
+}
+
+.goMap{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 44px;
+  text-align: center;
+  line-height: 44px;
+  color: #FFF;
+  background-color: #FF9800;
+}

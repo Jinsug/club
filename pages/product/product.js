@@ -9,7 +9,8 @@ Page({
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
     product: {
       image1: 'opacity.png'
-    }
+    },
+    clubCount: 0
   },
 
   /**
@@ -17,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     let product = wx.getStorageSync('product');
-    wx.removeStorageSync('product');
+    let clubCount = product.useRange.split(",").length;
     // 设置日历的日期选择区间
     let start = util.formatTime(new Date());
     let end = util.formatTime(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)));
@@ -25,6 +26,7 @@ Page({
     product.currentDate = util.formatTime(new Date());
     this.setData({
       product: product,
+      clubCount: clubCount,
       start: start,
       end: end
     });
@@ -54,6 +56,14 @@ Page({
     let product_data = encodeURI(JSON.stringify(param));
     wx.navigateTo({
       url: `../order/order?product=${product_data}`
+    });
+  },
+
+  // 查看适用店面列表
+  toClubList: function () {
+    wx.setStorageSync('useRange', this.data.product.useRange);
+    wx.navigateTo({
+      url: '../clubList/clubList'
     });
   },
 

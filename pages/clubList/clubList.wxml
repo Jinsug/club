@@ -1,0 +1,28 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='club-list'>
+  <view class='club-item' wx:for='{{clubList}}' wx:key=''>
+    <image class='club-image' src='{{filter.getPictureUrl(item.image)}}' mode='aspectFill'>
+    </image>
+    <view class='club-content'>
+      <view class='clubName'>{{item.name}}</view>
+      <view class='totalScore'>
+        <image src='{{filter.getPictureUrl(item)}}' mode='aspectFill'
+             wx:for='{{item.totalityStars}}' wx:key='' >
+        </image>
+      </view>
+      <view class='otherScore'>
+        设备{{filter.toFixed(item.deviceScoreAsFive, 0)}}; 
+        环境{{filter.toFixed(item.evenScoreAsFive, 0)}}; 
+        服务{{filter.toFixed(item.serviceScoreAsFive, 0)}}
+      </view>
+    </view>
+    <view class='club-other'>
+      <view class='distance'>{{filter.distance(item.distance)}}</view>
+      <view class='evaluateCount'>{{item.evaluateCount}}人评价</view>
+    </view>
+  </view>
+</view>
+<view class='goMap' bindtap='goMap'>
+  去地图中看
+</view>

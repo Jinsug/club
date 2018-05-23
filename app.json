@@ -7,6 +7,7 @@
     "pages/live/live",
     "pages/memberRanking/memberRanking",
     "pages/product/product",
+    "pages/clubList/clubList",
     "pages/order/order",
     "pages/ticket/ticket",
     "pages/activeTicket/activeTicket",

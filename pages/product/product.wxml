@@ -27,8 +27,8 @@
     </view>
     <view class='product-row'>
       <view class='product-row-left'>适用店面</view>
-      <view class='product-row-right fitClub'>
-        <view class='fitClub-left'>64家</view>
+      <view class='product-row-right fitClub' bindtap='toClubList'>
+        <view class='fitClub-left'>{{clubCount}}家</view>
         <view class='fitClub-right'>
           <image src='{{base_picture_url}}/more.png' mode='aspectFill'></image>
         </view>

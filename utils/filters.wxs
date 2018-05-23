@@ -1,5 +1,14 @@
 // 过滤器
 var filters = {
+  getPictureUrl: function (image) {
+    return 'https://www.ecartoon.com.cn/picture/' + image;
+  },
+  errorImage: function (image) {
+    if(!image || image == ''){
+      return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
+    }
+    return 'https://www.ecartoon.com.cn/picture/' + image;
+  },
   toFixed: function (num, length) {
     if (!isNaN(num)) {
       return parseFloat(num).toFixed(length);
@@ -15,16 +24,17 @@ var filters = {
     }
     return text;
   },
-  errorImage: function (image) {
-    if(!image || image == ''){
-      return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
-    }
-    return 'https://www.ecartoon.com.cn/picture/' + image;
-  },
   active_target: function (days, target, value){
     var company = target == 'A' || target == 'B' ? '公斤' : '次';
     var targetText = { A: '体重减少', B: '体重增加', C: '健身时间', D: '健身次数'};
     return days + '天' + targetText[target] + value + company;
+  },
+  distance: function (distance) {
+    if(parseInt(distance) > 1000){
+      distance = (parseInt(distance) / 1000);
+      return distance.toFixed(2) + 'km';
+    }
+    return distance + 'm';
   },
   week_date: function (value) {
       if ( "0" == value ) {
@@ -111,10 +121,12 @@ var filters = {
 
 // 暴露接口
 module.exports = {
+  getPictureUrl: filters.getPictureUrl,
+  errorImage: filters.errorImage,
   toFixed: filters.toFixed,
   overflow_hidden: filters.overflow_hidden,
-  errorImage: filters.errorImage,
   active_target: filters.active_target,
+  distance: filters.distance,
   week_date: filters.week_date,
   stringNull: filters.stringNull,
   getStarNumberStr:filters.getStarNumberStr,

@@ -12,29 +12,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let club = wx.getStorageSync('club');
-    wx.removeStorageSync('club');
+    var clubList = wx.getStorageSync('clubList');
     // 设置当前页面标题
     wx.setNavigationBarTitle({
-      title: club.name
+      title: '门店分布'
     });
-    this.setData({
-      club: club,
-      markers: [
-        {
-          id: 0,
-          latitude: club.latitude,
-          longitude: club.longitude,
-          callout: {
-            display: 'ALWAYS',
-            content: club.name,
-            color: '#00000',
-            bgColor: '#FFFFFF',
-            padding: 2
-          }
-        }
-      ]
-    });
+    // 添加地图标点
+    this.methods.addMarkers(this, clubList);
   },
 
   /**
@@ -77,5 +61,38 @@ Page({
    */
   onReachBottom: function () {
     
+  },
+
+  /**
+   * 自定义函数
+   */
+  methods: {
+    /**
+     * 添加地图标点
+     */
+    addMarkers: (obj, clubList) => {
+      // 设置地图标点
+      var markers = [];
+      clubList.forEach((club, i) => {
+        var marker = {
+          id: i,
+          latitude: club.latitude,
+          longitude: club.longitude,
+          callout: {
+            display: 'ALWAYS',
+            content: club.name,
+            color: '#00000',
+            bgColor: '#FFFFFF',
+            padding: 2
+          }
+        }
+        markers.push(marker);
+      });
+      // 渲染页面
+      obj.setData({
+        club: clubList[0],
+        markers: markers
+      });
+    }
   }
 })

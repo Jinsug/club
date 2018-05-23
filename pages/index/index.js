@@ -1,4 +1,5 @@
 import regeneratorRuntime from '../../utils/runtime.js';
+var util = require('../../utils/util.js');
 Page({
   data: {
     base_picture_url: 'https://www.ecartoon.com.cn/picture',
@@ -84,8 +85,20 @@ Page({
   },
   // 俱乐部位置
   clubLocation: function(){
-    // 跳转页面
-    wx.setStorageSync('club', this.data.club);
+    /**
+     * 转换俱乐部列表数据中的坐标为腾讯系坐标
+     */
+    var convertPoint = (club) => {
+      // 调用util方法进行坐标转换(百度坐标系转换为腾讯坐标系)
+      var point = util.BdmapEncryptToMapabc(club.latitude, club.longitude);
+      club.latitude = point.lat;
+      club.longitude = point.lng;
+      return club;
+    }
+
+    // 去地图中
+    var clubList = [this.data.club];
+    wx.setStorageSync('clubList', clubList.map(convertPoint));
     wx.navigateTo({
       url: '../map/map'
     });
