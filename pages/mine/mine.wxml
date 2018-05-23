@@ -189,7 +189,7 @@
       <view class="pre" bindtap='gotoGiveHealth' >
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
             </view>
 
             <view class="title">送人健康</view>
