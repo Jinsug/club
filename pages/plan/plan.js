@@ -281,6 +281,15 @@ Page({
   */
   onShareAppMessage: function () {
 
+  },
+
+  /**
+   * 跳转到定制计划页面
+   */
+  gotoDesign_private: function () {
+    wx.navigateTo({
+      url: '../../pages/private/private',
+    })
   }
 
 

@@ -40,15 +40,15 @@
        <!-- 没有数据 -->
       <view class="hasNoData" wx:if="{{hasData == 0}}" >
              <view class="noData">
-                 <!-- 图像 -->
-                 <view class="noDataPicDiv">
-                     <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png" class="noDataPic"></image>
-                 </view>
-                 <view class="noDataFont">
-                     <view>暂无数据</view>
-                     <view>去看看别的</view>
-                 </view>
-             </view>
+                      <!-- 图像 -->
+                      <view class="noDataPicDiv">
+                          <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png" class="noDataPic"></image>
+                      </view>
+                      <view class="noDataFont">
+                          <view>暂无数据</view>
+                          <view>去看看别的</view>
+                      </view>  
+              </view>
       </view>
 </view>
 

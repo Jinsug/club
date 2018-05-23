@@ -134,7 +134,7 @@
             </view>
       </view>
 
-       <!-- 我的计划 -->
+      <!-- 我的计划 -->
       <view class="pre" bindtap='gotoMyPlan' >
             <!-- icon -->
             <view class='iconDiv'>
@@ -146,6 +146,21 @@
                   <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
+
+      <!-- 连接wifi -->
+      <!-- <view class="pre" bindtap='connectWifi' > -->
+            <!-- icon -->
+      <!-- 
+            <view class='iconDiv'>
+                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+            </view>
+
+            <view class="title">连接wifi</view>
+            <view class="link">
+                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+            </view>
+      </view> 
+      -->
 
 
 
