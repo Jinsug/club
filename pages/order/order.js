@@ -104,13 +104,6 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
-  },
-
-  /**
    * 从后台获取用户手机号等信息
    */
   getMemberData: function () {

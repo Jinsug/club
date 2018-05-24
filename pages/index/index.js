@@ -54,6 +54,16 @@ Page({
     wx.stopPullDownRefresh();
   },
 
+  /**
+   * 分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.club.name + '的小程序',
+      path: 'pages/index/index'
+    }
+  },
+
   // 加载俱乐部数据
   getClubData: function(obj){
     wx.request({
@@ -70,6 +80,7 @@ Page({
           scroll_box_weight: default_weight * length,
           cardList: res.data.cardList
         });
+        wx.setStorageSync('club', res.data.club);
         wx.setStorageSync('cardList', res.data.cardList);
         // 设置当前页面标题
         wx.setNavigationBarTitle({
