@@ -316,7 +316,7 @@ Page({
               objx.getMemberData();
             } else {
               // 跳转到来时的页面
-                if (source == "courseList" || sourse == "active" || source == "index") {
+                if (source == "courseList" || source == "active" || source == "index") {
                     wx.switchTab({
                       url: '../../pages/' + source + '/' + source,
                     })
