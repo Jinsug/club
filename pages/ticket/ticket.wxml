@@ -39,6 +39,6 @@
 
  <!-- 激活优惠券按钮 -->
  <view class="activeTicket-div" bindtap="activeTicket" wx:if='{{activeTicket}}'>
-     <view class="activeTicket" >激活</view>
+     <view class="activeTicket" >激活优惠券</view>
  </view>
 </view>

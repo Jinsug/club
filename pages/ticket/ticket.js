@@ -108,7 +108,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    if (this.data.productId && this.data.productType) {
+      // 根据商品和商品类型查询优惠券
+      this.findTicketByType();
+    } else {
+      // 查询当前用户所有优惠券
+      this.findMyTicket();
+    }
+    wx.stopPullDownRefresh();
   },
 
   /**
