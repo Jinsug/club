@@ -26,7 +26,7 @@ var filters = {
   },
   active_target: function (days, target, value){
     var company = target == 'A' || target == 'B' ? '公斤' : '次';
-    var targetText = { A: '体重减少', B: '体重增加', C: '健身时间', D: '健身次数'};
+    var targetText = { A: '体重减少', B: '体重增加', C: '运动', D: '运动'};
     return days + '天' + targetText[target] + value + company;
   },
   distance: function (distance) {
