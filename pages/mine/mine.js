@@ -316,9 +316,15 @@ Page({
               objx.getMemberData();
             } else {
               // 跳转到来时的页面
-                wx.switchTab({
-                  url: '../../pages/' + source + '/' + source,
-                })
+                if (source == "courseList" || sourse == "active" || source == "index") {
+                    wx.switchTab({
+                      url: '../../pages/' + source + '/' + source,
+                    })
+                } else {
+                    wx.navigateTo({
+                      url: '../../pages/' + source + '/' + source,
+                    })
+                }
               }
 
             
