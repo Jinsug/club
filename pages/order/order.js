@@ -45,7 +45,9 @@ Page({
    */
   onShow: function () {
     // 如果有优惠券就显示优惠券并计算价格
-    if (wx.getStorageSync("ticket") && !this.data.product.shareMember){
+    console.log('ticket:' + wx.getStorageSync('ticket'));
+    if (wx.getStorageSync("ticket") && wx.getStorageSync('ticket') != '' 
+      && !this.data.product.shareMember){
       let ticket = wx.getStorageSync("ticket");
       let price = this.data.product.productPrice - ticket.price;
       price = price < 0 ? 0 : price;
@@ -54,7 +56,8 @@ Page({
         price: price
       });
       wx.removeStorageSync("ticket");
-    } else if (!wx.getStorageSync('ticket') && this.data.product.shareMember) {
+    } else if (!wx.getStorageSync('ticket') && wx.getStorageSync(key) == '' &&  
+        this.data.product.shareMember) {
       // 如果是通过分享进入需要再打九折
       var price = this.data.product.productPrice * 0.9;
       this.setData({

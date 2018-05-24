@@ -46,6 +46,14 @@ Page({
     }
   },
 
+  /**
+   * 监听页面用户下拉事件
+   */
+  onPullDownRefresh: function () {
+    this.getClubData(this);
+    wx.stopPullDownRefresh();
+  },
+
   // 加载俱乐部数据
   getClubData: function(obj){
     wx.request({
@@ -253,7 +261,7 @@ Page({
       if (res.data.success) {
         wx.showModal({
           title: '提示',
-          content: '签到成功',
+          content: '签到成功，健身后请到“我的足迹”对服务进行点评',
           showCancel: false,
           complete: () => {
             // 跳转至我的足迹页面
@@ -283,10 +291,8 @@ Page({
   },
   // 会员排名
   memberRanking: function(){
-    // 跳转页面
-    let memberRanking_data = encodeURI(JSON.stringify(this.data.club.memberRanking));
     wx.navigateTo({
-      url: `../memberRanking/memberRanking?memberRanking=${memberRanking_data}` 
+      url: '../memberRanking/memberRanking' 
     });
   },
   // 健身直播

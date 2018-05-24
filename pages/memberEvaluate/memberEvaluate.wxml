@@ -115,14 +115,14 @@
         value='{{evalContent}}'></textarea>
     </view>
     <view class='evalulteUploadFile'>
-      <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
-        wx:if='{{memberEvaluate.evaluateImage1}}'>
+      <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill' 
+        bindtap='chooseImage' wx:if='{{memberEvaluate.evaluateImage1}}'>
       </image>
       <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage2}}' mode='aspectFill'
-        wx:if='{{memberEvaluate.evaluateImage2}}'>
+        bindtap='chooseImage' wx:if='{{memberEvaluate.evaluateImage2}}'>
       </image>
       <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage3}}' mode='aspectFill'
-        wx:if='{{memberEvaluate.evaluateImage3}}'>
+        bindtap='chooseImage' wx:if='{{memberEvaluate.evaluateImage3}}'>
       </image>
       <image src='{{base_picture_url}}/201805161100.png' mode='aspectFill' bindtap='chooseImage'
         wx:if='{{!memberEvaluate.evaluateImage3}}'>
@@ -155,10 +155,10 @@
     <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
       wx:if='{{memberEvaluate.evaluateImage1}}'>
     </image>
-    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage2}}' mode='aspectFill'
       wx:if='{{memberEvaluate.evaluateImage2}}'>
     </image>
-    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage1}}' mode='aspectFill'
+    <image src='{{base_picture_url}}/{{memberEvaluate.evaluateImage3}}' mode='aspectFill'
       wx:if='{{memberEvaluate.evaluateImage3}}'>
     </image>
   </view>

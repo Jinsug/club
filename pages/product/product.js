@@ -18,7 +18,6 @@ Page({
    */
   onLoad: function (options) {
     // 判断通过分享进入还是主页进入
-    console.log(options);
     if(options.productId && options.shareMember){
       this.setData({
         shareMember: options.shareMember,
@@ -114,6 +113,15 @@ Page({
    */
   onReachBottom: function () {
     
+  },
+
+  /**
+   * wxml绑定函数:主页按钮点击绑定(回到主页)
+   */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
   },
 
   /**
