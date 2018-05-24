@@ -82,7 +82,12 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+    // 分享当前页面时的参数
+    var club = wx.getStorageSync("club");
+    return {
+      title: club.name + "的团体课表",
+      path: 'pages/courseList/courseList'
+    }
   },
   /**
    * JS获取当前周从星期一到星期天的日期
