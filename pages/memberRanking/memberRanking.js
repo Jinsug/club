@@ -12,10 +12,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let memberRanking = JSON.parse(decodeURI(options.memberRanking));
-    this.setData({
-      memberRanking: memberRanking
-    });
+    
   },
 
   /**
@@ -29,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    this.getClubData(this);
   },
 
   /**
@@ -50,7 +47,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    this.getClubData(this);
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -58,5 +56,20 @@ Page({
    */
   onReachBottom: function () {
     
-  }
+  },
+
+  // 加载俱乐部数据
+  getClubData: function (obj) {
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
+      data: {
+        id: wx.getStorageSync('clubId')
+      },
+      success: function (res) {
+        obj.setData({
+          memberRanking: res.data.club.memberRanking
+        });
+      }
+    });
+  },
 })

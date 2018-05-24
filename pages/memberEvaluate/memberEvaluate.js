@@ -159,6 +159,19 @@ Page({
      * 提交评论
      */
     submitEvaluate: (obj) => {
+      // 如果未选择评无法提交评论
+      if (!obj.data.memberEvaluate.totalityScore || obj.data.memberEvaluate.totalityScore == '' || 
+        !obj.data.memberEvaluate.serviceScore || obj.data.memberEvaluate.serviceScore == '' ||
+        !obj.data.memberEvaluate.deviceScore || obj.data.memberEvaluate.deviceScore == '' ||
+        !obj.data.memberEvaluate.evenScore || obj.data.memberEvaluate.evenScore == ''){
+        // 提示用户
+        wx.showModal({
+          title: '提示',
+          content: '请对当前俱乐部评分',
+          showCancel: false
+        });
+        return;
+      }
       // 如果未填评论则不能提交
       if (!obj.data.memberEvaluate.evalContent || obj.data.memberEvaluate.evalCountent == ''){
         wx.showModal({
