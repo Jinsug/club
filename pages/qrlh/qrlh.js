@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    base_picture_url: 'https://www.ecartoon.com.cn/picture/',
     cardList: [],
     selectIndex: 0,
     selectImage: '201805231658.png',
@@ -28,7 +29,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    // 每次页面显示刷新健身卡数据
     this.methods.getClubData(this);
   },
 
@@ -61,16 +62,24 @@ Page({
   },
 
   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    var card = this.data.cardList[this.data.selectIndex];
+    var shareMember = wx.getStorageSync('memberId');
+    return {
+      title: card.freeProject,
+      path: 'pages/product/product?productId='+ card.id +'&shareMember=' + shareMember,
+      imageUrl: this.data.base_picture_url + card.image1
+    }
+  },
+
+  /**
    * wxml绑定函数: 商品列表点击绑定
    */
   selectProduct: function (e) {
     var index = e.currentTarget.dataset.index;
-    var cardList = this.methods.clearSelected(this.data.cardList, this);
-    cardList[index].selectImage = this.data.selectImage;
-    this.setData({
-      index: index,
-      cardList: cardList
-    });
+    this.methods.selectProduct(this.data.cardList, index, this);
   },
 
   /**
@@ -85,12 +94,7 @@ Page({
           id: wx.getStorageSync('clubId')
         },
         success: function (res) {
-          var cardList = obj.methods.clearSelected(res.data.cardList, obj);
-          // 选中时显示的图片
-          cardList[obj.data.selectIndex].selectImage = obj.data.selectImage;
-          obj.setData({
-            cardList: cardList
-          });
+          obj.methods.selectProduct(res.data.cardList, obj.data.selectIndex, obj);
         }
       });
     },
@@ -106,7 +110,18 @@ Page({
         return card;
       }
       return cardList.map(resetDefaultImage);
-    }
+    },
 
+    /**
+     * 选中商品
+     */
+    selectProduct: function (cardList, index, obj) {
+      cardList = obj.methods.clearSelected(cardList, obj);
+      cardList[index].selectImage = obj.data.selectImage;
+      obj.setData({
+        cardList: cardList,
+        selectIndex: index
+      });
+    }
   }
 })

@@ -195,7 +195,7 @@ page{
   background-color: rgba(0, 0, 0, 0);
 }
 
-.phoneNumber ::after{
+.phoneNumber::after{
   border: none;
 }
 

@@ -17,21 +17,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let product = wx.getStorageSync('product');
-    let clubCount = product.useRange.split(",").length;
-    // 设置日历的日期选择区间
-    let start = util.formatTime(new Date());
-    let end = util.formatTime(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)));
-    // 获取当前系统时间
-    product.currentDate = util.formatTime(new Date());
-    this.setData({
-      product: product,
-      clubCount: clubCount,
-      start: start,
-      end: end
-    });
-
-    WxParse.wxParse('remark', 'html', product.remark, this);
+    // 判断通过分享进入还是主页进入
+    console.log(options);
+    if(options.productId && options.shareMember){
+      this.setData({
+        shareMember: options.shareMember,
+        productId: options.productId
+      });
+      this.methods.getProductByShare(options.productId, this);
+    } else {
+     this.methods.getProductByIndex(this);
+    }
   },
 
   // 用户选择改变日期
@@ -45,13 +41,24 @@ Page({
 
   // 用户点击购买按钮
   goBuy: function(){
+    // 检查登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=product&productId='+this.data.productId+'&shareMember=' + 
+          this.data.shareMember
+      });
+      return;
+    }
     let param = {
       productId: this.data.product.id,
       productName: this.data.product.name,
       productPrice: this.data.product.cost,
       image: this.data.product.image1,
-      productType: this.data.product.productType,
+      productType: 'product',
       time: this.data.product.currentDate
+    }
+    if(this.data.shareMember){
+      param.shareMember = this.data.shareMember
     }
     let product_data = encodeURI(JSON.stringify(param));
     wx.navigateTo({
@@ -107,5 +114,54 @@ Page({
    */
   onReachBottom: function () {
     
+  },
+
+  /**
+   * 自定义函数
+   */
+  methods: {
+    /**
+     * 获取商品(从主页进入)
+     */
+    getProductByIndex: function (obj) {
+      let product = wx.getStorageSync('product');
+
+      // 调用设置数据源
+      obj.methods.setDataByProduct(product, obj);
+    },
+
+    // 获取商品(从分享进入)
+    getProductByShare: function (id, obj) {
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!getProductById.asp',
+        data: {
+          id: id
+        },
+        success: function (res) {
+          // 调用设置数据源
+          obj.methods.setDataByProduct(res.data.product, obj);
+        }
+      });
+    },
+
+    /**
+     * 设置数据源
+     */
+    setDataByProduct: function (product, obj) {
+      let clubCount = product.useRange.split(",").length;
+      // 设置日历的日期选择区间
+      let start = util.formatTime(new Date());
+      let end = util.formatTime(new Date(new Date().getTime() + (30 * 24 * 60 * 60 * 1000)));
+      // 获取当前系统时间
+      product.currentDate = util.formatTime(new Date());
+      obj.setData({
+        product: product,
+        clubCount: clubCount,
+        start: start,
+        end: end
+      });
+
+      WxParse.wxParse('remark', 'html', product.remark, obj);
+    }
   }
 })

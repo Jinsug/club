@@ -25,6 +25,12 @@ Page({
           source:source
         })
     }
+    if (options.productId && options.shareMember){
+      objx.setData({
+        productId: options.productId,
+        shareMember: options.shareMember
+      })
+    }
 
 
   },
@@ -318,7 +324,12 @@ Page({
               // 跳转到来时的页面
                 if (source == "courseList" || source == "active" || source == "index") {
                     wx.switchTab({
-                      url: '../../pages/' + source + '/' + source,
+                      url: '../../pages/' + source + '/' + source 
+                    })
+                } else if (source == "product") {
+                    wx.navigateTo({
+                      url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId +
+                        '&shareMember=' + objx.data.shareMember,
                     })
                 } else {
                     wx.navigateTo({

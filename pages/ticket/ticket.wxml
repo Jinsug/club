@@ -20,7 +20,7 @@
           </view>
           <view class='ticket-type'>
             有效期至：{{item.useDate}} 
-            <text class='limitPrice'>满{{item.limitPrice}}可用</text>
+            <text class='limitPrice'>满{{item.limitPrice}}元可用</text>
           </view>
           <view class='ticket-validity'>
             适用俱乐部：{{item.clubName}}

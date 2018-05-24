@@ -390,8 +390,6 @@ Page({
     let index = e.currentTarget.dataset.index;
     // 取出相应商品
     let product = this.data.cardList[index];
-    // 添加商品类型
-    product.productType = 'product';
     // 传递下一个页面
     wx.setStorageSync('product', product);
     wx.navigateTo({

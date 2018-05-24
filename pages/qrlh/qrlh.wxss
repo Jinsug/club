@@ -1,5 +1,5 @@
 .banner{
-  height: 180px;
+  height: 164px;
 }
 
 .banner > image{
@@ -131,4 +131,17 @@
   line-height: 44px;
   color: #FFF;
   background-color: #FF4401;
+  overflow: hidden;
+}
+
+.share-button{
+  float: left;
+  width: 100%;
+  height: 100%;
+  color: #FFF;
+  background-color: transparent;
+}
+
+.share-button::after{  
+  border: none;
 }

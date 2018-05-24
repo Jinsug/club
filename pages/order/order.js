@@ -45,7 +45,7 @@ Page({
    */
   onShow: function () {
     // 如果有优惠券就显示优惠券并计算价格
-    if (wx.getStorageSync("ticket")){
+    if (wx.getStorageSync("ticket") && !this.data.product.shareMember){
       let ticket = wx.getStorageSync("ticket");
       let price = this.data.product.productPrice - ticket.price;
       price = price < 0 ? 0 : price;
@@ -54,7 +54,22 @@ Page({
         price: price
       });
       wx.removeStorageSync("ticket");
-    }
+    } else if (!wx.getStorageSync('ticket') && this.data.product.shareMember) {
+      // 如果是通过分享进入需要再打九折
+      var price = this.data.product.productPrice * 0.9;
+      this.setData({
+        price: price
+      });
+    } else {
+      var ticket = wx.getStorageSync('ticket');
+      var price = (this.data.product.productPrice - ticket.price) * 0.9;
+      price = price < 0 ? 0 : price;
+      this.setData({
+        ticket: ticket,
+        price: price
+      });
+    } 
+    
   },
 
   /**
@@ -211,6 +226,9 @@ Page({
     if(this.data.product.weight){
       param.weight = this.data.product.weight;
     }
+    if(this.data.product.shareMember){
+      param.shareMember = this.data.product.shareMember;
+    } 
     if(this.data.ticket){
       param.ticket = this.data.ticket.ticketId;
     }
@@ -220,7 +238,7 @@ Page({
         json: encodeURI(JSON.stringify(param))
       },
       success: function(sign){
-        // console.log(sign);
+         console.log(sign);
         // 调用微信支付接口
         wx.requestPayment({
           timeStamp: sign.data.timeStamp,
