@@ -7,7 +7,11 @@
                 <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">成功预约</view>
                 <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">待审预约</view>
       </view>
-      
+        
+
+      <!-- 填充块 -->
+      <view class="fill"></view>
+
       <!-- swiper-content -->
       <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
               <!-- 成功预约 -->

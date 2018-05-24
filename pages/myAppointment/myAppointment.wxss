@@ -13,6 +13,13 @@ page{
     background: white; 
 }
 
+
+.fill{
+    width: 100%;
+    height: 30rpx;
+}
+
+
 swiper-item{
    overflow: scroll;
 }
