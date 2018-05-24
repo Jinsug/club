@@ -82,6 +82,20 @@ page{
 .pre:last-child{
     border-bottom: 1px solid #f0f0f2;
 }
+
+
+
+.prex{
+    width: auto;
+    height: auto;
+    padding: 20rpx 30rpx;
+    border-top: 1px solid #f0f0f2;
+    overflow: hidden;
+    background-color: white;
+}
+
+
+
 .connectWifiDiv{
   position: relative;
 }

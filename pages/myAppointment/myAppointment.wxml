@@ -2,39 +2,93 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 页面开始 -->
 <view class='content'>
-      <!-- 有预约数据时 -->
-      <view class='appointment' wx:if="{{hasData == 1}}" >
-              <view class='pre' wx:for="{{appointmentList}}" wx:for-item="appointment">
-                    <!-- 头像 -->
-                    <view class='left imgDiv'>
-                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
-                    </view>
-
-                    <!-- center -->
-                    <view class='left centerInfo'>
-                          <!-- 课程名称 -->
-                          <view class='title'>{{appointment.courseName}}</view>
-                          <!-- 授课教练 -->
-                          <view class='coachName value'>授课教练：{{appointment.coachName}}</view>
-                          <!-- 预约时间 -->
-                          <view class='dealTime value'>预约时间：{{appointment.applyDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
-
-                    </view>
-
-                    <!-- 取消 -->
-                    <view class='cancel' bindtap='cancel' data-courseid="{{appointment.courseId}}" >取消</view>
-              </view>
+      <!-- swiper-title -->
+      <view class="swiper-tab">
+                <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">成功预约</view>
+                <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">待审预约</view>
       </view>
       
-      <!-- 暂无数据 -->
-      <view class="noData" wx:if="{{hasData == 0}}">
-            <view class="noDataPicDiv">
-                  <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
-            </view>
+      <!-- swiper-content -->
+      <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
+              <!-- 成功预约 -->
+              <swiper-item>
+                      <!-- 有预约数据时 -->
+                      <view class='appointment' wx:if="{{hasAppliedData == 1}}" >
+                              <view class='pre' wx:for="{{appointmentListApplied}}" wx:for-item="appointment">
+                                    <!-- 头像 -->
+                                    <view class='left imgDiv'>
+                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
+                                    </view>
 
-            <view class="noDataFont">
-                    <view>暂无数据</view>
-                    <view>去看看别的</view>
-            </view>
-      </view>
+                                    <!-- center -->
+                                    <view class='left centerInfo'>
+                                          <!-- 课程名称 -->
+                                          <view class='title'>{{appointment.courseName}}</view>
+                                          <!-- 授课教练 -->
+                                          <view class='coachName value'>授课教练：{{appointment.coachName}}</view>
+                                          <!-- 预约时间 -->
+                                          <view class='dealTime value'>预约时间：{{appointment.applyDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
+
+                                    </view>
+
+                                    <!-- 取消 -->
+                                    <view class='cancel' bindtap='cancel' data-courseid="{{appointment.courseId}}" >取消</view>
+                              </view>
+                      </view>
+                      
+                      <!-- 暂无数据 -->
+                      <view class="noData" wx:if="{{hasAppliedData == 0}}">
+                            <view class="noDataPicDiv">
+                                  <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+                            </view>
+
+                            <view class="noDataFont">
+                                    <view>暂无数据</view>
+                                    <view>去看看别的</view>
+                            </view>
+                      </view>
+              
+              </swiper-item>
+
+              <!-- 待审预约 -->
+              <swiper-item>
+                      <!-- 有预约数据时 -->
+                      <view class='appointment' wx:if="{{hasApplyingData == 1}}" >
+                              <view class='pre' wx:for="{{appointmentListApplying}}" wx:for-item="appointment">
+                                    <!-- 头像 -->
+                                    <view class='left imgDiv'>
+                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
+                                    </view>
+
+                                    <!-- center -->
+                                    <view class='left centerInfo'>
+                                          <!-- 课程名称 -->
+                                          <view class='title'>{{appointment.courseName}}</view>
+                                          <!-- 授课教练 -->
+                                          <view class='coachName value'>授课教练：{{appointment.coachName}}</view>
+                                          <!-- 预约时间 -->
+                                          <view class='dealTime value'>预约时间：{{appointment.applyDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
+
+                                    </view>
+
+                                    <!-- 取消 -->
+                                    <view class='cancel' bindtap='cancel' data-courseid="{{appointment.courseId}}" >取消</view>
+                              </view>
+                      </view>
+                      
+                      <!-- 暂无数据 -->
+                      <view class="noData" wx:if="{{hasApplyingData == 0}}">
+                            <view class="noDataPicDiv">
+                                  <image class="noDataPic" src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png"></image>
+                            </view>
+
+                            <view class="noDataFont">
+                                    <view>暂无数据</view>
+                                    <view>去看看别的</view>
+                            </view>
+                      </view>
+              
+              </swiper-item>
+
+      </swiper>
 </view>

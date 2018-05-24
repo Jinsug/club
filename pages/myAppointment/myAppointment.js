@@ -4,6 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+     currentTab:"0",
      base_pic_url:"https://www.ecartoon.com.cn/picture"
   },
 
@@ -12,6 +13,7 @@ Page({
    */
   onLoad: function (options) {
     var objx = this;
+    objx.getEquipmentHeight();
     objx.getDatas();
     
   },
@@ -70,7 +72,8 @@ Page({
    */
   getDatas:function () {
     var objx = this;
-    var hasData = 0;
+    var hasAppliedData = 0;
+    var hasApplyingData = 0;
     var memberId = wx.getStorageSync("memberId");
     var param = {};
 
@@ -86,15 +89,25 @@ Page({
       success: function (res) {
         // 网络请求成功
         res = JSON.parse(res.data);
+        console.log(res);
         if (res.success) {
-          // 请求数据成功
-          var appointmentList = res.appointmentList;
-          if (appointmentList && appointmentList.length > 0 && appointmentList[0].image != "null" && appointmentList[0].image != null) {
-             hasData = 1;
+
+          // 成功预约
+          var appointmentListApplied = res.appointmentListApplied;
+          if (appointmentListApplied && appointmentListApplied.length > 0 && appointmentListApplied[0].image != "null" && appointmentListApplied[0].image != null) {
+            hasAppliedData = 1;
+          }
+           
+          // 待审预约
+          var appointmentListApplying = res.appointmentListApplying;
+          if (appointmentListApplying && appointmentListApplying.length > 0 && appointmentListApplying[0].image != "null" && appointmentListApplying[0].image != null) {
+            hasApplyingData = 1;
           }
           objx.setData({
-            appointmentList: appointmentList,
-            hasData: hasData
+            appointmentListApplied: appointmentListApplied,
+            appointmentListApplying: appointmentListApplying,
+            hasAppliedData: hasAppliedData,
+            hasApplyingData: hasApplyingData
           })
         } else {
           // 程序异常
@@ -186,5 +199,44 @@ Page({
       }
     })
 
+  },
+
+  /**
+  * 点击切换
+  */
+  clickTab: function (e) {
+    var objx = this;
+    var currentTab = e.target.dataset.current;
+    if (objx.data.currentTab == currentTab) {
+      return false;
+    } else {
+      objx.setData({
+        currentTab: currentTab
+      })
+    }
+  },
+
+  /**
+   * 滑动切换
+   */
+  swiperTab: function (e) {
+    var objx = this;
+    objx.setData({
+      currentTab: e.detail.current
+    })
+  },
+
+  /**
+   * 获取设备高度
+   */
+  getEquipmentHeight: function () {
+    var objx = this;
+    var sysInfo = wx.getSystemInfoSync();
+    var eqHeight = sysInfo.windowHeight + "px";
+    objx.setData({
+      eqHeight: eqHeight
+    })
   }
+
+
 })

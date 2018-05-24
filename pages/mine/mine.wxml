@@ -150,7 +150,7 @@
       <!-- 未登录 -->
       <view wx:if="{{hasLogin == 0}}">
               <!-- 连接wifi -->
-              <view class="pre" bindtap='checkTapLogin' >
+              <view class="prex" bindtap='checkTapLogin' >
                     <!-- icon -->
                     <view class='iconDiv'>
                           <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
@@ -166,7 +166,7 @@
       <!-- 已登录 -->
       <view wx:if="{{hasLogin == 1}}" class="connectWifiDiv">
               <!-- 连接wifi -->
-              <view class="pre" bindtap='connectWifi' >
+              <view class="prex" bindtap='connectWifi' >
                     <!-- icon -->
                     <view class='iconDiv'>
                           <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>

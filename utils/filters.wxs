@@ -112,7 +112,7 @@ var filters = {
       if (str == "" || str == "null" || str == null || str == "undefined" || str == undefined || parseInt(str) == 0) {
          str = "免费";
       } else {
-         str = parseFloat(str).toFixed(2) + "元";
+         str = "￥" + parseFloat(str).toFixed(2);
       }
       return str;
     }

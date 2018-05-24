@@ -5,6 +5,35 @@ page{
 }
 
 
+.swiper-tab{
+    padding: 0 20rpx;
+    overflow: hidden;
+    border-top: 2rpx solid #f0f2f2;
+    border-bottom: 2rpx solid #f0f2f2;
+    background: white; 
+}
+
+swiper-item{
+   overflow: scroll;
+}
+
+.swiper-tab-item{
+    float:  left;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 18rpx 0;
+    height: auto;
+    font-size: 28rpx;
+    color: black;
+    text-align: center;
+}
+
+.active{
+    color: #FE970F;
+    border-bottom: 4rpx solid #FE970F;
+}
+
 .pre {
   overflow: hidden;
   padding: 30rpx 20rpx;
