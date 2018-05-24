@@ -72,3 +72,27 @@ page{
    color: #FFF;
    background-color: #FB8C00;
 }
+
+
+.memos{
+  margin-top: 20rpx;
+  height: auto;
+  background: white;
+  padding: 24rpx;
+  overflow: hidden;
+}
+
+
+.preLine{
+  float: left;
+  left: 0;
+  bottom: 0;
+  font-size: 28rpx;
+  color: #A9A9A9;
+}
+
+.reminders{
+  margin-bottom: 20rpx;
+}
+
+

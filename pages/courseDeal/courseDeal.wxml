@@ -48,6 +48,18 @@
                   <!-- 非会员价 -->
                   <view class='value' wx:if="{{course.isVip == false}}">{{filter.getPriceStr(course.normol_price)}}</view>
              </view>
+
+       </view>
+
+       <!-- 注意事项 -->
+       <view class='memos'>
+             <view class='title reminders'>注意事项</view>
+             <!-- 第一行 -->
+             <view class='preLine'>1.购买课程后，请在开课前十分到俱乐部完成签到。</view>
+             <!-- 第二行 -->
+             <view class='preLine'>2.签到方式： 进入俱乐部打开小程序，点击首页“健身打卡”按钮进行签到。</view>
+             <!-- 第三行 -->
+             <view class='preLine' wx:if="{{course.memo != '' && course.memo != 'null'}}" ><text>3.</text>{{course.memo}}<text>。</text></view> 
        </view>
 
       <!-- 满员就不显示按钮了 -->

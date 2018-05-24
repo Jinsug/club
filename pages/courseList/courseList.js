@@ -22,6 +22,9 @@ Page({
         dd = "0" + dd;
     }
     var toDay = toDate.getFullYear() + "-" + mm + "-" + dd;
+    this.setData({
+      today: toDay
+    })
     this.getDates(toDay);
     // 设置图片高宽
     this.getEquipmentWidth();
@@ -59,7 +62,13 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
+    // 用户下拉，刷新当前页面数据
+    var objx = this;
+    var today = objx.data.today;
+    objx.getDatas(today);
     
+    // 数据请求完成，停止下拉
+    wx.stopPullDownRefresh();
   },
 
   /**
