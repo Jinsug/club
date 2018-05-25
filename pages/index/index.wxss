@@ -236,8 +236,9 @@ page{
 }
 
 .oneCard-contant{
-  float: right;
-  width: 60%;
+  float: left;
+  margin-left: 10px;
+  width: 63%;
 }
 
 .onCard-info{
