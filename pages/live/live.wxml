@@ -1,1 +1,9 @@
+<!-- 引入过滤器 -->
+<wxs module='filter' src='../../utils/filters.wxs'></wxs>
 <video src='https://www.ecartoon.com.cn/picture/video.mp4'></video>
+
+<!-- 分享页面，回到首页按钮 -->
+<view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+        <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+        <view>前往主页</view>
+</view>

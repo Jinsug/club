@@ -12,6 +12,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var objx = this;
+    var source = options.source;
+    var clubId = options.clubId;
+    if (source && clubId) {
+      objx.setData({
+        source:source,
+        clubId:clubId
+      })
+    }
+    
     
   },
 
@@ -60,10 +70,19 @@ Page({
 
   // 加载俱乐部数据
   getClubData: function (obj) {
+    var id = 0;
+    var source = obj.data.source;
+    if (!source || source == '' || source == 'null' || source == 'undefined' || source != 'share') {
+      // 不是分享进入页面的
+      id = wx.getStorageSync('clubId');
+    } else {
+      // 从分享进来的
+      id = obj.data.clubId;
+    }
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
       data: {
-        id: wx.getStorageSync('clubId')
+        id: id
       },
       success: function (res) {
         obj.setData({
@@ -72,4 +91,28 @@ Page({
       }
     });
   },
+
+  /**
+   * 分享当前页面
+   */
+  onShareAppMessage: function () {
+    var objx = this;
+    var club = wx.getStorageSync('club');
+    return {
+      title: club.name + '会员排行榜',
+      path: 'pages/memberRanking/memberRanking?source=share&clubId=' + club.id
+    }
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
+  }
+
+
+  
 })

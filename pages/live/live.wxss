@@ -8,3 +8,24 @@ page{
 video{
   width: 100%;
 }
+
+.goHome{
+  position: fixed;
+  bottom: 80px;
+  right: 0;
+  z-index: 1;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.goHome > image{
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.goHome > view{
+  text-align: center;
+  font-size: 10px;
+  color: #FFF;
+}

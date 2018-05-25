@@ -85,7 +85,7 @@ Page({
     // 分享当前页面时的参数
     var club = wx.getStorageSync("club");
     return {
-      title: club.name + "的团体课表",
+      title: club.name + "团体课表",
       path: 'pages/courseList/courseList'
     }
   },
