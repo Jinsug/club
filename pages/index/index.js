@@ -59,7 +59,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: this.club.name + '的小程序',
+      title: this.data.club.name + '的小程序',
       path: 'pages/index/index'
     }
   },

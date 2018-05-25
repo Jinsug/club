@@ -15,14 +15,50 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let active = JSON.parse(decodeURI(options.active));
-    if(active.result){
-      this.addResultTips(active);
+    
+    if(options.activeId){
+      this.getActiveDetailByShare(options.activeId, this);
+    } else {
+      let active = JSON.parse(decodeURI(options.active));
+      this.getActiveDetailByIndex(active ,this);
+    }
+  },
+
+  /**
+   * 
+   */
+  getActiveDetailByIndex: function (active, obj) {
+    if (active.result) {
+      obj.addResultTips(active);
     } else {
       active.resultImage = 'opacity.png';
     }
-    this.setData({
+    obj.setData({
       active: active
+    });
+  },
+
+  /**
+   * 
+   */
+  getActiveDetailByShare: function (activeId, obj) {
+    wx.request({
+      url: 'https://www.ecartoon.com.cn/clubmp!getActiveById.asp',
+      data: {
+        activeId, activeId
+      },
+      success: function (res) {
+        var active = res.data.active;
+        if (active.result) {
+          obj.addResultTips(active);
+        } else {
+          active.resultImage = 'opacity.png';
+        }
+        obj.setData({
+          activeId: activeId,
+          active: active
+        });
+      }
     });
   },
 
@@ -80,8 +116,38 @@ Page({
     
   },
 
+  /**
+   * 页面转发
+   */
+  onShareAppMessage: function () {
+    var company = this.data.active.target == 'A' || target == 'B' ? '公斤' : '次';
+    var targetText = { A: '体重减少', B: '体重增加', C: '运动', D: '运动' };
+    var target = this.data.active.days + '天' + targetText[this.data.active.target] + 
+      this.data.active.value + company;
+    return {
+      title: target,
+      path: 'pages/activeDetail/activeDetail?activeId=' + this.data.active.id
+    }
+  },
+
+  /**
+   * wxml绑定函数:主页按钮点击绑定(回到主页)
+   */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
+  },
+
   // 参加挑战
   participateIn: function () {
+    if(!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=activeDetail&activeId=' + this.data.activeId
+      });
+      return;
+    }
+
     let active_data = encodeURI(JSON.stringify(this.data.active));
     wx.navigateTo({
       url: `../joinActive/joinActive?active=${active_data}`

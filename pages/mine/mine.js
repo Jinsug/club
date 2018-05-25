@@ -25,11 +25,23 @@ Page({
           source:source
         })
     }
-    if (options.productId && options.shareMember){
+    
+    if (options.productId){
       objx.setData({
-        productId: options.productId,
-        shareMember: options.shareMember
+        productId: options.productId
       })
+    } 
+
+    if (options.shareMember) {
+      objx.setData({
+        shareMember: options.shareMember
+      });
+    }
+
+    if (options.activeId) {
+      objx.setData({
+        activeId: options.activeId
+      });
     }
 
 
@@ -274,8 +286,7 @@ Page({
     if (!memberId || memberId == "") {
       wx.showModal({
         title: '提示',
-        content: '您取消了授权，需要在“发现”的小程序页面将“俱乐部小程序”删除，' +
-        '重新登录授权才可以体验后续功能',
+        content: '本小程序需要登录使用，请点击上面的“登录”按钮，用微信号登录获得完整体验。',
         showCancel: false,
         complete: function () {
           return false;
@@ -327,10 +338,20 @@ Page({
                       url: '../../pages/' + source + '/' + source 
                     })
                 } else if (source == "product") {
-                    wx.navigateTo({
-                      url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId +
+                    if (objx.data.productId && objx.data.shareMember) {
+                      wx.navigateTo({
+                        url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId +
                         '&shareMember=' + objx.data.shareMember,
-                    })
+                      })
+                    } else {
+                      wx.navigateTo({
+                        url: '../../pages/' + source + '/' + source + '?productId=' + objx.data.productId,
+                      })
+                    }
+                } else if (source == "activeDetail") {
+                  wx.navigateTo({
+                    url: '../../pages/' + source + '/' + source + '?activeId=' + objx.data.activeId,
+                  })
                 } else {
                     wx.navigateTo({
                       url: '../../pages/' + source + '/' + source,

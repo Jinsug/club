@@ -24,6 +24,11 @@ Page({
         productId: options.productId
       });
       this.methods.getProductByShare(options.productId, this);
+    } else if (options.productId) {
+      this.setData({
+        productId: options.productId
+      });
+      this.methods.getProductByShare(options.productId, this);
     } else {
      this.methods.getProductByIndex(this);
     }
@@ -42,9 +47,17 @@ Page({
   goBuy: function(){
     // 检查登录
     if (!wx.getStorageSync('memberId')) {
+      var url = '';
+      if (this.data.productId && this.data.shareMember){
+        url = '../mine/mine?source=product&productId=' + this.data.productId + '&shareMember=' +
+          this.data.shareMember;
+      } else if (this.data.productId) {
+        url = '../mine/mine?source=product&productId=' + this.data.productId;
+      } else {
+        url = '../mine/mine?source=product';
+      }
       wx.reLaunch({
-        url: '../mine/mine?source=product&productId='+this.data.productId+'&shareMember=' + 
-          this.data.shareMember
+        url: url
       });
       return;
     }
@@ -113,6 +126,16 @@ Page({
    */
   onReachBottom: function () {
     
+  },
+
+  /**
+   * 页面转发
+   */
+  onShareAppMessage: function () {
+    return {
+      title: this.data.product.freeProject,
+      path: 'pages/product/product?productId=' + this.data.product.id
+    }
   },
 
   /**
