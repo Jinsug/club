@@ -4,7 +4,6 @@ page{
 }
 
 .weekDiv{
-    width: 100%;
     height: auto;
     padding: 20rpx 30rpx;
     border-top: 2rpx solid #f0f2f2;
@@ -14,7 +13,7 @@ page{
 
 .preDate{
     float: left;
-    width: 12%;
+    width: 13%;
     margin: 0 auto;
     font-size: 24rpx;
     text-align: center;
@@ -50,7 +49,6 @@ page{
 }
 
 .course{
-   width: 100%;
    height: auto;
    padding: 20rpx;
    border-top: 2rpx solid #f0f2f2;
