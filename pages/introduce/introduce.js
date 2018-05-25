@@ -95,7 +95,7 @@ Page({
     var objx = this;
     var club = wx.getStorageSync('club');
     return {
-      title: club.name + '俱乐部介绍',
+      title: club.name + '介绍',
       path: 'pages/introduce/introduce?source=share&clubId=' + club.id
     }
   },

@@ -579,7 +579,7 @@ Page({
   checkTapLogin: function () {
     wx.showModal({
       title: '提示',
-      content: '请先登录',
+      content: '本小程序需要登录使用，请点击上面的“登录”按钮，用微信号登录获得完整体验。',
       showCancel:false
     })
     return;
