@@ -134,6 +134,7 @@ page{
 
 .cutprice{
   width: 70%;
+  height: 40rpx;
   margin: 0 auto;
   font-size: 28rpx;
   color: white;
@@ -223,4 +224,15 @@ swiper-item{
   width: 100%;
   height: 20rpx;
   background: #f0f2f2;
+}
+
+.shareButton{
+  background-color: transparent;
+  margin-top: -14rpx;
+  color: white;
+  font-size: 28rpx;
+}
+
+.shareButton::after{
+  border: none;
 }

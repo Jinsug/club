@@ -56,14 +56,14 @@ Page({
         price: price
       });
       wx.removeStorageSync("ticket");
-    } else if (!wx.getStorageSync('ticket') && wx.getStorageSync(key) == '' &&  
+    } else if (!wx.getStorageSync('ticket') && wx.getStorageSync('ticket') == '' &&  
         this.data.product.shareMember) {
       // 如果是通过分享进入需要再打九折
       var price = this.data.product.productPrice * 0.9;
       this.setData({
         price: price
       });
-    } else {
+    } else if (wx.getStorageSync('ticket') && wx.getStorageSync('ticket') != '') {
       var ticket = wx.getStorageSync('ticket');
       var price = (this.data.product.productPrice - ticket.price) * 0.9;
       price = price < 0 ? 0 : price;
@@ -227,6 +227,9 @@ Page({
     } 
     if(this.data.ticket){
       param.ticket = this.data.ticket.ticketId;
+    } 
+    if (this.data.product.priceId) {
+      param.priceId = this.data.product.priceId;
     }
     wx.request({
       url: 'https://www.ecartoon.com.cn/clubmp!createClubMPOrder.asp',

@@ -17,15 +17,16 @@ Page({
    */
   onLoad: function (options) {
     var objx = this;
-    var priceActive = options.priceActive;
+    var priceActiveId = options.priceActiveId;
     var id = options.parent;
+    console.log("priceActiveId: " + priceActiveId + ",  id: " + id);
     if (id) {
       objx.setData({
         id:id
       })
-    } 
+    }
     objx.setData({
-      priceActive:priceActive
+      priceActiveId: priceActiveId
     })
     
     var memberId = wx.getStorageSync("memberId");
@@ -33,7 +34,7 @@ Page({
       // 用户已登录的情况下，发起砍价
        objx.priceCutdown();
     } else {
-       objx.getDatas(objx.data.id, objx.data.priceActive);
+      objx.getDatas(objx.data.id, objx.data.priceActiveId);
     }
 
   },
@@ -84,7 +85,13 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    
+    // 找人帮砍
+    var objx = this;
+    var priceActive = objx.data.priceActive;
+    return{
+        title:'200元砍价至100元，来帮我砍价！',
+        path:'pages/priceCutdown/priceCutdown?parent=' + priceActive.id + '&priceActiveId=' + priceActive.priceActive
+    }
   },
 
 
@@ -157,6 +164,18 @@ Page({
      })
   },
 
+   /**
+    * 我也要发起砍价
+    */
+    meToo: function () {
+      var objx = this;
+      objx.setData({
+        id:"meToo"
+      })
+
+      // 调用砍价方法
+      objx.priceCutdown();
+    },
   /**
    * 进行砍价，并且将数据返回
    * priceCutdown
@@ -165,18 +184,26 @@ Page({
     var objx = this;
     
     // 用户登录检查
-    var memberId = wx.getStorageSync("memberId");
-    var priceActive = objx.data.priceActive;
-    var id = objx.data.id;
 
-    // 测试数据
-    // memberId = 9388;
-    // priceActive = 23;
-    // id = 27
+    if (!objx.checkLoginOnFun()) {
+       return false;
+    }
+
+    var memberId = wx.getStorageSync("memberId");
+    var priceActiveId = objx.data.priceActiveId;
+    var id = objx.data.id;
+    if (id == "meToo") {
+        id = null;
+    }
+
     var param = {
-      priceActive:priceActive,
+      priceActive: priceActiveId,
       memberId:memberId
     }
+
+    console.log(priceActiveId);
+    console.log(memberId);
+    console.log(id);
     // 如果id存在，则传递id
     if (id) {
       param.id = id;
@@ -197,13 +224,15 @@ Page({
           content: res.message,
         })
         
-        if (res.success) {
-          // 发起砍价成功
-          priceActive = res.priceActive;
-          id = res.id;
+        if (res.priceActive) {
+          // 刷新当前页面数据
+          objx.getDatas(res.id, res.priceActive);
         }
-        // 刷新当前页面数据
-        objx.getDatas(id, priceActive);
+      console.log(res);
+       objx.setData({
+         cutActive: res.cutActive,
+         already: res.already
+       })
 
       },
       error:function (e) {
@@ -263,6 +292,58 @@ Page({
         cutd:cutd
       })
 
+  },
+
+  /**
+   * 登录验证
+   */
+  checkLoginOnFun: function () {
+    var objx = this;
+    var memberId = wx.getStorageSync('memberId');
+    if (!memberId || memberId == '' || memberId == 'null' || memberId == 'undefined') {
+      // 跳转到我的页面登录
+      wx.reLaunch({
+        url: '../../pages/mine/mine?source=priceCutdown&priceCutdownId=' + objx.data.id + '&priceActiveId=' + objx.data.priceActiveId,
+      })
+      return false;
+    } else {
+      return true;
+    }
+  },
+
+
+  /**
+   * 立即购买
+   */
+  gotoBuy: function () {
+    var objx = this;
+    var now = new Date();
+    var MM = now.getMonth() + 1;
+    if (MM < 10) {
+      MM = "0" + MM;
+    }
+    var dd = now.getDate();
+    if (dd < 10) {
+      dd = "0" + dd;
+    }
+    var priceActive = objx.data.priceActive;
+    var productPrice = priceActive.currentMoney;
+    productPrice = 0.01;
+
+    var product = {
+       productId: priceActive.prodId,
+       productType: "priceCutdownProduct",
+       productName: priceActive.prodName,
+       time: now.getFullYear() + "-" + MM + "-" + dd,
+       productPrice: productPrice,
+       image: priceActive.activePoster,
+       priceId: priceActive.id
+    };
+
+    // 跳转到订单页面
+    wx.navigateTo({
+      url: '../../pages/order/order?product=' + encodeURI(JSON.stringify(product)),
+    })
   }
   
 

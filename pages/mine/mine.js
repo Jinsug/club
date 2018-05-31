@@ -44,6 +44,13 @@ Page({
       });
     }
 
+    if (options.priceActiveId) {
+      objx.setData({
+        priceActiveId: options.priceActiveId,
+        priceCutdownId: options.priceCutdownId
+      })
+    }
+
 
   },
 
@@ -352,6 +359,11 @@ Page({
                   wx.navigateTo({
                     url: '../../pages/' + source + '/' + source + '?activeId=' + objx.data.activeId,
                   })
+                } else if (source == "priceCutdown") {
+                  wx.navigateTo({
+                    url: '../../pages/' + source + '/' + source + '?parent=' + objx.data.priceCutdownId + '&priceActiveId=' + objx.data.priceActiveId,
+                  })
+
                 } else {
                     wx.navigateTo({
                       url: '../../pages/' + source + '/' + source,

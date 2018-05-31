@@ -137,7 +137,7 @@ Page({
     let index = e.currentTarget.dataset.index;
     let priceActive = this.data.priceActiveList[index];
     wx.navigateTo({
-      url: '../priceCutdown/priceCutdown?priceActive=' + priceActive.id
+      url: '../priceCutdown/priceCutdown?priceActiveId=' + priceActive.id
     });
   }
 })

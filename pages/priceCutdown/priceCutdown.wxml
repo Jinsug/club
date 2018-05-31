@@ -48,15 +48,52 @@
 
         <!-- funButtons -->
         <view class='funButtons'>
-                <!-- 立即购买 -->
-                <view class='left buyDiv'>
-                      <view class='buy' >立即购买</view>
+               <!-- 是当前用户发起的砍价 -->
+               <view wx:if="{{cutActive}}">
+                      <!-- 立即购买 -->
+                      <view class='left buyDiv' wx:if="{{cutActive}}" bindtap='gotoBuy'>
+                            <view class='buy' >立即购买</view>
+                      </view>
+
+                      <!-- 找人帮砍 -->
+                      <view class='left cutpriceDiv' >
+                            <view class='cutprice'>
+                                  <button class='shareButton' open-type='share' >找人帮砍</button>
+                            </view>
+                      </view>
+               </view>
+
+
+
+                <view wx:if="{{!cutActive}}">
+                      <!-- 我也要 -->
+                      <view class='left buyDiv' wx:if="{{!cutActive}}" bindtap='meToo'>
+                            <view class='buy' >我也要</view>
+                      </view>
+
+                      <view wx:if="{{!already}}">
+                            <!-- 我来砍价 -->
+                            <view class='left cutpriceDiv' wx:if="{{!cutActive}}" >
+                                  <view class='cutprice' bindtap='priceCutdown'>我来砍价</view>
+                            </view>
+                      </view>
+
+                      <view wx:if="{{already}}">
+                            <!-- 找人帮砍 -->
+                            <view class='left cutpriceDiv' >
+                                  <view class='cutprice'>
+                                        <button class='shareButton' open-type='share' >找人帮砍</button>
+                                  </view>
+                            </view>
+                      </view>
                 </view>
 
-                <!-- 帮人砍价 -->
-                <view class='left cutpriceDiv'>
-                      <view class='cutprice' bindtap='priceCutdown'>帮人砍价</view>
-                </view>
+                
+
+                
+
+               
+                
         </view>
 
 
