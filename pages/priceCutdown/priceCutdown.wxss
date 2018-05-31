@@ -1,0 +1,226 @@
+page{
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.head{
+   position: relative;
+   width: 100%;
+   height: auto;
+}
+
+.headImgDiv{
+  width: 100%;
+  height: 360rpx;
+}
+
+.headImg{
+  width: 100%;
+  height: 100%;
+}
+
+.prod{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  background: rgba(109, 105, 101, 0.7);
+  overflow: hidden;
+}
+
+.left{
+  float: left;
+  left: 0;
+  bottom: 0;
+}
+
+.right{
+  float: right;
+  right: 0;
+  bottom: 0;
+}
+
+.prodName{
+   font-size: 28rpx;
+   color: white;
+   padding: 20rpx 0;
+   margin-left: 20rpx;
+}
+
+.more{
+  width: 22rpx;
+  height: 40rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
+
+.moreIcon{
+  width: 100%;
+  height: 100%;
+}
+
+
+.countdown{
+  width: 100%;
+  height: auto;
+  padding: 20rpx 0;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.time{
+  background: #FF0000;
+  color: white;
+  padding: 0 10rpx;
+  margin: 0 10rpx;
+}
+
+.priceBlock{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-bottom: 2rpx solid #f0f2f2;
+  padding-bottom: 20rpx;
+}
+
+.price{
+  float: left;
+  left: 0;
+  bottom: 0;
+  width: 33%;
+  height: auto;
+  text-align: center;
+}
+
+.title{
+  font-size: 32rpx;
+  padding: 20rpx 0;
+}
+
+.money{
+  font-size: 28rpx;
+  color: #FF3E00;
+}
+
+.funButtons{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  padding: 30rpx 0;
+}
+
+.buyDiv{
+  width: 50%;
+  height: auto;
+}
+
+.buy{
+  width: 70%;
+  margin:0 auto;
+  font-size: 28rpx;
+  color: white;
+  padding: 10rpx 0;
+  background: #FFDD00;
+  text-align: center;
+  border-radius: 5rpx;
+}
+
+.cutpriceDiv{
+  width: 50%;
+  height: auto;
+}
+
+.cutprice{
+  width: 70%;
+  margin: 0 auto;
+  font-size: 28rpx;
+  color: white;
+  padding: 10rpx 0;
+  background: #FF4401;
+  text-align: center;
+  border-radius: 5rpx; 
+}
+
+
+
+.swiper-tab{
+    padding: 0 20rpx;
+    overflow: hidden;
+    border-top: 2rpx solid #f0f2f2;
+    border-bottom: 2rpx solid #f0f2f2; 
+}
+
+swiper-item{
+   overflow: scroll;
+}
+
+.swiper-tab-item{
+    float:  left;
+    left: 0;
+    bottom: 0;
+    width: 50%;
+    padding: 28rpx 0;
+    height: auto;
+    font-size: 32rpx;
+    color: black;
+    text-align: center;
+}
+
+.active{
+    color: #FE970F;
+    border-bottom: 4rpx solid #FE970F;
+}
+
+.douFill{
+  width: 100%;
+  height: 20rpx;
+}
+
+
+.remark{
+  font-size: 28rpx;
+  color: #999999;
+  padding: 20rpx; 
+}
+
+.pre{
+  padding: 20rpx;
+  border-bottom: 2rpx dashed #999999;
+  overflow: hidden;
+}
+
+.pre:last-child{
+  border: none;
+}
+
+.userImageDiv{
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.userImage{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.cutMoney{
+  font-size: 28rpx;
+  color: #999999;
+  margin-left: 10rpx;
+  line-height: 50rpx;
+}
+
+.currentMoney{
+  font-size: 28rpx;
+  color: #FE970F;
+  margin-left: 10rpx;
+}
+
+.douFillx{
+  width: 100%;
+  height: 20rpx;
+  background: #f0f2f2;
+}

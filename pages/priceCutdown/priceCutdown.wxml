@@ -1,0 +1,113 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 页面开始 -->
+<view class='content'>
+        <!-- 头部 -->
+        <view class='head'>
+                <!-- headImgDiv -->
+                <view class='headImgDiv'>
+                        <image class='headImg' mode='aspectfill' src='{{filter.errorImage(priceActive.activePoster)}}'></image>
+                </view>
+                <view class='prod'>
+                      <view class='left prodName'>{{priceActive.prodName}}</view>
+                      <view class='right more'>
+                              <image class='moreIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/promore.png' ></image>
+                      </view>
+                </view>
+        </view>
+
+        <view class='countdown'>
+              倒计时: <text class='time'>{{DD}}</text>天<text class='time'>{{HH}}</text>小时<text class='time'>{{MM}}</text>分<text class='time'>{{SS}}</text>秒
+        </view>
+
+        <!-- 填充区域 -->
+        <view class='douFillx'></view>
+
+
+        <!-- priceBlock -->
+        <view class='priceBlock'>
+              <!-- 原价 -->
+              <view class='orignPrice price'>
+                    <view class='title'>原价</view>
+                    <view class='money'>￥{{filter.toFixed(priceActive.money, 2)}}</view>
+              </view>
+
+              <!-- 可砍至 -->
+              <view class='deadLinePrice price'>
+                    <view class='title'>可砍至</view>
+                    <view class='money'>￥{{filter.toFixed(priceActive.lowPrice, 2)}}</view>
+              </view>
+
+              <!-- 当前价 -->
+              <view class='currentPrice price'>
+                    <view class='title'>当前价</view>
+                    <view class='money'>￥{{filter.toFixed(priceActive.currentMoney, 2)}}</view>
+              </view>
+        </view>
+
+
+        <!-- funButtons -->
+        <view class='funButtons'>
+                <!-- 立即购买 -->
+                <view class='left buyDiv'>
+                      <view class='buy' >立即购买</view>
+                </view>
+
+                <!-- 帮人砍价 -->
+                <view class='left cutpriceDiv'>
+                      <view class='cutprice' bindtap='priceCutdown'>帮人砍价</view>
+                </view>
+        </view>
+
+
+
+        <!-- 填充区域 -->
+        <view class='douFillx'></view>
+
+
+
+        <!-- 滑块显示信息 -->
+
+        <!-- title -->
+        <view class="swiper-tab">
+                <view class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">活动说明</view>
+                <view class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">砍价排名</view>
+        </view>
+
+        <!-- 填充高度 -->
+        <view class='douFill'></view>
+
+        <!-- content -->
+        <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
+                    <swiper-item>
+                                  <view class='remark'>{{priceActive.remark}}</view>
+                    </swiper-item>
+
+                    <swiper-item>
+                                  <view class='ranking' wx:for="{{priceActive.sortList}}" wx:for-item="cutprice">
+                                          <view class='pre'>
+                                                <view class='left userImageDiv'>
+                                                        <image class='userImage' mode='aspectfill'  src='{{filter.errorImage(cutprice.image)}}'></image>
+                                                </view>
+                                                <view class='left cutMoney'>
+                                                      {{filter.overflow_hidden(cutprice.name, 4)}}已砍掉{{filter.toFixed(cutprice.totalCut, 2)}}元<text class='currentMoney'>当前金额{{filter.toFixed(cutprice.currentMoney, 2)}}</text>元
+                                                </view>
+                                          </view>
+
+                                          
+                                  </view>
+                    </swiper-item>
+        
+        </swiper>
+
+
+
+
+
+
+
+
+
+
+
+</view>

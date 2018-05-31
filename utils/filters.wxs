@@ -7,6 +7,10 @@ var filters = {
     if(!image || image == ''){
       return 'https://www.ecartoon.com.cn/miniProgram/club/img/default.png';
     }
+
+    if (image.indexOf("http://wx") >= 0 ){
+      return image;
+    }
     return 'https://www.ecartoon.com.cn/picture/' + image;
   },
   toFixed: function (num, length) {

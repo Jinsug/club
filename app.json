@@ -30,7 +30,8 @@
     "pages/plan/plan",
     "pages/planDetail/planDetail",
     "pages/private/private",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/priceCutdown/priceCutdown"
     
 
   ],
