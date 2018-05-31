@@ -38,17 +38,18 @@
 }
 
 .top{
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .middle{
-  height: 63px;
-  line-height: 63px;
-  font-size: 13px;
+  height: 53px;
+  line-height: 53px;
+  font-size: 12px;
   text-align: center;
 }
 
 .bottom{
-  font-size: 13px;
+  margin-right: 20%;
+  font-size: 11px;
   text-align: right;
 }

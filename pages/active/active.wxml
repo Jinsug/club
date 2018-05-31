@@ -13,9 +13,9 @@
       <image src='{{filter.errorImage(item.image)}}' mode='aspectFill'></image>
       <view class='active-body'>
         <view class='top'>挑战：{{item.name}}</view>
-        <view class='middle'>{{item.count}}人参加</view>
+        <view class='middle'>目标：{{filter.active_target(item.days, item.target, item.value)}}</view>
         <view class='bottom'>
-          目标：{{filter.active_target(item.days, item.target, item.value)}}
+          {{item.count}}人参加
         </view>
       </view>
     </view>
