@@ -88,7 +88,7 @@ Page({
   swiperTab: function (e) {
     var objx = this;
     objx.setData({
-      currentTap: e.detail.current
+      currentTab: e.detail.current
     })
   }
   ,

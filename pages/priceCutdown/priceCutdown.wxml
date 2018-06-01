@@ -118,7 +118,7 @@
         <!-- content -->
         <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
                     <swiper-item>
-                                  <view >
+                                  <view class='remark' >
                                         <template is="wxParse" data="{{wxParseData:remark.nodes}}"/>
                                   </view>
                     </swiper-item>

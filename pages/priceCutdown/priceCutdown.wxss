@@ -182,8 +182,6 @@ swiper-item{
 
 
 .remark{
-  font-size: 28rpx;
-  color: #999999;
   padding: 20rpx; 
 }
 
