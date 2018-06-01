@@ -28,6 +28,14 @@ Page({
       product: param,
       price: param.productPrice
     });
+    let showTicket = true;
+    if (!param.showTicket){
+        showTicket = false;
+    }
+
+    obj.setData({
+      showTicket: showTicket
+    })
 
     // 查询用户信息
     obj.getMemberData();

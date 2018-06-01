@@ -1,5 +1,6 @@
 <!-- 引入过滤器 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
 <!-- 页面开始 -->
 <view class='content'>
         <!-- 头部 -->
@@ -8,7 +9,7 @@
                 <view class='headImgDiv'>
                         <image class='headImg' mode='aspectfill' src='{{filter.errorImage(priceActive.activePoster)}}'></image>
                 </view>
-                <view class='prod'>
+                <view class='prod' bindtap='gotoProduct' data-productid='{{priceActive.prodId}}'>
                       <view class='left prodName'>{{priceActive.prodName}}</view>
                       <view class='right more'>
                               <image class='moreIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/promore.png' ></image>
@@ -72,9 +73,9 @@
                       </view>
 
                       <view wx:if="{{!already}}">
-                            <!-- 我来砍价 -->
+                            <!-- 帮人砍价 -->
                             <view class='left cutpriceDiv' wx:if="{{!cutActive}}" >
-                                  <view class='cutprice' bindtap='priceCutdown'>我来砍价</view>
+                                  <view class='cutprice' bindtap='priceCutdown'>帮人砍价</view>
                             </view>
                       </view>
 
@@ -117,7 +118,9 @@
         <!-- content -->
         <swiper current="{{currentTab}}" duration="300"  bindchange="swiperTab" class="swiper" style="width:100%;height:{{eqHeight}};overflow:scroll;" >
                     <swiper-item>
-                                  <view class='remark'>{{priceActive.remark}}</view>
+                                  <view >
+                                        <template is="wxParse" data="{{wxParseData:remark.nodes}}"/>
+                                  </view>
                     </swiper-item>
 
                     <swiper-item>

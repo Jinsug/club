@@ -1,10 +1,11 @@
+var WxParse = require('../../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentTap:0,
+    currentTab:0,
     priceActive:{
       activePoster:"1.jpg"
     },
@@ -19,7 +20,7 @@ Page({
     var objx = this;
     var priceActiveId = options.priceActiveId;
     var id = options.parent;
-    console.log("priceActiveId: " + priceActiveId + ",  id: " + id);
+  
     if (id) {
       objx.setData({
         id:id
@@ -31,55 +32,26 @@ Page({
     
     var memberId = wx.getStorageSync("memberId");
     if (memberId) {
-      // 用户已登录的情况下，发起砍价
+       // 用户已登录的情况下，发起砍价
        objx.priceCutdown();
     } else {
-      objx.getDatas(objx.data.id, objx.data.priceActiveId);
+       objx.getDatas(objx.data.id, objx.data.priceActiveId);
     }
 
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    var objx = this;
+    var price = objx.data.priceActive;
+    objx.getDatas(price.id, price.priceActive);
+    wx.stopPullDownRefresh();
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
+ 
 
   /**
    * 用户点击右上角分享
@@ -89,7 +61,7 @@ Page({
     var objx = this;
     var priceActive = objx.data.priceActive;
     return{
-        title:'200元砍价至100元，来帮我砍价！',
+        title: priceActive.name + '正在参加' + priceActive.activeName + '快来帮忙砍价！',
         path:'pages/priceCutdown/priceCutdown?parent=' + priceActive.id + '&priceActiveId=' + priceActive.priceActive
     }
   },
@@ -152,8 +124,14 @@ Page({
          // 网络请求成功
          res = JSON.parse(res.data);
          objx.setData({
-           priceActive: res
+           priceActive: res,
+           remark: res.remark == undefined ? '' : res.remark
          })
+         // handle remark
+         WxParse.wxParse('remark', 'html', objx.data.remark, objx, 5);
+         
+
+
          objx.countdown();
        },
        error: function (e) {
@@ -184,9 +162,18 @@ Page({
     var objx = this;
     
     // 用户登录检查
-
     if (!objx.checkLoginOnFun()) {
        return false;
+    }
+
+    // 活动过期检查
+    if (objx.data.priceActive.hasExpiration) {
+       wx.showModal({
+         title: '提示',
+         content: objx.data.priceActive.message,
+         showCancel:false
+       })
+       return;
     }
 
     var memberId = wx.getStorageSync("memberId");
@@ -317,6 +304,17 @@ Page({
    */
   gotoBuy: function () {
     var objx = this;
+
+    // 活动过期检查
+    if (objx.data.priceActive.hasExpiration) {
+      wx.showModal({
+        title: '提示',
+        content: objx.data.priceActive.message,
+        showCancel: false
+      })
+      return;
+    }
+
     var now = new Date();
     var MM = now.getMonth() + 1;
     if (MM < 10) {
@@ -337,14 +335,26 @@ Page({
        time: now.getFullYear() + "-" + MM + "-" + dd,
        productPrice: productPrice,
        image: priceActive.activePoster,
-       priceId: priceActive.id
+       priceId: priceActive.id,
+       showTicket:false
     };
 
     // 跳转到订单页面
     wx.navigateTo({
       url: '../../pages/order/order?product=' + encodeURI(JSON.stringify(product)),
     })
+  },
+
+
+  /**
+   * 跳转商品详情页
+   */
+  gotoProduct: function (e) {
+    var objx = this;
+    var prodId = e.target.dataset.productid;
+    wx.navigateTo({
+      url: '../../pages/product/product?productId=' + prodId,
+    })
   }
-  
 
 })

@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "砍价活动",
   "navigationBarBackgroundColor": "white",
-  "navigationBarTextStyle": "black"
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true
 }
