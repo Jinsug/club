@@ -32,6 +32,12 @@ Page({
     } else {
      this.methods.getProductByIndex(this);
     }
+
+    if (options.source) {
+       this.setData({
+         source:options.source
+       })
+    }
   },
 
   // 用户选择改变日期

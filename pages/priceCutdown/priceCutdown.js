@@ -353,7 +353,7 @@ Page({
   gotoProduct: function () {
     var objx = this;
     wx.navigateTo({
-      url: '../../pages/product/product?productId=' + objx.data.priceActive.prodId,
+      url: '../../pages/product/product?productId=' + objx.data.priceActive.prodId + '&source=priceCutdown',
     })
   },
 
