@@ -335,7 +335,7 @@ Page({
        productName: priceActive.prodName,
        time: now.getFullYear() + "-" + MM + "-" + dd,
        productPrice: productPrice,
-       image: priceActive.activePoster,
+       image: priceActive.prodImage,
        priceId: priceActive.id,
        showTicket:false
     };
@@ -350,11 +350,10 @@ Page({
   /**
    * 跳转商品详情页
    */
-  gotoProduct: function (e) {
+  gotoProduct: function () {
     var objx = this;
-    var prodId = e.target.dataset.productid;
     wx.navigateTo({
-      url: '../../pages/product/product?productId=' + prodId,
+      url: '../../pages/product/product?productId=' + objx.data.priceActive.prodId,
     })
   },
 
