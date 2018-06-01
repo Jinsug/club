@@ -50,17 +50,17 @@ page{
    margin-left: 20rpx;
 }
 
-.more{
-  width: 22rpx;
-  height: 40rpx;
-  margin-top: 20rpx;
+ .more{
+  width: 22.4rpx;
+  height: 39.2rpx;
   margin-right: 20rpx;
+  margin-top: 20rpx;
 }
 
 .moreIcon{
   width: 100%;
   height: 100%;
-}
+} 
 
 
 .countdown{
@@ -79,6 +79,7 @@ page{
 }
 
 .priceBlock{
+  position: relative;
   width: 100%;
   height: auto;
   overflow: hidden;
@@ -90,9 +91,27 @@ page{
   float: left;
   left: 0;
   bottom: 0;
-  width: 33%;
+  width: 32%;
   height: auto;
   text-align: center;
+}
+
+.fillLine1{
+  position: absolute;
+  top: 20%;
+  left: 33%;
+  width: 2rpx;
+  height: 50%;
+  background: #f0f2f2;
+}
+
+.fillLine2{
+  position: absolute;
+  top: 20%;
+  left: 66%;
+  width: 2rpx;
+  height: 50%;
+  background: #f0f2f2;
 }
 
 .title{
@@ -128,6 +147,17 @@ page{
   border-radius: 5rpx;
 }
 
+.help{
+  width: 70%;
+  margin:0 auto;
+  font-size: 28rpx;
+  color: white;
+  padding: 10rpx 0;
+  background: #FF4401;
+  text-align: center;
+  border-radius: 5rpx;
+}
+
 .cutpriceDiv{
   width: 50%;
   height: auto;
@@ -136,7 +166,6 @@ page{
 .cutprice{
   position: relative;
   width: 70%;
-  height: 40rpx;
   margin: 0 auto;
   font-size: 28rpx;
   color: white;

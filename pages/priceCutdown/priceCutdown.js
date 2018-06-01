@@ -37,7 +37,9 @@ Page({
     } else {
        objx.getDatas(objx.data.id, objx.data.priceActiveId);
     }
-
+     
+    // 获取设备信息
+    objx.getSysInfo();
   },
 
 
@@ -123,6 +125,7 @@ Page({
        success: function (res) {
          // 网络请求成功
          res = JSON.parse(res.data);
+         console.log(res);
          objx.setData({
            priceActive: res,
            remark: res.remark == undefined ? '' : res.remark
@@ -130,8 +133,6 @@ Page({
          // handle remark
          WxParse.wxParse('remark', 'html', objx.data.remark, objx, 5);
          
-
-
          objx.countdown();
        },
        error: function (e) {
@@ -188,9 +189,6 @@ Page({
       memberId:memberId
     }
 
-    console.log(priceActiveId);
-    console.log(memberId);
-    console.log(id);
     // 如果id存在，则传递id
     if (id) {
       param.id = id;
@@ -206,6 +204,7 @@ Page({
       success: function (res) {
         // 网络请求成功
         res = JSON.parse(res.data);
+        console.log(res);
         wx.showModal({
           title: '提示',
           content: res.message,
@@ -215,7 +214,6 @@ Page({
           // 刷新当前页面数据
           objx.getDatas(res.id, res.priceActive);
         }
-      console.log(res);
        objx.setData({
          cutActive: res.cutActive,
          already: res.already
@@ -236,10 +234,13 @@ Page({
   countdown: function () {
     var objx = this;
     var expiration = objx.data.priceActive.expiration;
+    if (objx.data.sysInfo.platform == 'ios') {
+      expiration = expiration.replace(/-/g,'/');
+    }
     var currentDate = new Date();
     var expirationDate = new Date(expiration);
     
-    var days = expirationDate - currentDate;
+    var days = expirationDate.getTime() - currentDate.getTime();
     
     // 精确到秒
     var expirationMsg = parseInt(days / 1000);
@@ -354,6 +355,17 @@ Page({
     var prodId = e.target.dataset.productid;
     wx.navigateTo({
       url: '../../pages/product/product?productId=' + prodId,
+    })
+  },
+
+  /**
+   * 获取手机型号，主要识别IOS
+   */
+  getSysInfo: function () {
+    let objx = this;
+    let sysInfo = wx.getSystemInfoSync();
+    objx.setData({
+      sysInfo: sysInfo
     })
   }
 

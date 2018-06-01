@@ -33,11 +33,17 @@
                     <view class='money'>￥{{filter.toFixed(priceActive.money, 2)}}</view>
               </view>
 
+              <!-- 填充线 -->
+              <view class='fillLine1'></view>
+
               <!-- 可砍至 -->
               <view class='deadLinePrice price'>
                     <view class='title'>可砍至</view>
                     <view class='money'>￥{{filter.toFixed(priceActive.lowPrice, 2)}}</view>
               </view>
+
+              <!-- 填充线 -->
+              <view class='fillLine2'></view>
 
               <!-- 当前价 -->
               <view class='currentPrice price'>
@@ -73,21 +79,19 @@
                             <view class='buy' >我也要</view>
                       </view>
 
-                      <view wx:if="{{!already}}">
+                      <view wx:if="{{!already && !cutActive}}" class='left buyDiv' bindtap='priceCutdown' >
                             <!-- 帮人砍价 -->
-                            <view class='left cutpriceDiv' wx:if="{{!cutActive}}" >
-                                  <view class='cutprice' bindtap='priceCutdown'>帮人砍价</view>
-                            </view>
+                            <view class='help'>帮人砍价</view>
+                            
                       </view>
 
-                      <view wx:if="{{already}}">
+                      <view wx:if="{{already}}" class='left cutpriceDiv'>
                             <!-- 找人帮砍 -->
-                            <view class='left cutpriceDiv' >
-                                  <view class='cutprice'>
-                                        <view class='findHelp'>找人帮砍</view>
-                                        <button class='shareButton' open-type='share' ></button>
-                                  </view>
+                            <view class='cutprice'>
+                                  <view class='findHelp'>找人帮砍</view>
+                                  <button class='shareButton' open-type='share' ></button>
                             </view>
+                            
                       </view>
                 </view>
 
