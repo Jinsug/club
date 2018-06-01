@@ -59,7 +59,8 @@
                       <!-- 找人帮砍 -->
                       <view class='left cutpriceDiv' >
                             <view class='cutprice'>
-                                  <button class='shareButton' open-type='share' >找人帮砍</button>
+                                  <view class='findHelp'>找人帮砍</view>
+                                  <button class='shareButton' open-type='share' ></button>
                             </view>
                       </view>
                </view>
@@ -83,7 +84,8 @@
                             <!-- 找人帮砍 -->
                             <view class='left cutpriceDiv' >
                                   <view class='cutprice'>
-                                        <button class='shareButton' open-type='share' >找人帮砍</button>
+                                        <view class='findHelp'>找人帮砍</view>
+                                        <button class='shareButton' open-type='share' ></button>
                                   </view>
                             </view>
                       </view>
