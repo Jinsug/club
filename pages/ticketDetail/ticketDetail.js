@@ -117,6 +117,15 @@ Page({
   },
 
   /**
+   * wxml绑定函数:主页按钮点击绑定(回到主页)
+   */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
+  },
+
+  /**
    * 自定义函数
    */
   methods: {
