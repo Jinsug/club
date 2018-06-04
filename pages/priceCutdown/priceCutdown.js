@@ -65,7 +65,7 @@ Page({
     var objx = this;
     var priceActive = objx.data.priceActive;
     return{
-        title: '健身俱乐部小程序年费500元优惠购买',
+        title: priceActive.name + '正在参加' + priceActive.activeName,
         path: 'pages/priceCutdown/priceCutdown?parent=' + priceActive.id + '&priceActiveId=' + priceActive.priceActive
     }
   },
@@ -329,7 +329,7 @@ Page({
     }
     var priceActive = objx.data.priceActive;
     var productPrice = priceActive.currentMoney;
-    productPrice = 0.01;
+    // productPrice = 0.01;
 
     var product = {
        productId: priceActive.prodId,
