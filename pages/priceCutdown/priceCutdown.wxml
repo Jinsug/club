@@ -153,7 +153,11 @@
 
 
 
-
+<view class='goHome' bindtap='goHome' wx:if='{{goHome}}'>
+    <image src='{{filter.getPictureUrl("201805241551.png")}}'>
+    </image>
+    <view>前往主页</view>
+</view>
 
 
 </view>

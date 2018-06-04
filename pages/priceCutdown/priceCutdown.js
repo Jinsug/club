@@ -20,10 +20,12 @@ Page({
     var objx = this;
     var priceActiveId = options.priceActiveId;
     var id = options.parent;
-  
+    
+    // 用户分享的页面，需要加入返回首页按钮
     if (id) {
       objx.setData({
-        id:id
+        id:id,
+        goHome:true
       })
     }
     objx.setData({
@@ -63,8 +65,8 @@ Page({
     var objx = this;
     var priceActive = objx.data.priceActive;
     return{
-        title: priceActive.name + '正在参加' + priceActive.activeName + '快来帮忙砍价！',
-        path:'pages/priceCutdown/priceCutdown?parent=' + priceActive.id + '&priceActiveId=' + priceActive.priceActive
+        title: '健身俱乐部小程序年费500元优惠购买',
+        path: 'pages/priceCutdown/priceCutdown?parent=' + priceActive.id + '&priceActiveId=' + priceActive.priceActive
     }
   },
 
@@ -366,6 +368,15 @@ Page({
     objx.setData({
       sysInfo: sysInfo
     })
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../../pages/index/index'
+    });
   }
 
 })
