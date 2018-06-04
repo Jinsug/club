@@ -129,14 +129,17 @@ Page({
    * 用户点击优惠券
    */
   selectTicket: function(e) {
-    if(!this.data.productId || !this.data.productType){
-      return;
-    }
     let ticket = e.currentTarget.dataset.ticket;
-    wx.setStorageSync("ticket", ticket)
-    wx.navigateBack({
-      delta: 1
-    });
+    if(!this.data.productId || !this.data.productType){
+      wx.navigateTo({
+        url: '../ticketDetail/ticketDetail?ticketId=' + ticket.id,
+      });
+    } else {
+      wx.setStorageSync("ticket", ticket)
+      wx.navigateBack({
+        delta: 1
+      });
+    }
   },
   
   /**

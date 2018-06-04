@@ -11,7 +11,7 @@
     <view>先去看看别的</view>
   </view>
   <view class='ticket-list'>
-    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket"    bindtap='selectTicket' 
+    <view class='ticket-li' wx:for="{{tickets}}" wx:key="ticket" bindtap='selectTicket' 
         data-ticket='{{item}}'>
       <view class='ticket-content'>
         <view class='ticket-content-wraper'>

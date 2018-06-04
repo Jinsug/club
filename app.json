@@ -10,6 +10,7 @@
     "pages/clubList/clubList",
     "pages/order/order",
     "pages/ticket/ticket",
+    "pages/ticketDetail/ticketDetail",
     "pages/activeTicket/activeTicket",
     "pages/paySuccess/paySuccess",
     "pages/active/active",

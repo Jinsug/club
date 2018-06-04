@@ -29,7 +29,7 @@ Page({
       price: param.productPrice
     });
     let showTicket = true;
-    if (!param.showTicket){
+    if (param.showTicket){
         showTicket = false;
     }
 
