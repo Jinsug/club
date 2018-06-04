@@ -337,7 +337,7 @@ Page({
        productPrice: productPrice,
        image: priceActive.prodImage,
        priceId: priceActive.id,
-       showTicket:false
+       showTicket:true
     };
 
     // 跳转到订单页面
