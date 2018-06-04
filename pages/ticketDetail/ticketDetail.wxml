@@ -1,2 +1,73 @@
-<!--pages/ticketDetail/ticketDetail.wxml-->
-<text>pages/ticketDetail/ticketDetail.wxml</text>
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='ticket-info'>
+  <image src='{{filter.getPictureUrl("201806041046.png")}}' mode='aspectFill' class='ticket-background'>
+  </image>
+  <view class='ticket-warper'>
+    <view class='ticket-content'>
+      <view class='ticket-name'>
+        {{ticket.name}}
+      </view>
+      <view class='ticket-price'>
+        <text style='font-size:10px;'>¥</text>
+        {{filter.toFixed(ticket.price, 2)}}
+      </view>
+      <view class='ticket-other'>
+        <view class='ticket-limit'>
+          满{{ticket.limitPrice}}元可用
+        </view>
+        <view class='ticket-days'>
+          有效期至
+          <text style='font-size:30rpx;color:#FF4401;'>{{ticket.useDate}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<view style='height:20rpx;background-color:#F0F0F2;'></view>
+<view class='receive' wx:if='{{ticket.collector && shareMember}}'>
+  <image src='{{filter.errorImage(ticket.shareMemberImage)}}' mode='aspectFill' class='member-image'>
+  </image>
+  <view class='give-info'>
+    <view class='giver'>
+      {{ticket.shareMemberName}}
+    </view>
+    <view class='collector'>
+      赠送了一张优惠券，已被 “ {{ticket.collector}} ” 领取
+    </view>
+  </view>
+</view>
+<view class='club-list'>
+  <view class='club-list-title'>
+    <view class='title-name'>
+      适用店面
+    </view>
+    <view class='title-club-count'>
+      <text style='color:#FF4401;'>{{clubList.length}}</text>家
+    </view>
+  </view>
+  <view class='club-list-body'>
+    <view class='club-item' wx:for='{{clubList}}' wx:key=''>
+      <image src='{{filter.getPictureUrl(item.image)}}' mode='aspectFill' class='club-image'>
+      </image>
+      <view class='club-name'>
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+</view>
+<view class='give' wx:if='{{!shareMember}}'>
+  <view class='give-button'>
+    赠送给朋友
+    <button open-type='share' class='share-button' bindtap='sendTicket'>
+    </button>
+  </view>
+</view>
+<view class='give' wx:if='{{!ticket.collector && shareMember}}'>
+  <view class='give-button' bindtap='checkLogin'>
+    领取优惠券
+    <button open-type='getPhoneNumber' class='share-button' bindgetphonenumber='getPhoneNumber' 
+      wx:if='{{memberId}}'>
+    </button>
+  </view>
+</view>

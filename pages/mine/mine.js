@@ -51,7 +51,11 @@ Page({
       })
     }
 
-
+    if(options.ticketId){
+      objx.setData({
+        ticketId: options.ticketId
+      });
+    }
   },
 
   /**
@@ -364,6 +368,10 @@ Page({
                     url: '../../pages/' + source + '/' + source + '?parent=' + objx.data.priceCutdownId + '&priceActiveId=' + objx.data.priceActiveId,
                   })
 
+                } else if (source == "ticketDetail") {
+                  wx.navigateTo({
+                    url: '../../pages/' + source + '/' + source + '?shareMember=' + objx.data.shareMember + '&ticketId=' + objx.data.ticketId,
+                  })
                 } else {
                     wx.navigateTo({
                       url: '../../pages/' + source + '/' + source,

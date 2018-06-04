@@ -4,14 +4,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    ticket: {},
+    clubList: [],
+    memberId: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    if(wx.getStorageSync('memberId')){
+      this.setData({
+        memberId: wx.getStorageSync('memberId')
+      });
+    }
+    if(options.shareMember){
+      this.setData({
+        shareMember: options.shareMember
+      });
+    }
+    if(options.ticketId){
+      this.setData({
+        ticketId: options.ticketId
+      });
+    }
   },
 
   /**
@@ -25,7 +41,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.methods.getTicketById(this.data.ticketId, this);
   },
 
   /**
@@ -60,6 +76,121 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    var club = wx.getStorageSync('club');
+    var memberId = wx.getStorageSync('memberId');
+    var ticketId = this.data.ticket.ticketId;
+    var title = club.name + this.data.ticket.name;
+    var path = 'pages/ticketDetail/ticketDetail?shareMember='+memberId+'&ticketId='+ticketId;
+    return {
+      title: title,
+      path: path
+    }
+  },
+
+  /**
+   * wxml绑定函数:赠送按钮点击绑定
+   */
+  sendTicket: function () {
+    this.methods.clearTicketCollector(this);
+  },
+
+  /**
+   * wxml绑定函数:领取优惠券按钮点击绑定(检查登录)
+   */
+  checkLogin: function () {
+    if(!this.data.memberId){
+      wx.reLaunch({
+        url: '../mine/mine?source=ticketDetail&shareMember=' + this.data.shareMember + '&ticketId=' +
+          this.data.ticket.ticketId
+      })
+    }
+  },
+
+  /**
+   * wxml绑定函数:领取优惠券按钮点击绑定(获取手机号)
+   */
+  getPhoneNumber: function (e) {
+    if (e.detail.errMsg != 'getPhoneNumber:ok') {
+      return;
+    }
+    this.methods.deCodePhoneNumberAndreceive(e, this);
+  },
+
+  /**
+   * 自定义函数
+   */
+  methods: {
+    /**
+     * 通过id获取优惠券信息
+     */
+    getTicketById: function (ticketId, obj) {
+      var param = {}
+      param.ticketId = ticketId;
+      if(obj.data.shareMember){
+        param.shareMember = obj.data.shareMember;
+      }
+      // 请求服务端
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!getTicketById.asp',
+        data: param,
+        success: function (res) {
+          obj.setData({
+            ticket: res.data.ticket,
+            clubList: res.data.clubList
+          });
+        }
+      });
+    },
+
+    /**
+     * 清除优惠券的领取人
+     */
+    clearTicketCollector: function (obj) {
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!clearTicketCollector.asp',
+        data: {
+          ticketId: obj.data.ticket.ticketId
+        }
+      });
+    },
+
+    /**
+     * 解密手机号
+     */
+    deCodePhoneNumberAndreceive: function (e, obj) {
+      e.session_key = wx.getStorageSync("session_key");
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+        data: {
+          json: JSON.stringify(e)
+        },
+        success: function (res) {
+          // 获取和处理用户手机号
+          var userPhoneNumber = res.data.phoneNumber;
+          // 领取优惠券
+          obj.methods.receive(userPhoneNumber, obj);
+        }
+      })
+    },
+
+    /**
+     * 领取优惠券
+     */
+    receive: function (phoneNumber, obj) {
+      wx.request({
+        url: 'https://www.ecartoon.com.cn/clubmp!setTicketToMember.asp',
+        data: {
+          memberId: wx.getStorageSync('memberId'),
+          ticketId: obj.data.ticket.ticketId,
+          phoneNumber: phoneNumber,
+          shareMember: obj.data.shareMember
+        },
+        success: function (res) {
+          wx.navigateTo({
+            url: '../ticket/ticket'
+          })
+        }
+      });
+    }
   }
 })

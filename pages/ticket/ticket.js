@@ -132,7 +132,7 @@ Page({
     let ticket = e.currentTarget.dataset.ticket;
     if(!this.data.productId || !this.data.productType){
       wx.navigateTo({
-        url: '../ticketDetail/ticketDetail?ticketId=' + ticket.id,
+        url: '../ticketDetail/ticketDetail?ticketId=' + ticket.ticketId,
       });
     } else {
       wx.setStorageSync("ticket", ticket)
