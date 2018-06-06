@@ -11,7 +11,10 @@ Page({
     scroll_box_weight: 0,
     cardList: [],
     getPhoneNumber: -1,
-    phoneNumber: ''
+    phoneNumber: '',
+    timer: {
+      text: '健身签到'
+    }
   },
   // 页面加载函数
   onLoad: function () {
@@ -21,7 +24,6 @@ Page({
 
   // 页面展示 
   onShow: function () {
-
     var obj = this;
     if(wx.getStorageSync('memberId')){
       // 查询用户数据
@@ -134,7 +136,7 @@ Page({
      */
     var convertPoint = (club) => {
       // 调用util方法进行坐标转换(百度坐标系转换为腾讯坐标系)
-      var point = util.BdmapEncryptToMapabc(club.latitude, club.longitude);
+      var point = util.MapabcEncryptToBdmap(club.latitude, club.longitude);
       club.latitude = point.lat;
       club.longitude = point.lng;
       return club;
@@ -163,17 +165,8 @@ Page({
       });
       return;
     }
-    // 创建微信接口对象
+    // 创建微信接口对象ss
     const wxApi = {
-      scanCode: () => {
-        return new Promise(function (resolve, reject){
-          wx.scanCode({
-            success: (code_result) => {
-              resolve(code_result);
-            }
-          });
-        });
-      },
       getLocation: () => {
         return new Promise(function (resolve, reject){
           wx.getLocation({
@@ -224,12 +217,67 @@ Page({
             }
           });
         });
+      },
+      getServerTime: function() {
+        return new Promise(function (resolve, reject) {
+          wx.request({
+            url: 'https://www.ecartoon.com.cn/clubmp!getSignTime.asp',
+            data: {
+              memberId: wx.getStorageSync('memberId'),
+              clubId: wx.getStorageSync('clubId')
+            },
+            success: function (res) {
+              resolve(res);
+            }
+          });
+        });
+      },
+      getTimer: function (time) {
+        var h = Math.floor(time / (60 * 60));
+        var hh = time - (h * 60 * 60);
+        var m = Math.floor(hh / 60);
+        var s = Math.floor(time - (m * 60));
+        h = h < 10 ? '0' + h : h;
+        m = m < 10 ? '0' + m : m;
+        s = s < 10 ? '0' + s : s;
+        return h + ':' + m + ':' + s;
+      },
+      createTimer: function (signTime, obj) {
+        var time = signTime.data.time;
+        var interval = setInterval(function () {
+          var timer = obj.data.timer;
+          var status = signTime.data.status;
+          timer.timer = wxApi.getTimer(time);
+          timer.time = time;
+          timer.text = timer.timer;
+          timer.start = true;
+          obj.setData({
+            timer: timer
+          });
+          if (time == 0) {
+            clearInterval(interval);
+            timer.text = '健身签出';
+            timer.start = false;
+            obj.setData({
+              timer: timer
+            });
+          }
+          time--;
+        }, 1000);
       }
+    }
+    // 检查时间
+    if (this.data.timer.time && this.data.timer.time > 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请在' + wxApi.getTimer(this.data.timer.time) + '后签出',
+        showCancel: false
+      });
+      return;
     }
     // 签到逻辑
     const sign = async () => {
-      // 调用扫码api
-      let code_result = await wxApi.scanCode();
+      var obj = this;
       // 调用获取地理位置api
       let location_result = await wxApi.getLocation();
       // 第一次拒绝后重新请求授权
@@ -259,39 +307,102 @@ Page({
       if (location_result.refuse) {
         return;
       }
+      // 坐标系转换
+      var point = util.MapabcEncryptToBdmap(location_result.latitude, location_result.longitude);
       // 请求参数
       let param = {
-        code: code_result.result,
         memberId: wx.getStorageSync('memberId'),
         clubId: wx.getStorageSync('clubId'),
-        longitude: location_result.longitude,
-        latitude: location_result.latitude
+        longitude: point.lng,
+        latitude: point.lat
       }
       // 调用服务端签到接口
-      let res = await wxApi.request(param);
-      if (res.data.success) {
+      var signTime = await wxApi.getServerTime();
+      // 已经签到签出过
+      if(signTime.data.status == 2){
         wx.showModal({
           title: '提示',
-          content: '签到成功，健身后请到“我的足迹”对服务进行点评',
-          showCancel: false,
-          complete: () => {
-            // 跳转至我的足迹页面
-            wx.navigateTo({
-              url: '../myFooter/myFooter'
-            });
-          }
-        });
-      } else {
-        wx.showModal({
-          title: '提示',
-          content: res.data.message,
+          content: '每天只能进行一次签到签出操作',
           showCancel: false
         });
+        return;
+      }
+      // 已经签到但未签出
+      if(signTime.data.status == 1 && signTime.data.time > 0){
+         // 第一种情况还有剩余时间: 直接创建定时器
+         wxApi.createTimer(signTime, this);
+         return;
+      }
+      // 已经签到但未签出
+      if(signTime.data.status == 1 && signTime.data.time <= 0){
+        // 第二种情况时间限制已经通过: 请求服务端生成签出数据
+        let res = await wxApi.request(param);
+        if (!res.data.success) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.message,
+            showCancel: false
+          });
+          return;
+        }
+        if (res.data.sign_out) {
+          wx.showModal({
+            title: '提示',
+            content: '签出成功，健身后请到“我的足迹”对服务进行点评',
+            showCancel: false,
+            complete: () => {
+              var timer = obj.data.timer;
+              timer.text = '健身签到';
+              obj.setData({
+                timer: timer
+              });
+              // 跳转至我的足迹页面
+              wx.navigateTo({
+                url: '../myFooter/myFooter'
+              });
+            }
+          });
+        }
+      }
+      // 未签到,未签出
+      if(signTime.data.status == 0){
+        // 先生成签到数据再创建定时器
+        let res = await wxApi.request(param);
+        if (!res.data.success) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.message,
+            showCancel: false
+          });
+          return;
+        }
+        if (res.data.sign_out) {
+          wx.showModal({
+            title: '提示',
+            content: '签出成功，健身后请到“我的足迹”对服务进行点评',
+            showCancel: false,
+            complete: () => {
+              // 跳转至我的足迹页面
+              wx.navigateTo({
+                url: '../myFooter/myFooter'
+              });
+            }
+          });
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '签到成功，请在30分钟后进行签出',
+            showCancel: false
+          });
+          wxApi.createTimer(signTime, this);
+        }
+        return;
       }
     }
     // 调用签到方法
     sign();
   },
+
   // 俱乐部介绍
   clubRemark: function(){
     // 挑战页面

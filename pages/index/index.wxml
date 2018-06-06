@@ -35,8 +35,11 @@
   </view>
   <view class='clubFunction'>
     <view class='signIn' bindtap='signIn'>
-      <image src='{{base_picture_url}}/201805042233.png'></image>
-      <view>健身打卡</view>
+      <image src='{{base_picture_url}}/201805042233.png' wx:if='{{!timer.start}}'></image>
+      <image src='https://www.ecartoon.com.cn/miniProgram/club/img/timer.png' 
+        wx:if='{{!timer.start}}' wx:if='{{timer.start}}'></image>
+      <view class='time' wx:if='{{timer.timer}}'>{{timer.timer}}</view>
+      <view>{{timer.text}}</view>
     </view>
     <view class='clubRemark' bindtap='clubRemark'>
       <image src='{{base_picture_url}}/201805042234.png'></image>

@@ -16,6 +16,7 @@ page{
 .clubInfo-wraper{
   position: relative;
   height: 171px;
+  overflow: hidden;
 }
 
 .clubInfo-wraper > image{
@@ -146,6 +147,18 @@ page{
 .clubFunction > view > image{
   width: 30px;
   height: 30px;
+}
+
+.signIn{
+  position: relative;
+}
+
+.time{
+  position: absolute;
+  top: 37%;
+  left: 39%;
+  font-size: 12rpx;
+  color: #999;
 }
 
 .ticketTitle{

@@ -1,5 +1,11 @@
 <view class='wraper'>
   <view class='sign-list'>
+    <view class="no-data" wx:if="{{signList.length == 0}}">
+      <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+      </image>
+      <view>暂无数据</view>
+      <view>先去看看别的</view>
+    </view>
     <view class='sign-item' wx:for='{{signList}}' wx:key=''>
       <view class='sign-title-time' wx:if='{{item.month != signList[index-1].month}}'>
         {{item.year}} <text style='font-size:12px;'>{{item.monthText}}月</text>

@@ -39,16 +39,16 @@ const BdmapEncryptToMapabc = (bd_lat, bd_lon) => {
  */
 const MapabcEncryptToBdmap = (gg_lat, gg_lon) => {
   var point = new Object();
-  var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
-  var x = new Number(gg_lon);
-  var y = new Number(gg_lat);
-  var z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
-  var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
-  var bd_lon = z * Math.cos(theta) + 0.0065;
-  var bd_lat = z * Math.sin(theta) + 0.006;
-  point.lng = bd_lon;
-  point.lat = bd_lat;
-  return point;  
+  // var x_pi = 3.14159265358979324 * 3000.0 / 180.0;
+  // var x = new Number(gg_lon);
+  // var y = new Number(gg_lat);
+  // var z = Math.sqrt(x * x + y * y) + 0.00002 * Math.sin(y * x_pi);
+  // var theta = Math.atan2(y, x) + 0.000003 * Math.cos(x * x_pi);
+  // var bd_lon = z * Math.cos(theta) + 0.0065;
+  // var bd_lat = z * Math.sin(theta) + 0.006;
+  point.lng = gg_lon + 0.1;
+  point.lat = gg_lat - 0.08;
+  return point;
 }
 
 /**
