@@ -386,6 +386,7 @@ Page({
             wx.showModal({
               title: '提示',
               content: '登录或注册异常,后续功能无法使用,请联系开发人员!',
+              showCancel:false
             })
           }
 
