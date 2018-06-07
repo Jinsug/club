@@ -13,6 +13,12 @@
       </view>
     </view>
     <view class='memberRanking-body'>
+      <view class="no-data" wx:if="{{memberRanking.length == 0}}">
+        <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+        </image>
+        <view>暂无数据</view>
+        <view>先去看看别的</view>
+      </view>
       <view class='memberRanking-item' wx:for='{{memberRanking}}' wx:key=''>
         <view class='ranking'>
           <image src='{{base_picture_url}}/201805210945.png' class='' mode='aspectFill'

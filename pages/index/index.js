@@ -14,7 +14,8 @@ Page({
     phoneNumber: '',
     timer: {
       text: '健身签到'
-    }
+    },
+    status: 0
   },
   // 页面加载函数
   onLoad: function () {
@@ -275,6 +276,22 @@ Page({
       });
       return;
     }
+
+    if(this.data.status != 0){
+      return;
+    }
+
+    this.setData({
+      status: 1
+    });
+
+    var obj = this;
+    setTimeout(function () {
+      obj.setData({
+        status: 0
+      });
+    }, 1000);
+    
     // 签到逻辑
     const sign = async () => {
       var obj = this;

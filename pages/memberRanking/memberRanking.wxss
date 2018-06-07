@@ -33,6 +33,20 @@ page{
   text-align: right;
 }
 
+.no-data{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  text-align: center;
+  font-size: 12px;
+  color: #8f8e8e;
+}
+
+.no-data > image{
+  width: 30px;
+  height: 30px;
+}
+
 .memberRanking-item{
   padding: 10px 0;
   overflow: hidden;
