@@ -365,7 +365,7 @@ Page({
         if (res.data.sign_out) {
           wx.showModal({
             title: '提示',
-            content: '签出成功，健身后请到“我的足迹”对服务进行点评',
+            content: '签出成功，请到“我的足迹”对本次服务进行评价',
             showCancel: false,
             complete: () => {
               var timer = obj.data.timer;
@@ -396,7 +396,7 @@ Page({
         if (res.data.sign_out) {
           wx.showModal({
             title: '提示',
-            content: '签出成功，健身后请到“我的足迹”对服务进行点评',
+            content: '签出成功，请到“我的足迹”对本次服务进行评价',
             showCancel: false,
             complete: () => {
               // 跳转至我的足迹页面
@@ -408,7 +408,7 @@ Page({
         } else {
           wx.showModal({
             title: '提示',
-            content: '签到成功，请在30分钟后进行签出',
+            content: '签到成功，请在' + signTime.data.totalTime + '分钟后进行签出',
             showCancel: false
           });
           wxApi.createTimer(signTime, this);
