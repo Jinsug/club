@@ -17,8 +17,11 @@
             联系客服
             <button open-type='contact' class='openButton'></button>
           </view>
-          <view class='addToClub' bindtap='apply'>
+          <view class='addToClub' bindtap='apply' wx:if='{{!memberStatus}}'>
             申请加入
+          </view>
+          <view class='addToClub' bindtap='relieve' wx:if='{{memberStatus}}'>
+            解除关系
           </view>
         </view>
       </view>
