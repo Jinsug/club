@@ -8,7 +8,7 @@
              <view class="pre">
                  <view class="title coachNameTitle">教练</view>
                  <view class="coachImageDiv">
-                     <image class="coachImage" src="{{filter.errorImage(course.image)}}"></image>
+                     <image class="coachImage" mode='aspectFill' src="{{filter.errorImage(course.image)}}"></image>
                      <text class="value coachName">{{course.coachName}}</text>
                  </view>
                  
