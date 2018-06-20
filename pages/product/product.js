@@ -1,12 +1,13 @@
 var util = require('../../utils/util.js');
 var WxParse = require('../../wxParse/wxParse.js');
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     product: {
       image1: 'opacity.png'
     },
@@ -170,7 +171,7 @@ Page({
     // 获取商品(从分享进入)
     getProductByShare: function (id, obj) {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!getProductById.asp',
+        url: app.request_url + 'getProductById.asp',
         data: {
           id: id
         },

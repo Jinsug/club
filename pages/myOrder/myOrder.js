@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
 
   /**
@@ -5,7 +6,7 @@ Page({
    */
   data: {
       currentTab:"0",
-      base_pic_url:"https://www.ecartoon.com.cn/picture"
+      base_pic_url: app.constant.base_pic_url
     
   },
 
@@ -102,7 +103,7 @@ Page({
      param.memberId = memberId;
      // 发起网络请求，获取订单数据
      wx.request({
-       url: "https://www.ecartoon.com.cn/clubmp!findOrders.asp",
+       url: app.request_url + 'findOrders.asp',
        dataType:JSON,
        data:{
            json:encodeURI(JSON.stringify(param))

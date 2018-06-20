@@ -1,10 +1,11 @@
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture/',
+    base_picture_url: app.constant.base_pic_url + '/',
     cardList: [],
     selectIndex: 0,
     selectImage: '201805231658.png',
@@ -89,7 +90,7 @@ Page({
     // 加载俱乐部数据
     getClubData: function (obj) {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
+        url: app.request_url + 'findClubById.asp',
         data: {
           id: wx.getStorageSync('clubId')
         },

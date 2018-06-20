@@ -1,11 +1,12 @@
 let util = require('../../utils/util.js');
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     active: {
       image: 'opacity.png'
     },

@@ -1,10 +1,11 @@
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     activeList: []
   },
 
@@ -36,7 +37,7 @@ Page({
     }
     // 请求服务端我的挑战数据
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findActiveAndDetailByMember.asp',
+      url: app.request_url + 'findActiveAndDetailByMember.asp',
       data: {
         memberId: wx.getStorageSync('memberId')
       },

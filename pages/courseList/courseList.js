@@ -1,10 +1,10 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     dou_dates: ["preDate", "preDate", "preDate", "preDate", "preDate", "preDate","preDate"]
   },
 
@@ -241,7 +241,7 @@ getDatas: function (currentDate) {
     var param = {};
     param.date = dates.toString();
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findCourse.asp',
+      url: app.request_url + 'findCourse.asp',
       dataType:JSON,
       data:{
         json: encodeURI(JSON.stringify(param))

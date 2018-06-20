@@ -1,10 +1,10 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     active: {
       image: 'opacity.png',
       resultImage: 'opacity.png'
@@ -43,7 +43,7 @@ Page({
    */
   getActiveDetailByShare: function (activeId, obj) {
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!getActiveById.asp',
+      url: app.request_url + 'getActiveById.asp',
       data: {
         activeId, activeId
       },
@@ -174,7 +174,7 @@ Page({
     // 提交体重
     let obj = this;
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!submitWeight.asp',
+      url: app.request_url + 'submitWeight.asp',
       data: {
         id: this.data.active.orderId,
         weight: this.data.weight

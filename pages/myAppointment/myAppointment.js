@@ -1,11 +1,12 @@
 import regeneratorRuntime from '../../utils/runtime.js';
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
      currentTab:"0",
-     base_pic_url:"https://www.ecartoon.com.cn/picture"
+     base_pic_url: app.constant.base_pic_url
   },
 
   /**
@@ -81,7 +82,7 @@ Page({
     
     // 发起网络请求
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findAppointmentByMember.asp',
+      url: app.request_url + 'findAppointmentByMember.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))
@@ -169,7 +170,7 @@ Page({
 
     // 发起网络请求
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!undoAppointment.asp',
+      url: app.request_url + 'undoAppointment.asp',
       dataType:JSON,
       data:{
         json: encodeURI(JSON.stringify(param))

@@ -1,10 +1,11 @@
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     tickets: {},
     productId: '',
     productType: ''
@@ -56,7 +57,7 @@ Page({
   findMyTicket: function () {
     let obj = this;
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findMyTicket.asp',
+      url: app.request_url + 'findMyTicket.asp',
       data: {
         memberId: wx.getStorageSync('memberId')
       },
@@ -75,7 +76,7 @@ Page({
     let obj = this;
     let memberId = wx.getStorageSync("memberId");
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findTicketByType.asp',
+      url: app.request_url + 'findTicketByType.asp',
       data: {
         memberId: memberId,
         productId: obj.data.productId,
