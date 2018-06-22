@@ -4,7 +4,10 @@
 <import src="../../wxParse/wxParse.wxml"/>
 <view class='wraper'>
   <view class='clubInfo-wraper'>
-    <image src='{{filter.errorImage(club.banner)}}' mode='aspectFill'></image>
+    <image src='{{filter.errorImage(club.banner)}}' mode='aspectFill' wx:if="{{club.banner}}">
+    </image>
+    <image src='{{filter.errorImage(club.image)}}' mode='aspectFill' wx:if="{{!club.banner}}">
+    </image>
     <view class='clubInfo'>
       <view class='clubInfo-left'>
         <image src='{{base_picture_url}}/{{club.image}}' class='clubPhoto'  
