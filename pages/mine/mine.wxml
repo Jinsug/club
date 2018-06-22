@@ -13,7 +13,7 @@
 
                      <!-- 头像 -->
                       <view class="personImageDiv">
-                            <image class="personImage" mode="aspectfill" src="{{filter.errorImage(memberData.image)}}"></image>
+                            <image class="personImage" mode="aspectFill" src="{{filter.errorImage(memberData.image)}}"></image>
                       </view>
 
                       <!-- 其他信息 -->
@@ -43,7 +43,7 @@
          <view class='pred' bindtap='gotoMyFooter' >
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
+                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/footprint@2x.png'></image>
                </view>
 
                <!-- description -->
@@ -55,7 +55,7 @@
          <view class='pred' bindtap='gotoMyActive'>
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
+                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/challenge@2x.png'></image>
                </view>
 
                <!-- description -->
@@ -67,7 +67,7 @@
          <view class='pred' bindtap='gotoPrivate'>
                <!-- 图标 -->
                <view class='picDiv'>
-                     <image class='pic' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/private.png'></image>
+                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/private.png'></image>
                </view>
 
                <!-- description -->
@@ -86,12 +86,12 @@
       <view class="pre" bindtap="gotoMyOrder">
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/order@2x.png'></image>
             </view>
 
             <view class="title">我的订单</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 
@@ -99,12 +99,12 @@
       <view class="pre" bindtap="gotoMyWallet">
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wallet@2x.png'></image>
             </view>
 
             <view class="title">我的钱包</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 
@@ -112,12 +112,12 @@
       <view class="pre" bindtap='gotoMyTicke'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/ticket@2x.png'></image>
             </view>
 
             <view class="title">我的优惠券</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 
@@ -125,12 +125,12 @@
       <view class="pre" bindtap='gotoMyAppointment'>
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myappointment.png'></image>
             </view>
 
             <view class="title">我的预约</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 
@@ -138,12 +138,12 @@
       <view class="pre" bindtap='gotoMyPlan' >
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/myplan.png'></image>
             </view>
 
             <view class="title">我的计划</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 
@@ -153,12 +153,12 @@
               <view class="prex" bindtap='checkTapLogin' >
                     <!-- icon -->
                     <view class='iconDiv'>
-                          <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
+                          <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
                     </view>
 
                     <view class="title">连接wifi</view>
                     <view class="link">
-                          <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                          <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
                     </view>
               </view>
       </view>
@@ -169,12 +169,12 @@
               <view class="prex" bindtap='connectWifi' >
                     <!-- icon -->
                     <view class='iconDiv'>
-                          <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
+                          <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/wifiSignal.png'></image>
                     </view>
 
                     <view class="title">连接wifi</view>
                     <view class="link">
-                          <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                          <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
                     </view>
               </view>
 
@@ -189,12 +189,12 @@
       <view class="pre" bindtap='gotoGiveHealth' >
             <!-- icon -->
             <view class='iconDiv'>
-                  <image class='icon' mode="aspectfill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
+                  <image class='icon' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/share@2x.png'></image>
             </view>
 
             <view class="title">送人健康</view>
             <view class="link">
-                  <image class='linkIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                  <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
             </view>
       </view>
 

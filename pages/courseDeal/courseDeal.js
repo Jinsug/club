@@ -1,5 +1,5 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -85,7 +85,7 @@ Page({
 
       // 发送预约请求
       wx.request({
-        url: "https://www.ecartoon.com.cn/clubmp!appointment.asp",
+        url: app.request_url + 'appointment.asp',
         dataType:JSON,
         data:{
             json:encodeURI(JSON.stringify(param))
@@ -126,7 +126,7 @@ Page({
 
     // 发起网络请求
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findCourseById.asp',
+      url: app.request_url + 'findCourseById.asp',
       dataType:JSON,
       data:{
         json: encodeURI(JSON.stringify(param))

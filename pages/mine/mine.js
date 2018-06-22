@@ -1,4 +1,5 @@
 import regeneratorRuntime from '../../utils/runtime.js';
+var app = getApp();
 Page({
 
   /**
@@ -102,13 +103,6 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function () {
-    
-  // },
-
-  /**
    * 查询当前用户的数据
    */
   getMemberData:function () {
@@ -119,7 +113,7 @@ Page({
 
       // 发起网络请求
       wx.request({
-        url: "https://www.ecartoon.com.cn/clubmp!findMe.asp",
+        url: app.request_url + 'findMe.asp',
         dataType:JSON,
         data:{
            json:encodeURI(JSON.stringify(param))
@@ -321,7 +315,7 @@ Page({
 
       // 请求登录后台
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!wechatLogin.asp',
+        url: app.request_url + 'wechatLogin.asp',
         dataType: JSON,
         data: {
           json: JSON.stringify(e.detail)
@@ -434,7 +428,7 @@ Page({
 
       // 请求后台，获取wifi参数
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!getClubWifi.asp',
+        url: app.request_url + 'getClubWifi.asp',
         dataType: JSON,
         success: function (res) {
           res = JSON.parse(res.data);
@@ -524,7 +518,7 @@ Page({
     var session_key = wx.getStorageSync("session_key");
     e.session_key = session_key;
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+      url: app.request_url + 'decodePhoneNumber.asp',
       dataType:JSON,
       data:{
         json: JSON.stringify(e)
@@ -572,7 +566,7 @@ Page({
 
     // 请求后台数据
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!updateMobilephone.asp',
+      url: app.request_url + 'updateMobilephone.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))

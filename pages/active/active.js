@@ -1,10 +1,10 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture/',
+    base_picture_url: app.constant.base_pic_url + '/',
     activeList: []
   },
 
@@ -81,13 +81,13 @@ Page({
     getActiveList: (obj) => {
       // 请求服务器挑战数据
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!findActiveAndDetailByClub.asp',
+        url: app.request_url + 'findActiveAndDetailByClub.asp',
         data: {
           clubId: wx.getStorageSync('clubId')
         },
         success: (active_res) => {
           wx.request({
-            url: 'https://www.ecartoon.com.cn/clubmp!getPriceActive.asp',
+            url: app.request_url + 'getPriceActive.asp',
             data: {
               json: encodeURI(JSON.stringify({ clubId: wx.getStorageSync('clubId')}))
             }, 

@@ -7,12 +7,12 @@
         <view class='head'>
                 <!-- headImgDiv -->
                 <view class='headImgDiv'>
-                        <image class='headImg' mode='aspectfill' src='{{filter.errorImage(priceActive.activePoster)}}'></image>
+                        <image class='headImg' mode='aspectFill' src='{{filter.errorImage(priceActive.activePoster)}}'></image>
                 </view>
                 <view class='prod' bindtap='gotoProduct'>
                       <view class='left prodName'>{{priceActive.prodName}}</view>
                       <view class='right more'>
-                              <image class='moreIcon' mode='aspectfill' src='https://www.ecartoon.com.cn/miniProgram/club/img/promore.png' ></image>
+                              <image class='moreIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/promore.png' ></image>
                       </view>
                 </view>
         </view>

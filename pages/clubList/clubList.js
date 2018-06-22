@@ -1,4 +1,5 @@
 var util = require('../../utils/util.js');
+var app = getApp();
 Page({
 
   /**
@@ -95,7 +96,7 @@ Page({
      */
     requestServer: (obj, param) => {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!getClubListByCard.asp',
+        url: app.request_url + 'getClubListByCard.asp',
         data: {
           json: param
         },

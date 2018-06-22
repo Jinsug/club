@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
 
   /**
@@ -118,7 +119,7 @@ Page({
     //  memberId = "9388";
      param.memberId = memberId;
      wx.request({
-       url: "https://www.ecartoon.com.cn/clubmp!myWallet.asp",
+       url: app.request_url + 'myWallet.asp',
        dataType:JSON,
        data:{
           json:encodeURI(JSON.stringify(param))

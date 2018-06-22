@@ -1,10 +1,10 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     memberEvaluate: {
       image: 'opacity.png'
     }
@@ -76,7 +76,7 @@ Page({
      */
     getMemberEvaluate: (obj) => {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!memberEvaluate.asp',
+        url: app.request_url + 'memberEvaluate.asp',
         data: {
           signId: obj.data.signId
         },
@@ -183,7 +183,7 @@ Page({
       }
       // 向服务端提交评论
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!memberEvaluateToClub.asp',
+        url: app.request_url + 'memberEvaluateToClub.asp',
         data: {
           json: encodeURI(JSON.stringify(obj.data.memberEvaluate))
         },

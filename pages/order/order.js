@@ -1,12 +1,13 @@
 let util = require('../../utils/util.js');
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
-    base_img_url: 'https://www.ecartoon.com.cn/miniProgram/coach/img',
+    base_picture_url: app.constant.base_pic_url,
+    base_img_url: app.constant.base_img_url,
     userInfo: {},
     product: {
       image: 'opacity.png'
@@ -122,7 +123,7 @@ Page({
     
     // 请求后台数据
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findMe.asp',
+      url: app.request_url + 'findMe.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))
@@ -177,7 +178,7 @@ Page({
     let obj = this;
     e.session_key = wx.getStorageSync("session_key");
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+      url: app.request_url + 'decodePhoneNumber.asp',
       data: {
         json: JSON.stringify(e)
       },
@@ -240,7 +241,7 @@ Page({
       param.priceId = this.data.product.priceId;
     }
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!createClubMPOrder.asp',
+      url: app.request_url + 'createClubMPOrder.asp',
       data: {
         json: encodeURI(JSON.stringify(param))
       },

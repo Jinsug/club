@@ -1,3 +1,4 @@
+var app = getApp();
 Page({
 
   /**
@@ -140,7 +141,7 @@ Page({
       }
       // 请求服务端
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!getTicketById.asp',
+        url: app.request_url + 'getTicketById.asp',
         data: param,
         success: function (res) {
           obj.setData({
@@ -156,7 +157,7 @@ Page({
      */
     clearTicketCollector: function (obj) {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!clearTicketCollector.asp',
+        url: app.request_url + 'clearTicketCollector.asp',
         data: {
           ticketId: obj.data.ticket.ticketId
         }
@@ -169,7 +170,7 @@ Page({
     deCodePhoneNumberAndreceive: function (e, obj) {
       e.session_key = wx.getStorageSync("session_key");
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+        url: app.request_url + 'decodePhoneNumber.asp',
         data: {
           json: JSON.stringify(e)
         },
@@ -187,7 +188,7 @@ Page({
      */
     receive: function (phoneNumber, obj) {
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!setTicketToMember.asp',
+        url: app.request_url + 'setTicketToMember.asp',
         data: {
           memberId: wx.getStorageSync('memberId'),
           ticketId: obj.data.ticket.ticketId,

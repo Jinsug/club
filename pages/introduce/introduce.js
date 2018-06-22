@@ -1,10 +1,11 @@
 var WxParse = require('../../wxParse/wxParse.js');
+var app = getApp();
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_picture_url: app.constant.base_pic_url,
     club: {}
   },
 
@@ -116,7 +117,7 @@ Page({
       id = objx.data.clubId;
       // 发起网络请求
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
+        url: app.request_url + 'findClubById.asp',
         dataType: JSON,
         data: {
           id: id

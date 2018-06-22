@@ -1,5 +1,5 @@
+var app = getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -74,7 +74,7 @@ Page({
      var param = {};
      param.memberId = memberId;
      wx.request({
-       url: "https://www.ecartoon.com.cn/clubmp!findCashAccount.asp",
+       url: app.request_url + 'findCashAccount.asp',
        dataType:JSON,
        data:{
          json:encodeURI(JSON.stringify(param))
@@ -176,7 +176,7 @@ Page({
 
     // 发起网络请求
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!getMobileCode.asp',
+      url: app.request_url + 'getMobileCode.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))
@@ -275,7 +275,7 @@ Page({
     param.code = code;
 
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!savePickDetail.asp',
+      url: app.request_url + 'savePickDetail.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))
@@ -327,7 +327,7 @@ Page({
        e.session_key = session_key;
       // 获取手机号成功，去后台解密手机号
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+        url: app.request_url + 'decodePhoneNumber.asp',
         dataType:JSON,
         data:{
           json:e

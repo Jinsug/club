@@ -1,4 +1,5 @@
 var WxParse = require('../../wxParse/wxParse.js');
+var app = getApp();
 Page({
 
   /**
@@ -119,7 +120,7 @@ Page({
      };
      // 发起网络请求
      wx.request({
-       url: 'https://www.ecartoon.com.cn/clubmp!getCutdownInfo.asp',
+       url: app.request_url + 'getCutdownInfo.asp',
        dataType:JSON,
        data:{
          json: encodeURI(JSON.stringify(param))
@@ -198,7 +199,7 @@ Page({
 
     // 发起网络请求，开始砍价
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!cutdownPrice.asp',
+      url: app.request_url + 'cutdownPrice.asp',
       dataType:JSON,
       data:{
         json:encodeURI(JSON.stringify(param))

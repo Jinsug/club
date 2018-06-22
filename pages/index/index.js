@@ -1,9 +1,10 @@
 import regeneratorRuntime from '../../utils/runtime.js';
 var util = require('../../utils/util.js');
+var app = getApp();
 Page({
   data: {
-    base_picture_url: 'https://www.ecartoon.com.cn/picture',
-    base_img_url: 'https://www.ecartoon.com.cn/miniProgram/club/img',
+    base_picture_url: app.constant.base_pic_url,
+    base_img_url: app.constant.base_img_url,
     club: {
       image: 'opacity.png'
     },
@@ -30,7 +31,7 @@ Page({
     if(wx.getStorageSync('memberId')){
       // 查询用户数据
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!findMe.asp',
+        url: app.request_url + 'findMe.asp',
         data: {
           json: encodeURI(JSON.stringify({ memberId: wx.getStorageSync('memberId') }))
         },
@@ -52,7 +53,7 @@ Page({
     if (wx.getStorageSync('memberId')) {
       var obj = this;
       wx.request({
-        url: 'https://www.ecartoon.com.cn/clubmp!checkMemberToClub.asp',
+        url: app.request_url + 'checkMemberToClub.asp',
         data: {
           memberId: wx.getStorageSync('memberId'),
           clubId: wx.getStorageSync('clubId')
@@ -87,7 +88,7 @@ Page({
   // 加载俱乐部数据
   getClubData: function(obj){
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!findClubById.asp',
+      url: app.request_url + 'findClubById.asp',
       data: {
         id: wx.getStorageSync('clubId')
       },
@@ -121,7 +122,7 @@ Page({
     // 请求服务器
     let obj = this;
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!request.asp',
+      url: app.request_url + 'request.asp',
       data: {
         memberId: wx.getStorageSync('memberId'),
         clubId: wx.getStorageSync('clubId')
@@ -147,7 +148,7 @@ Page({
   relieve: function () {
     var obj = this;
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!saveRelieve.asp',
+      url: app.request_url + 'saveRelieve.asp',
       data: {
         memberId: wx.getStorageSync('memberId'),
         clubId: wx.getStorageSync('clubId')
@@ -255,7 +256,7 @@ Page({
       request: (param) => {
         return new Promise(function (resolve, reject){
           wx.request({
-            url: 'https://www.ecartoon.com.cn/clubmp!sign.asp',
+            url: app.request_url + 'sign.asp',
             data: {
               json: encodeURI(JSON.stringify(param))
             },
@@ -268,7 +269,7 @@ Page({
       getServerTime: function() {
         return new Promise(function (resolve, reject) {
           wx.request({
-            url: 'https://www.ecartoon.com.cn/clubmp!getSignTime.asp',
+            url: app.request_url + 'getSignTime.asp',
             data: {
               memberId: wx.getStorageSync('memberId'),
               clubId: wx.getStorageSync('clubId')
@@ -528,7 +529,7 @@ Page({
     }
     // 调用服务端接口给用户生成一条优惠券数据
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!setTicketToMember.asp',
+      url: app.request_url + 'setTicketToMember.asp',
       data: param,
       success: function (res) {
         // 弹窗提示用户
@@ -556,7 +557,7 @@ Page({
     var obj = this;
     e.session_key = wx.getStorageSync("session_key");
     wx.request({
-      url: 'https://www.ecartoon.com.cn/clubmp!decodePhoneNumber.asp',
+      url: app.request_url + 'decodePhoneNumber.asp',
       data: {
         json: JSON.stringify(e)
       },

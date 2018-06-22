@@ -21,7 +21,7 @@
                               <view class='pre' wx:for="{{appointmentListApplied}}" wx:for-item="appointment">
                                     <!-- 头像 -->
                                     <view class='left imgDiv'>
-                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
+                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectFill'></image>
                                     </view>
 
                                     <!-- center -->
@@ -61,7 +61,7 @@
                               <view class='pre' wx:for="{{appointmentListApplying}}" wx:for-item="appointment">
                                     <!-- 头像 -->
                                     <view class='left imgDiv'>
-                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectfill'></image>
+                                          <image class='img' src='{{filter.errorImage(appointment.image)}}'  mode='aspectFill'></image>
                                     </view>
 
                                     <!-- center -->
