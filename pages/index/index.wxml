@@ -8,34 +8,36 @@
     </image>
     <image src='{{filter.errorImage(club.image)}}' mode='aspectFill' wx:if="{{!club.banner}}">
     </image>
-    <view class='clubInfo'>
-      <view class='clubInfo-left'>
-        <image src='{{base_picture_url}}/{{club.image}}' class='clubPhoto'  
-            mode='aspectFill'></image>
-      </view>
-      <view class='clubInfo-right'>
-        <view class='clubName'>{{club.name}}</view>
-        <view class='functionButton'>
-          <view class='contactService' bindtap='contactService'>
-            联系客服
-            <button open-type='contact' class='openButton'></button>
-          </view>
-          <view class='addToClub' bindtap='apply' wx:if='{{!memberStatus}}'>
-            申请加入
-          </view>
-          <view class='addToClub' bindtap='relieve' wx:if='{{memberStatus}}'>
-            解除关系
+    <view class='clubInfo-block'>
+      <view class='clubInfo'>
+        <view class='clubInfo-left'>
+          <image src='{{base_picture_url}}/{{club.image}}' class='clubPhoto'  
+              mode='aspectFill'></image>
+        </view>
+        <view class='clubInfo-right'>
+          <view class='clubName'>{{club.name}}</view>
+          <view class='functionButton'>
+            <view class='contactService' bindtap='contactService'>
+              联系客服
+              <button open-type='contact' class='openButton'></button>
+            </view>
+            <view class='addToClub' bindtap='apply' wx:if='{{!memberStatus}}'>
+              申请加入
+            </view>
+            <view class='addToClub' bindtap='relieve' wx:if='{{memberStatus}}'>
+              解除关系
+            </view>
           </view>
         </view>
       </view>
-    </view>
-    <view class='clubInfo-bottom'>
-      <view class='clubAddress' bindtap='clubLocation'>
-        <image src='{{base_picture_url}}/address.png' class='address-icon'></image>
-        <view class='address'>地址：{{filter.overflow_hidden(club.address, 18)}}</view>
-      </view>
-      <view class='clubPhone' bindtap='call'>
-        <image src='{{base_picture_url}}/phone.png'></image>
+      <view class='clubInfo-bottom'>
+        <view class='clubAddress' bindtap='clubLocation'>
+          <image src='{{base_picture_url}}/address.png' class='address-icon'></image>
+          <view class='address'>地址：{{filter.overflow_hidden(club.address, 18)}}</view>
+        </view>
+        <view class='clubPhone' bindtap='call'>
+          <image src='{{base_picture_url}}/phone.png'></image>
+        </view>
       </view>
     </view>
   </view>
