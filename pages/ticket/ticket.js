@@ -59,7 +59,8 @@ Page({
     wx.request({
       url: app.request_url + 'findMyTicket.asp',
       data: {
-        memberId: wx.getStorageSync('memberId')
+        memberId: wx.getStorageSync('memberId'),
+        clubId: wx.getStorageSync('clubId')
       },
       success: (res) => {
         // 设置数据源
@@ -74,13 +75,13 @@ Page({
   // 查询适用优惠券
   findTicketByType: function(){
     let obj = this;
-    let memberId = wx.getStorageSync("memberId");
     wx.request({
       url: app.request_url + 'findTicketByType.asp',
       data: {
-        memberId: memberId,
+        memberId: wx.getStorageSync("memberId"),
         productId: obj.data.productId,
-        productType: obj.data.productType
+        productType: obj.data.productType,
+        clubId: wx.getStorageSync('clubId')
       },
       success: function (res) {
         // 设置数据源

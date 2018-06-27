@@ -96,7 +96,8 @@ Page({
       wx.request({
         url: app.request_url + 'myFooter.asp',
         data: {
-          memberId: wx.getStorageSync('memberId')
+          memberId: wx.getStorageSync('memberId'),
+          clubId: wx.getStorageSync('clubId'),
         },
         success: (res) => {
           obj.setData({
