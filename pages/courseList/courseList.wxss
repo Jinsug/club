@@ -82,7 +82,7 @@ page{
    float: left;
    margin-left: 20rpx;
    overflow: hidden;
-   width: 60%;
+   width: 65%;
    position: relative;
 }
 
