@@ -62,18 +62,21 @@ Page({
   onReachBottom: function () {
     
   },
-
+   
   /**
-   * 用户点击右上角分享
+   * 上报预约课程 发送模板消息所需信息
    */
-  // onShareAppMessage: function () {
-    
-  // },
+  submitAppointment: function (e) {
+    console.log(JSON.stringify(e.detail.value));
+    console.log(JSON.stringify(e.detail.formId));
+  },
 
   /**
    * 预约课程
    */
   appointment: function () {
+      console.log('appointment');
+      return;
       var objx = this;
       var courseId = objx.data.course.id;
       var memberId=  wx.getStorageSync("memberId");

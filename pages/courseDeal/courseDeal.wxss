@@ -97,4 +97,8 @@ page{
   margin-bottom: 20rpx;
 }
 
+.submitDiv{
+  background: transparent;
+}
+
 
