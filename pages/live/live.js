@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    liveList: []
   },
 
   /**
@@ -18,7 +18,6 @@ Page({
         source:source
       })
     }
-    
   },
 
   /**
@@ -32,7 +31,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    // 查询直播列表
+    this.methods.getLiveList(this);
   },
 
   /**
@@ -53,7 +53,10 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    
+    // 查询直播列表
+    this.methods.getLiveList(this);
+    // 停止下拉刷新
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -74,6 +77,40 @@ Page({
       path: 'pages/live/live?source=share'
     }
   },
+
+  /**
+   * wxml绑定函数:直播列表点击绑定(去详情页面)
+   */
+  liveDetail: function (e) {
+    // 检查登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=live'
+      });
+      return;
+    }
+    var index = e.currentTarget.dataset.index;
+    wx.setStorageSync('live', this.data.liveList[index]);
+    wx.navigateTo({
+      url: '../liveDetail/liveDetail'
+    })
+  },
+
+  /**
+   * wxml绑定函数:发起按钮点击绑定(到发起直播页面)
+   */
+  releaseLive: function () {
+    // 检查登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=live'
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '../releaseLive/releaseLive'
+    });
+  },
   
   /**
   * wxml绑定函数:主页按钮点击绑定(回到主页)
@@ -82,5 +119,22 @@ Page({
     wx.switchTab({
       url: '../index/index'
     });
+  },
+
+  /**
+   * 自定义函数
+   */
+  methods: {
+    // 查询直播列表
+    getLiveList: function (obj) {
+      wx.request({
+        url: app.request_url + 'liveList.asp',
+        success: function (res) {
+          obj.setData({
+            liveList: res.data.items
+          });
+        }
+      });
+    }
   }
 })

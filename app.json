@@ -5,6 +5,8 @@
     "pages/map/map",
     "pages/introduce/introduce",
     "pages/live/live",
+    "pages/liveDetail/liveDetail",
+    "pages/releaseLive/releaseLive",
     "pages/memberRanking/memberRanking",
     "pages/product/product",
     "pages/clubList/clubList",
