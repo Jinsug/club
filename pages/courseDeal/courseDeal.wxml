@@ -67,10 +67,11 @@
       <!-- 满员就不显示按钮了 -->
       <view wx:if="{{course.joinNum < course.total}}">
             <!-- 确定按钮 -->
-            <form class='submitDiv' report-submit='true' bindsubmit='submitAppointment'>
+            <form class='submitDiv' report-submit='true' bindsubmit='submitAppointment' wx:if='{{isFree}}'>
                       <button class='submitButton' form-type='submit'></button>
             </form>
-            <view class="sure" wx:if="{{isFree}}">
+
+            <view class="sure" >
                         预约
             </view>
 

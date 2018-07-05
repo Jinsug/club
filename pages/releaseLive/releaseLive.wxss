@@ -1,0 +1,140 @@
+page{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+image{
+  width: 100%;
+  height: 100%;
+}
+
+/* 上传区域 */
+.upload-background{
+  padding: 40rpx;
+  height: 150rpx;
+  overflow: hidden;
+  background-color: #BBB;
+}
+
+.upload-image{
+  float: left;
+  width: 300rpx;
+  height: 150rpx;
+}
+
+.upload-tip{
+  float: left;
+  margin-left: 20rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  font-size: 28rpx;
+  color: #FFF;
+}
+
+/* 表单区域 */
+.form-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.form-cell-left{
+  width: 30%;
+  font-size: 28rpx;
+}
+
+.form-cell-right{
+  width: 70%;
+  overflow: hidden;
+}
+
+.user-image{
+  float: right;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.user-image > image{
+  border-radius: 50%;
+}
+
+.user-info{
+  position: relative;
+  float: right;
+  margin-left: 20rpx;
+  font-size: 28rpx;
+  color: #BBB;
+}
+
+.user-mobilephone{
+  margin-top: 10rpx;
+}
+
+.phone-number-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.phone-number-button::after{
+  border: 0;
+}
+
+.live-name{
+  width: 100%;
+  text-align: right;
+  font-size: 28rpx;
+  color: #BBB;
+}
+
+.live-cost{
+  float: right;
+  width: 400rpx;
+  text-align: right;
+  font-size: 28rpx;
+  color: #BBB;
+}
+
+.metering{
+  float: right;
+  margin-left: 10rpx;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  font-size: 28rpx;
+}
+
+.live-notice{
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+.live-notice-content{
+  padding: 20rpx;
+  color: #BBB;
+}
+
+/* 发起直播按钮 */
+.release-live{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #FFF;
+  background-color: #FF4401;
+}
+
+
+
+
+

@@ -191,11 +191,11 @@ Page({
           var isFree = false;
           var role = res.course.isVip;
           if (role) {
-            if (parseFloat(res.course.vip_price) == 0.00) {
+            if (res.course.vip_price == 0) {
               isFree = true;
             }
           } else {
-            if (parseFloat(res.course.normol_price) == 0.00) {
+            if (res.course.normol_price == 0) {
               isFree = true;
             }
           }

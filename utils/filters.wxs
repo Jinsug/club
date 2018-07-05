@@ -113,7 +113,7 @@ var filters = {
      * 价格过滤
      */
     getPriceStr: function (str) {
-      if (str == "" || str == "null" || str == null || str == "undefined" || str == undefined || parseInt(str) == 0) {
+      if (str == "" || str == "null" || str == null || str == "undefined" || str == undefined || parseFloat(str) == 0) {
          str = "免费";
       } else {
          str = "￥" + parseFloat(str).toFixed(2);

@@ -1,0 +1,65 @@
+<!-- 引入过滤器 -->
+<wxs module='filter' src='../../utils/filters.wxs'></wxs>
+<!-- 上传直播封面 -->
+<view class='upload-background' bindtap='bindUploadTap'>
+  <view class='upload-image'>
+    <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill'>
+    </image>
+  </view>
+  <view class='upload-tip'>
+    点击上传直播封面
+  </view>
+</view>
+<view style='height:20rpx;background-color:#F0F0F2;'></view>
+<!-- 填写直播信息表单 -->
+<view class='form'>
+  <view class='form-row'>
+    <view class='form-cell-left'>
+      发起人
+    </view>
+    <view class='form-cell-right'>
+      <view class='user-info'>
+        <view class='user-name'>{{member.memberName}}</view>
+        <view class='user-mobilephone' wx:if='{{member.memberMobilePhone && member.mobileValid}}'>手机验证{{member.memberMobilePhone}}
+        </view>
+        <view class='user-mobilephone' wx:if='{{!member.memberMobilePhone || !member.mobileValid}}'>点击验证手机号码
+        </view>
+        <button open-type='getPhoneNumber' bindgetphonenumber='bindPhoneNumberButtonTap'
+          class='phone-number-button' wx:if='{{!member.memberMobilePhone || !member.mobileValid}}'>
+        </button>
+      </view>
+      <view class='user-image'>
+        <image src='{{filter.errorImage(member.memberImage)}}' mode='aspectFill'>
+        </image>
+      </view>
+    </view>
+  </view>
+  <view class='form-row'>
+    <view class='form-cell-left'>
+      直播名称
+    </view>
+    <view class='form-cell-right'>
+      <input class='live-name' type='text' placeholder='请输入直播名称' bindinput='bindLiveNameInput'>
+      </input>
+    </view>
+  </view>
+  <view class='form-row'>
+    <view class='form-cell-left'>
+      直播收费
+    </view>
+    <view class='form-cell-right'>
+      <view class='metering'>
+        元
+      </view>
+      <input class='live-cost' type='number' placeholder='请输入价格(免费请写0)' bindinput='bindLiveCostInput'>
+      </input>
+    </view>
+  </view>
+</view>
+<view class='live-notice'>
+  <view class='live-notice-title'>直播公告</view>
+  <textarea class='live-notice-content' placeholder='请输入直播公告内容......' bindinput='bindLiveNoticeInput'>
+  </textarea>
+</view>
+<!-- 发起直播按钮 -->
+<view class='release-live' bindtap='bindReleaseLiveButtonTap'>发起</view>

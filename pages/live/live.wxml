@@ -1,6 +1,43 @@
 <!-- 引入过滤器 -->
 <wxs module='filter' src='../../utils/filters.wxs'></wxs>
-<video src='https://www.ecartoon.com.cn/picture/video.mp4'></video>
+<!-- 直播列表 -->
+<view class='live-list'>
+  <view class='live-item' wx:for="{{liveList}}" wx:key="" bindtap='liveDetail' 
+    data-index='{{index}}'>
+    <view class='live-background'>
+      <image src='{{filter.errorImage(item.liveImage)}}' mode='aspectFill'>
+      </image>
+      <view class='live-status' wx:if="{{item.liveState == 0}}">
+        未直播
+      </view>
+      <view class='live-status' wx:if="{{item.liveState == 1}}">
+        直播中
+      </view>
+    </view>
+    <view class='live-info'>
+      <view class='live-user'>
+        <view class='live-user-image'>
+          <image src='{{filter.errorImage(item.memberImage)}}' mode='aspectFill'>
+          </image>
+        </view>
+        <view class='live-name'>
+          {{item.liveName}}
+        </view>
+      </view>
+      <view class='live-audience'>
+        <view class='live-audience-image'>
+          <image src='../../icon/mine.png' mode='aspectFill'>
+          </image>
+        </view>
+        <view class='live-audience-count'>
+          {{item.totalOnline}}
+        </view>
+      </view>
+    </view>
+  </view>
+ </view> 
+<!-- 发起直播按钮 -->
+<view class='release-live' bindtap='releaseLive'>发起</view>
 
 <!-- 分享页面，回到首页按钮 -->
 <view class='goHome' bindtap='goHome' wx:if='{{source}}'>

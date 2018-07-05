@@ -1,0 +1,93 @@
+<!-- 引入过滤器 -->
+<wxs module='filter' src='../../utils/filters.wxs'></wxs>
+<!-- 直播推流组件 -->
+<live-pusher class='live-play {{isAllClass}}' url='{{live.pushURL}}' autopush='{{pushing}}'
+  wx:if='{{pushing}}'>
+  <cover-view class='operation-background'>
+    <cover-view class='operation-block' bindtap='changeOperation'>
+      <cover-view class='operation' wx:if='{{operation}}'>
+        <cover-image src='{{filter.errorImage("201807051520.png")}}' mode='aspectFill' class='fullscreen-icon'
+          bindtap='bindFullscreenButtonTap'>
+        </cover-image>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</live-pusher>
+<!-- 直播播放组件 -->
+<live-player class='live-play {{isAllClass}}' src='{{live.playURL}}' autoplay
+  wx:if='{{live.liveState}}' object-fit='fillCrop'>
+  <cover-view class='operation-background'>
+    <cover-view class='operation-block' bindtap='changeOperation'>
+      <cover-view class='operation' wx:if='{{operation}}'>
+        <cover-image src='{{filter.errorImage("201807051520.png")}}' mode='aspectFill' class='fullscreen-icon'
+          bindtap='bindFullscreenButtonTap'>
+        </cover-image>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</live-player>
+<view class='live-play-image' wx:if="{{(isAnchor && !pushing) || (!isAnchor && !live.liveState)}}">
+  <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill'>
+  </image>
+</view>
+<!-- 选项卡 -->
+<view class='swiper-title' wx:if='{{!isAll}}'>
+  <view class='swiper-title-item {{activeList[0]}}' bindtap='switchSwiper' data-index='0'>
+    聊天
+  </view>
+  <view class='swiper-title-item {{activeList[1]}}' bindtap='switchSwiper' data-index='1'>
+    主播
+  </view>
+</view>
+<swiper current='{{currentIndex}}' style='height: {{swiperHeight}}px;' bindchange='changeSwiper' 
+  wx:if='{{!isAll}}'>
+  <swiper-item class="swiper-item">
+    <view class='live-notice'>
+      <view class='live-notice-title'>直播公告</view>
+      <view class='live-notice-content'>
+        绿色直播、对直播内容进行24小时在线巡查，任何传播违法、违规、低俗、暴力等不良信息的行为将会封停账号，切勿于他人私下交易转账，以免上当受骗
+      </view>
+    </view>
+    <scroll-view class='live-chat' style='height: {{chatHeight}}px;' scroll-y='{{true}}' 
+      scroll-into-view='{{last_chat}}'>
+      <view class='live-chat-item' wx:for='{{chatList}}' wx:key='' id="{{'chat' + index}}">
+        <text style='color: #3399FF;'>{{item.memberName}}:</text> {{item.content}}
+      </view>
+    </scroll-view>
+    <view class='send-chat'>
+      <view class='chat-input'>
+        <input placeholder='请输入文字发送' bindinput='inputChatText' value='{{chatText}}'>
+        </input>
+      </view>
+      <view class='send-chat-button' bindtap='sendChat'>发送</view>
+    </view>
+  </swiper-item>
+  <swiper-item class="swiper-item">
+    <view class='user-info'>
+      <view class='user-image'>
+        <image src='{{filter.errorImage(live.memberImage)}}' mode='aspectFill'>
+        </image>
+      </view>
+      <view class='user-other'>
+        <view class='user-name'>{{live.memberName}}</view>
+        <view class='live-start-time'>
+          开始时间: {{live.startTime}}
+        </view>
+      </view>
+    </view>
+    <view class='anchor-notice'>
+      <view class='anchor-notice-title'>
+        主播公告
+      </view>
+      <view class='anchor-notice-content'>
+        {{live.liveNotice}}
+      </view>
+    </view>
+    <view class='start-live' bindtap='bindLiveButtonTap' data-status='0' wx:if='{{isAnchor && !pushing}}'>
+      开始直播
+    </view>
+    <view class='start-live' bindtap='bindLiveButtonTap' data-status='1' wx:if='{{isAnchor && pushing}}'>
+      结束直播
+    </view>
+  </swiper-item>
+</swiper>
