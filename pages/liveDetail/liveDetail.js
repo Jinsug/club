@@ -39,7 +39,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    if(wx.getStorageSync('payLive') && wx.getStorageSync('payLive') == 1){
+      wx.navigateBack({
+        delta: 1
+      });
+    }
   },
 
   /**
@@ -232,6 +236,7 @@ Page({
                 productType: 'product',
                 time: res.data.currentDate
               }
+              wx.setStorageSync('payLive', 1);
               wx.navigateTo({
                 url: '../order/order?product=' + encodeURI(JSON.stringify(param))
               });
