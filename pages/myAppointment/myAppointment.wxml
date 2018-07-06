@@ -71,7 +71,7 @@
                                           <!-- 授课教练 -->
                                           <view class='coachName value'>授课教练：{{appointment.coachName}}</view>
                                           <!-- 预约时间 -->
-                                          <view class='dealTime value'>预约时间：{{appointment.applyDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
+                                          <view class='dealTime value'>课程时间：{{appointment.courseDate}} {{appointment.startTime}}-{{appointment.endTime}}</view>
 
                                     </view>
 
