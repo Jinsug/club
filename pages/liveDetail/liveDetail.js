@@ -223,7 +223,7 @@ Page({
             anchor: live.memberId
           },
           success: (res) => {
-            if (res.data.succes) {
+            if (res.data.success) {
               live.playURL = res.data.playUrl.RTMP;
               renderView();
             } else {
