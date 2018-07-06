@@ -1,8 +1,8 @@
 <!-- 引入过滤器 -->
 <wxs module='filter' src='../../utils/filters.wxs'></wxs>
 <!-- 直播推流组件 -->
-<live-pusher class='live-play {{isAllClass}}' url='{{live.pushURL}}' autopush='{{pushing}}'
-  wx:if='{{pushing}}'>
+<live-pusher class='live-play {{isAllClass}}' url='{{live.pushURL}}' autopush='{{pushing == 1}}'
+  wx:if='{{pushing == 1}}'>
   <cover-view class='operation-background'>
     <cover-view class='operation-block' bindtap='changeOperation'>
       <cover-view class='operation' wx:if='{{operation}}'>
@@ -26,7 +26,7 @@
     </cover-view>
   </cover-view>
 </live-player>
-<view class='live-play-image' wx:if="{{(isAnchor && !pushing) || (!isAnchor && !live.liveState)}}">
+<view class='live-play-image' wx:if="{{(isAnchor && pushing == 0) || (!isAnchor && !live.liveState)}}">
   <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill'>
   </image>
 </view>
@@ -40,7 +40,7 @@
       主播
     </view>
   </view>
-  <swiper style='height: {{swiperHeight}}px;' current='{{currentIndex}}' 
+  <swiper style='height: {{swiperHeight}}rpx;' current='{{currentIndex}}' 
     bindchange='changeSwiper' wx:if='{{!isAll}}'>
     <swiper-item class="swiper-item">
       <view class='live-notice'>
@@ -49,7 +49,7 @@
           绿色直播、对直播内容进行24小时在线巡查，任何传播违法、违规、低俗、暴力等不良信息的行为将会封停账号，切勿于他人私下交易转账，以免上当受骗
         </view>
       </view>
-      <scroll-view class='live-chat' style='height: {{chatHeight}}px;' scroll-y='{{true}}' 
+      <scroll-view class='live-chat' style='height: {{chatHeight}}rpx;' scroll-y='{{true}}' 
         scroll-into-view='{{last_chat}}'>
         <view class='live-chat-item' wx:for='{{chatList}}' wx:key='' id="{{'chat' + index}}">
           <text style='color: #3399FF;'>{{item.memberName}}:</text> {{item.content}}
@@ -84,10 +84,12 @@
           {{live.liveNotice}}
         </view>
       </view>
-      <view class='start-live' bindtap='bindLiveButtonTap' data-status='1' wx:if='{{isAnchor && !pushing}}'>
+      <view class='start-live' bindtap='bindLiveButtonTap' data-status='1' 
+        wx:if='{{isAnchor && pushing == 0}}'>
         开始直播
       </view>
-      <view class='start-live' bindtap='bindLiveButtonTap' data-status='0' wx:if='{{isAnchor && pushing}}'>
+      <view class='start-live' bindtap='bindLiveButtonTap' data-status='0' 
+        wx:if='{{isAnchor && pushing == 1}}'>
         结束直播
       </view>
     </swiper-item>

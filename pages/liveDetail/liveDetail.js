@@ -187,11 +187,12 @@ Page({
       }
       // 页面加载时计算滑块的高度
       var systemInfo = wx.getSystemInfoSync();
-      var swiperHeight = (systemInfo.windowHeight - ((450 + 80) / 2)) * 1.01;
+      var height = (systemInfo.windowHeight * (750 / systemInfo.windowWidth));
+      var swiperHeight = (height - (450 + 80));
       // 页面初始化滑块默认激活选项
       var activeList = ['swiper-active', ''];
       // 页面加载时计算聊天窗口的高度
-      var chatHeight = swiperHeight - (87 + 39);
+      var chatHeight = swiperHeight - ((87 + 39) * (750 / systemInfo.windowWidth));
       // 渲染页面
       var renderView = () => {
         var data = {

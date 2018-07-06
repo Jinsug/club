@@ -43,6 +43,7 @@
     </view>
   </view>
  </view> 
+ <view style='height: 100rpx;'></view>
 <!-- 发起直播按钮 -->
 <view class='release-live' bindtap='releaseLive'>发起直播</view>
 
