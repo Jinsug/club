@@ -9,9 +9,9 @@
     <view class='paySuccess-content-top'>
       您已经成功购买 “ {{productName}} ” 
     </view>
-    <view>
+    <!-- <view>
       欢迎到本俱乐部扫码健身
-    </view>
+    </view> -->
     <!-- <view class='button-tip'>
       请下载卡库健身APP接受教练服务
     </view> -->

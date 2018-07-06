@@ -258,7 +258,10 @@ Page({
           });
           // 创建webScoket连接
           wx.connectSocket({
-            url: 'wss://www.ecartoon.com.cn/clubMpChat'
+            url: 'wss://www.ecartoon.com.cn/clubMpChat',
+            header: {
+              'content-type': 'application/json'
+            }
           });
           // 接受服务端传来的消息
           wx.onSocketMessage(function(res){
