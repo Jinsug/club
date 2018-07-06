@@ -12,23 +12,15 @@ image{
 
 /* 上传区域 */
 .upload-background{
-  padding: 40rpx;
-  height: 150rpx;
-  overflow: hidden;
+  height: 300rpx;
   background-color: #BBB;
 }
 
-.upload-image{
-  float: left;
-  width: 300rpx;
-  height: 150rpx;
-}
-
 .upload-tip{
-  float: left;
-  margin-left: 20rpx;
-  height: 150rpx;
-  line-height: 150rpx;
+  width: 100%;
+  height: 300rpx;
+  text-align: center;
+  line-height: 300rpx;
   font-size: 28rpx;
   color: #FFF;
 }
@@ -92,6 +84,12 @@ image{
   text-align: right;
   font-size: 28rpx;
   color: #BBB;
+}
+
+.select-start-time{
+  text-align: right;
+  font-size: 28rpx;
+  color: #808080;
 }
 
 .live-cost{

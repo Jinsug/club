@@ -62,6 +62,13 @@ image{
 }
 
 /* 滑块部分 */
+.swiper{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
 .swiper-title{
   display: flex;
   justify-content: space-between;
@@ -84,7 +91,7 @@ image{
 
 .swiper-active{
   color: #000;
-  border-bottom: 2rpx solid #3399FF;
+  border-bottom: 2rpx solid #FB8C00;
 }
 
 /* 选项卡一 */
@@ -119,7 +126,14 @@ image{
 .send-chat{
   display: flex;
   justify-content: space-between;
-  padding: 0 20rpx;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 94%;
+  height: 80rpx;
+  padding: 0 3%;
+  border-top: 1px solid #F0F0F2;
 }
 
 .chat-input{
@@ -198,7 +212,7 @@ image{
   line-height: 88rpx;
   font-size: 28rpx;
   color: #FFF;
-  background-color: #3399FF;
+  background-color: #FB8C00;
 }
 
 

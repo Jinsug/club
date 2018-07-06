@@ -8,10 +8,16 @@
       <image src='{{filter.errorImage(item.liveImage)}}' mode='aspectFill'>
       </image>
       <view class='live-status' wx:if="{{item.liveState == 0}}">
-        未直播
+        <view class='live-status-icon'></view>
+        <view class='live-status-text'>
+          未直播
+        </view>
       </view>
       <view class='live-status' wx:if="{{item.liveState == 1}}">
-        直播中
+        <view class='live-status-icon live-status-active'></view>
+        <view class='live-status-text'>
+          直播中
+        </view>
       </view>
     </view>
     <view class='live-info'>
@@ -21,7 +27,8 @@
           </image>
         </view>
         <view class='live-name'>
-          {{item.liveName}}
+          <view>{{item.liveName}}</view>
+          <view style='font-size: 24rpx;color: #BBB;'>{{item.memberName}} {{item.startTime}}</view>
         </view>
       </view>
       <view class='live-audience'>
@@ -37,10 +44,10 @@
   </view>
  </view> 
 <!-- 发起直播按钮 -->
-<view class='release-live' bindtap='releaseLive'>发起</view>
+<view class='release-live' bindtap='releaseLive'>发起直播</view>
 
 <!-- 分享页面，回到首页按钮 -->
 <view class='goHome' bindtap='goHome' wx:if='{{source}}'>
-        <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
-        <view>前往主页</view>
+  <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+  <view>前往主页</view>
 </view>

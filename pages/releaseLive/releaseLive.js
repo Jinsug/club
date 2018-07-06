@@ -1,10 +1,19 @@
 var app = getApp();
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    date: '2018-10-01',
+    time: '12:00',
+    dateTimeArray: null,
+    dateTime: null,
+    dateTimeArray1: null,
+    dateTime1: null,
+    startYear: 2000,
+    endYear: 2050,
     live: {},
     member: {}
   },
@@ -120,6 +129,44 @@ Page({
   },
 
   /**
+   * 日期改变绑定函数
+   */
+  changeDate(e) {
+    this.setData({ date: e.detail.value });
+  },
+  changeTime(e) {
+    this.setData({ time: e.detail.value });
+  },
+  changeDateTime(e) {
+    this.setData({ dateTime: e.detail.value });
+  },
+  changeDateTime1(e) {
+    this.setData({ dateTime1: e.detail.value });
+  },
+  changeDateTimeColumn(e) {
+    var arr = this.data.dateTime, dateArr = this.data.dateTimeArray;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = util.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray: dateArr,
+      dateTime: arr
+    });
+  },
+  changeDateTimeColumn1(e) {
+    var arr = this.data.dateTime1, dateArr = this.data.dateTimeArray1;
+
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = util.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+
+    this.setData({
+      dateTimeArray1: dateArr,
+      dateTime1: arr
+    });
+  },
+
+  /**
    * 自定义函数
    */
   methods: {
@@ -127,6 +174,21 @@ Page({
      * 页面初始化
      */
     init: function (obj) {
+      // 获取完整的年月日 时分秒，以及默认显示的数组
+      var date1 = util.dateTimePicker(obj.data.startYear, obj.data.endYear);
+      var date2 = util.dateTimePicker(obj.data.startYear, obj.data.endYear);
+      // 精确到分的处理，将数组的秒去掉
+      var lastArray = date1.dateTimeArray.pop();
+      var lastTime = date1.dateTime.pop();
+
+      obj.setData({
+        dateTime: date1.dateTime,
+        dateTimeArray: date1.dateTimeArray,
+        dateTimeArray1: date2.dateTimeArray,
+        dateTime1: date2.dateTime
+      });
+
+      // 请求用户信息
       wx.request({
         url: app.request_url + 'getMemberInfo.asp',
         data: {
@@ -191,11 +253,14 @@ Page({
      * 发起直播
      */
     releaseLive: function (obj) {
-      var param = obj.data.live;
       var member = obj.data.member;
+      var dateTimeArray = obj.data.dateTimeArray;
+      var dateTime = obj.data.dateTime;
+      var param = obj.data.live;
       param.memberId = member.memberId;
       param.mobilephone = member.memberMobilePhone;
       param.mobileValid = member.mobileValid;
+      param.startTime = `${dateTimeArray[0][dateTime[0]]}-${dateTimeArray[1][dateTime[1]]}-${dateTimeArray[2][dateTime[2]]} ${dateTimeArray[3][dateTime[3]]}:${dateTimeArray[4][dateTime[4]]}`;
       // 判断参数是否完整
       if (!param.liveImage || param.liveImage == ''){
         wx.showModal({
@@ -244,8 +309,15 @@ Page({
           json: encodeURI(JSON.stringify(param))
         },
         success: function (res) {
-          wx.navigateTo({
-            url: '../live/live'
+          wx.showModal({
+            title: '提示',
+            content: '您的直播已经发布，请在管理员审核通过后正式开播。如有问题请到小程序首页点击“联系客服”',
+            showCancel: false,
+            complete: e => {
+              wx.navigateBack({
+                delta: 1
+              });
+            }
           });
         }
       })

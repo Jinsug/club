@@ -2,11 +2,9 @@
 <wxs module='filter' src='../../utils/filters.wxs'></wxs>
 <!-- 上传直播封面 -->
 <view class='upload-background' bindtap='bindUploadTap'>
-  <view class='upload-image'>
-    <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill'>
-    </image>
-  </view>
-  <view class='upload-tip'>
+  <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill' wx:if='{{live.liveImage}}'>
+  </image>
+  <view class='upload-tip' wx:if='{{!live.liveImage}}'>
     点击上传直播封面
   </view>
 </view>
@@ -45,6 +43,19 @@
   </view>
   <view class='form-row'>
     <view class='form-cell-left'>
+      直播开始时间
+    </view>
+    <view class='form-cell-right'>
+      <picker mode='multiSelector' value="{{dateTime}}" bindchange="changeDateTime" 
+        bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+        <view class="select-start-time">
+      {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
+    </view>
+      </picker>
+    </view>
+  </view>
+  <view class='form-row'>
+    <view class='form-cell-left'>
       直播收费
     </view>
     <view class='form-cell-right'>
@@ -62,4 +73,4 @@
   </textarea>
 </view>
 <!-- 发起直播按钮 -->
-<view class='release-live' bindtap='bindReleaseLiveButtonTap'>发起</view>
+<view class='release-live' bindtap='bindReleaseLiveButtonTap'>确定</view>
