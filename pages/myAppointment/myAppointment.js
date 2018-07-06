@@ -61,12 +61,6 @@ Page({
     
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  // onShareAppMessage: function () {
-    
-  // },
 
   /**
    * 查询我的预约数据

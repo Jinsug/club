@@ -56,9 +56,13 @@ Page({
 
   // 去支付
   goBuy: function () {
-    // 检查是否输入体重
-    if(!this.checkInputValue()){
-      return;
+    let objx = this;
+    let target = objx.data.active.target;
+    // 体重挑战时，检查是否输入体重
+    if (target == 'A' || target == 'B') {
+        if(!this.checkInputValue()){
+          return;
+        }
     }
     // 组合参数传至订单页面
     let active = this.data.active;

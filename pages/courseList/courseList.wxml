@@ -30,7 +30,7 @@
                               <view class="time value">时间 : {{course.startTime}}-{{course.endTime}} </view>
                               <view class="fee value">会员：<text class='price'>{{filter.getPriceStr(course.vip_price)}}</text><text decode='{{true}}'>&nbsp;&nbsp;&nbsp;</text>非会员：<text class='price'>{{filter.getPriceStr(course.normol_price)}}</text></view>
                               <view class="peoples">{{filter.toFixed(course.joinNum,0)}}人/{{filter.toFixed(course.total,0)}}人</view>
-                              <view class="full" wx:if="{{course.join >= course.total}}" >满员</view>
+                              <view class="full" wx:if="{{course.joinNum >= course.total}}" >满员</view>
                               <view class="toBeFull" wx:else >预约</view>
                   </view>
                
