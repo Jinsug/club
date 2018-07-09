@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/map/map",
     "pages/introduce/introduce",
+    "pages/video/video",
     "pages/live/live",
     "pages/liveDetail/liveDetail",
     "pages/releaseLive/releaseLive",

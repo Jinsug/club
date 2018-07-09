@@ -119,8 +119,17 @@ var filters = {
          str = "￥" + parseFloat(str).toFixed(2);
       }
       return str;
-    }
+    },
 
+    /**
+     * 健身次数过滤
+     */
+    getCount: function (num) {
+      if (num == '' || num == 'null' || !num || num == 'undefined') {
+        num = 0;
+      }
+      return num;
+    }
 }
 
 // 暴露接口
@@ -133,7 +142,8 @@ module.exports = {
   distance: filters.distance,
   week_date: filters.week_date,
   stringNull: filters.stringNull,
-  getStarNumberStr:filters.getStarNumberStr,
-  getStarNumberStrMix:filters.getStarNumberStrMix,
-  getPriceStr:filters.getPriceStr
+  getStarNumberStr: filters.getStarNumberStr,
+  getStarNumberStrMix: filters.getStarNumberStrMix,
+  getPriceStr: filters.getPriceStr,
+  getCount: filters.getCount
 }

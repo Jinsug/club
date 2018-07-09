@@ -47,13 +47,14 @@ page{
   overflow: hidden;
 }
 
+
 .nickName{
-    font-size: 30rpx;
-    color: white;
-    font-weight: 700;
-    height: 52rpx;
-    line-height: 52rpx;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: white;
+  font-weight: 700;
 }
 
 .description{
@@ -231,4 +232,43 @@ page{
 .countFont{
   font-size: 24rpx;
   color: white;
+}
+
+.locationFont{
+  font-size: 28rpx;
+  color: white;
+  overflow: hidden;
+}
+
+.mapIconDiv{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rpx;
+  margin-right: 10rpx;
+  margin-left: 20rpx;
+}
+
+.mapIcon{
+  width: 18rpx;
+  height: 26rpx;
+}
+
+.userProvince{
+  float: left;
+}
+
+.userCity{
+  float: left;
+}
+
+.countNum{
+  font-size: 58rpx;
+  color: #ff4401;
+}
+
+.countUnit{
+  margin-left: 10rpx;
+  font-size: 22rpx;
+  color: #bbb;
 }

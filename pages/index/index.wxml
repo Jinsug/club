@@ -12,7 +12,7 @@
       <view class='clubInfo'>
         <view class='clubInfo-left'>
           <image src='{{base_picture_url}}/{{club.image}}' class='clubPhoto'  
-              mode='aspectFill'></image>
+              mode='aspectFill' bindtap='clubRemark'></image>
         </view>
         <view class='clubInfo-right'>
           <view class='clubName'>{{club.name}}</view>
@@ -51,9 +51,9 @@
         wx:if='{{!timer.start}}' wx:if='{{timer.start}}'></image>
       <view>{{timer.text}}</view>
     </view>
-    <view class='clubRemark' bindtap='clubRemark'>
-      <image src='{{base_picture_url}}/201805042234.png'></image>
-      <view>俱乐部介绍</view>
+    <view class='clubRemark' bindtap='gotoPrivate'>
+      <image src='{{base_picture_url}}/201807090917.png'></image>
+      <view>私人定制</view>
     </view>
     <view class='memberRanking' bindtap='memberRanking'>
       <image src='{{base_picture_url}}/201805042235.png'></image>

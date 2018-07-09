@@ -21,7 +21,19 @@
                               <view class="nickName">
                                     {{memberData.nickName}}
                                     <text decode='{{true}}'>&nbsp;|&nbsp;</text>
-                                    <text class='countFont'>已健身 <text class='count'>{{memberData.count}}</text>次</text>
+                                     <!-- 地图图标 -->
+                                    <view class='mapIconDiv'>
+                                            <image mode='aspectFill' class='mapIcon' src='{{base_img_url}}/address2.png'></image>
+                                    </view>
+                                    <view class='locationFont'>
+                                               
+                                                <view class='userProvince'>
+                                                        <open-data type='userProvince' lang='zh_CN'></open-data><text>-</text>
+                                                </view>
+                                                <view class='userCity'>
+                                                        <open-data type='userCity' lang = 'zh_CN'></open-data>
+                                                </view>
+                                    </view>
                               </view>
                               
                               
@@ -32,7 +44,7 @@
        <!-- 用户未登录，展示登录按钮 -->
        <view class="login" wx:if="{{login_button}}">
             <view class='login_div'>
-                   <button class='login_button' open-type='getUserInfo' bindgetuserinfo='wechatLogin' >登录</button> 
+                   <button class='login_button' open-type='getUserInfo' lang='zh_CN' bindgetuserinfo='wechatLogin' >登录</button> 
             </view>
        </view>
    </view>
@@ -63,16 +75,12 @@
          </view>
 
 
-         <!-- 私人订制 -->
-         <view class='pred' bindtap='gotoPrivate'>
-               <!-- 图标 -->
-               <view class='picDiv'>
-                     <image class='pic' mode="aspectFill" src='https://www.ecartoon.com.cn/miniProgram/club/img/private.png'></image>
-               </view>
-
-               <!-- description -->
-               <view class='desc'>私人订制</view>
-         
+         <!-- 已健身次数 -->
+         <view class='pred'>
+              <!-- 上部 -->
+              <view class='countNum'>{{filter.getCount(memberData.count)}}<text class='countUnit'>次</text></view>
+              <!-- 下部 -->
+              <view class='desc'>已健身</view>
          </view>
 
 

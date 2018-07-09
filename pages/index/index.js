@@ -515,6 +515,23 @@ Page({
       url: '../introduce/introduce'
     });
   },
+
+  /**
+     * 私人订制
+     */
+  gotoPrivate: function () {
+    // 检查登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=index'
+      });
+      return;
+    }
+    wx.navigateTo({
+      url: '../private/private',
+    })
+  },
+
   // 会员排名
   memberRanking: function(){
     wx.navigateTo({
@@ -523,8 +540,12 @@ Page({
   },
   // 健身直播
   live: function(){
+    var url = '../video/video';
+    if (this.data.club.status == 1) {
+      url = '../live/live';
+    }
     wx.navigateTo({
-      url: '../live/live'
+      url: url
     });
   },
   // 领券
