@@ -2,6 +2,9 @@
 <wxs module='filter' src='../../utils/filters.wxs'></wxs>
 <!-- 直播列表 -->
 <view class='live-list'>
+  <video src='https://www.ecartoon.com.cn/picture/video.mp4' style='width: 100%;' 
+    wx:if='{{liveList.length == 0}}'>
+  </video>
   <view class='live-item' wx:for="{{liveList}}" wx:key="" bindtap='liveDetail' 
     data-index='{{index}}'>
     <view class='live-background'>
