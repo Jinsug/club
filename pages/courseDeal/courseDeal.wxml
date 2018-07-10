@@ -71,7 +71,7 @@
                       <button class='submitButton' form-type='submit'></button>
             </form>
 
-            <view class="sure" >
+            <view class="sure" wx:if='{{isFree}}' >
                         预约
             </view>
 
