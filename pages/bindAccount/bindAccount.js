@@ -27,7 +27,7 @@ Page({
     })
     var mobilephone = options.mobilephone;
     var hasMobilephone = 0;
-    if (mobilephone != "" && mobilephone != undefined && mobilephone != "undefined") {
+    if (mobilephone && mobilephone != "" && mobilephone != 'null') {
         hasMobilephone = 1;
     }
 

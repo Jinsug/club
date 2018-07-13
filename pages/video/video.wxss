@@ -1,0 +1,19 @@
+.title{
+  padding: 20rpx;
+  text-align: center;
+  font-size: 36rpx;
+  color: #F9A251;
+}
+
+.content1{
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #BBB;
+}
+
+.content2{
+  padding: 20rpx;
+  padding-bottom: 40rpx;
+  font-size: 28rpx;
+  color: #BBB;
+}

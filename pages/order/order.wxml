@@ -23,7 +23,7 @@
       <image src='{{filter.errorImage(product.image)}}' mode='aspectFill'></image>
     </view>
     <view class='commodity_describe'>
-      <view class="commodity_name">{{product.productName}}</view>
+      <view class="commodity_name">{{filter.overflow_hidden(product.productName, 16)}}</view>
       <view class="commodity_startTime">开始日期 : {{product.time}}</view>
       <view class="commodity_price">
         ￥{{filter.toFixed(product.productPrice, 2)}}

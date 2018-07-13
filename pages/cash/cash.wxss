@@ -98,8 +98,16 @@ page{
 }
 
 .goto{
+    margin-top: -10rpx;
+    width: 30rpx;
+    height: 30rpx;
     font-size: 40rpx;
     color: #8A8A8A;
+}
+
+.goto > image{
+  width: 100%;
+  height: 100%;
 }
 
 .unionPayPicDiv{

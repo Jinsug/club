@@ -30,7 +30,7 @@
           </image>
         </view>
         <view class='live-name'>
-          <view>{{item.liveName}}</view>
+          <view>{{filter.overflow_hidden(item.liveName, 18)}}</view>
           <view style='font-size: 24rpx;color: #BBB;'>{{item.memberName}} {{item.startTime}}</view>
         </view>
       </view>

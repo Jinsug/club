@@ -14,6 +14,7 @@ Page({
     chatText: '',
     chatList: [],
     last_chat: '',
+    totalOnline: 0,
     isAnchor: false,
     pushing: 0,
     isAll: 0,
@@ -32,7 +33,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -57,8 +58,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // 关闭webSocket连接
-    wx.closeSocket();
+    
   },
 
   /**
@@ -131,7 +131,8 @@ Page({
        memberId: wx.getStorageSync('memberId'),
        memberName: this.data.memberName,
        liveId: this.data.live.id,
-       content: this.data.chatText 
+       content: this.data.chatText,
+       type: 'chat' 
     }
     wx.sendSocketMessage({
       data: encodeURI(JSON.stringify(message))
@@ -202,6 +203,14 @@ Page({
           chatHeight: chatHeight,
           isAnchor: isAnchor
         }
+        if (wx.getStorageSync('chat')) {
+          var chatList = obj.data.chatList;
+          var totalOnline = obj.data.totalOnline;
+          chatList.push(wx.getStorageSync('chat'));
+          data.chatList = chatList;
+          data.last_chat = 'chat' + (chatList.length - 1);
+          data.totalOnline = totalOnline + 1;
+        }
         obj.setData(data);
       }
       // 判断当前用户角色决定推流还是播放
@@ -256,22 +265,47 @@ Page({
           obj.setData({
             memberName: res.data.memberName
           });
-          // 创建webScoket连接
-          wx.connectSocket({
-            url: 'wss://www.ecartoon.com.cn/clubMpChat',
-            header: {
-              'content-type': 'application/json'
-            }
-          });
+
+          if (app.constant.isCreateWebSocket) {
+            // 创建webScoket连接
+            wx.connectSocket({
+              url: 'wss://www.ecartoon.com.cn/clubMpChat/' + live.id + '/' + wx.getStorageSync('memberId'),
+              method: 'GET',
+              complete: function () {
+                app.constant.isCreateWebSocket = false;
+              }
+            });
+          }
+
           // 接受服务端传来的消息
-          wx.onSocketMessage(function(res){
+          wx.onSocketMessage(function (res) {
             var message = JSON.parse(decodeURI(res.data));
-            // 接受一条消息并渲染到view中
-            if(message.liveId == obj.data.live.id){
+            // 人数消息
+            if (message.liveId == obj.data.live.id && message.type == 'count') {
               var chat = {
                 memberId: message.memeberId,
                 memberName: message.memberName,
-                content: message.content
+                content: message.memberName + '进入直播间',
+                type: 'system'
+              }
+              var chatList = obj.data.chatList;
+              chatList.push(chat);
+              obj.setData({
+                totalOnline: message.count,
+                chatList: chatList,
+                last_chat: 'chat' + (chatList.length - 1)
+              });
+              // 系统消息保存
+              wx.setStorageSync('chat', chat);
+            }
+
+            // 接受一条聊天消息并渲染到view中
+            if (message.liveId == obj.data.live.id && message.type == 'chat') {
+              var chat = {
+                memberId: message.memeberId,
+                memberName: message.memberName,
+                content: message.content,
+                type: 'user'
               }
               var chatList = obj.data.chatList;
               chatList.push(chat);

@@ -54,7 +54,9 @@
                                    <image class="aliPayPic" src="https://www.ecartoon.com.cn/picture/aliPayLogo.png"></image>
                              </view>
                              <view class="bankName left">支付宝</view>
-                             <view class="goto right">></view>
+                             <view class="goto right">
+                                 <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                             </view>
                        </view>
 
                        <!-- 银行卡 -->
@@ -63,7 +65,9 @@
                                    <image class="unionPayPic" src="https://www.ecartoon.com.cn/picture/UnoinPayLogo.png"></image>
                              </view>
                              <view class="bankName left">银行卡</view>
-                             <view class="goto right">></view>
+                             <view class="goto right">
+                                 <image class='linkIcon' mode='aspectFill' src='https://www.ecartoon.com.cn/miniProgram/club/img/more@2x.png'></image>
+                             </view>
                        </view>
                  </view>
            </view>

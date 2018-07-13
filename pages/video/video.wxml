@@ -1,2 +1,11 @@
+<view class='title'>欢迎来到{{club.name}}！</view>
+<view class='content1'>
+  <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+  本俱乐部将以热忱的服务为您提供最佳健身体验，帮助您实现健身目标，拥有健康幸福的人生
+</view>
+<view class='content2'>
+  <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+  欢迎观看本俱乐部的宣传视频，咨询请点击首页“联系客服”
+</view>
 <video src='https://www.ecartoon.com.cn/picture/video.mp4' style='width: 100%;'>
 </video>
