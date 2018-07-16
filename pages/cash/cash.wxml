@@ -146,7 +146,11 @@
             </view>
       </view>
 
+      <!-- 上报提现formId -->
+      <form class='submitDiv' report-submit='true' bindsubmit='submitAppointment' >
+                  <button class='submitButton' form-type='submit'></button>
+      </form>
       <!-- 申请按钮 -->
-      <view class="cashButton" bindtap='cashMoney' >申请提现</view>
+      <view class='cashButton' >申请提现</view>
 
 </view>

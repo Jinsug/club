@@ -176,7 +176,8 @@ getChooseDayData: function (date) {
 
     // 设值
     objx.setData({
-       dou_dates:objx_dates
+       dou_dates:objx_dates,
+       chooseDate: chooseDate
     })
 
     objx.getCurrentDateCourseList(chooseDate);
@@ -252,7 +253,12 @@ getDatas: function (currentDate) {
              objx.setData({
                 courseDataList:res.course
              })
-             objx.getCurrentDateCourseList(currentDate);
+             // 初始化查询时间
+             var initDate = objx.data.chooseDate;
+             if (!initDate || initDate == '') {
+                 initDate = currentDate;
+             }
+             objx.getCurrentDateCourseList(initDate);
            } else {
              console.log(res.message);
            }
