@@ -138,12 +138,12 @@ image{
   background-color: #FF4401;
 }
 
-.login_button_block{
+.button-block{
   position: relative;
   height: 100%;
 }
 
-.login_button{
+.button{
   position: absolute;
   top: 0;
   left: 0;
@@ -152,7 +152,7 @@ image{
   background-color: transparent;
 }
 
-.login_button::after{
+.button::after{
   border: none;
 }
 

@@ -193,7 +193,7 @@ Page({
       // 页面初始化滑块默认激活选项
       var activeList = ['swiper-active', ''];
       // 页面加载时计算聊天窗口的高度
-      var chatHeight = swiperHeight - ((87 + 39) * (750 / systemInfo.windowWidth));
+      var chatHeight = swiperHeight - ((87 + 39 + 20) * (750 / systemInfo.windowWidth));
       // 渲染页面
       var renderView = () => {
         var data = {

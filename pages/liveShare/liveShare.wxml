@@ -65,14 +65,22 @@
 </view>
 <!-- 登录直播按钮 -->
 <view class='release-live' bindtap='bindLoginButtonTap' wx:if='{{isLogin}}'>
-  <view class='login_button_block'>
+  <view class='button-block'>
     登录
-    <button class='login_button' open-type='getUserInfo' bindgetuserinfo='bindLoginButtonTap'></button>
+    <button class='button' open-type='getUserInfo' bindgetuserinfo='bindLoginButtonTap'></button>
   </view>
 </view>
-<!-- 进入直播间 -->
-<view class='release-live' bindtap='bindLiveDetailButtonTap' wx:if='{{!isLogin}}'>
+<!-- 进入直播间按钮 -->
+<view class='release-live' bindtap='bindLiveDetailButtonTap' wx:if='{{!isLogin && !checkMobilePhone}}'>
   进入直播间
+</view>
+<!-- 验证手机号按钮 -->
+<view class='release-live' wx:if='{{!isLogin && checkMobilePhone}}'>
+  <view class='button-block'>
+    验证手机号
+    <button class='button' open-type='getPhoneNumber' bindgetphonenumber='bindPhoneNumberButtonTap'>
+    </button>
+  </view>
 </view>
 
 <!-- 分享页面，回到首页按钮 -->

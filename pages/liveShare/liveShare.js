@@ -6,7 +6,8 @@ Page({
    */
   data: {
     live: {},
-    isLogin: false
+    isLogin: false,
+    checkMobilePhone: true
   },
 
   /**
@@ -75,9 +76,18 @@ Page({
     var liveName = this.data.live.liveName;
     var startTime = this.data.live.startTime;
     return {
-      title: `“${liveName}” 将于 ${startTime} 开讲，欢迎参加本次讲座！`,
+      title: '健身中国微讲堂——视频直播各种健身讲座',
       path: 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(this.data.live))
     }
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
   },
 
   /**
@@ -85,6 +95,16 @@ Page({
    */
   bindLoginButtonTap: function (e) {
     this.methods.wechatLogin(e, this);
+  },
+
+  /**
+   * wxml绑定函数:获取手机号按钮点击绑定
+   */
+  bindPhoneNumberButtonTap: function (e) {
+    if (e.detail.errMsg != 'getPhoneNumber:ok') {
+      return;
+    }
+    this.methods.getPhoneNumber(e, this);
   },
 
   /**
@@ -118,7 +138,10 @@ Page({
       } 
 
       // 请求主播
-      obj.methods.getUserInfo(obj);
+      obj.methods.getUserInfo(1, obj);
+
+      // 请求用户信息
+      obj.methods.getUserInfo(0, obj);
     },
 
     /**
@@ -178,20 +201,61 @@ Page({
     },
 
     /**
-   * 请求用户信息
-   */
-    getUserInfo: function (obj) {
+     * 请求用户信息
+     */
+    getUserInfo: function (type, obj) {
+      var param = {
+        memberId: type == 0 ? wx.getStorageSync('memberId') : obj.data.live.memberId
+      }
+      
       wx.request({
         url: app.request_url + 'getMemberInfo.asp',
-        data: {
-          memberId: obj.data.live.memberId
-        },
+        data: param,
         success: function (res) {
-          obj.setData({
-            member: res.data
-          });
+          var member = res.data;
+          var data = {}
+          if (type == 1) {
+            data.member = member;
+          }
+          // 是否需要验证手机号
+          if (type == 0 && member.memberMobilePhone && member.memberMobilePhone != '' && 
+            member.mobileValid && member.mobileValid != '') {
+            data.checkMobilePhone = false;
+          }
+          obj.setData(data);
         }
       });
+    },
+
+
+    /**
+     * 获取用户手机号
+     */
+    getPhoneNumber: function (e, obj) {
+      e.session_key = wx.getStorageSync("session_key");
+      wx.request({
+        url: app.request_url + 'decodePhoneNumber.asp',
+        data: {
+          json: JSON.stringify(e)
+        },
+        success: function (res) {
+          // 获取和处理用户手机号
+          var userPhoneNumber = res.data.phoneNumber;
+          // 保存手机号
+          wx.request({
+            url: app.request_url + 'savePhoneNumber.asp',
+            data: {
+              memberId: wx.getStorageSync('memberId'),
+              phoneNumber: userPhoneNumber
+            },
+            success: function (res) {
+              obj.setData({
+                checkMobilePhone: false
+              });
+            }
+          });
+        }
+      })
     }
   }
 })
