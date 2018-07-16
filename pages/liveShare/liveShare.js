@@ -76,7 +76,7 @@ Page({
     var liveName = this.data.live.liveName;
     var startTime = this.data.live.startTime;
     return {
-      title: '健身中国微讲堂——视频直播各种健身讲座',
+      title: `“${liveName}” 将于 ${startTime} 开讲，欢迎参加本次讲座`,
       path: 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(this.data.live))
     }
   },

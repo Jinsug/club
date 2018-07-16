@@ -73,7 +73,7 @@ Page({
     var objx = this;
     var club = wx.getStorageSync('club');
     return {
-      title: club.name + '健身直播',
+      title: '健身中国微讲堂——视频直播各种健身讲座',
       path: 'pages/live/live?source=share'
     }
   },
