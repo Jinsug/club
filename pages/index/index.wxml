@@ -61,7 +61,7 @@
     </view>
     <view class='live' bindtap='live'>
       <image src='{{base_picture_url}}/201805042236.png'></image>
-      <view>健身视频</view>
+      <view>健身直播</view>
     </view>
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
