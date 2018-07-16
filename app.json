@@ -6,6 +6,7 @@
     "pages/introduce/introduce",
     "pages/video/video",
     "pages/live/live",
+    "pages/liveShare/liveShare",
     "pages/liveDetail/liveDetail",
     "pages/releaseLive/releaseLive",
     "pages/memberRanking/memberRanking",

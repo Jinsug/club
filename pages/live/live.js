@@ -89,11 +89,11 @@ Page({
       });
       return;
     }
-    var index = e.currentTarget.dataset.index;
     wx.removeStorageSync('payLive');
-    wx.setStorageSync('live', this.data.liveList[index]);
+    var index = e.currentTarget.dataset.index;
+    var live = this.data.liveList[index];
     wx.navigateTo({
-      url: '../liveDetail/liveDetail'
+      url: '../liveShare/liveShare?live=' + encodeURI(JSON.stringify(live))
     })
   },
 

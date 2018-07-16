@@ -4,9 +4,6 @@
 <view class='upload-background' bindtap='bindUploadTap'>
   <image src='{{filter.errorImage(live.liveImage)}}' mode='aspectFill' wx:if='{{live.liveImage}}'>
   </image>
-  <view class='upload-tip' wx:if='{{!live.liveImage}}'>
-    点击上传直播封面
-  </view>
 </view>
 <view style='height:20rpx;background-color:#F0F0F2;'></view>
 <!-- 填写直播信息表单 -->
@@ -36,9 +33,8 @@
     <view class='form-cell-left'>
       直播名称
     </view>
-    <view class='form-cell-right'>
-      <input class='live-name' type='text' placeholder='请输入直播名称' bindinput='bindLiveNameInput'>
-      </input>
+    <view class='form-cell-right form-cell-right-font'>
+      {{live.liveName}}
     </view>
   </view>
   <view class='form-row'>
@@ -49,8 +45,8 @@
       <picker mode='multiSelector' value="{{dateTime}}" bindchange="changeDateTime" 
         bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
         <view class="select-start-time">
-      {{dateTimeArray[0][dateTime[0]]}}-{{dateTimeArray[1][dateTime[1]]}}-{{dateTimeArray[2][dateTime[2]]}} {{dateTimeArray[3][dateTime[3]]}}:{{dateTimeArray[4][dateTime[4]]}}
-    </view>
+          {{live.startTime}}
+        </view>
       </picker>
     </view>
   </view>
@@ -58,19 +54,37 @@
     <view class='form-cell-left'>
       直播收费
     </view>
-    <view class='form-cell-right'>
-      <view class='metering'>
-        元
-      </view>
-      <input class='live-cost' type='number' placeholder='请输入价格(免费请写0)' bindinput='bindLiveCostInput'>
-      </input>
+    <view class='form-cell-right form-cell-right-font'>
+        {{live.liveCost}} 元
     </view>
   </view>
 </view>
 <view class='live-notice'>
   <view class='live-notice-title'>直播公告</view>
-  <textarea class='live-notice-content' placeholder='请输入直播公告内容......' bindinput='bindLiveNoticeInput'>
-  </textarea>
+  <view class='live-notice-content'>{{live.liveNotice}}</view>
 </view>
-<!-- 发起直播按钮 -->
-<view class='release-live' bindtap='bindReleaseLiveButtonTap'>确定</view>
+<!-- 登录直播按钮 -->
+<view class='release-live' bindtap='bindLoginButtonTap' wx:if='{{isLogin}}'>
+  <view class='button-block'>
+    登录
+    <button class='button' open-type='getUserInfo' bindgetuserinfo='bindLoginButtonTap'></button>
+  </view>
+</view>
+<!-- 进入直播间按钮 -->
+<view class='release-live' bindtap='bindLiveDetailButtonTap' wx:if='{{!isLogin && !checkMobilePhone}}'>
+  进入直播间
+</view>
+<!-- 验证手机号按钮 -->
+<view class='release-live' wx:if='{{!isLogin && checkMobilePhone}}'>
+  <view class='button-block'>
+    验证手机号
+    <button class='button' open-type='getPhoneNumber' bindgetphonenumber='bindPhoneNumberButtonTap'>
+    </button>
+  </view>
+</view>
+
+<!-- 分享页面，回到首页按钮 -->
+<view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+  <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+  <view>前往主页</view>
+</view>
