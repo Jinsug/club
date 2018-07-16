@@ -249,9 +249,11 @@ Page({
               phoneNumber: userPhoneNumber
             },
             success: function (res) {
-              obj.setData({
-                checkMobilePhone: false
-              });
+              // 进入直播间
+              wx.setStorageSync('live', obj.data.live);
+              wx.navigateTo({
+                url: '../liveDetail/liveDetail'
+              })
             }
           });
         }
