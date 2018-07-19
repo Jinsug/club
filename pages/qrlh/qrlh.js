@@ -95,6 +95,9 @@ Page({
           id: wx.getStorageSync('clubId')
         },
         success: function (res) {
+          obj.setData({
+            awardRate: res.data.club.awardRate
+          });
           obj.methods.selectProduct(res.data.cardList, obj.data.selectIndex, obj);
         }
       });

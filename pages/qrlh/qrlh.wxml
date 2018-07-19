@@ -11,10 +11,10 @@
   </view>
   <view class='hongbao-right'>
     <view>
-      通过分享链接购卡享受9折优惠，您也能获得佣金!
+      分享健身卡，成交后您可以获得{{awardRate}}%佣金！
     </view>
     <view class='hongbao-text-margin'>
-      请选择健身卡，点击分享给好友，坐等红包吧！
+      请选择健身卡，点击分享，坐等佣金收入吧！
     </view>
   </view>
 </view>

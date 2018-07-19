@@ -8,10 +8,10 @@
           mode='aspectFill'></image>
       <view class='activeInfo-top-content-right'>
         <view class='activeName'>
-          {{active.name}}
+          {{filter.overflow_hidden(active.name, 12)}}
         </view>
         <view class='activeCreator'>
-          发布人 : {{active.creator}}
+          发布人 : {{filter.overflow_hidden(active.creator, 10)}}
         </view>
         <view class='activeCount'>  
           参加人数 : {{active.count}}人

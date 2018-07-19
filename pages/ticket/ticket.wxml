@@ -1,3 +1,5 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
   <view class="no-data no-data-left" wx:if="{{tickets.length == 0 && productId && productType}}">
     <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
@@ -23,7 +25,7 @@
             <text class='limitPrice'>满{{item.limitPrice}}元可用</text>
           </view>
           <view class='ticket-validity'>
-            适用俱乐部：{{item.clubName}}
+            适用俱乐部：{{filter.overflow_hidden(item.clubName, 8)}}
           </view>
         </view>
       </view>
