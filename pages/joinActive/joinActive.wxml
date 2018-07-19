@@ -12,7 +12,7 @@
         目标：{{filter.active_target(active.days, active.target, active.value)}}
       </view>
       <view class='activeCreator'>
-        发布人 : {{active.creator}}
+        发布人 : {{filter.overflow_hidden(active.creator, 8)}}
       </view>
     </view>
   </view>
