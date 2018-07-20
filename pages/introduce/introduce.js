@@ -38,10 +38,10 @@ Page({
     var temporaryArr = [];
     var count = 0;
     club.projectList.forEach(function (item) {
-      if (count < 3) {
-        temporaryArr.push(item);
-        count++
-      } else {
+      temporaryArr.push(item);
+      count++;
+
+      if (count == 3) {
         projectGrounp.push(temporaryArr);
         temporaryArr = [];
         count = 0;
