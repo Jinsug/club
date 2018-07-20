@@ -2,32 +2,41 @@
 <wxs module='filter' src='../../utils/filters.wxs'></wxs>
 <import src="../../wxParse/wxParse.wxml"/>
 <view class='wraper'>
-  <view class='workDate'>
-    <view class='workDate-title'>
-      营业时间
+  <view class='introduce-wraper'>
+    <swiper class='swiper' indicator-dots indicator-active-color='#FFF' autoplay 
+      interval='5000'>
+      <swiper-item wx:for='{{club.projectList}}' wx:key='' wx:if='{{index < 5}}' 
+        bindtap='bindBannerListTap'>
+        <image src='{{base_picture_url}}/{{item.projectImage}}' 
+          mode='aspectFill' class='swiper-image'></image>
+      </swiper-item>
+    </swiper>
+    <view class='introduce-text'>
+      <text decode>{{club.description}}</text>
     </view>
-    <view class='workDate-body'>
-      <view class='workDate-time'>{{club.startTime}} - {{club.endTime}}</view>
-      <view class='workDate-week'>
-        <text decode='{{true}}'>{{club.workDate}}</text>
-      </view>
+  </view>
+  <view style='height: 20rpx;background-color: #F0F0F2;'></view>
+  <view class='workDate-body'>
+    <view class='workDate-time'>
+      <view class='workDate-time-title'>营业时间</view>
+      <view class='workDate-time-body'>{{club.startTime}} - {{club.endTime}}</view>
+    </view>
+    <view class='workDate-week'>
+      <text decode='{{true}}'>{{club.workDate}}</text>
     </view>
   </view>
   <view style='height:10px;background-color:#F0F0F2;'></view>
   <view class='project'>
-    <view class='project-title'>
-      服务项目
-    </view>
+    <view class='project-title'>服务项目</view>
     <view class='project-body'>
-      <view class='project-item' wx:for="{{club.projectList}}" wx:key=''>
-        <view class='project-image'>
-          <image src='{{base_picture_url}}/{{item.projectImage}}' 
-            mode='aspectFill'>
-          </image>
-          <view class='project-name'>{{item.projectName}}</view>
-        </view>
-        <view class='project-content'>
-          <template is="wxParse" data="{{wxParseData:memoList[index]}}"/>
+      <view class='project-item-block' wx:for='{{projectGrounp}}' wx:key=''>
+        <view class='project-item' wx:for="{{item}}" wx:key=''>
+          <view class='project-image' bindtap='bindBannerListTap'>
+            <image src='{{base_picture_url}}/{{item.projectImage}}' 
+              mode='aspectFill'>
+            </image>
+            <view class='project-name'>{{item.projectName}}</view>
+          </view>
         </view>
       </view>
     </view>

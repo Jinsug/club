@@ -13,10 +13,20 @@ page{
   color: #FFF;
 }
 
-.workDate-title{
-  padding: 10px;
-  color: #444;
-  border-bottom: 1px solid #F0F0F2;
+.swiper{
+  width: 100%;
+  height: 350rpx;
+}
+
+.swiper-image{
+  width: 100%;
+  height: 100%;
+}
+
+.introduce-text{
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #BBB;
 }
 
 .workDate-body{
@@ -26,9 +36,26 @@ page{
 
 .workDate-time{
   font-size: 12px;
+  overflow: hidden;
+}
+
+.workDate-time-title{
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.workDate-time-body{
+  float: right;
+  height: 20px;
+  line-height: 20px;
 }
 
 .workDate-week{
+  margin-top: 10rpx;
+  text-align: right;
   font-size: 12px;
 }
 
@@ -38,8 +65,13 @@ page{
   border-bottom: 1px solid #F0F0F2;
 }
 
+.project-item-block{
+  display: flex;
+  justify-content: space-around;
+}
+
 .project-item{
-  padding: 10px;
+  margin-top: 20rpx;
   overflow: hidden;
 }
 
@@ -48,13 +80,14 @@ page{
 }
 
 .project-image > image{
-  width: 114px;
-  height: 68px;
+  width: 205.2rpx;
+  height: 125.1rpx;
 }
 
 .project-name{
   text-align: center;
-  color: #444;
+  font-size: 24rpx;
+  color: #BBB;
 }
 
 .project-content{

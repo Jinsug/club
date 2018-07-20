@@ -1,0 +1,16 @@
+<!-- 引入过滤器 -->
+<wxs module='filter' src='../../utils/filters.wxs'></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='project-body'>
+  <view class='project-item' wx:for="{{club.projectList}}" wx:key=''>
+    <view class='project-image'>
+      <image src='{{filter.errorImage(item.projectImage)}}' 
+        mode='aspectFill'>
+      </image>
+      <view class='project-name'>{{item.projectName}}</view>
+    </view>
+    <view class='project-content'>
+      <template is="wxParse" data="{{wxParseData:memoList[index]}}"/>
+    </view>
+  </view>
+</view>
