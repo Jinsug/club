@@ -65,13 +65,15 @@ page{
   border-bottom: 1px solid #F0F0F2;
 }
 
-.project-item-block{
-  display: flex;
-  justify-content: space-around;
+.project-body{
+  padding: 20rpx 2%;
+  overflow: hidden;
 }
 
 .project-item{
+  float: left;
   margin-top: 20rpx;
+  margin-left: 4%;
   overflow: hidden;
 }
 

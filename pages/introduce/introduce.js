@@ -34,24 +34,9 @@ Page({
       club.workDate += week[index] + "&nbsp;";
     });
 
-    var projectGrounp = [];
-    var temporaryArr = [];
-    var count = 0;
-    club.projectList.forEach(function (item) {
-      temporaryArr.push(item);
-      count++;
-
-      if (count == 3) {
-        projectGrounp.push(temporaryArr);
-        temporaryArr = [];
-        count = 0;
-      }
-    });
-
     // 页面渲染数据
     this.setData({
-      club: club,
-      projectGrounp: projectGrounp
+      club: club
     });
   },
 

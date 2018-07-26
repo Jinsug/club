@@ -111,6 +111,7 @@ Page({
    * wxml绑定函数:进入直播间按钮点击绑定
    */
   bindLiveDetailButtonTap: function () {
+    wx.removeStorageSync('payLive');
     wx.setStorageSync('live', this.data.live);
     wx.navigateTo({
       url: '../liveDetail/liveDetail'

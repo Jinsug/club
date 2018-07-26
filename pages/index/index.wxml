@@ -112,7 +112,7 @@
         <view class='oneCard-contant'>
           <view class='onCard-info'>
             <view class='onCard-name'>
-              {{filter.overflow_hidden(item.name, 8)}}
+              {{filter.overflow_hidden(item.name, 10)}}
             </view>
             <view class='sell-out'>
               已售{{item.sell_out}}

@@ -29,14 +29,12 @@
   <view class='project'>
     <view class='project-title'>服务项目</view>
     <view class='project-body'>
-      <view class='project-item-block' wx:for='{{projectGrounp}}' wx:key=''>
-        <view class='project-item' wx:for="{{item}}" wx:key=''>
-          <view class='project-image' bindtap='bindBannerListTap'>
-            <image src='{{base_picture_url}}/{{item.projectImage}}' 
-              mode='aspectFill'>
-            </image>
-            <view class='project-name'>{{item.projectName}}</view>
-          </view>
+      <view class='project-item' wx:for="{{club.projectList}}" wx:key=''>
+        <view class='project-image' bindtap='bindBannerListTap'>
+          <image src='{{base_picture_url}}/{{item.projectImage}}' 
+            mode='aspectFill'>
+          </image>
+          <view class='project-name'>{{item.projectName}}</view>
         </view>
       </view>
     </view>

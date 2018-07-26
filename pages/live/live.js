@@ -89,7 +89,6 @@ Page({
       });
       return;
     }
-    wx.removeStorageSync('payLive');
     var index = e.currentTarget.dataset.index;
     var live = this.data.liveList[index];
     wx.navigateTo({
