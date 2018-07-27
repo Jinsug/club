@@ -1,0 +1,60 @@
+page{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.apply-title{
+  padding: 20rpx;
+  font-size: 28rpx;
+}
+
+.apply-content{
+  padding: 0 20rpx;
+}
+
+.apply-content > textarea{
+  width: 90%;
+  padding: 20rpx 5%;
+  font-size: 28rpx;
+  color: #BBB;
+  background-color: #F0F0F2;
+}
+
+.apply-button{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color:#FFF;
+  background-color: #FF9800;
+}
+
+.applyDiv{
+  position: relative;
+  overflow: hidden;
+}
+
+.submitDiv{
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.submitButton{
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.submitButton::after{
+  border: none;
+}

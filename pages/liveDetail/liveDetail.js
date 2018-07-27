@@ -1,4 +1,7 @@
 var app = getApp();
+var webim = require('../../utils/webim.js');
+var webimhandler = require('../../utils/webim_handler.js');
+var tls = require('../../utils/tls.js');
 Page({
 
   /**

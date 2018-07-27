@@ -111,13 +111,6 @@ Page({
     });
   },
 
-  // 上报formId
-  submitApply: function (e) {
-    var objx = this;
-    wx.setStorageSync('sourceFormId', e.detail.formId);
-    objx.apply();
-  },
-
   // 申请加入 
   apply: function(){
     // 检查登录
@@ -127,62 +120,10 @@ Page({
       });
       return;
     }
-    // 请求服务器
-    let obj = this;
-    wx.request({
-      url: app.request_url + 'request.asp',
-      data: {
-        memberId: wx.getStorageSync('memberId'),
-        clubId: wx.getStorageSync('clubId')
-      },
-      success: function(res){
-        if(res.data.success){
-          obj.uploadFormId(res.data.msgId);
-          wx.showModal({
-            title: '提示',
-            content: '您的加入申请已经发送给俱乐部，请等候俱乐部审批',
-            showCancel: false
-          });
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: res.data.message,
-            showCancel: false
-          });
-        }
-      }
-    });
-  },
-
-  // 将formId保存到服务器端
-  uploadFormId: function (type_id) {
-    var objx = this;
-    var param = {};
-    param.source = wx.getStorageSync('sourceFormId');
-    param.openid = wx.getStorageSync('openId');
-    param.memberId = wx.getStorageSync('memberId');
-    param.clubId = wx.getStorageSync('clubId');
-    param.type = 'apply';
-    param.type_id = type_id;
-    wx.request({
-      url: app.request_url + 'uploadFormId.asp',
-      data: {
-        json: encodeURI(JSON.stringify(param))
-      },
-      dataType: JSON,
-      success: function (res) {
-        res = JSON.parse(res.data);
-      },
-      error: function (e) {
-        wx.showModal({
-          title: '提示',
-          content: '网络异常',
-          showCancel: false
-        })
-      }
+    wx.navigateTo({
+      url: '../apply/apply'
     })
   },
-
   
   relieve: function () {
     var obj = this;

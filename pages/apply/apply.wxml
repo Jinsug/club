@@ -1,0 +1,12 @@
+<view class='apply-title'>申请备注</view>
+<view class='apply-content'>
+  <textarea placeholder='请填写姓名、会员卡号、电话等信息' bindinput='bindApplyContentInput'></textarea>
+</view>
+<view class='apply-button'>
+  <view class='applyDiv'>
+    <form class='submitDiv' report-submit='true' bindsubmit='submitApply'>
+        <button class='submitButton' form-type='submit'></button>
+    </form>
+    <view class='addToClub'>申请加入</view>
+  </view>
+</view>

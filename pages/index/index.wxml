@@ -22,10 +22,7 @@
               <button open-type='contact' class='openButton'></button>
             </view>
             <view class='applyDiv' wx:if='{{!memberStatus}}'>
-                <form class='submitDiv' report-submit='true' bindsubmit='submitApply'>
-                       <button class='submitButton' form-type='submit'></button>
-                </form>
-                <view class='addToClub'>申请加入</view>
+                <view class='addToClub' bindtap='apply'>申请加入</view>
             </view>
             <view class='addToClub' bindtap='relieve' wx:if='{{memberStatus}}'>
               解除关系
