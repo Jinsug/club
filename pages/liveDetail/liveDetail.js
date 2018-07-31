@@ -2,8 +2,19 @@ var app = getApp();
 var webim = require('../../utils/webim.js');
 var webimhandler = require('../../utils/webim_handler.js');
 var tls = require('../../utils/tls.js');
-Page({
 
+var Config = {
+  sdkappid: 1400037025,
+  accountType: 884,
+  //帐号模式，0-表示独立模式，1-表示托管模式
+  accountMode: 1 
+};
+
+tls.init({
+  sdkappid: Config.sdkappid
+})
+
+Page({
   /**
    * 页面的初始数据
    */
@@ -21,7 +32,8 @@ Page({
     isAnchor: false,
     pushing: 0,
     isAll: 0,
-    isAllClass: ''
+    isAllClass: '',
+    GrounpId: 'live201807311201'
   },
 
   /**
@@ -54,14 +66,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    
+
   },
 
   /**
@@ -120,26 +132,12 @@ Page({
    * wxml绑定函数: 发送按钮点击绑定(发送聊天信息)
    */
   sendChat: function () {
-    // 如果输入框为空提示用户
-    if(this.data.chatText == ''){
-      wx.showModal({
-        title: '提示',
-        content: '请输入要发送的文本',
-        showCancel: false
-      });
+    if (!this.data.chatText) {
       return;
-    }
-    // 给服务端推送一条消息
-    var message = {
-       memberId: wx.getStorageSync('memberId'),
-       memberName: this.data.memberName,
-       liveId: this.data.live.id,
-       content: this.data.chatText,
-       type: 'chat' 
-    }
-    wx.sendSocketMessage({
-      data: encodeURI(JSON.stringify(message))
-    });
+    };
+    // 推送一条消息
+    var content = this.data.chatText;
+    webimhandler.onSendMsg(content);
     // 输入框清空
     this.setData({
       chatText: ''
@@ -160,7 +158,22 @@ Page({
    * wxml绑定函数:播放器状态改变绑定
    */
   bindStateChange: function (e) {
-    console.log(e);
+    wx.showModal({
+      title: '提示',
+      content: e.detail.code,
+      showCancel: false
+    })
+    var codeTips = {
+      "2006": "直播结束",
+      "-2301": "网络断连，且经多次重连抢救无效，更多重试请退出小程序重新进入"
+    }
+    if (codeTips[e.detail.code]) {
+      wx.showModal({
+        title: '提示',
+        content: codeTips[e.detail.code],
+        showCancel: false
+      })
+    }
   },
 
   /**
@@ -206,14 +219,6 @@ Page({
           chatHeight: chatHeight,
           isAnchor: isAnchor
         }
-        if (wx.getStorageSync('chat')) {
-          var chatList = obj.data.chatList;
-          var totalOnline = obj.data.totalOnline;
-          chatList.push(wx.getStorageSync('chat'));
-          data.chatList = chatList;
-          data.last_chat = 'chat' + (chatList.length - 1);
-          data.totalOnline = totalOnline + 1;
-        }
         obj.setData(data);
       }
       // 判断当前用户角色决定推流还是播放
@@ -258,7 +263,7 @@ Page({
         });
       }
 
-      // 请求用户数据(后续连接webSocket进行聊天)
+      // 请求用户数据
       wx.request({
         url: app.request_url + 'getMemberInfo.asp',
         data: {
@@ -268,58 +273,199 @@ Page({
           obj.setData({
             memberName: res.data.memberName
           });
-
-          if (app.constant.isCreateWebSocket) {
-            // 创建webScoket连接
-            wx.connectSocket({
-              url: 'wss://www.ecartoon.com.cn/clubMpChat/' + live.id + '/' + wx.getStorageSync('memberId'),
-              method: 'GET',
-              complete: function () {
-                app.constant.isCreateWebSocket = false;
-              }
-            });
-          }
-
-          // 接受服务端传来的消息
-          wx.onSocketMessage(function (res) {
-            var message = JSON.parse(decodeURI(res.data));
-            // 人数消息
-            if (message.liveId == obj.data.live.id && message.type == 'count') {
-              var chat = {
-                memberId: message.memeberId,
-                memberName: message.memberName,
-                content: message.memberName + '进入直播间',
-                type: 'system'
-              }
-              var chatList = obj.data.chatList;
-              chatList.push(chat);
-              obj.setData({
-                totalOnline: message.count,
-                chatList: chatList,
-                last_chat: 'chat' + (chatList.length - 1)
-              });
-              // 系统消息保存
-              wx.setStorageSync('chat', chat);
-            }
-
-            // 接受一条聊天消息并渲染到view中
-            if (message.liveId == obj.data.live.id && message.type == 'chat') {
-              var chat = {
-                memberId: message.memeberId,
-                memberName: message.memberName,
-                content: message.content,
-                type: 'user'
-              }
-              var chatList = obj.data.chatList;
-              chatList.push(chat);
-              obj.setData({
-                chatList: chatList,
-                last_chat: 'chat' + (chatList.length - 1)
-              });
-            }
-          });
+          // 接入webIm  
+          obj.methods.loginIM(obj);
         }
       });
+    },
+
+    /**
+     * 腾讯IM登录
+     */
+    loginIM: function (obj) {
+      tls.login({
+        success: function (data) {
+          obj.setData({
+            Identifier: data.Identifier,
+            UserSig: data.UserSig
+          })
+          
+          // 初始化腾讯IM
+          obj.methods.initIM(obj);
+        }
+      });
+    },
+
+    /**
+     * 初始化腾讯IM
+     */
+    initIM: function (obj) {
+      var avChatRoomId = obj.data.GrounpId;
+      webimhandler.init({
+        accountMode: Config.accountMode,
+        accountType: Config.accountType,
+        sdkAppID: Config.sdkappid,
+        //默认房间群ID，群类型必须是直播聊天室（AVChatRoom），这个为官方测试ID(托管模式)
+        avChatRoomId: avChatRoomId,
+        selType: webim.SESSION_TYPE.GROUP,
+        selToID: avChatRoomId,
+        selSess: null //当前聊天会话
+      });
+      //当前用户身份
+      var loginInfo = {
+        'sdkAppID': Config.sdkappid, //用户所属应用id,必填
+        'appIDAt3rd': Config.sdkappid, //用户所属应用id，必填
+        'accountType': Config.accountType, //用户所属应用帐号类型，必填
+        'identifier': obj.data.Identifier, //当前用户ID,必须是否字符串类型，选填
+        'identifierNick': obj.data.memberName, //当前用户昵称，选填
+        'userSig': obj.data.UserSig, //当前用户身份凭证，必须是字符串类型，选填
+      };
+
+      //监听（多终端同步）群系统消息方法，方法都定义在demo_group_notice.js文件中
+      var onGroupSystemNotifys = {
+        "5": webimhandler.onDestoryGroupNotify, //群被解散(全员接收)
+        "11": webimhandler.onRevokeGroupNotify, //群已被回收(全员接收)
+        "255": webimhandler.onCustomGroupNotify//用户自定义通知(默认全员接收)
+      };
+
+      //监听连接状态回调变化事件
+      var onConnNotify = function (resp) {
+        switch (resp.ErrorCode) {
+          case webim.CONNECTION_STATUS.ON:
+            //webim.Log.warn('连接状态正常...');
+            break;
+          case webim.CONNECTION_STATUS.OFF:
+            webim.Log.warn('连接已断开，无法收到新消息，请检查下你的网络是否正常');
+            break;
+          default:
+            webim.Log.error('未知连接状态,status=' + resp.ErrorCode);
+            break;
+        }
+      };
+
+      //监听事件
+      var listeners = {
+        //选填
+        "onConnNotify": webimhandler.onConnNotify, 
+        //监听新消息(大群)事件，必填
+        "onBigGroupMsgNotify": function (msg) {
+          webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
+            var chat = {}
+            if (msgs.fromAccountNick == '@TIM#SYSTEM') {
+              var user = msg[0].elems[0].content.userinfo[0];
+              chat = {
+                memberName: msgs.fromAccountNick,
+                content:  user.NickName + "进入房间",
+                type: 'system'
+              }
+              // 保存当前用户信息
+              obj.setData({
+                user: user
+              });
+              // 拉取群信息
+              obj.methods.getGroupInfo(obj);
+            } else {
+              chat = {
+                memberName: msgs.fromAccountNick,
+                content: msgs.content,
+                type: 'user'
+              }
+            }
+            var chatList = obj.data.chatList;
+            chatList.push(chat);
+            obj.setData({
+              chatList: chatList,
+              last_chat: 'chat' + (chatList.length - 1)
+            });
+          })
+        }, 
+        //监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
+        "onMsgNotify": webimhandler.onMsgNotify,
+        //监听（多终端同步）群系统消息事件，必填
+        "onGroupSystemNotifys": webimhandler.onGroupSystemNotifys, 
+        //监听群资料变化事件，选填
+        "onGroupInfoChangeNotify": webimhandler.onGroupInfoChangeNotify
+      };
+
+      //其他对象，选填
+      var options = {
+        //是否访问正式环境，默认访问正式，选填
+        'isAccessFormalEnv': true,
+        //是否开启控制台打印日志,默认开启，选填
+        'isLogOn': true
+      };
+
+      if (Config.accountMode == 1) {
+        //托管模式
+        webimhandler.sdkLogin(loginInfo, listeners, options, avChatRoomId);
+      } else {
+        //独立模式
+        //sdk登录
+        webimhandler.sdkLogin(loginInfo, listeners, options);
+      }
+    },
+
+    /**
+     * 读取群信息并设置当前在线人数
+     */
+    getGroupInfo: function (obj) {
+      var options = {
+        'GroupIdList': [
+          obj.data.GrounpId
+        ],
+        'GroupBaseInfoFilter': [
+          'Type',
+          'Name',
+          'Introduction',
+          'Notification',
+          'FaceUrl',
+          'CreateTime',
+          'Owner_Account',
+          'LastInfoTime',
+          'LastMsgTime',
+          'NextMsgSeq',
+          'MemberNum',
+          'MaxMemberNum',
+          'ApplyJoinOption'
+        ],
+        'MemberInfoFilter': [
+          'Account',
+          'Role',
+          'JoinTime',
+          'LastSendMsgTime',
+          'ShutUpUntil'
+        ]
+      };
+      webim.getGroupInfo(
+        options,
+        function (resp) {
+          var totalOnline = resp.GroupInfo[0].MemberList.length;
+          obj.setData({
+            totalOnline: totalOnline
+          });
+          console.log(resp);
+        },
+        function (err) {
+          console.log(err);
+        }
+      );
+    },
+
+    // 移除群成员
+    deleteGroupMember: function (obj) {
+      var options = {
+        'GroupId': obj.data.GrounpId,
+        'MemberToDel_Account': [obj.data.user.UserId]
+      };
+      webim.deleteGroupMember(
+        options,
+        function (resp) {
+          console.log(resp)
+        },
+        function (err) {
+          console.log(err)
+        }
+      );
     },
 
     /**

@@ -54,13 +54,13 @@
       </view>
       <scroll-view class='live-chat' style='height: {{chatHeight}}rpx;' scroll-y='{{true}}' 
         scroll-into-view='{{last_chat}}'>
-        <view class='live-chat-item' wx:for='{{chatList}}' wx:key='' id="{{'chat' + index}}"
-          wx:if='{{item.type == "system"}}'>
-          <text style='color: #66CC00;'>系统:</text> {{item.content}}
-        </view>
-        <view class='live-chat-item' wx:for='{{chatList}}' wx:key='' id="{{'chat' + index}}"
-          wx:if='{{item.type == "user"}}'>
-          <text style='color: #3399FF;'>{{item.memberName}}:</text> {{item.content}}
+        <view class='live-chat-item' wx:for='{{chatList}}' wx:key='' id="{{'chat' + index}}">
+          <view wx:if='{{item.type == "system"}}'>
+           <text style='color: #66CC00;'>系统:</text> {{item.content}} 
+          </view>
+          <view wx:if='{{item.type == "user"}}'>
+           <text style='color: #3399FF;'>{{item.memberName}}:</text> {{item.content}}
+          </view>
         </view>
       </scroll-view>
       <view class='send-chat'>
