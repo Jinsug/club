@@ -58,7 +58,7 @@
           <view wx:if='{{item.type == "system"}}'>
            <text style='color: #66CC00;'>系统:</text> {{item.content}} 
           </view>
-          <view wx:if='{{item.type == "user"}}'>
+          <view wx:if='{{item.type == "message"}}'>
            <text style='color: #3399FF;'>{{item.memberName}}:</text> {{item.content}}
           </view>
         </view>

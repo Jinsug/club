@@ -286,33 +286,8 @@ Page({
         //监听新消息(大群)事件，必填
         "onBigGroupMsgNotify": function (msg) {
           webimhandler.onBigGroupMsgNotify(msg, function (msgs) {
-            var chat = {}
-            if (msgs.fromAccountNick == '@TIM#SYSTEM') {
-              var user = msg[0].elems[0].content.userinfo[0];
-              chat = {
-                memberName: msgs.fromAccountNick,
-                content:  user.NickName + "进入房间",
-                type: 'system'
-              }
-              // 保存当前用户信息
-              obj.setData({
-                user: user
-              });
-              // 拉取群信息
-              obj.methods.getGroupInfo(obj);
-            } else {
-              chat = {
-                memberName: msgs.fromAccountNick,
-                content: msgs.content,
-                type: 'user'
-              }
-            }
-            var chatList = obj.data.chatList;
-            chatList.push(chat);
-            obj.setData({
-              chatList: chatList,
-              last_chat: 'chat' + (chatList.length - 1)
-            });
+            // 阅读聊天信息
+            obj.methods.readChat(msg, msgs, obj);
           })
         }, 
         //监听新消息(私聊(包括普通消息和全员推送消息)，普通群(非直播聊天室)消息)事件，必填
@@ -339,6 +314,48 @@ Page({
         //sdk登录
         webimhandler.sdkLogin(loginInfo, listeners, options);
       }
+    },
+
+    /**
+     * 接收聊天信息并渲染
+     */
+    readChat: function (msg, msgs, obj) {
+      var chat = {
+        memberName: msgs.fromAccountNick,
+        time: new Date().getTime()
+      }
+
+      // 判断消息类型
+      if (msgs.fromAccountNick == '@TIM#SYSTEM') {
+        var user = msg[0].elems[0].content.userinfo[0];
+        chat.content = user.NickName + "进入房间";
+        chat.type = 'system';
+        // 保存当前用户信息
+        obj.setData({
+          user: user
+        });
+        // 拉取群信息
+        obj.methods.getGroupInfo(obj);
+      } else {
+        chat.content = msgs.content;
+        chat.type = 'message';
+      }
+
+      var chatList = obj.data.chatList;
+
+      // 排重
+      var historyLastChat = chatList[chatList.length - 1];
+      if (historyLastChat && chat.memberName == historyLastChat.memberName && 
+        chat.content == historyLastChat.content && (chat.time - historyLastChat.time) < 1500) {
+        return;
+      }
+
+      // 渲染
+      chatList.push(chat);
+      obj.setData({
+        chatList: chatList,
+        last_chat: 'chat' + (chatList.length - 1)
+      });
     },
 
     /**
