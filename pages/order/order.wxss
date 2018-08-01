@@ -18,7 +18,6 @@ page{
   padding: 10px;
   background-color: #FFF;
   overflow: hidden;
-  border-bottom: 1px solid #F0F0F2;
 }
 
 .userInfo{
@@ -200,52 +199,6 @@ page{
   height: 16px;
 }
 
-.userInfo-row{
-  padding: 20rpx;
-  height: 1.4rem;
-  line-height: 1.4rem;
-  overflow: hidden;
-  font-size: 28rpx;
-  background-color: #FFF;
-  border-bottom: 1px solid #F0F0F2;
-}
-
-.userInfo-row-left{
-  float: left;
-}
-
-.userInfo-row-right{
-  float: right;
-  width: 50%;
-}
-
-.userInfo-row-right > input{
-  width: 100%;
-  text-align: right;
-  color: #BBB;
-
-}
-
-.overflow{
-  overflow: hidden;
-}
-
-.user-gender{
-  float: right;
-  margin-left: 20rpx;
-  width: 80rpx;
-  height: 40rpx;
-  text-align: center;
-  line-height: 40rpx;
-  border: 1px solid #F0F0F2;
-  border-radius: 10rpx;
-}
-
-.user-gender-active{
-  color: #FFF;
-  background-color: #FB8C00;
-}
-
 .footer{
   position: fixed;
   left: 0;
@@ -276,7 +229,7 @@ page{
   line-height: 44px;
   text-align: center;
   color: #FFF;
-  background-color: red;
+  background-color: #FB8C00;
 }
 
 .RMB{

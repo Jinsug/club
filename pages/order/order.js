@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    base_picture_url: app.constant.base_pic_url,
-    base_img_url: app.constant.base_img_url,
+    base_picture_url: 'https://www.ecartoon.com.cn/picture',
+    base_img_url: 'https://www.ecartoon.com.cn/miniProgram/coach/img',
     userInfo: {},
     product: {
       image: 'opacity.png'
@@ -16,8 +16,7 @@ Page({
     phoneNumber: 0,
     showPhoneNumber: '请点击获取手机号',
     ticket: { name: '请选择优惠券' },
-    need: false,
-    gender: 1
+    need: false
   },
 
   /**
@@ -207,34 +206,6 @@ Page({
       url: `../ticket/ticket?productId=${product.productId}&productType=${product.productType}`
     });
   },
-
-  /**
-   * 用户输入真实姓名
-   */
-  changeRealName: function (e) {
-    this.setData({
-      realName: e.detail.value
-    })
-  },
-
-  /**
-   * 用户选择性别
-   */
-  changeGender: function (e) {
-    this.setData({
-      gender: e.currentTarget.dataset.gender
-    })
-  },
-
-  /**
-   * 用户输入信息来源
-   */
-  changeOrigin: function (e) {
-    this.setData({
-      origin: e.detail.value
-    })
-  },
-
   /**
    * 用户点击确认支付
    */
@@ -248,24 +219,6 @@ Page({
       });
       return;
     }
-    // 判断用户是否输入真实姓名
-    if (!this.data.realName || this.data.realName == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请先输入真实姓名',
-        showCancel: false
-      })
-      return;
-    }
-    // 判断用户是否输入信息来源
-    if (!this.data.origin || this.data.origin == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请先输入信息来源',
-        showCancel: false
-      })
-      return;
-    }
     // 请求服务端签名
     let param = {}
     param.productId = this.data.product.productId;
@@ -275,9 +228,6 @@ Page({
     param.price = this.data.price;
     param.memberId = wx.getStorageSync("memberId");
     param.openId = wx.getStorageSync("openId");
-    param.realName = this.data.realName;
-    param.gender = this.data.gender;
-    param.origin = this.data.origin;
     if(this.data.product.weight){
       param.weight = this.data.product.weight;
     }
