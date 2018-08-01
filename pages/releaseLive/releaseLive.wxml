@@ -8,6 +8,9 @@
     点击上传直播封面
   </view>
 </view>
+<view class='anchor-tip'>
+  主播在直播过程中请勿退出小程序，也不要让手机处于锁定（休眠）状态。以免影响直播流畅性
+</view>
 <view style='height:20rpx;background-color:#F0F0F2;'></view>
 <!-- 填写直播信息表单 -->
 <view class='form'>
@@ -68,8 +71,8 @@
   </view>
 </view>
 <view class='live-notice'>
-  <view class='live-notice-title'>直播公告</view>
-  <textarea class='live-notice-content' placeholder='请输入直播公告内容......' bindinput='bindLiveNoticeInput'>
+  <view class='live-notice-title'>主播公告</view>
+  <textarea class='live-notice-content' placeholder='请输入公告内容......' bindinput='bindLiveNoticeInput'>
   </textarea>
 </view>
 <!-- 发起直播按钮 -->

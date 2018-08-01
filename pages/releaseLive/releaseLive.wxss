@@ -25,6 +25,12 @@ image{
   color: #FFF;
 }
 
+.anchor-tip{
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #BBB;
+}
+
 /* 表单区域 */
 .form-row{
   display: flex;

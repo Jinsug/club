@@ -14,17 +14,17 @@
     </view>
     <view class='form-cell-right'>
       <view class='user-info'>
-        <view class='user-name'>{{member.memberName}}</view>
-        <view class='user-mobilephone' wx:if='{{member.memberMobilePhone && member.mobileValid}}'>手机验证{{filter.getStarNumberStr(member.memberMobilePhone, 3, 4)}}
+        <view class='user-name'>{{anchor.memberName}}</view>
+        <view class='user-mobilephone' wx:if='{{anchor.memberMobilePhone && anchor.mobileValid}}'>手机验证{{filter.getStarNumberStr(anchor.memberMobilePhone, 3, 4)}}
         </view>
-        <view class='user-mobilephone' wx:if='{{!member.memberMobilePhone || !member.mobileValid}}'>点击验证手机号码
+        <view class='user-mobilephone' wx:if='{{!anchor.memberMobilePhone || !anchor.mobileValid}}'>点击验证手机号码
         </view>
         <button open-type='getPhoneNumber' bindgetphonenumber='bindPhoneNumberButtonTap'
-          class='phone-number-button' wx:if='{{!member.memberMobilePhone || !member.mobileValid}}'>
+          class='phone-number-button' wx:if='{{!anchor.memberMobilePhone || !anchor.mobileValid}}'>
         </button>
       </view>
       <view class='user-image'>
-        <image src='{{filter.errorImage(member.memberImage)}}' mode='aspectFill'>
+        <image src='{{filter.errorImage(anchor.memberImage)}}' mode='aspectFill'>
         </image>
       </view>
     </view>

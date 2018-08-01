@@ -32,8 +32,7 @@ Page({
     isAnchor: false,
     pushing: 0,
     isAll: 0,
-    isAllClass: '',
-    GrounpId: 'live201807311201'
+    isAllClass: ''
   },
 
   /**
@@ -55,11 +54,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(wx.getStorageSync('payLive') && wx.getStorageSync('payLive') == 1){
-      wx.navigateBack({
-        delta: 1
-      });
-    }
+
   },
 
   /**
@@ -158,14 +153,10 @@ Page({
    * wxml绑定函数:播放器状态改变绑定
    */
   bindStateChange: function (e) {
-    wx.showModal({
-      title: '提示',
-      content: e.detail.code,
-      showCancel: false
-    })
+    console.log("播放状态:" + JSON.stringify(e));
     var codeTips = {
       "2006": "直播结束",
-      "-2301": "网络断连，且经多次重连抢救无效，更多重试请退出小程序重新进入"
+      "-2301": "网络断连，多次连接无效，请退出小程序重新进入"
     }
     if (codeTips[e.detail.code]) {
       wx.showModal({
@@ -211,72 +202,17 @@ Page({
       // 页面加载时计算聊天窗口的高度
       var chatHeight = swiperHeight - ((87 + 39 + 20) * (750 / systemInfo.windowWidth));
       // 渲染页面
-      var renderView = () => {
-        var data = {
-          live: live,
-          activeList: activeList,
-          swiperHeight: swiperHeight,
-          chatHeight: chatHeight,
-          isAnchor: isAnchor
-        }
-        obj.setData(data);
+      var data = {
+        live: live,
+        activeList: activeList,
+        swiperHeight: swiperHeight,
+        chatHeight: chatHeight,
+        isAnchor: isAnchor
       }
-      // 判断当前用户角色决定推流还是播放
-      if(wx.getStorageSync('memberId') == live.memberId){
-        wx.request({
-          url: app.request_url + 'liveUrl.asp',
-          data: {
-            memberId: wx.getStorageSync('memberId')
-          },
-          success: (res) => {
-            live.pushURL = res.data.url;
-            renderView();
-          }
-        });
-      } else {
-        wx.request({
-          url: app.request_url + 'play.asp',
-          data: {
-            memberId: wx.getStorageSync('memberId'),
-            anchor: live.memberId
-          },
-          success: (res) => {
-            if (res.data.success) {
-              live.playURL = res.data.playUrl.RTMP;
-              renderView();
-            } else {
-              // 支付直播费用
-              var param = {
-                productId: res.data.productId,
-                productName: res.data.productName,
-                productPrice: res.data.productPrice,
-                image: res.data.productImage,
-                productType: 'product',
-                time: res.data.currentDate
-              }
-              wx.setStorageSync('payLive', 1);
-              wx.navigateTo({
-                url: '../order/order?product=' + encodeURI(JSON.stringify(param))
-              });
-            }
-          }
-        });
-      }
+      obj.setData(data);
 
-      // 请求用户数据
-      wx.request({
-        url: app.request_url + 'getMemberInfo.asp',
-        data: {
-          memberId: wx.getStorageSync('memberId')
-        },
-        success: function (res) {
-          obj.setData({
-            memberName: res.data.memberName
-          });
-          // 接入webIm  
-          obj.methods.loginIM(obj);
-        }
-      });
+      // 腾讯IM登录
+      obj.methods.loginIM(obj);
     },
 
     /**
@@ -300,7 +236,7 @@ Page({
      * 初始化腾讯IM
      */
     initIM: function (obj) {
-      var avChatRoomId = obj.data.GrounpId;
+      var avChatRoomId = obj.data.live.tribeId;
       webimhandler.init({
         accountMode: Config.accountMode,
         accountType: Config.accountType,
@@ -317,7 +253,7 @@ Page({
         'appIDAt3rd': Config.sdkappid, //用户所属应用id，必填
         'accountType': Config.accountType, //用户所属应用帐号类型，必填
         'identifier': obj.data.Identifier, //当前用户ID,必须是否字符串类型，选填
-        'identifierNick': obj.data.memberName, //当前用户昵称，选填
+        'identifierNick': obj.data.live.currentMemberName, //当前用户昵称，选填
         'userSig': obj.data.UserSig, //当前用户身份凭证，必须是字符串类型，选填
       };
 
@@ -411,7 +347,7 @@ Page({
     getGroupInfo: function (obj) {
       var options = {
         'GroupIdList': [
-          obj.data.GrounpId
+          obj.data.live.tribeId
         ],
         'GroupBaseInfoFilter': [
           'Type',
@@ -443,27 +379,10 @@ Page({
           obj.setData({
             totalOnline: totalOnline
           });
-          console.log(resp);
+          // console.log(resp);
         },
         function (err) {
           console.log(err);
-        }
-      );
-    },
-
-    // 移除群成员
-    deleteGroupMember: function (obj) {
-      var options = {
-        'GroupId': obj.data.GrounpId,
-        'MemberToDel_Account': [obj.data.user.UserId]
-      };
-      webim.deleteGroupMember(
-        options,
-        function (resp) {
-          console.log(resp)
-        },
-        function (err) {
-          console.log(err)
         }
       );
     },

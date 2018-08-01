@@ -481,7 +481,8 @@ Page({
   },
   // 健身直播
   live: function(){
-    var url = '../video/video';
+    // var url = '../video/video';
+    var url = '../live/live';
     if (this.data.club.status == 1) {
       url = '../live/live';
     }

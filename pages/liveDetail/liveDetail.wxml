@@ -15,7 +15,7 @@
 </live-pusher>
 <!-- 直播播放组件 -->
 <live-player class='live-play {{isAllClass}}' src='{{live.playURL}}' autoplay
-  wx:if='{{live.liveState}}' object-fit='fillCrop'>
+  wx:if='{{live.liveState}}' object-fit='fillCrop' bindstatechange='bindStateChange'>
   <cover-view class='operation-background'>
     <cover-view class='operation-block' bindtap='changeOperation'>
       <cover-view class='operation' wx:if='{{operation}}'>
@@ -49,7 +49,7 @@
           <view class='totalOnline'>当前在线人数: {{totalOnline}}</view>
         </view>
         <view class='live-notice-content'>
-          绿色直播、对直播内容进行24小时在线巡查，任何传播违法、违规、低俗、暴力等不良信息的行为将会封停账号，切勿于他人私下交易转账，以免上当受骗
+          直播过程中请勿退出小程序。如果出现静止画面、黑屏或卡顿情况，请完全退出本小程序后，重新进入小程序的直播间。
         </view>
       </view>
       <scroll-view class='live-chat' style='height: {{chatHeight}}rpx;' scroll-y='{{true}}' 

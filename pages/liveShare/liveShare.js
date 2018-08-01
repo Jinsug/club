@@ -111,11 +111,8 @@ Page({
    * wxml绑定函数:进入直播间按钮点击绑定
    */
   bindLiveDetailButtonTap: function () {
-    wx.removeStorageSync('payLive');
-    wx.setStorageSync('live', this.data.live);
-    wx.navigateTo({
-      url: '../liveDetail/liveDetail'
-    })
+    // 进入直播间
+    this.methods.toLive(this);
   },
 
   /**
@@ -142,7 +139,9 @@ Page({
       obj.methods.getUserInfo(1, obj);
 
       // 请求用户信息
-      obj.methods.getUserInfo(0, obj);
+      if (wx.getStorageSync('memberId')) {
+        obj.methods.getUserInfo(0, obj);
+      }
     },
 
     /**
@@ -171,6 +170,9 @@ Page({
               obj.setData({
                 isLogin: false
               });
+
+              // 请求用户信息
+              obj.methods.getUserInfo(0, obj);
 
               // 提示用户
               wx.showModal({
@@ -215,8 +217,11 @@ Page({
         success: function (res) {
           var member = res.data;
           var data = {}
-          if (type == 1) {
+          if (type == 0) {
             data.member = member;
+          }
+          if (type == 1) {
+            data.anchor = member;
           }
           // 是否需要验证手机号
           if (type == 0 && member.memberMobilePhone && member.memberMobilePhone != '' && 
@@ -224,6 +229,9 @@ Page({
             data.checkMobilePhone = false;
           }
           obj.setData(data);
+
+          // 获取直播URL
+          obj.methods.getLiveUrl(obj);
         }
       });
     },
@@ -250,13 +258,117 @@ Page({
               phoneNumber: userPhoneNumber
             },
             success: function (res) {
-              // 进入直播间
-              wx.setStorageSync('live', obj.data.live);
-              wx.navigateTo({
-                url: '../liveDetail/liveDetail'
-              })
+              obj.setData({
+                checkMobilePhone: false
+              });
+
+              // 保存用户手机号后直接进入直播间
+              obj.methods.toLive(obj);
             }
           });
+        }
+      })
+    },
+
+    /**
+     * 获取直播URL
+     */
+    getLiveUrl: function (obj) {
+      var live = obj.data.live;
+      // 判断当前用户角色决定推流还是播放
+      if (wx.getStorageSync('memberId') == live.memberId) {
+        wx.request({
+          url: app.request_url + 'liveUrl.asp',
+          data: {
+            memberId: wx.getStorageSync('memberId')
+          },
+          success: (res) => {
+            live.pushURL = res.data.url;
+            obj.setData({
+              live: live
+            });
+          }
+        });
+      } else {
+        wx.request({
+          url: app.request_url + 'play.asp',
+          data: {
+            memberId: wx.getStorageSync('memberId'),
+            anchor: live.memberId
+          },
+          success: (res) => {
+            if (res.data.success) {
+              live.playURL = res.data.playUrl.RTMP;
+              obj.setData({
+                live: live
+              });
+            } else {
+              obj.setData({
+                payInfo: res.data
+              });
+            }
+          }
+        });
+      }
+    },
+
+    /**
+     * 进入直播间
+     */
+    toLive: function (obj) {
+      // 如果是主播则直接进入
+      if (obj.data.live.pushURL) {
+        // 进入直播间
+        var live = obj.data.live;
+        live.currentMemberName = obj.data.member.memberName;
+        wx.setStorageSync('live', live);
+        wx.navigateTo({
+          url: '../liveDetail/liveDetail'
+        })
+        return;
+      }
+
+      // 前往支付
+      if (obj.data.payInfo) {
+        // 支付直播费用
+        var payInfo = obj.data.payInfo;
+        var param = {
+          productId: payInfo.productId,
+          productName: payInfo.productName,
+          productPrice: payInfo.productPrice,
+          image: payInfo.productImage,
+          productType: 'product',
+          time: payInfo.currentDate
+        }
+        wx.navigateTo({
+          url: '../order/order?product=' + encodeURI(JSON.stringify(param))
+        });
+        return;
+      }
+
+      // 检查当前直播间是否正在直播中
+      wx.request({
+        url: app.request_url + 'getLiveStatus.asp',
+        data: {
+          liveId: obj.data.live.id
+        },
+        success: function (res) {
+          if (res.data.liveStatus) {
+            // 进入直播间
+            var live = obj.data.live;
+            live.currentMemberName = obj.data.member.memberName;
+            live.liveState = res.data.liveStatus;
+            wx.setStorageSync('live', live);
+            wx.navigateTo({
+              url: '../liveDetail/liveDetail'
+            })
+          } else {
+            wx.showModal({
+              title: '提示',
+              content: '直播还未开始，请在直播开始后进入',
+              showCancel: false
+            })
+          }
         }
       })
     }
