@@ -73,11 +73,19 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-    var liveName = this.data.live.liveName;
-    var startTime = this.data.live.startTime;
+    var live = this.data.live;
+    var liveName = live.liveName;
+    var startTime = live.startTime;
+    if (live.pushURL) {
+      delete live.pushURL;
+    }
+    if (live.playURL) {
+      delete live.playURL;
+    }
+    var path = 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(live));
     return {
       title: `“${liveName}” 将于 ${startTime} 开讲，欢迎参加本次讲座`,
-      path: 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(this.data.live))
+      path: path
     }
   },
 
