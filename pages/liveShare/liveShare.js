@@ -83,6 +83,7 @@ Page({
       delete live.playURL;
     }
     var path = 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(live));
+    // console.log(path);
     return {
       title: `“${liveName}” 将于 ${startTime} 开讲，欢迎参加本次讲座`,
       path: path
