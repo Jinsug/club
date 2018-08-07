@@ -1,0 +1,76 @@
+@import "../../wxParse/wxParse.wxss";
+page{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wraper{
+  width: 100%;
+  height: 100%;
+}
+
+.coachInfo{
+  padding: 10px;
+  font-size: 17px;
+  color: #545556;
+}
+
+.coachType{
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.coachType-left{
+  float: left;
+}
+
+.coachType-right{
+  float: right;
+}
+
+.coachExpertise{
+  padding: 10px;
+  overflow: hidden;
+}
+
+.coachExpertise-left{
+  float: left;
+}
+
+.coachExpertise-right{
+  float: right;
+  text-align: right;
+}
+
+.margin5{
+  margin-bottom: 5px;
+}
+
+.coachRemark{
+  padding: 20px;
+  font-size: 17px;
+  color: #545556;
+}
+
+.remark-content{
+  padding: 10px;
+}
+
+.header-1{
+    font-size: 16px; 
+    color: black;
+}
+
+.header-value{
+   font-size: 14px;
+   color: #999999;
+
+}
+
+.content{
+   font-size: 14px;
+   color: #999999;
+}

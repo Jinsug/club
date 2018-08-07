@@ -27,6 +27,8 @@
     "pages/memberEvaluate/memberEvaluate",
     "pages/qrlh/qrlh",
     "pages/privateProduct/privateProduct",
+    "pages/planProduct/planProduct",
+    "pages/remark/remark",
     "pages/coachService/coachService",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",

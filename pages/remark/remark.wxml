@@ -1,0 +1,31 @@
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='wraper'>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class="coachInfo">
+    <view class='coachType'>
+      <view class='coachType-left header-1'>
+        教练类别
+      </view>
+      <view class='coachType-right header-value'>
+        {{coachDetail.type}}
+      </view>
+    </view>
+    <view class='coachExpertise'>
+      <view class='coachExpertise-left header-1'>
+        教练专长
+      </view>
+      <view class='coachExpertise-right header-value'>
+        <view class='margin5' wx:for='{{coachDetail.speciality}}' wx:key=''>
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class='coachRemark'>
+    <view class='header-1'>自我简介</view>
+    <view class='remark-content content'>
+     <template is="wxParse" data="{{wxParseData:description.nodes}}"/>
+    </view>
+  </view>
+</view>
