@@ -589,5 +589,14 @@ Page({
     wx.navigateTo({
       url: '../product/product'
     });
+  },
+
+  /**
+   * 测试页面
+   */
+  test: function () {
+    wx.navigateTo({
+      url: '../coachDetail/coachDetail'
+    })
   }
 })

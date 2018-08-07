@@ -1,0 +1,41 @@
+page{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wraper{
+  width: 100%;
+  height: 100%;
+}
+
+.coachProject{
+  overflow: hidden;
+}
+
+.projectTitle{
+  padding: 10px;
+  font-size: 15px;
+  color: #545556;
+}
+
+.project{
+  float: left;
+  margin: 10px 0;
+  margin-top: -2px;
+  padding-bottom: 10px;
+  margin-left: 4%;
+}
+
+.projectImage > image{
+  width: 100%;
+  height: 100%;
+}
+
+.projectName{
+  text-align: center;
+  font-size: 12px;
+  color: #545556;
+  margin-top: 8px;
+}
