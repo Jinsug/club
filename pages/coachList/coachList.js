@@ -109,8 +109,16 @@ Page({
    * 跳转教练详情页
    */
   coachDetail: function (e) {
-    console.log(e);
+    var memberId = wx.getStorageSync('memberId');
+    if (!memberId || memberId == '' || memberId == 'null') {
+      wx.reLaunch({
+        url: '../../pages/mine/mine?source=coachList',
+      })
+      return;
+    }
+
     var coachid = e.currentTarget.dataset.coachid;
+    // 跳转到教练主页去
     console.log(coachid);
   }
 })
