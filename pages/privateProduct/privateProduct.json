@@ -1,6 +1,6 @@
 {
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#212F3D",
+  "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "私教套餐详情",
-  "navigationBarTextStyle": "while"
+  "navigationBarTextStyle": "black"
 }

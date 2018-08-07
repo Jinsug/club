@@ -1,6 +1,6 @@
 {
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#212F3D",
+  "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "教练简介",
-  "navigationBarTextStyle": "while"
+  "navigationBarTextStyle": "black"
 }

@@ -28,7 +28,7 @@ Page({
         },
         success: function (res) {
           // console.log(res);
-          wx.setStorageSync('coachDetail', res.data);
+          // wx.setStorageSync('coachDetail', res.data);
           obj.setData({
             projectList: res.data.projectList,
             certificateList: res.data.certificateList

@@ -12,7 +12,7 @@ Page({
    */
   onLoad: function (options) {
     var url = 'https://www.ecartoon.com.cn/miniProgram/coach/private.jsp?productId=' +  
-      options.productId;
+      options.productId + '&type=club';
     this.setData({
       privateUrl: url
     });

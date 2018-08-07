@@ -1,6 +1,6 @@
 {
   "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#212F3D",
+  "navigationBarBackgroundColor": "#fff",
   "navigationBarTitleText": "服务和资质",
-  "navigationBarTextStyle": "while"
+  "navigationBarTextStyle": "black"
 }

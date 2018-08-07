@@ -25,7 +25,7 @@ Page({
         },
         success: function(res){
           // console.log(res);
-          wx.setStorageSync('coachDetail', res.data);
+          // wx.setStorageSync('coachDetail', res.data);
           obj.renderCoachData(res.data.baseList[0]);
         }
       });
@@ -48,7 +48,7 @@ Page({
       coachType = '团体教练';
     }
     // 教练专长
-    var coachSpecialitys = coachDetail.speciality.split(',');
+    var coachSpecialitys = coachDetail.speciality ? coachDetail.speciality.split(',') : [];
     for(var i = 0; i < coachSpecialitys.length; i++){
       if(coachSpecialitys[i].trim() == 'A'){
         coachSpecialitys[i] = '瘦身减重';
