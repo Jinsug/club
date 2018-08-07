@@ -155,7 +155,7 @@ page {
     float: left;
     margin-left: 17.5rpx;
     margin-top: -23rpx;
-    color: #27B2D9;
+    color: red;
     font-size: 42rpx;
 }
 

@@ -67,7 +67,7 @@
           <view style='margin-top:5px;font-size:12px;color:#898A8C;word-break:break-all;'>
             计划简介: {{filter.overflow_hidden(item.briefing, 30)}}
           </view>
-          <view style='margin-top:5px;text-align:right;color:#2D9BBB;'>
+          <view style='margin-top:5px;text-align:right;color:#ff4401;'>
             ¥{{filter.toFixed(item.unit_price, 2)}}
           </view>
         </view>

@@ -62,14 +62,14 @@ page{
 
 .coachOther{
   overflow: hidden;
+  height: 40px;
 }
 
 .brief{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
   border-right: 1px solid #FFF;
@@ -78,9 +78,8 @@ page{
 .service{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
 }
@@ -88,9 +87,8 @@ page{
 .employ{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
   border-left: 1px solid #FFF;
