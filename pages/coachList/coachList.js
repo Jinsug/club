@@ -119,6 +119,9 @@ Page({
 
     var coachid = e.currentTarget.dataset.coachid;
     // 跳转到教练主页去
-    console.log(coachid);
+    wx.navigateTo({
+      url: '../../pages/coachDetail/coachDetail?coachId=' + coachid,
+    })
+    
   }
 })
