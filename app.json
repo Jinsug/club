@@ -26,6 +26,8 @@
     "pages/myFooter/myFooter",
     "pages/memberEvaluate/memberEvaluate",
     "pages/qrlh/qrlh",
+    "pages/privateProduct/privateProduct",
+    "pages/coachService/coachService",
     "pages/courseList/courseList",
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",

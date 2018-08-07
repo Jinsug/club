@@ -1,0 +1,25 @@
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class='coachProject'>
+    <view class='projectTitle'>服务项目</view>
+    <view class='project' wx:for="{{projectList}}" wx:key=''>
+      <view class='projectImage' style='width:{{pictureDivWidth}};height:{{pictureDivHeight}}' >
+        <image src='{{base_picture_url}}/{{item.projectImage}}' mode='aspectFill'></image>
+      </view>
+      <view class='projectName'>{{item.projectName}}</view>
+    </view>
+  </view>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class='coachProject'>
+    <view class='projectTitle'>专业资格</view>
+    <view class='project' wx:for="{{certificateList}}" wx:key=''>
+      <view class='projectImage' style='width:{{pictureDivWidth}};height:{{pictureDivHeight}}' >
+        <image src='{{base_picture_url}}/{{item.certificateImage}}' mode='aspectFill' ></image>
+      </view>
+      <view class='projectName'>
+        {{filter.overflow_hidden(item.certificateName, 7)}}
+      </view>
+    </view>
+  </view>
+</view>
