@@ -42,7 +42,9 @@
     "pages/setting/setting",
     "pages/priceCutdown/priceCutdown",
     "pages/coachList/coachList",
-    "pages/coachDetail/coachDetail"
+    "pages/coachDetail/coachDetail",
+    "pages/coachCourseList/coachCourseList",
+    "pages/coachCourseDeal/coachCourseDeal"
     
 
   ],

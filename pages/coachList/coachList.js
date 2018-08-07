@@ -118,10 +118,10 @@ Page({
     }
 
     var coachid = e.currentTarget.dataset.coachid;
-    // 跳转到教练主页去
+    // 跳转到教练详情页
     wx.navigateTo({
       url: '../../pages/coachDetail/coachDetail?coachId=' + coachid,
     })
-    
+
   }
 })

@@ -65,7 +65,7 @@ Page({
   // 点击教练课表触发
   CoachTimetable: function() {
       wx.navigateTo({
-        url: '../../pages/courseList/courseList?coachName=' + this.data.coachInfo.name
+        url: '../../pages/coachCourseList/coachCourseList?coachName=' + this.data.coachInfo.name
       })
   },
   // 点击简介触发
@@ -82,7 +82,21 @@ Page({
   },
   // 点击联系教练出发
   contactCoach: function() {
-    
+    var obj = this;
+    var mobilephone = obj.data.coachInfo.mobilephone;
+    if (!mobilephone || mobilephone == 'null') {
+      wx.showModal({
+        title: '提示',
+        content: '暂无该教练联系方式！',
+        showCancel: false
+      })
+      return;
+    }
+
+    // 拨打电话
+    wx.makePhoneCall({
+      phoneNumber: mobilephone,
+    })
    
   },
 

@@ -1,0 +1,128 @@
+<view class="page">
+  <view class="box">
+    <view class="box-flex">
+      <view class="flex-item">
+        <view class="item-content" bindtap="doDay" data-key='left'>
+          <view class="glyphicon glyphicon-triangle-left"></view>
+        </view>
+      </view>
+      <view class="flex-item item-content-current-day">
+        <view class="item-content">{{currentDate}}</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content" bindtap="doDay" data-key="right">
+          <view class="glyphicon glyphicon-triangle-right"></view>
+        </view>
+      </view>
+    </view>
+    <view class="box-flex">
+      <view class="flex-item">
+        <view class="item-content">一</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">二</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">三</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">四</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">五</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">六</view>
+      </view>
+      <view class="flex-item">
+        <view class="item-content">日</view>
+      </view>
+    </view>
+    <view class="box-flex">
+      <view class="flex-item" wx:for="{{currentDayList}}" wx:for-index='key' wx:for-item="vo" wx:key="{{key}}">
+          <!-- 同月 -->
+          <view wx:if="{{toMonth == 1}}" >
+                <!-- 今天 -->
+                <view class="item-content today" wx:if="{{ currentDay == vo }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+                
+                <!-- 同月不同天 -->
+                <view wx:if="{{ currentDay != vo }}" >
+                       <!-- 有计划的天 -->
+                       <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] == 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >
+                                <view>{{vo}}</view>
+                                <view class="{{dou_display[key]}}">.</view>
+                       </view>
+
+                       <!-- 无计划的天 -->
+                      <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] != 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+                </view>
+
+
+
+          </view>
+
+           <!-- 不同月 -->
+           <view wx:if="{{ toMonth != 1 }}">
+                <!-- 有计划的天 -->
+                <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] == 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >
+                        <view>{{vo}}</view>
+                        <view class="{{dou_display[key]}}">.</view>
+                </view>
+
+                
+                <!-- 无计划的天 -->
+                <view class="item-content {{dou_items[key]}}" wx:if="{{ dou_hasPlan[key] != 'hasPlan' }}" data-chooseDay="{{vo}}" data-index="{{key}}" bindtap="chooseDay" >{{vo}}</view>
+               
+           </view>
+          
+
+           
+
+      </view>
+    </view>
+    
+   
+  <view class="dou-ex"></view>
+  </view>
+
+ <!-- 课程信息 -->
+ <view class="course">
+     <!-- 当天没有训练计划 -->
+     <view class="no-data" wx:if="{{hasNoData == 1}}">
+        <view class="no-data-img-div">
+            <image src="https://www.ecartoon.com.cn/picture/wnr.png" class="no-data-img">
+              </image>
+        </view>
+       
+        <view class="no-data-font no-data-font-1">该教练今天没有课程预约</view>
+     </view>
+
+     <!-- 当天有计划 -->
+     <view class="course-info" wx:if="{{hasNoData == 0}}" >
+            <!-- wx:for -->
+            <view class="courseList">
+                 <!-- 每一个课程 -->
+                 <view class="course-pre" wx:for="{{planData}}" wx:for-index="{{courseIndex}}">
+                      <view class="coachImg-div">
+                          <image class="coachImg" wx:if="{{item.member.image != ''}}" src="https://www.ecartoon.com.cn/picture/{{item.member.image}}"></image>
+                           <image class="coachImg" wx:if="{{item.member.image == ''}}" src="https://www.ecartoon.com.cn/picture/20180203151096.jpg"></image>
+                      </view>
+                      <view class="course-detail">
+                          <view class="courseTitle">{{item.course}}<text class="bindCoachName">一</text><text class="coachName">{{item.member.name}}</text></view>
+                          <view class="courseTime">{{item.startTime}}-{{item.endTime}}</view>
+                      </view>
+                 </view>
+            </view> 
+                  
+     </view>
+ </view>
+ <!-- wx:if="{{hasNoData == 0}}" -->
+  <view class="planDetail-div"  >  
+     <view class="planDetailButton" bindtap="appointment" >
+       预约
+     </view>
+ </view>
+
+ <!-- 垫起高度 -->
+ <view class="dou_full" ></view>
+</view>
