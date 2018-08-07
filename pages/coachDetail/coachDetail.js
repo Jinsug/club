@@ -32,9 +32,6 @@ Page({
     // 请求服务端数据
     var memberId = wx.getStorageSync('memberId');
     var coachId = wx.getStorageSync('coachId'); 
-    // 测试数据
-    memberId = 9388;
-    coachId = 266;
     wx.request({
       url: app.request_url + 'findCoachDetail.asp',
       data: {
