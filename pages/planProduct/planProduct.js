@@ -4,17 +4,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    privateUrl: ''
+    planUrl: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var url = 'https://www.ecartoon.com.cn/miniProgram/coach/private.jsp?productId=' +  
-      options.productId + '&type=club';
+    var url = 'https://www.ecartoon.com.cn/miniProgram/coach/plan.jsp?planId=' + options.planId + '&type=club';
     this.setData({
-      privateUrl: url
+      planUrl: url
     });
   },
 

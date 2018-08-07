@@ -109,7 +109,7 @@ Page({
   // 点击健身计划进入健身计划详情页面
   planDetail: function (data) {
     wx.navigateTo({
-      url: '../plan/plan?planId=' + data.currentTarget.dataset.planid
+      url: '../planProduct/planProduct?planId=' + data.currentTarget.dataset.planid
     });
   },
   /**

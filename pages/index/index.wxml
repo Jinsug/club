@@ -2,7 +2,7 @@
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <!-- 引入富文本解析模板 -->
 <import src="../../wxParse/wxParse.wxml"/>
-<view class='wraper' bindtap='test'>
+<view class='wraper'>
   <view class='clubInfo-wraper'>
     <image src='{{filter.errorImage(club.banner)}}' mode='aspectFill' wx:if="{{club.banner}}">
     </image>
