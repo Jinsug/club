@@ -14,8 +14,7 @@ Page({
    
     privateList: [],
     boxWidth: 0,
-    planList: [],
-    state: 0
+    planList: []
   },
   onLoad: function (options) {
     var obj = this;
@@ -59,7 +58,6 @@ Page({
             image: obj.data.base_picture_url + '/' + res.data.image,
             mobilephone: res.data.mobilephone
           },
-          hasCoach: res.data.hasCoach,
           privateList: res.data.privateList,
           boxWidth: res.data.privateList.length * ratio + "%",
           planList: res.data.planList
@@ -94,7 +92,7 @@ Page({
   // 点击私教套餐进入私教套餐详情页面
   privateDetail: function (data){
     wx.navigateTo({
-      url: '../private/private?productId=' + data.currentTarget.dataset.productid
+      url: '../privateProduct/privateProduct?productId=' + data.currentTarget.dataset.productid
     });
   },
   // 点击健身计划进入健身计划详情页面
