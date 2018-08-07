@@ -1,0 +1,77 @@
+<!-- 页面开始 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<view class='wraper'>
+  <view class='coach'>
+    <view class='coachInfo'>
+      <view class='coachPhoto'>
+        <image src='{{coachInfo.image}}'></image>
+        <view class='coachName'>{{coachInfo.name}}</view>
+      </view>
+     
+      <view class='coachCourse' bindtap='CoachTimetable'>教练课表</view>
+      
+    </view>
+    <view class='coachOther'>
+      <view class='brief' bindtap='CoachRemark'>
+        教练简介
+      </view>
+      <view class='service' bindtap='CoachService'>
+        服务和资质
+      </view>
+      <view class='employ' bindtap='contactCoach' >
+        联系教练
+      </view> 
+      
+    </view>
+  </view>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class='privatePackage'>
+    <view class='privateTitle'>
+      我的私教套餐
+    </view>
+    <view class='privateContent'>
+      <view class='no-data' wx:if='{{privateList.length <= 0}}'>
+        <image src='{{base_picture_url}}/wnr.png' mode='aspectFill'></image>
+        <view>该教练还没有发布私教套餐</view>
+      </view>
+      <view class='scoll-box' style='width:{{boxWidth}}'>
+        <view class='privteProduct' wx:for='{{privateList}}' 
+          wx:key='' bindtap='privateDetail' data-productId='{{item.id}}'>
+        <view class='productImage'>
+          <image src='{{base_picture_url}}/{{item.image1}}' mode='aspectFill'></image>
+          <view class='productPrice_wraper'>
+            <view class='productPrice'>¥{{filter.toFixed(item.cost, 2)}}</view>
+          </view>
+          </view>
+          <view class='productName'>{{filter.overflow_hidden(item.name, 10)}}</view>
+        </view>
+      </view>  
+    </view>
+  </view>
+  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <view class='plan'>
+    <view class='planTitle'>我的健身计划</view>
+    <view class='planContent'>
+      <view class='no-data' wx:if='{{planList.length <= 0}}'>
+        <image src='{{base_picture_url}}/wnr.png'></image>
+         <view>该教练还没有发布健身计划</view>
+      </view>
+      <view class='planProduct' wx:for="{{planList}}" wx:key='' bindtap='planDetail'
+          data-planId='{{item.id}}'>
+        <view class='planProduct-image'>
+          <image src='{{base_picture_url}}/{{item.image1}}' mode='aspectFill'>
+          </image>
+        </view>
+        <view class='planProduct-content'>
+          <view style='color:#878788;'>{{item.plan_name}}</view>
+          <view style='margin-top:5px;font-size:12px;color:#898A8C;word-break:break-all;'>
+            计划简介: {{filter.overflow_hidden(item.briefing, 30)}}
+          </view>
+          <view style='margin-top:5px;text-align:right;color:#2D9BBB;'>
+            ¥{{filter.toFixed(item.unit_price, 2)}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

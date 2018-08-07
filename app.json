@@ -38,7 +38,9 @@
     "pages/planDetail/planDetail",
     "pages/private/private",
     "pages/setting/setting",
-    "pages/priceCutdown/priceCutdown"
+    "pages/priceCutdown/priceCutdown",
+    "pages/coachList/coachList",
+    "pages/coachDetail/coachDetail"
     
 
   ],
@@ -62,6 +64,12 @@
         "text": "课程表",
         "iconPath": "icon/courseList.png",
         "selectedIconPath": "icon/courseList_selected.png"
+      },
+      {
+        "pagePath": "pages/coachList/coachList",
+        "text": "教练团队",
+        "iconPath": "icon/coach.png",
+        "selectedIconPath": "icon/coach_selected.png"
       },
       {
         "pagePath": "pages/active/active",

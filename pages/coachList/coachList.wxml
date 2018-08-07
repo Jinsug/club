@@ -1,0 +1,38 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<!-- 页面开始 -->
+<view class='content'>
+        <!-- 教练数据 -->
+        <view class='coachList' wx:if='{{hasData == 1}}'>
+                <!-- 每一个教练行 -->
+                <view class='pre' wx:for='{{coachList}}' wx:for-item='coach' data-coachid='{{coach.id}}' bindtap='coachDetail'>
+                        <!-- 头像 -->
+                        <view class='picDiv'>
+                                 <image class='pic' mode='aspectFill' src='{{filter.errorImage(coach.image)}}'></image>
+                        </view>
+
+                        <!-- 右边内容区 -->
+                        <view class='info'>
+                                <!-- title -->
+                                <view class='title'>{{coach.name}}</view>
+                                <view class='value'>{{filter.overflow_hidden_strnull(coach.description, 45)}}</view>
+                        </view>
+                
+                </view>
+        </view>
+
+        <!-- 没有数据 -->
+        <view class="hasNoData" wx:if="{{hasData == 0}}" >
+              <view class="noData">
+                        <!-- 图像 -->
+                        <view class="noDataPicDiv">
+                            <image src="https://www.ecartoon.com.cn/ecartoon-weixin/img/Look-not-happy@2x.png" class="noDataPic"></image>
+                        </view>
+                        <view class="noDataFont">
+                            <view>暂无数据</view>
+                            <view>去看看别的</view>
+                        </view>  
+                </view>
+        </view>
+
+</view>

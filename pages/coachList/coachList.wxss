@@ -1,0 +1,71 @@
+Page{
+  width: 100%;
+  height: 100%;
+  background: #f0f2f2;
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+}
+
+.coachList{
+  margin-top: 1rpx;
+  background: white;
+}
+
+.pre{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f2f2;
+}
+
+.picDiv{
+   padding-right: 20rpx;
+}
+
+.pic{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+
+.info{
+  width: 82%;
+}
+
+.title{
+  font-size: 28rpx;
+  padding-bottom: 16rpx;
+}
+
+.value{
+  font-size: 22rpx;
+  color: #bbb;
+}
+
+
+.hasNoData{
+    width: 100%;
+    height: 100%;
+}
+
+.noDataPicDiv{
+    width: 60rpx;
+    height: 60rpx;
+    margin: 0 auto;
+    margin-top: 60%;
+}
+
+.noDataPic{
+    width: 100%;
+    height: 100%;
+}
+
+.noDataFont{
+    font-size: 24rpx;
+    text-align: center;
+    color: #999999;
+}

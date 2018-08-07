@@ -1,0 +1,205 @@
+/**index.wxss**/
+page{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.wraper{
+  background-color: #212F3D;
+  font-size: 14px;
+}
+
+.coach{
+  background-image: 
+  url("https://www.ecartoon.com.cn/miniProgram/coach/img/background1.png");
+  background-size: 100% 100%;
+}
+
+.coachInfo{
+  padding: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coachPhoto{
+  float: left;
+  margin-right: 50px;
+}
+
+.coachPhoto > image{
+  width: 67.5px;
+  height: 67.5px;
+  border-radius: 50%;
+}
+
+.coachName{
+  text-align: center;
+  color: #FFF;
+}
+
+
+.coachCourse{
+  margin-top: 20px;
+  height: 30px;
+  background-image: 
+  url("https://www.ecartoon.com.cn/miniProgram/coach/img/background2.png");
+  background-size: 100% 100%;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  color: #FFF;
+}
+
+.coachCourse{
+   width: 170rpx;
+   height: 60rpx;
+   margin-top: -60rpx;
+}
+
+.coachOther{
+  overflow: hidden;
+}
+
+.brief{
+  float: left;
+  width: 33.1%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-top: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+}
+
+.service{
+  float: left;
+  width: 33.1%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-top: 1px solid #FFF;
+}
+
+.employ{
+  float: left;
+  width: 33.1%;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #FFF;
+  border-top: 1px solid #FFF;
+  border-left: 1px solid #FFF;
+}
+
+.privatePackage{
+  background-color: #FFF;
+}
+
+.privateTitle{
+  padding: 10px;
+  color: #545556;
+}
+
+.privateContent{
+  overflow: scroll;
+}
+
+.no-data{
+  position: relative;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.no-data > image{
+  width: 60px;
+  height: 40px;
+}
+
+.no-data > view{
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #545556;
+}
+
+.scoll-box{
+  overflow: hidden;
+}
+
+.privteProduct{
+  float: left;
+  padding: 10px;
+}
+
+.productImage{
+  position: relative;
+  width: 141.2px;
+  height: 106px;
+}
+
+.productImage > image{
+  width: 100%;
+  height: 100%;
+}
+
+.productPrice_wraper{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.productPrice{
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #FFF;
+}
+
+.productName{
+  margin-top: 10px;
+  margin-left: 10px;
+  font-size: 12px;
+  color: #545556;
+}
+
+.plan{
+  background-color: #FFF;
+}
+
+.planTitle{
+  padding: 10px;
+  color: #545556;
+}
+
+.planProduct{
+  padding: 10px;
+  overflow: hidden;
+}
+
+.planProduct-image{
+  float: left;
+  margin-right: 10px;
+  width: 173.5px;
+  height: 97.5px;
+}
+
+.planProduct-image > image{
+  width: 100%;
+  height: 100%;
+}
+
+.planProduct-content{
+  float: left;
+  width: 150px;
+}
+
