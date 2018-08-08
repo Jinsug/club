@@ -10,6 +10,7 @@ Page({
       id: 0,
       name: '未知',
       image: 'https://www.ecartoon.com.cn/picture/user.jpg',
+      banner: 'user.jpg',
     },
    
     privateList: [],
@@ -53,7 +54,8 @@ Page({
             id: res.data.id,
             name: res.data.name,
             image: obj.data.base_picture_url + '/' + res.data.image,
-            mobilephone: res.data.mobilephone
+            mobilephone: res.data.mobilephone,
+            banner:res.data.banner
           },
           privateList: res.data.privateList,
           boxWidth: res.data.privateList.length * ratio + "%",

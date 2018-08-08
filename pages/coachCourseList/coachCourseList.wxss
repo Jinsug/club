@@ -196,12 +196,9 @@ page {
   border: none;
 }
 
-
-
-
 .coachImg-div{
-  width: 125rpx;
-  height: 125rpx;
+  width: 100rpx;
+  height: 100rpx;
   
 }
 

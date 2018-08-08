@@ -117,8 +117,9 @@ Page({
          if (res.success) {
            // 请求数据成功
            objx.setData({
-             courseList:res.items,
-             courseId:res.items[0].id
+             courseList: res.items,
+             courseId: res.items[0].id,
+             isMember: res.isMember
            })
 
          } else {
@@ -202,6 +203,16 @@ Page({
    */
   appointmentCourse: function () {
       var objx = this;
+
+      // 会员校验
+      if (objx.data.isMember == 0) {
+        wx.showModal({
+          title: '提示',
+          content: '请购买该教练的私教套餐，成为教练的会员后再预约课程',
+          showCancel: false
+        })
+        return;
+      }
       var courseAddress = objx.data.courseAddress;
       if (courseAddress == "") {
         wx.showModal({

@@ -1,6 +1,7 @@
 <!-- 页面开始 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
+  <image mode='aspectFill' src='{{base_picture_url}}/{{coachInfo.banner}}'></image>
   <view class='coach'>
     <view class='coachInfo'>
       <view class='coachPhoto'>
@@ -24,7 +25,8 @@
       
     </view>
   </view>
-  <view style='height:15px;background-color:#E1E4E6;'></view>
+  <!-- 填充高度 -->
+  <view  class='privateFill'></view>
   <view class='privatePackage'>
     <view class='privateTitle'>
       我的私教套餐
@@ -32,7 +34,7 @@
     <view class='privateContent'>
       <view class='no-data' wx:if='{{privateList.length <= 0}}'>
         <image src='{{base_picture_url}}/wnr.png' mode='aspectFill'></image>
-        <view>该教练还没有发布私教套餐</view>
+        <view>还没有发布私教套餐，请登录卡库APP发布</view>
       </view>
       <view class='scoll-box' style='width:{{boxWidth}}'>
         <view class='privteProduct' wx:for='{{privateList}}' 
@@ -54,7 +56,7 @@
     <view class='planContent'>
       <view class='no-data' wx:if='{{planList.length <= 0}}'>
         <image src='{{base_picture_url}}/wnr.png'></image>
-         <view>该教练还没有发布健身计划</view>
+         <view>还没有发布健身计划，请登录卡库APP发布</view>
       </view>
       <view class='planProduct' wx:for="{{planList}}" wx:key='' bindtap='planDetail'
           data-planId='{{item.id}}'>

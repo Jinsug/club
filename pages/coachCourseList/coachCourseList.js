@@ -1,6 +1,7 @@
 var app = getApp();
 Page({
   data: {
+    base_pic_url: app.constant.base_pic_url,
     currentDate: "2017年05月03日",
     dayList: '',
     currentDayList: '',
