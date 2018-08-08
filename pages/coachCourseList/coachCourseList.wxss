@@ -169,7 +169,7 @@ page {
 
 .planDetailButton{
     text-align: center;
-    background: #ff4401;
+    background: #FB8C00;
     color: white;
     font-size: 32rpx;
     height: 88rpx;

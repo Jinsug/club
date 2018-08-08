@@ -55,11 +55,15 @@ page{
    left: 0;
    width: 100%;
    height: auto;
-   background-color: #ff4401;
+   background-color: #FB8C00;
    color: white;
    font-size: 32rpx;
    text-align: center;
    padding: 26rpx 0;
 }
 
+.value{
+  font-size: 14px;
+  color: #A9A9A9;
+}
 

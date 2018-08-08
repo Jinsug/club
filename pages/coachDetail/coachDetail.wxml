@@ -33,7 +33,7 @@
     <view class='privateContent'>
       <view class='no-data' wx:if='{{privateList.length <= 0}}'>
         <image src='{{base_picture_url}}/wnr.png' mode='aspectFill'></image>
-        <view>还没有发布私教套餐，请登录卡库APP发布</view>
+        <view>教练还没有发布私教套餐，请使用卡库健身APP发布</view>
       </view>
       <view class='scoll-box' style='width:{{boxWidth}}'>
         <view class='privteProduct' wx:for='{{privateList}}' 
@@ -55,7 +55,7 @@
     <view class='planContent'>
       <view class='no-data' wx:if='{{planList.length <= 0}}'>
         <image src='{{base_picture_url}}/wnr.png'></image>
-         <view>还没有发布健身计划，请登录卡库APP发布</view>
+         <view>教练还没有发布健身计划，请使用卡库健身APP发布</view>
       </view>
       <view class='planProduct' wx:for="{{planList}}" wx:key='' bindtap='planDetail'
           data-planId='{{item.id}}'>
