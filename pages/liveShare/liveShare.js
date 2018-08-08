@@ -15,16 +15,17 @@ Page({
    */
   onLoad: function (options) {
     // 接收参数
-    var live = JSON.parse(decodeURI(options.live));
-    var data = {
-      live: live
+    var data = {}
+    if (options.live) {
+      var live = JSON.parse(decodeURI(options.live));
+      data.live = live;
     }
     if (options.source) {
       data.source = options.source;
     }
     this.setData(data);
     // 页面初始化
-    this.methods.init(this);
+    this.methods.init(options.liveId, this);
   },
 
   /**
@@ -76,14 +77,8 @@ Page({
     var live = this.data.live;
     var liveName = live.liveName;
     var startTime = live.startTime;
-    if (live.pushURL) {
-      delete live.pushURL;
-    }
-    if (live.playURL) {
-      delete live.playURL;
-    }
-    var path = 'pages/liveShare/liveShare?source=1&live=' + encodeURI(JSON.stringify(live));
-    // console.log(path);
+    var path = 'pages/liveShare/liveShare?source=1&liveId=' + live.id;
+    console.log(path);
     return {
       title: `“${liveName}” 将于 ${startTime} 开讲，欢迎参加本次讲座`,
       path: path
@@ -131,7 +126,7 @@ Page({
     /**
      * 页面初始化
      */
-    init: function (obj) {
+    init: function (liveId, obj) {
       // 判断是否登录
       if (!wx.getStorageSync('memberId')) {
         wx.login({
@@ -144,12 +139,36 @@ Page({
         });
       } 
 
-      // 请求主播
-      obj.methods.getUserInfo(1, obj);
+      // 可以取到live缓存信息直接进行后续操作
+      if (obj.data.live.id) {
+        // 请求主播
+        obj.methods.getUserInfo(1, obj);
 
-      // 请求用户信息
-      if (wx.getStorageSync('memberId')) {
-        obj.methods.getUserInfo(0, obj);
+        // 请求用户信息
+        if (wx.getStorageSync('memberId')) {
+          obj.methods.getUserInfo(0, obj);
+        }
+      } else {
+        // 否则重新请求live信息
+        wx.request({
+          url: app.request_url + 'getLiveById.asp',
+          data: {
+            liveId: liveId
+          },
+          success: function (res) {
+            obj.setData({
+              live: res.data
+            })
+
+            // 请求主播
+            obj.methods.getUserInfo(1, obj);
+
+            // 请求用户信息
+            if (wx.getStorageSync('memberId')) {
+              obj.methods.getUserInfo(0, obj);
+            }
+          }
+        })
       }
     },
 

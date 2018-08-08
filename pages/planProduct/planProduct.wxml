@@ -1,1 +1,83 @@
-<web-view src='{{planUrl}}'></web-view>
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='wraper'>
+  <view class='productInfo'>
+    <view class='productInfo-backgroundImage'>
+      <image src='{{filter.errorImage(plan.image1)}}' mode='aspectFill'>
+      </image>
+      <view class='productInfo-content'>
+        <image src='{{filter.errorImage(plan.image1)}}' mode='aspectFill' 
+            class='productInfo-content-left'>
+        </image>
+        <view class='productInfo-content-right'>
+          <view class='productName'>{{filter.overflow_hidden(plan.name, 10)}}</view>
+          <view class='days'>发布人: {{plan.memberName}}</view>
+          <view class='days'>下载数量: {{plan.goodsCount}}</view>
+        </view>
+      </view>
+    </view>
+    <view style='height:10px;background-color:#F0F0F2;'></view>
+    <view class='product-row'>
+      <view class='product-row-left'>计划类型</view>
+      <view class='product-row-right fitClub'>
+        <view class='fitClub-left'>{{plan.planTypes[plan.planType]}}</view>
+      </view>
+    </view>
+    <view class='product-row'>
+      <view class='product-row-left'>计划对象</view>
+      <view class='product-row-right fitClub'>
+        <view class='fitClub-left'>{{plan.applyObjects[plan.applyObject]}}</view>
+      </view>
+    </view>
+    <view class='product-row'>
+      <view class='product-row-left'>适用场景</view>
+      <view class='product-row-right fitClub'>
+        <view class='fitClub-left'>{{plan.scenes[plan.scene]}}</view>
+      </view>
+    </view>
+    <view class='product-row'>
+      <view class='product-row-left'>所需器材</view>
+      <view class='product-row-right fitClub'>
+        <view class='fitClub-left'>{{plan.apparatuses}}</view>
+      </view>
+    </view>
+    <view class='product-row'>
+      <view class='product-row-left'>计划周期</view>
+      <view class='product-row-right fitClub'>
+        <view class='fitClub-left'>{{plan.plancircle}}天</view>
+      </view>
+    </view>
+    <view class='product-row'>
+      <view class='product-row-left'>价格</view>
+      <view class='product-row-right ff4401'>
+        <text style='font-size:10px;'>¥</text>
+        {{filter.toFixed(plan.price, 2)}}
+      </view>
+    </view>
+  </view>
+  <view style='height:10px;background-color:#F0F0F2;'></view>
+  <view class='productRemark'>
+    计划简介
+    <view class='productRemark-content'>
+      <text decode>{{plan.summary}}</text>
+    </view>
+  </view>
+  <view class='productStrartTime'>
+    <picker class='selectStartTime' mode="date" value="{{plan.currentDate}}" 
+      bindchange='changeDate' start='{{start}}' end='{{end}}'>
+      <view class="selectStartTime-left">
+        选择开卡日期  
+      </view>
+      <view class='selectStartTime-right'>
+        {{plan.currentDate}}
+      </view>
+    </picker>
+    <view class='goBuy' bindtap='goBuy'>购买</view>
+  </view>
+  <view class='goHome' bindtap='goHome' wx:if='{{productId && !source}}'>
+    <image src='{{filter.getPictureUrl("201805241551.png")}}'>
+    </image>
+    <view>前往主页</view>
+  </view>
+</view>
