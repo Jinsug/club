@@ -35,7 +35,7 @@
   <view class='productRemark'>
     服务说明
     <view class='productRemark-content'>
-      <text decode>{{product.remark}}</text>
+      <rich-text nodes='{{product.remark}}'></rich-text>
     </view>
   </view>
   <view class='productStrartTime'>

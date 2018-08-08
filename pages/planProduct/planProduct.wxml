@@ -60,7 +60,7 @@
   <view class='productRemark'>
     计划简介
     <view class='productRemark-content'>
-      <text decode>{{plan.summary}}</text>
+      <rich-text nodes='{{plan.summary}}'></rich-text>
     </view>
   </view>
   <view class='productStrartTime'>
