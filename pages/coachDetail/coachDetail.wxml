@@ -1,11 +1,11 @@
 <!-- 页面开始 -->
 <wxs module="filter" src="../../utils/filters.wxs"></wxs>
 <view class='wraper'>
-  <image mode='aspectFill' src='{{base_picture_url}}/{{coachInfo.banner}}'></image>
+  <image mode='aspectFill' class='handlerImage' src='{{base_picture_url}}/{{coachInfo.banner}}'></image>
   <view class='coach'>
     <view class='coachInfo'>
       <view class='coachPhoto'>
-        <image src='{{coachInfo.image}}'></image>
+        <image class='handlerImage' src='{{coachInfo.image}}' mode='aspectFill'></image>
         <view class='coachName'>{{coachInfo.name}}</view>
       </view>
      
@@ -13,23 +13,22 @@
       
     </view>
     <view class='coachOther'>
-      <view class='brief' bindtap='CoachRemark'>
+      <view class='brief other' bindtap='CoachRemark'>
         教练简介
       </view>
-      <view class='service' bindtap='CoachService'>
+      <view class='service other' bindtap='CoachService'>
         服务和资质
       </view>
-      <view class='employ' bindtap='contactCoach' >
+      <view class='employ other' bindtap='contactCoach' >
         联系教练
       </view> 
       
     </view>
   </view>
-  <!-- 填充高度 -->
-  <view  class='privateFill'></view>
+
   <view class='privatePackage'>
     <view class='privateTitle'>
-      我的私教套餐
+      私教套餐
     </view>
     <view class='privateContent'>
       <view class='no-data' wx:if='{{privateList.length <= 0}}'>
@@ -52,7 +51,7 @@
   </view>
   <view style='height:15px;background-color:#E1E4E6;'></view>
   <view class='plan'>
-    <view class='planTitle'>我的健身计划</view>
+    <view class='planTitle'>健身计划</view>
     <view class='planContent'>
       <view class='no-data' wx:if='{{planList.length <= 0}}'>
         <image src='{{base_picture_url}}/wnr.png'></image>
@@ -64,15 +63,19 @@
           <image src='{{base_picture_url}}/{{item.image1}}' mode='aspectFill'>
           </image>
         </view>
+
         <view class='planProduct-content'>
-          <view style='color:#878788;'>{{item.plan_name}}</view>
-          <view style='margin-top:5px;font-size:12px;color:#898A8C;word-break:break-all;'>
-            计划简介: {{filter.overflow_hidden(item.briefing, 30)}}
-          </view>
-          <view style='margin-top:5px;text-align:right;color:#ff4401;'>
-            ¥{{filter.toFixed(item.unit_price, 2)}}
-          </view>
+         
+              <view class='priceTitle' >{{item.plan_name}}</view>
+              <view class='price'>
+                ¥{{filter.toFixed(item.unit_price, 2)}}
+              </view>
+              <view style='margin-top:5px;font-size:12px;color:#898A8C;word-break:break-all;'>
+               {{filter.overflow_hidden(item.briefing, 30)}}
+              </view>
+
         </view>
+
       </view>
     </view>
   </view>
