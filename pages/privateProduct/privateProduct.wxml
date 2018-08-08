@@ -12,7 +12,7 @@
         </image>
         <view class='productInfo-content-right'>
           <view class='productName'>{{filter.overflow_hidden(product.name, 10)}}</view>
-          <view class='days'>教练名称: {{product.memberName}}</view>
+          <view class='days'>发布人: {{product.memberName}}</view>
         </view>
       </view>
     </view>
