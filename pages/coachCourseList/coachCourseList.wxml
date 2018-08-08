@@ -90,7 +90,7 @@
      <!-- 当天没有训练计划 -->
      <view class="no-data" wx:if="{{hasNoData == 1}}">
         <view class="no-data-img-div">
-            <image src="https://www.ecartoon.com.cn/picture/wnr.png" class="no-data-img">
+            <image src="{{base_pic_url}}/wnr.png" class="no-data-img">
               </image>
         </view>
        
@@ -104,8 +104,8 @@
                  <!-- 每一个课程 -->
                  <view class="course-pre" wx:for="{{planData}}" wx:for-index="{{courseIndex}}">
                       <view class="coachImg-div">
-                          <image class="coachImg" wx:if="{{item.member.image != ''}}" src="https://www.ecartoon.com.cn/picture/{{item.member.image}}"></image>
-                           <image class="coachImg" wx:if="{{item.member.image == ''}}" src="https://www.ecartoon.com.cn/picture/20180203151096.jpg"></image>
+                          <image class="coachImg" wx:if="{{item.member.image != ''}}" src="{{base_pic_url}}/{{item.member.image}}"></image>
+                           <image class="coachImg" wx:if="{{item.member.image == ''}}" src="{{base_pic_url}}/20180203151096.jpg"></image>
                       </view>
                       <view class="course-detail">
                           <view class="courseTitle">{{item.course}}<text class="bindCoachName">一</text><text class="coachName">{{item.member.name}}</text></view>

@@ -1,4 +1,3 @@
-/**index.wxss**/
 page{
   width: 100%;
   height: 100%;
@@ -7,14 +6,22 @@ page{
 }
 
 .wraper{
-  background-color: #212F3D;
+  position: relative;
+  background-color: #E1E4E6;
   font-size: 14px;
 }
 
+.wraper>image{
+  width: 100%;
+  height: 342rpx;
+  overflow: hidden;
+}
+
 .coach{
-  background-image: 
-  url("https://www.ecartoon.com.cn/miniProgram/coach/img/background1.png");
-  background-size: 100% 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .coachInfo{
@@ -62,14 +69,14 @@ page{
 
 .coachOther{
   overflow: hidden;
+  height: 40px;
 }
 
 .brief{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
   border-right: 1px solid #FFF;
@@ -78,9 +85,8 @@ page{
 .service{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
 }
@@ -88,9 +94,8 @@ page{
 .employ{
   float: left;
   width: 33.1%;
-  height: 50px;
   text-align: center;
-  line-height: 50px;
+  line-height: 40px;
   color: #FFF;
   border-top: 1px solid #FFF;
   border-left: 1px solid #FFF;
@@ -103,6 +108,7 @@ page{
 .privateTitle{
   padding: 10px;
   color: #545556;
+  border-bottom: 2rpx solid #f0f0f2;
 }
 
 .privateContent{
@@ -143,8 +149,9 @@ page{
 
 .productImage{
   position: relative;
-  width: 141.2px;
-  height: 106px;
+  width: 220rpx;
+  height: 165rpx;
+  
 }
 
 .productImage > image{
@@ -160,7 +167,7 @@ page{
 }
 
 .productPrice{
-  padding: 10px;
+  padding: 10rpx 20rpx;
   background-color: rgba(0, 0, 0, 0.3);
   color: #FFF;
 }
@@ -179,6 +186,7 @@ page{
 .planTitle{
   padding: 10px;
   color: #545556;
+  border-bottom: 2rpx solid #f0f0f2;
 }
 
 .planProduct{
@@ -189,8 +197,8 @@ page{
 .planProduct-image{
   float: left;
   margin-right: 10px;
-  width: 173.5px;
-  height: 97.5px;
+  width: 242rpx;
+  height: 181.5rpx;
 }
 
 .planProduct-image > image{
@@ -201,5 +209,10 @@ page{
 .planProduct-content{
   float: left;
   width: 150px;
+}
+
+.privateFill{
+  height:10px;
+  background-color:#E1E4E6;
 }
 
