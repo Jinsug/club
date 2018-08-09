@@ -70,7 +70,7 @@ Page({
   onShareAppMessage: function () {
     var product = this.data.product;
     var title = `“${product.memberName}”发布的“${product.name}”为您提供专业的健身指导服务`;
-    var path = '/pages/privateProduct/privateProduct?productId=' + product.id;
+    var path = '/pages/privateProduct/privateProduct?productId=' + product.id + '&source=1';
     return {
       title: title,
       path: path
@@ -107,6 +107,15 @@ Page({
     var product_data = encodeURI(JSON.stringify(param));
     wx.navigateTo({
       url: `../order/order?product=${product_data}`
+    });
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
     });
   },
 

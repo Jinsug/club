@@ -228,3 +228,8 @@ page{
   height: 30px;
 }
 
+.goHome > view{
+  text-align: center;
+  font-size: 10px;
+  color: #FFF;
+}

@@ -72,6 +72,14 @@ Page({
   },
   // 点击教练课表触发
   CoachTimetable: function() {
+    // 验证登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=coachDetail&coachId=' + this.data.coachInfo.id,
+      })
+      return;
+    }
+
       wx.navigateTo({
         url: '../../pages/coachCourseList/coachCourseList?coachName=' + this.data.coachInfo.name
       })
@@ -110,12 +118,28 @@ Page({
 
   // 点击私教套餐进入私教套餐详情页面
   privateDetail: function (data){
+    // 验证登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=coachDetail&coachId=' + this.data.coachInfo.id,
+      })
+      return;
+    }
+
     wx.navigateTo({
       url: '../privateProduct/privateProduct?productId=' + data.currentTarget.dataset.productid
     });
   },
   // 点击健身计划进入健身计划详情页面
   planDetail: function (data) {
+    // 验证登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=coachDetail&coachId=' + this.data.coachInfo.id,
+      })
+      return;
+    }
+
     wx.navigateTo({
       url: '../planProduct/planProduct?planId=' + data.currentTarget.dataset.planid
     });
@@ -125,10 +149,19 @@ Page({
    */
   onShareAppMessage: function () {
     var title = `“${this.data.coachInfo.name}”为您提供专业的健身指导服务。将来的你一定会感谢现在努力的你`;
-    var path = '/pages/coachDetail/coachDetail?coachId=' + this.data.coachInfo.id;
+    var path = '/pages/coachDetail/coachDetail?coachId=' + this.data.coachInfo.id + '&source=1';
     return {
       title: title,
       path: path
     }
   },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
+  }
 })

@@ -70,7 +70,7 @@ Page({
   onShareAppMessage: function () {
     var plan = this.data.plan;
     var title = `“${plan.name}”帮助您拥有健康、幸福的人生`;
-    var path = '/pages/planProduct/planProduct?planId=' + plan.id;
+    var path = '/pages/planProduct/planProduct?planId=' + plan.id + '&source=1';
     return {
       title: title,
       path: path
@@ -91,7 +91,7 @@ Page({
     // 验证登录
     if (!wx.getStorageSync('memberId')) {
       wx.reLaunch({
-        url: '../mine/mine?source=privateProduct&productId=' + this.data.product.id,
+        url: '../mine/mine?source=planProduct&planId=' + this.data.plan.id,
       })
       return;
     }
@@ -107,6 +107,15 @@ Page({
     var plan_data = encodeURI(JSON.stringify(param));
     wx.navigateTo({
       url: `../order/order?product=${plan_data}`
+    });
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
     });
   },
 
