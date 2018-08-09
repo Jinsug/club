@@ -189,7 +189,7 @@ page{
 .planProduct-image{
   float: left;
   margin-right: 10px;
-  width: 121px;
+  width: 35%;
   height: 91px;
 }
 
@@ -200,7 +200,7 @@ page{
 
 .planProduct-content{
   float: left;
-  width: 220px;
+  width: 60%;
 }
 
 .price{
