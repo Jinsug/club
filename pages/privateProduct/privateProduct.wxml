@@ -50,7 +50,7 @@
     </picker>
     <view class='goBuy' bindtap='goBuy'>购买</view>
   </view>
-  <view class='goHome' bindtap='goHome' wx:if='{{productId && !source}}'>
+  <view class='goHome' bindtap='goHome' wx:if='{{source}}'>
     <image src='{{filter.getPictureUrl("201805241551.png")}}'>
     </image>
     <view>前往主页</view>

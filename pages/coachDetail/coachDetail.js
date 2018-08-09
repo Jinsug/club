@@ -18,6 +18,12 @@ Page({
     planList: []
   },
   onLoad: function (options) {
+    if (options.source) {
+      this.setData({
+        source: options.source
+      })
+    }
+
     var obj = this;
     // 将教练id存入缓存
     if(options.coachId){
@@ -118,9 +124,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
+    var title = `“${this.data.coachInfo.name}”为您提供专业的健身指导服务。将来的你一定会感谢现在努力的你`;
+    var path = '/pages/coachDetail/coachDetail?coachId=' + this.data.coachInfo.id;
     return {
-      title: this.data.coachInfo.name,
-      path: '/pages/index/index?coachId=' + this.data.coachInfo.id
+      title: title,
+      path: path
     }
   },
 })

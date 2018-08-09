@@ -12,6 +12,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.source) {
+      this.setData({
+        source: options.source
+      })
+    }
+
     // 初始化
     this.methods.init(options.productId, this);
   },
@@ -58,6 +64,19 @@ Page({
     
   },
 
+  /**
+   * 用户触发分享
+   */
+  onShareAppMessage: function () {
+    var product = this.data.product;
+    var title = `“${product.memberName}”发布的“${product.name}”为您提供专业的健身指导服务`;
+    var path = '/pages/privateProduct/privateProduct?productId=' + product.id;
+    return {
+      title: title,
+      path: path
+    }
+  },
+
   // 用户选择改变日期
   changeDate: function (e) {
     var product = this.data.product;
@@ -69,6 +88,14 @@ Page({
 
   // 用户点击购买按钮
   goBuy: function () {
+    // 验证登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=privateProduct&productId=' + this.data.product.id,
+      })
+      return;
+    }
+
     var param = {
       productId: this.data.product.id,
       productName: this.data.product.name,

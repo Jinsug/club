@@ -79,4 +79,11 @@
       </view>
     </view>
   </view>
+
+  <!-- 回到主页按钮 -->
+  <view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+    <image src='{{filter.getPictureUrl("201805241551.png")}}'>
+    </image>
+    <view>前往主页</view>
+  </view>
 </view>

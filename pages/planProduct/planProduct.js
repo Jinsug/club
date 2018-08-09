@@ -12,6 +12,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.source) {
+      this.setData({
+        source: options.source
+      })
+    }
+
     // 初始化
     this.methods.init(options.planId, this);
   },
@@ -58,6 +64,19 @@ Page({
 
   },
 
+  /**
+   * 用户触发分享
+   */
+  onShareAppMessage: function () {
+    var plan = this.data.plan;
+    var title = `“${plan.name}”帮助您拥有健康、幸福的人生`;
+    var path = '/pages/planProduct/planProduct?planId=' + plan.id;
+    return {
+      title: title,
+      path: path
+    }
+  },
+
   // 用户选择改变日期
   changeDate: function (e) {
     var plan = this.data.plan;
@@ -69,6 +88,14 @@ Page({
 
   // 用户点击购买按钮
   goBuy: function () {
+    // 验证登录
+    if (!wx.getStorageSync('memberId')) {
+      wx.reLaunch({
+        url: '../mine/mine?source=privateProduct&productId=' + this.data.product.id,
+      })
+      return;
+    }
+
     var param = {
       productId: this.data.plan.id,
       productName: this.data.plan.name,
