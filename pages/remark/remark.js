@@ -69,7 +69,7 @@ Page({
       }
     });
 
-    WxParse.wxParse('description', 'html', coachDetail.description, this, 0);
+    WxParse.wxParse('description', 'html', coachDetail.description || '', this, 0);
   },
 
   /**
