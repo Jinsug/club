@@ -12,7 +12,7 @@ Page({
      login_button:true,
      hasMobilephone:0,
      hasLogin:0,
-     base_img_url: 'https://fish.ecartoon.com.cn/img/'
+     base_img_url: 'http://fish.ecartoon.com.cn/static/img'
   },
 
   /**
