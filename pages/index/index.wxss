@@ -121,7 +121,7 @@ page{
 
 .clubAddress{
   float: left;
-  padding: 5px;
+  padding: 3px 5px;
   width: 80%;
   font-size: 12px;
   overflow: hidden;
@@ -144,7 +144,7 @@ page{
 .clubPhone{
   float: right;
   height: 30px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   border-left: 1px solid #FFF;
 }
 

@@ -194,7 +194,7 @@ Page({
       });
       return;
     }
-    // 创建微信接口对象ss
+    // 创建微信接口对象
     const wxApi = {
       getLocation: () => {
         return new Promise(function (resolve, reject){
