@@ -489,6 +489,11 @@ Page({
       url: url
     });
   },
+  healthy: function () {
+    wx.navigateTo({
+      url: '../healthy/healthy'
+    })
+  },
   // 领券
   getTicket: function(e){
     // 检查登录

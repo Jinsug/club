@@ -1,0 +1,64 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 健康评估(未登录) -->
+<view class='healthy'>
+  <view class='healthy-title'>输入身体数据</view>
+  <view class='healthy-content padding0'>
+    <view class='line' wx:for='{{line}}' wx:key=''>
+      <view class='line-item' wx:for='{{item}}' wx:key='' wx:for-item='subItem' 
+        wx:for-index='subIndex'>
+        <view class='line-item-wraper'>
+          <view class='line-sub-item'>{{subItem.text}}:</view>
+          <view class='line-select' wx:if='{{subItem.lineType == "select"}}'>
+            <view class='select-item {{blockIndex==selectIndex?"select-active":""}}' 
+              wx:for='{{selectBlocks}}' wx:key='' wx:for-item='block' 
+              wx:for-index='blockIndex' bindtap='saveFormData' 
+              data-type='{{subItem.lineType}}'  data-index='{{blockIndex}}'>
+              {{block.text}}
+            </view>
+          </view>
+          <view class='line-picker' wx:if='{{subItem.lineType == "picker"}}'>
+            <picker mode='date' bindchange='saveFormData' data-key='{{subItem.key}}'>
+              {{model.date}}
+            </picker>
+          </view>
+          <view class='line-input' wx:if='{{subItem.lineType == "input"}}'>
+            <input bindinput='saveFormData' data-key='{{subItem.key}}'></input>
+            <view class='company'>{{subItem.company}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='submit-button'>
+    <image src='{{filter.errorImage("201809031051.png")}}'></image>
+    <view class='submit-button-text' bindtap='submitForm'>开始评估</view>
+  </view>
+  <view style='height: 20rpx;'></view>
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;background-color: #F8F8F8;' wx:if='{{status}}'></view>
+
+<!-- 健康评估 -->
+<view class='healthy' wx:if='{{status}}'>
+  <view class='healthy-title'>健康评估结果</view>
+  <view class='healthy-content' wx:for='{{healthy}}' wx:key=''>
+    <view class='healthy-icon'>
+      <image src='{{filter.errorImage(item.image)}}'></image>
+    </view>
+    <view class='healthy-middle'>
+      <view class='healthy-name'>{{item.title}}</view>
+      <view class='healthy-text'>{{item.text}}</view>
+    </view>
+    <view class='healthy-value'>
+      {{filter.toFixed(item.value, 2)}}
+    </view>
+  </view>
+  <!-- <view class='healthy-tip'>
+    <view class='ask'>?</view>
+    <view>在 "健身打卡" 和 "我的-个人信息" 中更新数据可重新生成评估结果</view>
+  </view> -->
+</view>
+

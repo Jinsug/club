@@ -1,0 +1,184 @@
+page{
+  height: 100%;
+  overflow: hidden;
+  background-color: #DFDFDD;
+}
+
+image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 健康评估 */
+.healthy{
+  background-color: #FFF;
+}
+
+.healthy-title{
+  padding: 20rpx;
+  font-size: 30rpx;
+  color: #030303;
+  border-bottom: 1px solid #F8F8F8;
+}
+
+.healthy-content{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.healthy-icon{
+  display: flex;
+  align-items: center;
+  float: left;
+  height: 90rpx;
+}
+
+.healthy-icon > image{
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.healthy-middle{
+  float: left;
+  margin-left: 20rpx;
+}
+
+.healthy-name{
+  font-size: 28rpx;
+  color: #030303;
+}
+
+.healthy-text{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: #6D6D6D;
+}
+
+.healthy-value{
+  float: right;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 36rpx;
+  color: #030303;
+}
+
+.healthy-tip{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  font-size: 20rpx;
+  color: #ACA9A9;
+}
+
+.ask{
+  margin-right: 10rpx;
+  width: 22rpx;
+  height: 22rpx;
+  text-align: center;
+  line-height: 22rpx;
+  font-size: 20rpx;
+  color: #FFF;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.padding0 {
+  padding: 0;
+}
+
+/* 健康评估(未登录) */
+.line{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: #ACA9A9;
+}
+
+.line-item{
+  width: 50%;
+}
+
+.line-item-wraper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.line-sub-item{
+  color: #030303;
+}
+
+.line-select{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.select-item{
+  margin-left: 20rpx;
+  width: 80rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
+  border: 1px solid #ACA9A9;
+  border-radius: 10rpx;
+}
+
+.select-active{
+  color: #FFF;
+  background-color: #FF4401;
+  border-color: #FF4401;
+}
+
+.line-input{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.line-input > input{
+  width: 100rpx;
+  text-align: right;
+}
+
+.company{
+  margin-left: 10rpx;
+  height: 1.4rem;
+  line-height: 1.4rem;
+}
+
+.submit-button{
+  position: relative;
+  margin: 0 auto;
+  width: 288rpx;
+  height: 60rpx;
+}
+
+.submit-button-text{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: #FFF;
+}
+
+.login-button{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: transparent;
+}
+
+.login-button::after{
+  border: none;
+}

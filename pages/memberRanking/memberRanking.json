@@ -1,7 +1,7 @@
 {
   "backgroundTextStyle": "light",
   "navigationBarBackgroundColor": "#fff",
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "会员排行",
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh": true
 }

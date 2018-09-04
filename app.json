@@ -8,6 +8,7 @@
     "pages/projectList/projectList",
     "pages/video/video",
     "pages/live/live",
+    "pages/healthy/healthy",
     "pages/liveShare/liveShare",
     "pages/liveDetail/liveDetail",
     "pages/releaseLive/releaseLive",
