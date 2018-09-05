@@ -1,0 +1,179 @@
+page{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  color: #FFF;
+  overflow: hidden;
+}
+
+image{
+  width: 100%;
+  height: 100%;
+}
+
+.wraper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.block{
+  position: relative;
+  height: 100%;
+}
+
+.price{
+  position: absolute;
+  top: 43%;
+  left: 0;
+  width: 90%;
+  padding: 0 5%;
+  text-align: right;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: absolute;
+  bottom: 35%;
+  left: 0;
+  width: 100%;
+  height: 160rpx;
+  text-align: center;
+}
+
+.button1{
+  position: relative;
+  width: 40%;
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #000;
+  background-color: #FFDD00;
+  border-radius: 10rpx;
+}
+
+.button2{
+  position: relative;
+  width: 40%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color: #FF4401;
+  border-radius: 10rpx;
+}
+
+.loginButton{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: transparent;
+}
+
+.bottom{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 400rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bottom-block{
+  position: relative;
+}
+
+.title{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.photo{
+  float: left;
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.photo > image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.title-content{
+  float: left;
+  margin-left: 20rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+}
+
+.titleHead{
+ font-size:30rpx;font-weight:bold;
+}
+
+.titleBody{
+  font-size:24rpx;
+}
+
+.customerServiceDiv{
+   position: relative;
+   float: right;
+   width: 120rpx;
+   height: 50rpx;
+   margin-top: -90rpx;
+}
+
+.customerServiceDiv > image{
+  width: 100%;
+  height: 100%;
+}
+
+.customerButton{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.customerButton::after{
+  border: none;
+}
+
+.swiper{
+  height: 240rpx;
+}
+
+.scroll-item{
+  padding: 20rpx;
+  overflow: hidden;
+}
+
+.product-memo{
+  float: left;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.product-content{
+  float: left;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+}
+
+.text{
+  margin-top: 10rpx;
+}
+
+
+
+
+
+

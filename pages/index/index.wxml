@@ -56,11 +56,11 @@
       <image src='{{base_picture_url}}/201805042235.png'></image>
       <view>会员排行</view>
     </view>
-    <!-- <view class='live' bindtap='live'>
+    <view class='live' bindtap='live' wx:if='{{club.status == 1}}'>
       <image src='{{base_picture_url}}/201805042236.png'></image>
       <view>健身讲堂</view>
-    </view> -->
-    <view class='live' bindtap='healthy'>
+    </view>
+    <view class='live' bindtap='healthy' wx:else>
       <image src='{{base_picture_url}}/Htest.png'></image>
       <view>健康评估</view>
     </view>

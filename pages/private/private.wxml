@@ -1,1 +1,52 @@
-<web-view src="https://www.ecartoon.com.cn/miniProgram/club/private.jsp"></web-view>
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+<image src='https://www.ecartoon.com.cn/expert/img/expertIndexBackground.png' mode='widthFix'>
+</image>
+<view class='wraper'>
+  <view class='block'>
+    <!-- 价格和定制按钮 -->
+    <view class='buttons'>
+      <view class=''>
+        <text style='font-size: 56rpx;' decode='{{true}}'>¥&nbsp;</text>
+        <text style='font-size: 110rpx;font-weight: bold;'>{{filter.toFixed(item.price, 0)}}</text>
+        <text style='font-size: 56rpx;'>.00</text>
+      </view>
+      <view class='button2' bindtap='bindToSettingButtonTap'>
+        开始定制
+      </view>
+    </view>
+    <view class='bottom'>
+      <view class='bottom-block'>
+        <!-- 用户头像和标题 -->
+        <view class='title'>
+          <view class='photo'>
+            <image src='https://www.ecartoon.com.cn/picture/wangyan1.jpg' mode='aspectFill'>
+            </image>
+          </view>
+          <view class='title-content'>王严讲健身</view>
+        </view>
+        <!-- 滑块区域 -->
+        <swiper class='swiper' indicator-dots='{{true}}' autoplay='{{true}}' interval='10000'
+          indicator-color='#FFF'  indicator-active-color='#FF4401'>
+          <swiper-item>
+            <view class="scroll-item">
+              <view style='font-size:30rpx;font-weight:bold;'>王严介绍:<text decode='{{true}}'>&nbsp;&nbsp;</text><text style='font-size:24rpx;font-weight:400;'>{{item.summary}}</text>
+              </view>
+            </view>
+          </swiper-item>
+          <swiper-item>
+            <view class="scroll-item">
+              <view class="product-memo">产品简介:</view>
+              <view class="product-content">
+                <view class='text'>计划类型: 瘦身减重,健美增肌,提高运动表现</view>
+                <view class='text'>适用对象: 初级,中级</view>
+                <view class='text'>计划周期: 4周<text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>使用场景: 健身房</view>
+                <view class='text'>所需器材: 各种力量训练器材</view>
+              </view>
+            </view>
+          </swiper-item>
+        </swiper>
+      </view>
+    </view>
+  </view>
+</view> 

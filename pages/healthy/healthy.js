@@ -48,6 +48,10 @@ Page({
   onLoad: function (options) {
     _this = this;
 
+    // 分享标识
+    !!!options.source || _this.setData({ source: options.source})
+
+    // 获取系统当前时间
     var model = _this.data.model;
     model.date = util.formatTime(new Date());
     _this.setData({
@@ -101,7 +105,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '输入身体、体重、腰臀围，马上知道自己的健康状况',
+      path: 'pages/healthy/healthy?source=share'
+    }
   },
 
   /**
@@ -165,7 +172,7 @@ Page({
       '您属于肥胖体型，属健康高危人群。',
       '请点击“健身打卡”填写您的身体数据。'
     ];
-    var bmi = Math.pow(model.weight / model.height, 2);
+    var bmi = Math.pow(model.weight / (model.height), 2) * 100;
     !!!(bmi < 18.5) || (healthy[0].text = bmi_messages[0]);
     !!!(bmi >= 18.5 && bmi < 24) || (healthy[0].text = bmi_messages[1]);
     !!!(bmi >= 24 && bmi < 28) || (healthy[0].text = bmi_messages[2]);
@@ -203,5 +210,14 @@ Page({
     _this.computeHealthy();
 
     _this.setData({ status: true });
+  },
+
+  /**
+  * wxml绑定函数:主页按钮点击绑定(回到主页)
+  */
+  goHome: function () {
+    wx.switchTab({
+      url: '../index/index'
+    });
   }
 })

@@ -43,6 +43,7 @@
     "pages/planDetail/planDetail",
     "pages/private/private",
     "pages/setting/setting",
+    "pages/qrcode/qrcode",
     "pages/priceCutdown/priceCutdown",
     "pages/coachList/coachList",
     "pages/coachDetail/coachDetail",

@@ -481,18 +481,14 @@ Page({
   },
   // 健身直播
   live: function(){
-    var url = '../video/video';
-    if (this.data.club.status == 1) {
-      url = '../live/live';
-    }
     wx.navigateTo({
-      url: url
+      url: '../live/live'
     });
   },
   healthy: function () {
     wx.navigateTo({
       url: '../healthy/healthy'
-    })
+    });
   },
   // 领券
   getTicket: function(e){

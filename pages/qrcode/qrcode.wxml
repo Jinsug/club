@@ -1,0 +1,28 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 描述文本 -->
+<view class='content1'>
+  <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+  请扫描下面小程序码，或者在微信“发现”中搜索“王严健身专家系统”，进入王严健身专家系统小程序。
+</view>
+
+<view class='content2'>
+  <text decode='{{true}}'>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+  输入自己的健身目标、身体数据和运动偏好后量身定制一份健身房训练计划。
+</view>
+
+<!-- 填充高度 -->
+<view style='height: 20rpx;'></view>
+
+<!-- 二维码图片 -->
+<view class='image1' bindtap='previewImage'>
+  <image src='{{filter.errorImage("gh_e6a00886fa4d_344.png")}}' mode='aspectFill'> 
+  </image>
+</view>
+
+<!-- 分享页面，回到首页按钮 -->
+<view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+  <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+  <view>前往主页</view>
+</view>

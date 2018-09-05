@@ -24,7 +24,8 @@
             </picker>
           </view>
           <view class='line-input' wx:if='{{subItem.lineType == "input"}}'>
-            <input bindinput='saveFormData' data-key='{{subItem.key}}'></input>
+            <input type='number' bindinput='saveFormData' data-key='{{subItem.key}}'>
+            </input>
             <view class='company'>{{subItem.company}}</view>
           </view>
         </view>
@@ -60,5 +61,11 @@
     <view class='ask'>?</view>
     <view>在 "健身打卡" 和 "我的-个人信息" 中更新数据可重新生成评估结果</view>
   </view> -->
+</view>
+
+<!-- 分享页面，回到首页按钮 -->
+<view class='goHome' bindtap='goHome' wx:if='{{source}}'>
+  <image src='{{filter.getPictureUrl("201805241551.png")}}'></image>
+  <view>前往主页</view>
 </view>
 
