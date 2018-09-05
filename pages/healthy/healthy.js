@@ -106,7 +106,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '输入身体、体重、腰臀围，马上知道自己的健康状况',
+      title: '输入身高、体重、腰臀围，马上知道自己的健康状况',
       path: 'pages/healthy/healthy?source=share'
     }
   },
@@ -172,7 +172,7 @@ Page({
       '您属于肥胖体型，属健康高危人群。',
       '请点击“健身打卡”填写您的身体数据。'
     ];
-    var bmi = Math.pow(model.weight / (model.height), 2) * 100;
+    var bmi = model.weight / Math.pow(model.height / 100, 2);
     !!!(bmi < 18.5) || (healthy[0].text = bmi_messages[0]);
     !!!(bmi >= 18.5 && bmi < 24) || (healthy[0].text = bmi_messages[1]);
     !!!(bmi >= 24 && bmi < 28) || (healthy[0].text = bmi_messages[2]);
