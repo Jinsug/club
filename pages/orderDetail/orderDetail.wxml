@@ -1,0 +1,84 @@
+<!-- 页面开始 -->
+<view class='content'>
+      <!-- upper -->
+      <view class='upper'>
+            <!-- cardIcon -->
+            <view class='cardIcon'>
+                 <!-- title -->
+                 <view class='title'>{{order.prodName}}</view>
+
+                 <!-- price -->
+                 <view class='priceDiv'>
+                       ￥<text class='price'>{{order.price}}</text>.00
+                 </view>
+
+                 <!-- orderno -->
+                 <view class='orderno'>
+                 订单编号<text>{{order.no}}</text>
+                 </view>
+
+            </view>
+
+            <!-- info -->
+            <view class='info'>
+                  <!-- line1 -->
+                  <view class='line1'>
+                        <!-- startTime -->
+                        <view class='startTime'>开卡时间</view>
+                        
+                        <!-- signCounts -->
+                        <view class='signCounts' wx:if = '{{showCount}}'>出勤/剩余次数</view>
+
+                        <!-- expried -->
+                        <view class='expried'>到期时间</view>
+                  </view>
+
+                  <!-- line2 -->
+                  <view class='line2'>
+                        <!-- 开卡时间 -->
+                        <view class='value'>{{order.startTime}}</view>
+
+                        <!-- 出勤/剩余次数 -->
+                        <view class='value' wx:if = '{{showCount}}'>{{order.sign}}/{{order.remind}}</view>
+
+                        <!-- 到期时间 -->
+                        <view class='value'>{{order.expried}}</view>
+                  </view>
+            </view>
+
+            <!-- next -->
+            <view class='next'>
+                  <view class='linex' bindtap='gotoClubList'>
+                        <view class='titlex'>适用店面</view>
+                        <view class='moreDiv'>
+                              <view class='moreFont'>{{order.fitCount}}家</view>
+                              <view class='moreIcon'>
+                                    <image mode='aspectFill' src='{{base_img_url}}/more@2x.png'></image>
+                              </view>
+                        </view>
+                  </view>
+
+                  <view class='linex'  bindtap='gotoProduct'>
+                        <view class='titlex'>健身卡详情</view>
+                        <view class='moreDiv'>
+                              <view class='moreIcon'>
+                                    <image mode='aspectFill' src='{{base_img_url}}/more@2x.png'></image>
+                              </view>
+                        </view>
+                  </view>
+            </view>
+
+      </view>
+
+      <!-- remind -->
+      <view class='remind'>
+            <!-- remindIcon -->
+            <view class='remindIcon'>
+                  <image mode='aspectFill' src='{{base_img_url}}/{{isHappy ? "Look-cool@2x.png" : "Look-not-happy@2x.png"}}'></image>
+            </view>
+
+            <!-- remindFont -->
+            <view class='remindFont'>{{isHappy ? '您有很好的运动习惯，请继续保持！' : '您的健身频率偏低，要坚持运动哦！'}}</view>
+      </view>
+
+</view>

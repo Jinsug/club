@@ -148,6 +148,20 @@ Page({
      objx.setData({
           eqHeight:eqHeight
      })
+  },
+
+
+  /**
+   * 订单详情页面
+   */
+  gotoOrderDetail: (e) => {
+    var order = e.currentTarget.dataset.order;
+    if (order.orderT == 'product') {
+      var orderId = order.id;
+      wx.navigateTo({
+        url: '../../pages/orderDetail/orderDetail?orderId=' + orderId,
+      })
+    }
   }
 
   

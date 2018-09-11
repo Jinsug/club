@@ -16,7 +16,7 @@
           <swiper-item>
                    <!-- 外部容器 -->
                    <view class="dou">
-                            <view class="pre" wx:for="{{orderList1}}" wx:for-item="order" >
+                            <view class="pre" wx:for="{{orderList1}}" wx:for-item="order" bindtap='gotoOrderDetail' data-order = '{{order}}'>
                             <!-- 订单编号 -->
                             <view class="orderNo" >订单编号 : {{order.orderNo}}</view>
 

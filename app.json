@@ -36,6 +36,7 @@
     "pages/courseDeal/courseDeal",
     "pages/mine/mine",
     "pages/myOrder/myOrder",
+    "pages/orderDetail/orderDetail",
     "pages/myWallet/myWallet",
     "pages/cash/cash",
     "pages/bindAccount/bindAccount",
