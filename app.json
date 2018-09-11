@@ -6,6 +6,7 @@
     "pages/map/map",
     "pages/introduce/introduce",
     "pages/projectList/projectList",
+    "pages/sign/sign",
     "pages/video/video",
     "pages/live/live",
     "pages/healthy/healthy",

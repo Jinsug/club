@@ -1,0 +1,78 @@
+<!-- 引入过滤器 -->
+<wxs module="filter" src="../../utils/filters.wxs"></wxs>
+
+<!-- 用户信息 -->
+<view class='user-info-wraper'>
+  <view class='user-photo'>
+    <image src='{{filter.errorImage(memberData.image)}}' mode='aspectFill'>
+    </image>
+  </view>
+  <view class='user-nick-wraper'>
+    <view class='user-nick'>{{memberData.nickName}}</view>
+    <view class='sign-count-wraper'>已健身 <text class='sign-count'>{{memberData.count}}</text> 次</view>
+  </view>
+</view>
+
+<!-- 俱乐部信息 -->
+<view class='club-info-wraper'>
+  <!-- 填充高度 -->
+  <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+  <view class='icon-club-info'>
+    <image src='{{filter.errorImage("201809031055.png")}}' mode='aspectFill'>
+    </image>
+  </view>
+  <view class='club-info-content'>
+    <view class='club-map'>
+      <map class='map' scale='14' longitude='{{longitude}}' latitude='{{latitude}}'
+        markers='{{markers}}'>
+      </map>
+    </view>
+    <view class='club-name-wraper'>
+      <view class='club-name'>伽蓝瑜伽馆</view>
+      <view class='sign-time-title'>签到时间:</view>
+      <view class='sign-time'>{{currentTime}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 签到订单 -->
+<view class='sign-order-wraper'>
+  <!-- 填充高度 -->
+  <view style='height: 20rpx;background-color: #F8F8F8;'></view>
+  
+  <view class='sign-order-title'>签到订单</view>
+  <view class='sign-order-content'>
+    <view class="no-data" wx:if="{{signOrderList.length == 0}}">
+      <image src='https://www.ecartoon.com.cn/expert/img/mine/Look-not-happy.png'>
+      </image>
+      <view>暂无数据</view>
+      <view>先去看看别的</view>
+    </view>
+    <view class='sign-order' wx:for='{{signOrderList}}' wx:key=''
+      bindtap='changeOrder' data-index='{{index}}'>
+      <view class='product-name'>
+        {{item.name}}
+      </view>
+      <view class='icon-select-wraper'>
+        <image class='icon-select' mode='aspectFill' 
+          wx:if='{{index == orderIndex}}'
+          src='https://www.ecartoon.com.cn/expert/img/button-on.png'>
+        </image>
+        <image class='icon-select' mode='aspectFill' 
+          wx:if='{{index != orderIndex}}'
+          src='https://www.ecartoon.com.cn/expert/img/button-off.png'>
+        </image>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部按钮 -->
+<view class='buttons'>
+  <view class='button cancal' bindtap='cancal'>
+    取消
+  </view>
+  <view class='button success' bindtap='success'>
+    确定
+  </view>
+</view>

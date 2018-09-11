@@ -194,6 +194,12 @@ Page({
       });
       return;
     }
+
+    wx.navigateTo({
+      url: '../sign/sign'
+    });
+    return;
+
     // 创建微信接口对象
     const wxApi = {
       getLocation: () => {

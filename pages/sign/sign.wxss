@@ -1,0 +1,177 @@
+page{
+  height: 100%;
+  background-color: #F2F2F2;
+}
+
+image{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* 用户信息 */
+.user-info-wraper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #FFF;
+}
+
+.user-photo{
+  width: 80rpx;
+  height: 80rpx;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.user-nick-wraper{
+  margin-left: 20rpx;
+}
+
+.user-nick{
+  font-size: 30rpx;
+}
+
+.sign-count-wraper{
+  font-size: 26rpx;
+  color: #999;
+}
+
+.sign-count{
+  font-size: 30rpx;
+  color: #FF4401;
+}
+
+/* 俱乐部信息 */
+.club-info-wraper{
+  background-color: #FFF;
+}
+
+.icon-club-info{
+  height: 4px;
+}
+
+.club-info-content{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.club-map{
+  width: 212rpx;
+  height: 160rpx;
+}
+
+.map{
+  width: 100%;
+  height: 100%;
+}
+
+.club-name-wraper{
+  margin-left: 20rpx;
+}
+
+.club-name{
+  font-size: 30rpx;
+  color: #1E1E1E;
+}
+
+.sign-time-title,.sign-time{
+  font-size: 24rpx;
+  color: #999;
+}
+
+.sign-time-title{
+  margin-top: 20rpx;
+}
+
+.sign-time{
+  margin-top: 10rpx;
+}
+
+/* 签到订单列表 */
+.sign-order-wraper{
+  background-color: #FFF;
+}
+
+.sign-order-title{
+  padding: 20rpx;
+  font-size: 30rpx;
+  color: #999;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.sign-order-content:last-child{
+  border: 0;
+}
+
+.sign-order{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1px solid #F0F0F2;
+}
+
+.product-name{
+  font-size: 30rpx;
+  color: #1E1E1E;
+}
+
+.icon-select-wraper{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon-select{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+/* 列表无数据样式 */
+.no-data{
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  text-align: center;
+  font-size: 12px;
+  color: #8f8e8e;
+}
+
+.no-data > image{
+  margin: 0 auto;
+  width: 30px;
+  height: 30px;
+}
+
+/* 底部按钮 */
+.buttons{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 28rpx;
+  color: #FFF;
+}
+
+.button{
+  width: 100%;
+  height: 100%;
+}
+
+.cancal{
+  background-color: #262626;
+}
+
+.success{
+  background-color: #FF4401;
+}
